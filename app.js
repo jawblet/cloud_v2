@@ -11,7 +11,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 //serve static files from react app 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'react/build')));
 
 
 app.use(express.json());
