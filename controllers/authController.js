@@ -1,8 +1,10 @@
 const User = require('./../models/userModel');
 const AppError = require('./../utils/AppError');
 const jwt = require('jsonwebtoken');
-//add catchAsync here lol 
+const { promisify } = require('util');
 
+
+//add catchAsync here lol 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
@@ -64,10 +66,13 @@ exports.checkUser = async(req, res, next) => {
         token = req.cookies.jwt;
       }    
 
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    const currentId = decoded.id;
+
     res.status(200).json({
         status: 'success',
         data: {
-            token
+            currentId
         }
       });
 
