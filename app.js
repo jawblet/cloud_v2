@@ -21,8 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(jwtSecret));
 
 app.use((req, res, next) => {
-   console.log('middleware shtack');
-   console.log(req.cookies);
+   console.log('middleware');
    next();
 });
 
