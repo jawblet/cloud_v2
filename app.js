@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/authRouter');
+const viewRouter = require('./routers/viewRouter');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const jwtSecret = process.env.JWT_SECRET;
@@ -25,8 +26,8 @@ app.use((req, res, next) => {
    next();
 });
 
+app.use('/', viewRouter);
 app.use('/auth/', authRouter);
-
 
 app.get('*', (req, res) =>{
 	res.sendFile(path.join(__dirname+'/react/build/index.html'));
@@ -37,10 +38,3 @@ app.use(errorController);
 module.exports = app; 
 
 
-/*
-
-app.all('*', (req, res, next) => {
-   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
-});
-
- */

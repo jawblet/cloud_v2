@@ -38,7 +38,6 @@ export default function useForm({ initialValues }) {
 
     //send data to database 
     const submitData = async (formValues) => {
-        const url = 'http://127.0.0.1:5000/';
         const dataObject = formValues.values; 
         const { username, email, password, passwordConfirm } = dataObject;
         try {
