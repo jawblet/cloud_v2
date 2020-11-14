@@ -11,13 +11,13 @@ function App() {
 
   return (
    <Router>
-     <Switch>
        <UserContext.Provider value={{ user, setUser }}>
+       <Switch>
         <Route exact path="/" component={Register}/>
         <Route path="/home" component={Home}/>
         <Route component={NotFound}/>
+        </Switch>
         </UserContext.Provider>
-      </Switch>
    </Router>
   );
 }
