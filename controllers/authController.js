@@ -11,12 +11,12 @@ const signToken = id => {
 const createUserToken = async(user, code, req, res) => {
     const token = signToken(user._id);
     //set expiry to 1 month 
-    let now = new Date();
-    now.setMonth(now.getMonth() + 1);
+    let d = new Date();
+    d.setDate(d.getDate() + 30);
 
     //cookie settings 
     res.cookie('jwt', token, {
-        expires: now.toUTCString(),
+        expires: d,
         httpOnly: true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https', 
         sameSite: 'none'
@@ -31,6 +31,7 @@ const createUserToken = async(user, code, req, res) => {
             user
         }
     });
+    console.log(res.cookie);
 };
 
 exports.registerUser = async(req, res, next) => {

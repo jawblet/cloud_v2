@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/authRouter');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
-const jwtSecret = process.env.JWT_SECRET;
+//const jwtSecret = process.env.JWT_SECRET;
 
 const app = express();
 app.use(cors());
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'react/build')));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser(jwtSecret));
+app.use(cookieParser());
 
 app.use((req, res, next) => {
    console.log('middleware shtack');
@@ -27,10 +27,10 @@ app.use((req, res, next) => {
 
 app.use('/auth/', authRouter);
 
+
 app.get('*', (req, res) =>{
 	res.sendFile(path.join(__dirname+'/react/build/index.html'));
 });
-
 
 app.use(errorController); 
 
