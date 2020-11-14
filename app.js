@@ -26,6 +26,11 @@ app.use((req, res, next) => {
 
 app.use('/auth/', authRouter);
 
+app.get('*', (req, res) =>{
+	res.sendFile(path.join(__dirname+'/react/build/index.html'));
+});
+
+
 app.use(errorController); 
 
 module.exports = app; 
