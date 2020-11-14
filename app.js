@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/authRouter');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
@@ -13,17 +14,21 @@ app.use(morgan('tiny'));
 //serve static files from react app 
 app.use(express.static(path.join(__dirname, 'react/build')));
 
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
+
+app.use((req, res, next) => {
+   console.log('middleware shtack');
+   console.log(req.cookies);
+   next();
+});
 
 app.use('/auth/', authRouter);
 
 app.use(errorController); 
 
 module.exports = app; 
-
-
 
 
 /*

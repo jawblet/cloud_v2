@@ -14,7 +14,9 @@ const createUserToken = async(user, code, req, res) => {
     //cookie settings 
     res.cookie('jwt', token, {
         expires: new Date(Date.now() + 10 * 1000),
-        httpOnly: true
+        httpOnly: true,
+        secure: req.secure || req.headers['x-forwarded-proto'] === 'https', // ?? 
+        sameSite: 'none'
     });
 
     //remove user password from output

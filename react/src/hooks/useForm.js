@@ -1,9 +1,11 @@
-import { useState } from 'react'; 
+import { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from './UserContext';
 
 export default function useForm({ initialValues }) {
     let history = useHistory();
+    const { setUser } = useContext(UserContext);
     const [values, setValues] = useState(initialValues || {});
     const [error, setError] = useState(null);
 
@@ -42,22 +44,21 @@ export default function useForm({ initialValues }) {
         try {
             await axios({
                 method: 'POST',
-                url: `${url}auth/register`,
+                url: `auth/register`,
                 data: {
                   username: username,
                   email: email,
                   password: password,
                   passwordConfirm: passwordConfirm
-                },
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                  })
-                }).then(res => {
+                }
+            }).then(res => {
                     console.log(res);
+                    const username = res.data.data.user.username;
+                    setUser(username); 
                     history.push('/home');
                 })
             } catch(err) {
-                 console.log(err.response.data);
+                 console.log(err);
                  setError(err.response.data);
             }
       };
