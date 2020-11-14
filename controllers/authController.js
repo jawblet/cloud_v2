@@ -10,6 +10,7 @@ const signToken = id => {
 
 const createUserToken = async(user, code, req, res) => {
     const token = signToken(user._id);
+    
     //set expiry to 1 month 
     let d = new Date();
     d.setDate(d.getDate() + 30);
@@ -31,7 +32,6 @@ const createUserToken = async(user, code, req, res) => {
             user
         }
     });
-    console.log(res.cookie);
 };
 
 exports.registerUser = async(req, res, next) => {
