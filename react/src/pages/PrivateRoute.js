@@ -13,7 +13,7 @@ export default function PrivateRoute(props) {
 
       if(isLoading) {
           return(
-              <div>I'm loading...</div>
+              <div>I'm loading...</div                                             >
           )
       }
 

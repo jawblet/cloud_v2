@@ -67,6 +67,17 @@ exports.checkUser = catchAsync(async(req, res, next) => {
 });
 
 
+exports.logoutUser = catchAsync(async (req, res) => {
+    console.log('logout!')
+    
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+    
+    res.status(200).send('user is logged out');
+  });
+
 /*
     {
         username: 'juliAA',

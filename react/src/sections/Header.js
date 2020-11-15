@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import InlineButton from './../components/InlineButton';
-import { useHistory } from 'react-router-dom';
 import { UserContext } from '../hooks/UserContext';
+import useLogout from './../hooks/useLogout';
 
 export default function Header() {
-    let history = useHistory();
     const { user } = useContext(UserContext);
+    const { logoutUser } = useLogout(); 
 
     return(
         <header className='page__header'>
             Hello, {user}.
-            <InlineButton name={'logout'}/>
+            <InlineButton name={'logout'} handleClick={logoutUser} />
         </header>
     )
 }

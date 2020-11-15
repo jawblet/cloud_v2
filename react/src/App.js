@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     if(userStatus) {
       console.log('The App useEffect ran');
-      console.log(userStatus.username);
       setUser(userStatus.username);
     }
   }, [userStatus]);

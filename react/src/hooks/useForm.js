@@ -43,7 +43,7 @@ export default function useForm({ initialValues }) {
         try {
             await axios({
                 method: 'POST',
-                url: `auth/register`,
+                url: `auth/register`, 
                 data: {
                   username: username,
                   email: email,
