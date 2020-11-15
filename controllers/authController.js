@@ -60,7 +60,7 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id);
       } else {
-          currentUser = null;
+          currentUser =  null;
       }    
 
       res.status(200).send({ currentUser });

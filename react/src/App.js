@@ -14,14 +14,15 @@ function App() {
 
   useEffect(() => {
     if(userStatus) {
-      console.log('hiii');
+      console.log('The App useEffect ran');
+      console.log(userStatus.username);
       setUser(userStatus.username);
     }
-  }, []);
+  }, [userStatus]);
   
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser }}>
+       <UserContext.Provider value={{ user, setUser, isLoading }}>
        <Switch>
           <Route exact path="/" component={Register}/>
           <PrivateRoute path="/home" component={Home}/>
