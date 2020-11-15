@@ -2,8 +2,15 @@
     background-color: $off-white;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    padding: 3rem;
+    &__header {
+      align-self: center;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
 }
 
 .inlineForm {

@@ -4,7 +4,6 @@ const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 
-//add catchAsync here lol 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
@@ -52,28 +51,25 @@ exports.registerUser = async(req, res, next) => {
         } catch(err) {
             next(err);
     }
-}
+};
 
 exports.checkUser = catchAsync(async(req, res, next) => {
-    let token;
+    let currentUser;
     if (req.cookies.jwt) {
-        token = req.cookies.jwt;
+        const token = req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+        currentUser = await User.findById(decoded.id);
+      } else {
+          currentUser = null;
       }    
 
-    if (!token) {
-        return next(
-          new AppError('You are not logged in! Please log in to get access.', 401)
-        );
-    }
-
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    const currentId = decoded.id;
-
-    res.status(200).json({
-        status: 'success',
-        data: {
-            currentId
-        }
-      });
-
+      res.status(200).send({ currentUser });
 });
+
+
+/*
+    {
+        username: 'juliAA',
+        password: '12345678'
+      }     
+*/

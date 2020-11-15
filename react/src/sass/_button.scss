@@ -1,3 +1,4 @@
+//buttons
 .btn {
         min-height: 3rem;
         min-width: 3rem;
@@ -20,19 +21,25 @@
             box-shadow: none;
           }
         }
-        &--inline {
-          height: 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
         &--CTA {
           width: 6rem;
           background-color: $sand3;
         }
 }
 
-//for react icons
+//inline buttons
+.inlineBtn {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover{
+    font-style: italic;
+  }
+}
+
+//react icons
 .icon {
   font-size: 1.2rem; 
   color: $body-lightest;

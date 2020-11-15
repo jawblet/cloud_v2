@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function useFindUser() {
 const [userStatus, setUserStatus] = useState('');
+const [isLoading, setLoading] = useState(true);
 
     useEffect(() =>{
         try {
@@ -10,14 +11,16 @@ const [userStatus, setUserStatus] = useState('');
                 method: 'GET',
                 url: '/user'
             }).then(res => {
-                console.log(res.data);
+                setUserStatus(res.data.currentUser);
+                setLoading(false);
             })
         } catch(err) {
             console.log(err);
         }
     }, []);
     
-    return{
-        userStatus
+    return {
+        userStatus,
+        isLoading
     }
 }

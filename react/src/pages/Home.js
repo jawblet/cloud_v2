@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { UserContext } from './../hooks/UserContext';
+import React from 'react';
+import Header from './../sections/Header';
 
 export default function Home() {
-    const { user } = useContext(UserContext);
 
     return(
         <div className="page">
-            Successful registration: welcome, {user}. 
+            <Header/>
+            The content here is protected for logged in users :)
         </div>
     )
-}
+};
