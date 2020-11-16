@@ -25,9 +25,9 @@ function App() {
    <Router>
        <UserContext.Provider value={{ user, setUser, isLoading }}>
        <Switch>
+          <Route exact path="/" component={Landing}/>  
           <Route path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
-          <Route path="/" component={Landing}/>
           <PrivateRoute path="/home" component={Home}/>
           <Route component={NotFound}/>
         </Switch>
