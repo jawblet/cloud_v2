@@ -211,6 +211,12 @@ button {
     display: flex;
     justify-content: space-between; }
 
+.landing__header {
+  width: 10rem;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between; }
+
 .inlineForm {
   width: 35%;
   text-align: center; }
@@ -293,3 +299,20 @@ button {
   border-radius: 0.5rem;
   border: 1px solid #78201B;
   padding: 1rem; }
+
+.loading {
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  justify-content: center; }
+
+.pulse {
+  display: inline-block;
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  background-color: #72716B;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+  animation: pulse 3s infinite;
+  animation-delay: 1s; }

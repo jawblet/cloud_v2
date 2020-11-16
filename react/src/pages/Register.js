@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FormInput from './../components/FormInput';
 import CTA from './../components/CTA';
 import Prompt from './../components/Prompt';
@@ -20,7 +21,7 @@ export default function Register() {
     error ? invalidFields = error.fields : invalidFields = []; 
 
     return(
-        <div className="page">
+        <div className="page" style={{justifyContent:'center'}}>
             <div className="inlineForm">
             <h3>Register</h3>
                 <div className="inlineForm__notif">
@@ -42,7 +43,9 @@ export default function Register() {
                             handleChange={handleChange} handleKeyDown={handleKeyDown} />
 
                 <div className="inlineForm__submit">
-                    <Prompt prompt={"Existing account? Log in."}/>
+                    <Link to='/login'>
+                        <Prompt prompt={"Existing account? Log in."}/>
+                    </Link>
                     <CTA name={"register"} type={"submit"} 
                         handleClick={(e) => handleSubmit(e)}
                     /> 

@@ -54,7 +54,7 @@ export default function useForm({ initialValues }) {
                     console.log(res);
                     const username = res.data.data.user.username;
                     setUser(username); 
-                    history.push('/home');
+                    history.push('/home'); 
                 })
             } catch(err) {
                  console.log(err);

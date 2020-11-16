@@ -1,22 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from './../hooks/UserContext';
-import useFindUser from './../hooks/useFindUser';
+import Loading from './../components/Loading'; 
+
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
 
     const Component = props.component; 
 
-    //USER HAS TO BE CHECKED HERE
     console.log(`${user} is the user`)
 
       if(isLoading) {
-          return(
-              <div>I'm loading...</div                                             >
-          )
-      }
+          return <Loading/>
+        }
 
+    //USER HAS TO BE CHECKED HERE
       if(user){
           return <Component/>
         } else {
