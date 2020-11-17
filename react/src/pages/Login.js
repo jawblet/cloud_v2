@@ -4,31 +4,43 @@ import FormInput from './../components/FormInput';
 import CTA from './../components/CTA';
 import Prompt from './../components/Prompt';
 import Error from './../components/Error';
+import useForm from './../hooks/useForm';
 
 export default function Login() {
+
+    const { values, handleChange, handleSubmit, error} = useForm({
+        initialValues: {
+            form: 'login',
+            username: '',
+            password: ''
+        }
+    });
+
+    let invalidFields;
+    error ? invalidFields = error.fields : invalidFields = []; 
+
     return(
         <div className='page' style={{justifyContent:'center'}}>
              <div className="inlineForm">
-             <h3>Login</h3>
+                <h3>Login</h3>
              <div className="inlineForm__notif">
+                 {error && <Error error={error.messages}/>}
              </div>
-             <FormInput type={"email"} placeholder={"Email"} name={"email"} 
-                            //value={values.email} fail={invalidFields.includes("email")}
-                           // handleChange={handleChange} handleKeyDown={handleKeyDown} 
-                            />
-            <FormInput type={"email"} placeholder={"Email"} name={"email"} 
-                            //value={values.email} fail={invalidFields.includes("email")}
-                           // handleChange={handleChange} handleKeyDown={handleKeyDown} 
-                            />
-            <div className="inlineForm__submit">
-                <Link to='/register'>
-                    <Prompt prompt={"No account? Create one."}/>
-                </Link>
-                <CTA name={"login"} type={"submit"} 
-                        //handleClick={(e) => handleSubmit(e)}
-                    /> 
-            </div>
-
+                <form onSubmit={handleSubmit}>
+                    <FormInput type={"text"} placeholder={"Username"} name={"username"} 
+                                value={values.username} fail={invalidFields.includes("username")}
+                                handleChange={handleChange} />
+                    <FormInput type={"password"} placeholder={"Password"} name={"password"} 
+                                value={values.password} fail={invalidFields.includes("password")}
+                                handleChange={handleChange} />
+                    <div className="inlineForm__submit">
+                        <Link to='/register'>
+                            <Prompt prompt={"No account? Create one."}/>
+                        </Link>
+                        <CTA name={"login"} type={"submit"} 
+                            /> 
+                    </div>
+                </form>
             </div>
         </div>
     )

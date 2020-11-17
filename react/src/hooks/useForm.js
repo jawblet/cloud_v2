@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { UserContext } from './UserContext';
+import { UserContext } from './UserContext';  
 
 export default function useForm({ initialValues }) {
     let history = useHistory();
@@ -20,24 +20,21 @@ export default function useForm({ initialValues }) {
         }); 
     };
 
-    //submit form when enter key is pressed 
-    const handleKeyDown = event => { 
-        const enter = 13;
-        if(event.keyCode === enter) {
-            console.log('enter key was pressed');
-            handleSubmit(event);
-        }
-    }
-
     //submit form when submit button is clicked 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log('submit btn clicked');
-        submitData({ values });
+        switch (values.form) {
+            case 'register':
+            registerUser({ values });
+            break;
+            case 'login':
+            loginUser({ values });
+            break;
+        }
     };
 
-    //send data to database 
-    const submitData = async (formValues) => {
+    //register user  
+    const registerUser = async (formValues) => {
         const dataObject = formValues.values; 
         const { username, email, password, passwordConfirm } = dataObject;
         try {
@@ -45,10 +42,34 @@ export default function useForm({ initialValues }) {
                 method: 'POST',
                 url: `auth/register`, 
                 data: {
-                  username: username,
-                  email: email,
-                  password: password,
-                  passwordConfirm: passwordConfirm
+                  username,
+                  email,
+                  password,
+                  passwordConfirm
+                }
+            }).then(res => {
+                    console.log(res);
+                    const username = res.data.data.user.username;
+                    setUser(username); 
+                    history.push('/home'); 
+                })
+            } catch(err) {
+                 console.log(err);
+                 setError(err.response.data);
+            }
+      };
+
+    //login user 
+    const loginUser = async (formValues) => {
+        const dataObject = formValues.values; 
+        const { username, password } = dataObject;
+        try {
+            await axios({
+                method: 'POST',
+                url: `auth/login`, 
+                data: {
+                  username,
+                  password,
                 }
             }).then(res => {
                     console.log(res);
@@ -64,9 +85,8 @@ export default function useForm({ initialValues }) {
 
     return {
         handleChange,
-        handleKeyDown,
+        handleSubmit,
         values,
-        handleSubmit, 
         error
     }
 }
