@@ -82,9 +82,9 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id);
       } else {
-          //currentUser =  null;
-          const id = '5fb46c6358fcc0b2c3a80248';
-          currentUser = await User.findById(id);
+          currentUser =  null;
+          //const id = '5fb46c6358fcc0b2c3a80248';
+          //currentUser = await User.findById(id);
       }    
 
       res.status(200).send({ currentUser });
@@ -98,8 +98,6 @@ exports.logoutUser = catchAsync(async (req, res) => {
     });
     res.status(200).send('user is logged out');
   });
-
-
 
 
 
