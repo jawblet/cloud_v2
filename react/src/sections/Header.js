@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import InlineButton from './../components/InlineButton';
 import { UserContext } from '../hooks/UserContext';
 import useLogout from './../hooks/useLogout';
@@ -9,7 +10,9 @@ export default function Header() {
 
     return(
         <header className='page__header'>
-            Hello, {user}.
+            <Link to="/user">
+                <InlineButton name={`@${user.username}`}/>
+            </Link>
             <InlineButton name={'logout'} handleClick={logoutUser} />
         </header>
     )

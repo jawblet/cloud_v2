@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function Prompt(props){
+export default function Prompt({type, prompt, handleClick}){
     return(
-        <h5 className="prompt">{props.prompt}</h5>
+        <h5 className={`prompt ${type}`} onClick={handleClick}>
+            {prompt}
+        </h5>
     )
 }

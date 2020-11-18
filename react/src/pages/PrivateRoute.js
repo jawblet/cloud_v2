@@ -9,8 +9,6 @@ export default function PrivateRoute(props) {
 
     const Component = props.component; 
 
-    console.log(`${user} is the user`)
-
       if(isLoading) {
           return <Loading/>
         }

@@ -49,8 +49,8 @@ export default function useForm({ initialValues }) {
                 }
             }).then(res => {
                     console.log(res);
-                    const username = res.data.data.user.username;
-                    setUser(username); 
+                    const user = res.data.data.user;
+                    setUser(user); 
                     history.push('/home'); 
                 })
             } catch(err) {

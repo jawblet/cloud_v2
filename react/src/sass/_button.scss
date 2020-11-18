@@ -25,6 +25,9 @@
           width: 6rem;
           background-color: $sand3;
         }
+        &.warning{
+          background-color: $error;
+        }
 }
 
 //inline buttons
@@ -43,4 +46,11 @@
 .icon {
   font-size: 1.2rem; 
   color: $body-lightest;
+  transition: all $short-fade;
+  &__btn{
+    cursor: pointer;
+    &:hover{
+      color: $body-light;
+    }
+  }
 }

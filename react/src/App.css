@@ -278,6 +278,8 @@ button {
   .btn--CTA {
     width: 6rem;
     background-color: #f3e8dc; }
+  .btn.warning {
+    background-color: #f39c81d9; }
 
 .inlineBtn {
   height: 3rem;
@@ -290,7 +292,12 @@ button {
 
 .icon {
   font-size: 1.2rem;
-  color: #C3C2BD; }
+  color: #C3C2BD;
+  transition: all 0.35s; }
+  .icon__btn {
+    cursor: pointer; }
+    .icon__btn:hover {
+      color: #72716B; }
 
 .notifError {
   display: block;
@@ -316,3 +323,36 @@ button {
   margin: 0 0.5rem;
   animation: pulse 3s infinite;
   animation-delay: 1s; }
+
+.prompt.light {
+  color: #72716B; }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  border-radius: 1rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff;
+  padding: 3rem;
+  line-height: 150%; }
+  .modal__close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem; }
+  .modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3rem; }
+    .modal__actions > :first-child {
+      margin-right: 3rem; }
+  .modal__background {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.8); }

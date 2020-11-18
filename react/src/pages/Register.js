@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import FormInput from './../components/FormInput';
-import CTA from './../components/CTA';
-import Prompt from './../components/Prompt';
-import ConfirmPasswordInput from './../components/ConfirmPasswordInput';
+import UserForm from './../sections/UserForm';
 import Error from './../components/Error';
 import useForm from './../hooks/useForm';
+import { Link } from 'react-router-dom';
+import CTA from './../components/CTA'; 
+import Prompt from './../components/Prompt';
 
 export default function Register() {
 
@@ -18,6 +17,8 @@ export default function Register() {
         }
     });
 
+    let user = {};
+
     let invalidFields;
     error ? invalidFields = error.fields : invalidFields = []; 
 
@@ -26,33 +27,18 @@ export default function Register() {
             <div className="inlineForm">
             <h3>Register</h3>
                 <div className="inlineForm__notif">
-                    {error && <Error error={error.messages}/>}
+                {error && <Error error={error.messages}/>}
                 </div>
-                    <form onSubmit={handleSubmit}>
-                        <FormInput type={"text"} placeholder={"Email"} 
-                                    name={"email"} value={values.email} 
-                                    fail={invalidFields.includes("email")}
-                                    handleChange={handleChange} />
-
-                        <FormInput type={"text"} placeholder={"Username"} 
-                                    name={"username"} value={values.username} 
-                                    fail={invalidFields.includes("username")}
-                                    handleChange={handleChange} />
-
-                        <ConfirmPasswordInput type={"password"} 
-                                    fail={invalidFields.some(el => el === "password" || "passwordConfirm")}
-                                    placeholder={"Password"} placeholderConfirm={"Confirm password"}
-                                    name={"password"} nameConfirm={"passwordConfirm"}
-                                    value={values.password} valueConfirm={values.passwordConfirm}
-                                    handleChange={handleChange}/>
-
-                        <div className="inlineForm__submit">
-                            <Link to='/login'>
-                                <Prompt prompt={"Existing account? Log in."}/>
-                            </Link>
-                            <CTA name={"register"} type={"submit"}
-                            /> 
-                    </div>
+                <form onSubmit={handleSubmit}>
+                    <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}
+                    user={user} invalidFields={invalidFields}/>
+                <div className="inlineForm__submit">
+                    <Link to='/login'>
+                        <Prompt prompt={"Existing account? Log in."}/>
+                    </Link>
+                    <CTA name={"register"} type={"submit"}
+                    /> 
+                </div>
                 </form>
             </div>
         </div>

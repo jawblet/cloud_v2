@@ -1,0 +1,34 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40rem;
+    border-radius: $border-large;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $soft-shadow;
+    padding: 3rem; 
+    line-height: 150%;
+    &__close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+    &__actions{
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 3rem;
+        & > :first-child{
+            margin-right: 3rem;
+        }
+    }
+    &__background {
+        position: fixed;  
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}

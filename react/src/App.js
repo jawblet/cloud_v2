@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
+import User from './pages/User';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 
@@ -17,7 +18,7 @@ function App() {
   useEffect(() => {
     if(userStatus) {
       console.log('The App useEffect ran');
-      setUser(userStatus.username);
+      setUser(userStatus);
     }
   }, [userStatus]);
   
@@ -29,6 +30,7 @@ function App() {
           <Route path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <PrivateRoute path="/home" component={Home}/>
+          <PrivateRoute path="/user" component={User}/>
           <Route component={NotFound}/>
         </Switch>
       </UserContext.Provider>
