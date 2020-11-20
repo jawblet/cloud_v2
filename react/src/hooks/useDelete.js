@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export default function useDelete(id) {
     let history = useHistory();
-    console.log(id);
 
     const deleteUser = async () => {
         try {

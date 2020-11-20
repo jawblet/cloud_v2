@@ -13,7 +13,7 @@ const Modal = React.forwardRef((props, ref) => (
                         You can download all of your content before you go.</p> 
                         <div className="modal__actions">
                         <CTA name={"cancel"} handleClick={props.toggleModal}/> 
-                        <CTA name={"delete"} style="warning" handleClick={props.deleteUser}/>
+                        <CTA name={"delete"} color="warning" handleClick={props.deleteUser}/>
                     </div>
                 </div>
             </div>

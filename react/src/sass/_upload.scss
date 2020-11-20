@@ -1,0 +1,36 @@
+.upload {
+    background-color: $sand;
+    line-height: 1.5rem;
+    border: 3px solid $sand3; 
+    border-radius: $border-small;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    min-height: 10rem;
+}
+
+.drag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    min-height: 9rem;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: $border-small;
+    transition: all $short-fade;
+    &--active{
+        background-color: $off-white;
+        border: 1px solid $sand3;
+    }
+    &:hover {
+        cursor: text;
+    }
+}
+
+.DraftEditor-editorContainer {
+    border: 1px solid blue; 
+    text-align: left;
+    min-height: 9rem; 
+}
+

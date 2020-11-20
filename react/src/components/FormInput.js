@@ -8,6 +8,7 @@ export default function FormInput(props) {
             <input type={props.type} name="input" 
             className={`input ${fail ? "input--fail" : null} `}
             placeholder={props.placeholder}
+            disabled={props.disabled}
             name={props.name}
             value={props.value}
             onChange={props.handleChange}

@@ -10,9 +10,14 @@ export default function Header() {
 
     return(
         <header className='page__header'>
+            <div className='page__links'>
+             <Link to="/home">
+                <InlineButton name='skylight'/>
+            </Link>
             <Link to="/user">
                 <InlineButton name={`@${user.username}`}/>
             </Link>
+            </div>
             <InlineButton name={'logout'} handleClick={logoutUser} />
         </header>
     )

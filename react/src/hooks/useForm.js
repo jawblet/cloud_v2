@@ -5,15 +5,15 @@ import { UserContext } from './UserContext';
 
 export default function useForm({ initialValues }) {
     let history = useHistory();
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [values, setValues] = useState(initialValues || {});
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     //track form values
     const handleChange = event => {
         const value = event.target.value; 
         const name = event.target.name;
-
         setValues({
             ...values,
             [name]: value
@@ -30,6 +30,15 @@ export default function useForm({ initialValues }) {
             case 'login':
             loginUser({ values });
             break;
+            case 'user':
+            updateUser({ values });
+            if(values.password || values.passwordConfirm) {
+                console.log('there is password change')
+                updatePassword({ values });
+            }
+            break;
+            default: 
+            console.log('no form found');
         }
     };
 
@@ -83,10 +92,59 @@ export default function useForm({ initialValues }) {
             }
       };
 
+//update user information
+      const updateUser = async (formValues) => {
+          const { username, email } = formValues.values;
+          //console.log('update user');
+          //remove notification on submit  
+          setSuccess(null);
+          setError(null);
+          try {
+              await axios({
+                  method: 'PATCH',
+                  url: `users/${user._id}`,
+                  data: {
+                    username,
+                    email
+                  }
+              }).then(res => {
+                  console.log(res);
+                  setSuccess('Profile update complete.');
+              })
+          } catch(err) {
+              console.log(err);
+              setError(err.response.data);
+          }
+      }
+
+      const updatePassword = async (formValues) => {
+        //console.log('update pass');
+        const { password, passwordConfirm } = formValues.values;
+        //remove notification on submit  
+        setSuccess(null);
+        setError(null);
+        try {
+            await axios({
+                method: 'PATCH',
+                url: `auth/password/${user._id}`,
+                data: {
+                  password,
+                  passwordConfirm
+                }
+            }).then(res => {
+                console.log(res);
+                setSuccess('Profile update complete.');            })
+        } catch(err) {
+            console.log(err);
+            setError(err.response.data);
+        }
+    }
+
     return {
         handleChange,
         handleSubmit,
         values,
-        error
+        error,
+        success
     }
 }

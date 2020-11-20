@@ -8,3 +8,5 @@ exports.getUserByUsername = functionHandler.getOne(User);
 exports.getAllUsers = functionHandler.getAll(User);
 exports.deleteOneUser = functionHandler.deleteOne(User);
 exports.deleteAllUsers = functionHandler.deleteAll(User);
+exports.updateUser = functionHandler.updateOne(User); 
+

@@ -2,7 +2,7 @@ import FormInput from './../components/FormInput';
 import ConfirmPasswordInput from './../components/ConfirmPasswordInput';
 
 export default function useForm(props) {
-    return(
+    return( 
      <>
         <FormInput type={"text"} placeholder={"Email"} 
                     name={"email"} value={props.values.email} 

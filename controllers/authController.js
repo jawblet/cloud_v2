@@ -57,20 +57,19 @@ exports.registerUser = async(req, res, next) => {
 
 //check if user is logged in 
 exports.loginUser = catchAsync(async(req, res, next) => {
-    console.log('i was called on login')
     const { username, password } = req.body;
 
     //check if email & password exist 
     if (!username || !password) {
-        return next(new AppError('Please provide a username and password!', 400));
+        return next(new AppError('Please provide a username and password.', 400));
       }
 
     //check if user & password are correct  
     const user = await User.findOne({ username }).select('+password');
-    if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError('Incorrect username or password', 401));
-    }
 
+    if (!user || !(await user.correctPassword(password, user.password))) {
+      return next(new AppError('Incorrect username or password.', 401));
+    }
     createUserToken(user, 200, req, res);
 });
 
@@ -82,12 +81,22 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id);
       } else {
-          currentUser =  null;
-          //const id = '5fb46c6358fcc0b2c3a80248';
-          //currentUser = await User.findById(id);
+          //currentUser =  null;
+          const id = '5fb49aab7affcfbdf4b7b122';
+          currentUser = await User.findById(id);
       }    
 
       res.status(200).send({ currentUser });
+});
+
+//update password 
+exports.changePassword = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    await user.save();
+    createUserToken(user, 200, req, res); 
 });
 
 //log user out 
@@ -98,8 +107,6 @@ exports.logoutUser = catchAsync(async (req, res) => {
     });
     res.status(200).send('user is logged out');
   });
-
-
 
 /*
     {

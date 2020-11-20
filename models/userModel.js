@@ -17,7 +17,7 @@ const userSchema = new Schema({
         unique: [true, 'That email address is taken.'],
         lowercase: true,
         validate: [validator.isEmail, 'Enter a valid email address.']
-    },
+    }, 
     password: {
         type: String,
         required: [true, 'Enter a password.'],
@@ -31,12 +31,16 @@ const userSchema = new Schema({
                 return el === this.password;
             }, message: 'Passwords don\'t match.'
         }
+    },
+    createdOn: {
+        type: Date, 
+        default: Date.now
     }
 });
 
 //schema middleware to apply before saving 
 userSchema.pre('save', async function(next) {
-    
+    if (!this.isModified('password')) return next();
     //hash the password, set hash cost to 12  
     this.password = await bcrypt.hash(this.password, 12);
 

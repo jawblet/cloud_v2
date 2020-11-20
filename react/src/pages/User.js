@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { UserContext } from './../hooks/UserContext';
 import UserForm from './../sections/UserForm';
 import Error from './../components/Error';
+import Notification from './../components/Notification';
 import useForm from './../hooks/useForm';
 import CTA from './../components/CTA'; 
 import Header from './../sections/Header';
@@ -14,7 +15,7 @@ export default function User() {
     const { user } = useContext(UserContext);
 
     //submit for user form changes user data 
-    const { values, handleChange, handleSubmit, error} = useForm({
+    const { values, handleChange, handleSubmit, error, success } = useForm({
         initialValues: {
             form: 'user',
             email: user.email,
@@ -22,13 +23,17 @@ export default function User() {
             password: '', passwordConfirm: ''
         }
     });
-
+    //set invalid fields if error exists 
     let invalidFields;
     error ? invalidFields = error.fields : invalidFields = []; 
 
-   const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
-   const { deleteUser } = useDelete(user._id);
-    
+    // only show success if there are no errors
+    const notif = (error == null) && (success !== null); 
+    const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
+    const { deleteUser } = useDelete(user._id);
+    console.log(error, success);
+    console.log(notif);
+
     return(
         <div className="page" >
             <Header/>
@@ -36,6 +41,7 @@ export default function User() {
                 <h3>@{user.username}</h3>
                 <div className="inlineForm__notif">
                     {error && <Error error={error.messages}/>}
+                    {notif && <Notification notif={success}/>}
                 </div>
                 <Prompt prompt={"Edit your account information"}/>
                 <form onSubmit={handleSubmit}>
@@ -49,7 +55,7 @@ export default function User() {
                 <Prompt prompt="Delete account" type="light" handleClick={() => toggleModal()}/>
             </div>
             </div>
-            {modal && 
+            {modal &&  
             <Modal toggleModal={toggleModal} handleOutsideClick={handleOutsideClick} 
                     ref={modalRef} deleteUser={deleteUser}/> }
         </div>

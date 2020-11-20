@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import User from './pages/User';
+import Add from './pages/Add';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" component={Login}/>
           <PrivateRoute path="/home" component={Home}/>
           <PrivateRoute path="/user" component={User}/>
+          <PrivateRoute path="/add" component={Add}/>
           <Route component={NotFound}/>
         </Switch>
       </UserContext.Provider>
