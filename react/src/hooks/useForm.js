@@ -33,7 +33,6 @@ export default function useForm({ initialValues }) {
             case 'user':
             updateUser({ values });
             if(values.password || values.passwordConfirm) {
-                console.log('there is password change')
                 updatePassword({ values });
             }
             break;

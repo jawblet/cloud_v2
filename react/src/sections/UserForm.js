@@ -2,6 +2,9 @@ import FormInput from './../components/FormInput';
 import ConfirmPasswordInput from './../components/ConfirmPasswordInput';
 
 export default function useForm(props) {
+  console.log(props.invalidFields);
+  const passwordFields = ['password', 'passwordConfirm'];
+  const passwordFail = props.invalidFields.some(el => passwordFields.indexOf(el) !== -1);
     return( 
      <>
         <FormInput type={"text"} placeholder={"Email"} 
@@ -14,8 +17,7 @@ export default function useForm(props) {
                     fail={props.invalidFields.includes("username")}
                     handleChange={props.handleChange} />
 
-        <ConfirmPasswordInput type={"password"} 
-                    fail={props.invalidFields.some(el => el === "password" || "passwordConfirm")}
+        <ConfirmPasswordInput type={"password"} fail={passwordFail}
                     placeholder={"Password"} placeholderConfirm={"Confirm password"}
                     name={"password"} nameConfirm={"passwordConfirm"}
                     value={props.values.password} valueConfirm={props.values.passwordConfirm}

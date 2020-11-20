@@ -13,6 +13,8 @@ import useDelete from './../hooks/useDelete';
 
 export default function User() {
     const { user } = useContext(UserContext);
+    const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
+    const { deleteUser } = useDelete(user._id);
 
     //submit for user form changes user data 
     const { values, handleChange, handleSubmit, error, success } = useForm({
@@ -29,10 +31,6 @@ export default function User() {
 
     // only show success if there are no errors
     const notif = (error == null) && (success !== null); 
-    const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
-    const { deleteUser } = useDelete(user._id);
-    console.log(error, success);
-    console.log(notif);
 
     return(
         <div className="page" >
