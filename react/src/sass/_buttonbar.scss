@@ -1,0 +1,51 @@
+//button bar
+.btn__bar { 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: $border-small;
+    &__wrapper {
+      height: inherit; 
+      border: 3px solid $sand; //background color here 
+      border-radius: 0.8rem;
+    }
+   }
+  
+//button styles on bar 
+.btnBar {
+    background-color: $sand2;
+    border-radius: 0;
+    &--top {
+      border-top-right-radius: $border-small;
+      border-top-left-radius: $border-small;
+    }
+    &--bottom {
+      border-bottom-right-radius: $border-small;
+      border-bottom-left-radius: $border-small;
+    }
+    &--right {
+      border-top-right-radius: $border-small;
+      border-bottom-right-radius: $border-small;
+    }
+    &--left {
+      border-top-left-radius: $border-small;
+      border-bottom-left-radius: $border-small;
+    }
+    &--active {
+      background-color: $sand3;
+      color: $body-light;
+    }
+  }
+
+  //tooltip on button bar 
+  .tooltip {
+    color: $off-white;
+    background-color: $body-medium;
+    border-radius: 5px;
+    padding: 5px 0.5rem; 
+    transition: all .35s;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+  }

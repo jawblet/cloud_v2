@@ -41,7 +41,9 @@ export default function User() {
                     {error && <Error error={error.messages}/>}
                     {notif && <Notification notif={success}/>}
                 </div>
+                <div className="flex justifyStart padBottomOne">
                 <Prompt prompt={"Edit your account information"}/>
+                </div>
                 <form onSubmit={handleSubmit}>
                 <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}
                         user={user} invalidFields={invalidFields}/>

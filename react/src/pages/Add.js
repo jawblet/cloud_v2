@@ -1,34 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from './../sections/Header';
 import { UserContext } from './../hooks/UserContext';
-import FormInput from './../components/FormInput';
-import DropTextInput from './../components/DropTextInput';
 import CTA from './../components/CTA'; 
 import UploadContainer from '../components/upload/UploadContainer';
-import useToggle from '../hooks/useToggle';
+import useToggle from '../hooks/useToggle'; 
+import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
+import useUpload from '../hooks/useUpload';
 
 
 export default function Add() {
-    const { user } = useContext(UserContext);
-    const { handleToggle, newState } = useToggle(false); 
+    const buttons = [
+        {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
+        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
+        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>},
+    ];
 
-    //name, content upload (link/file/txt), comments, tags 
+    const [type, setType]= useState('link');
+    const switchType = (e) => { setType(e.target.dataset.id); }
+
+    const { user } = useContext(UserContext);
+
+    const { values, handleChange, handleSubmit, error} = useUpload({
+        initialValues: {
+            type: 'link',
+            content: '',
+            comment: '',
+            author: user._id
+        }
+    });
 
     return (
         <div className="page">
             <Header/>
             <div className="pageForm">
-            <form>
-                <div className="pageForm__field">
-                <h4 className="pageForm__label">Name</h4>
-                <FormInput type={"text"} name={"author"} 
-                        value={user.username} disabled={true}/>
-                </div>
-                <UploadContainer/>
+            <form className="fullWidth" onSubmit={handleSubmit}>
 
-                <h4 onClick={handleToggle}>More?</h4>
-                <DropTextInput show={newState}/> 
-                <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
+                <UploadContainer buttons={buttons} type={type} switchType={switchType}
+                                values={values} handleChange={handleChange} 
+                />
+
+                <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                         <CTA name={"add"} type={"submit"}/> 
                 </div>
             </form>

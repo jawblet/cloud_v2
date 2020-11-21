@@ -26,7 +26,7 @@ export default function Login() {
              <div className="inlineForm__notif">
                  {error && <Error error={error.messages}/>}
              </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="formFields">
                     <FormInput type={"text"} placeholder={"Username"} name={"username"} 
                                 value={values.username} fail={invalidFields.includes("username")}
                                 handleChange={handleChange} />

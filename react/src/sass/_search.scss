@@ -1,0 +1,25 @@
+.search {
+    width: 100%;
+    position: relative;
+    align-self: flex-start;
+   // border: 1px solid black; 
+    &__icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        &.end{
+            right: 3rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+    &__bar {
+        padding-left: 2.5rem;
+        border-bottom: 3px solid $sand;
+        transition: all $short-fade;
+        &:focus {
+            border: 3px solid $sand; 
+            border-bottom: 3px solid $sand3; }
+        }
+    }

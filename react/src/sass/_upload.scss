@@ -1,36 +1,58 @@
 .upload {
     background-color: $sand;
     line-height: 1.5rem;
-    border: 3px solid $sand3; 
+    border: 3px solid $sand2; 
     border-radius: $border-small;
-    margin: 1rem 0;
-    padding: 0.5rem;
+    padding:  1rem;
     width: 100%;
-    min-height: 10rem;
-}
-
-.drag {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    min-height: 9rem;
-    width: 100%;
-    border: 1px solid transparent;
-    border-radius: $border-small;
-    transition: all $short-fade;
-    &--active{
-        background-color: $off-white;
-        border: 1px solid $sand3;
+    margin-top: 3px;
+    height: auto; 
+    
+    //lay out upload form
+    &__container{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15%; //buffer at pg top 
+        align-items: flex-start
+       // border: 1px solid black;
     }
-    &:hover {
-        cursor: text;
+    &__controller { // input controls
+        display: flex;
+        flex: 0 0 10%; 
+        align-self: flex-start;
+    }
+    &__form { //upload, tags, and comments
+        flex: 0 0 90%;
+    }
+
+    //tags for tags and comments 
+    &__label {
+        // border: 1px solid black;
+        padding-top: 1rem;
+        flex: 0 0 15%;
+        display: flex;
+        justify-content: flex-start;
+        cursor: pointer;
+        &:hover { font-style: italic; }
     }
 }
 
-.DraftEditor-editorContainer {
-    border: 1px solid blue; 
-    text-align: left;
-    min-height: 9rem; 
+//Expand this panel on add tags click ==> tag search, recent tags, and tag bank 
+.addTags {
+    padding-top: 1rem;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform-origin: center 1rem; // roll out search from center(x) 1rem from top(y)
+   // border: 1px solid blue;
+    width: 100%;
+    &__recent {
+        padding-top: 1rem;
+        align-self: flex-start;
+    }
 }
+
+
 

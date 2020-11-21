@@ -9,8 +9,8 @@
         cursor: pointer;
         transition: all $short-fade;
         &:hover {
-          box-shadow:  2px 2px 8px $shadow;  
-          border-radius: $border-small;
+         // box-shadow:  2px 2px 8px $shadow;  
+         // border-radius: $border-small;
         }
         &:active {
           background-color: $sand2;
@@ -47,10 +47,9 @@
   font-size: 1.2rem; 
   color: $body-lightest;
   transition: all $short-fade;
-  &__btn{
+  &__btn {
     cursor: pointer;
-    &:hover{
-      color: $body-light;
-    }
+    &:hover { color: $body-light; }
   }
+  &--small { font-size: 0.8rem; }
 }

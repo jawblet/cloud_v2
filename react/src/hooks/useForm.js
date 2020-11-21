@@ -43,7 +43,7 @@ export default function useForm({ initialValues }) {
 
     //register user  
     const registerUser = async (formValues) => {
-        const dataObject = formValues.values; 
+        const dataObject = formValues.values; // shorten 
         const { username, email, password, passwordConfirm } = dataObject;
         try {
             await axios({
@@ -79,7 +79,7 @@ export default function useForm({ initialValues }) {
                   username,
                   password,
                 }
-            }).then(res => {
+            }).then(res => { 
                     console.log(res);
                     const username = res.data.data.user.username;
                     setUser(username); 
@@ -90,17 +90,15 @@ export default function useForm({ initialValues }) {
                  setError(err.response.data);
             }
       };
-
+ 
 //update user information
       const updateUser = async (formValues) => {
           const { username, email } = formValues.values;
-          //console.log('update user');
-          //remove notification on submit  
           setSuccess(null);
           setError(null);
           try {
               await axios({
-                  method: 'PATCH',
+                  method: 'PUT',
                   url: `users/${user._id}`,
                   data: {
                     username,
@@ -117,9 +115,7 @@ export default function useForm({ initialValues }) {
       }
 
       const updatePassword = async (formValues) => {
-        //console.log('update pass');
         const { password, passwordConfirm } = formValues.values;
-        //remove notification on submit  
         setSuccess(null);
         setError(null);
         try {

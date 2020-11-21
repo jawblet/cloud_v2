@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/authRouter');
 const viewRouter = require('./routers/viewRouter');
 const userRouter = require('./routers/userRouter');
+const postRouter = require('./routers/postRouter');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const jwtSecret = process.env.JWT_SECRET;
@@ -27,14 +28,19 @@ app.use((req, res, next) => {
 });
 
 app.use('/', viewRouter);
-app.use('/auth/', authRouter);
-app.use('/users/', userRouter);
+app.use('/auth', authRouter);
+app.use('/posts', postRouter);
+app.use('/users', userRouter);
 
 app.get('*', (req, res) =>{
 	res.sendFile(path.join(__dirname+'/react/build/index.html'));
 });
 
 app.use(errorController); 
+
+app.all('*', (req, res, next) => {
+   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+ });
 
 module.exports = app; 
 

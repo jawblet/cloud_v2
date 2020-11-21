@@ -6,7 +6,7 @@ export default function useForm(props) {
   const passwordFields = ['password', 'passwordConfirm'];
   const passwordFail = props.invalidFields.some(el => passwordFields.indexOf(el) !== -1);
     return( 
-     <>
+     <span className="formFields">
         <FormInput type={"text"} placeholder={"Email"} 
                     name={"email"} value={props.values.email} 
                     fail={props.invalidFields.includes("email")}
@@ -22,6 +22,6 @@ export default function useForm(props) {
                     name={"password"} nameConfirm={"passwordConfirm"}
                     value={props.values.password} valueConfirm={props.values.passwordConfirm}
                     handleChange={props.handleChange}/>
-      </>
+      </span>
     )
 }

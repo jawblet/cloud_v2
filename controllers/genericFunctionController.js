@@ -1,11 +1,11 @@
 const catchAsync = require('./../utils/catchAsync');
 
-//get one by username ?
+//get one by id
 exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
-    let query = await Model.findOne({username: req.params.username});
-    if(populateOpts) query = query.populate(populateOpts);
+    let query = await Model.findOne({ _id: req.params.id });
+    if(populateOpts) query = query.populate(populateOpts).execPopulate();
     const doc = await query; 
-
+    console.log(populateOpts);
     res.status(200).json({
         status: 'success',
         data: {
@@ -13,6 +13,19 @@ exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
         }
     });
 });
+
+//get by user id 
+exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
+    const results = await Model.find({ author: req.params.userId});
+    console.log(results);
+    res.status(200).json({
+        status: 'success',
+        data: {
+            results
+        }
+    })  
+});
+
 
 //get all 
 exports.getAll = (Model) => catchAsync(async(req, res) => {
@@ -25,6 +38,18 @@ exports.getAll = (Model) => catchAsync(async(req, res) => {
     });
 });
 
+//create one
+exports.create = (Model) => catchAsync(async(req, res) => {
+    const doc = await Model.create(req.body); 
+
+    res.status(201).json({
+        status: 'success',
+        data: {
+            doc
+        }
+    })
+});
+ 
 //update one 
 exports.updateOne = (Model) => catchAsync(async(req, res) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {

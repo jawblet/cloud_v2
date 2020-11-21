@@ -1,0 +1,14 @@
+//draft-js custom styling 
+.DraftEditor-root {
+    border-radius: $border-small;
+    background-color: $off-white;
+    padding: 1rem;
+    width: 100%;
+}
+
+.DraftEditor-editorContainer {
+   // border: 1px solid blue; 
+    text-align: left;
+    min-height: 6.5rem;
+}
+

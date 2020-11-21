@@ -7,7 +7,7 @@ export default function ConfirmPasswordInput(props) {
     const { newState, handleToggle } = useToggle(false); 
 
     return(
-        <div className="flex column padBottomThree">
+        <div className="flex column">
         <div className="input__pass">
                 <input type={newState ? "text" : "password"} name="input" 
                 className={`input ${fail ? "input--fail" : null} `}                
@@ -16,6 +16,7 @@ export default function ConfirmPasswordInput(props) {
                 value={props.value}
                 onChange={props.handleChange}
                 onKeyDown={props.handleKeyDown}
+                style={{marginBottom:'1.5rem'}}
                 />
             <span className="showPasswordButton" onClick={handleToggle}>
                 {newState 
