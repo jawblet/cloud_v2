@@ -14,7 +14,8 @@ export default function Landing() {
                     <InlineButton name={"register"}/>
                 </Link>
             </header>
-           <h3>This is the public landing page</h3> 
+           <h3>Hi Gr0tch</h3> <br/>
+           <h3>Register to this site plx</h3>
         </div>
     )
 }

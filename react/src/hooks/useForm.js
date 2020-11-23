@@ -43,8 +43,7 @@ export default function useForm({ initialValues }) {
 
     //register user  
     const registerUser = async (formValues) => {
-        const dataObject = formValues.values; // shorten 
-        const { username, email, password, passwordConfirm } = dataObject;
+        const { username, email, password, passwordConfirm } = formValues.values;
         try {
             await axios({
                 method: 'POST',
@@ -69,8 +68,8 @@ export default function useForm({ initialValues }) {
 
     //login user 
     const loginUser = async (formValues) => {
-        const dataObject = formValues.values; 
-        const { username, password } = dataObject;
+ 
+        const { username, password } = formValues.values;
         try {
             await axios({
                 method: 'POST',
@@ -80,9 +79,9 @@ export default function useForm({ initialValues }) {
                   password,
                 }
             }).then(res => { 
-                    console.log(res);
-                    const username = res.data.data.user.username;
-                    setUser(username); 
+                    console.log(res.data.data.user.username);
+                    const user = res.data.data.user;
+                    setUser(user); 
                     history.push('/home'); 
                 })
             } catch(err) {
