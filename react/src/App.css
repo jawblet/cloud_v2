@@ -286,7 +286,8 @@ textarea {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 0.35s; }
+  transition: all 0.35s;
+  background-color: #f5eee5; }
   .btn:active {
     background-color: #f5eee5; }
   .btn--active {
@@ -318,6 +319,19 @@ textarea {
       color: #72716B; }
   .icon--small {
     font-size: 0.8rem; }
+
+.fixedBtn {
+  position: fixed;
+  bottom: 3rem;
+  left: 3rem; }
+
+d {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: #72716B;
+  transition: all .2s ease-in-out; }
 
 .btn__bar {
   display: flex;
@@ -548,3 +562,73 @@ textarea {
   .drag--active {
     background-color: #fffdfa;
     border: 1px solid #f1e3d3; }
+
+.card {
+  cursor: pointer;
+  width: 35rem;
+  height: 20rem;
+  display: flex;
+  margin: 0;
+  border: 1px solid #f5eee5;
+  border-radius: 0.5rem;
+  transition: all .2s ease-in-out;
+  transition-property: border, width, margin; }
+  .card.kitchen {
+    width: 30rem;
+    margin-top: 5rem; }
+  .card.livingRoom {
+    width: 30rem;
+    margin-top: 7rem; }
+  .card.bedroom {
+    width: 25rem;
+    margin-left: 5rem;
+    margin-top: -15rem; }
+  .card.basement {
+    width: 40rem;
+    height: 17rem;
+    margin-left: -10rem;
+    margin-top: -10rem; }
+  .card.front {
+    z-index: 3;
+    border-color: #fcf7f3;
+    background-color: #fffdfa;
+    box-shadow: 4px 4px 24px rgba(216, 215, 211, 0.5), -4px -4px 16px #fff; }
+  .card.middle {
+    z-index: 2;
+    border-color: #fcf7f3;
+    background-color: #fffdfa;
+    box-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), -4px -4px 16px #fff; }
+  .card.middleBack {
+    z-index: 1;
+    background-color: #fffdfa;
+    box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff; }
+  .card.back {
+    z-index: 0;
+    background-color: #faf7f5;
+    box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff; }
+
+.card__label {
+  padding: 1rem; }
+  .card__label.livingRoom {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; }
+  .card__label.bedroom {
+    display: flex;
+    align-items: flex-end; }
+  .card__label.basement {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end; }
+
+.floor {
+  display: flex; }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px); }
+  50% {
+    transform: translateY(3px); }
+  100% {
+    transform: translateY(0px); } }

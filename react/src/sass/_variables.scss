@@ -3,6 +3,7 @@ $body: #31302C;
 $body-medium: rgb(68, 67, 62);
 $body-light: #72716B; 
 $body-lightest: #C3C2BD;
+$soft-outline: rgb(216, 215, 211); // not for text 
 
 
 //palette 
@@ -24,9 +25,14 @@ $border-small: 0.5rem;
 
 //shadow
 $shadow: #DCD8D1; 
+$transparent-shadow: rgba(220, 216, 209, 0.452); 
 $soft-shadow: 4px 4px 16px $shadow, 
+-4px -4px 16px #fff;
+$softer-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), 
+-4px -4px 16px #fff;
+$softest-shadow: 4px 4px 24px rgba(216, 215, 211, 0.5), 
 -4px -4px 16px #fff;
 
 //animation
 $short-fade: .35s;
-$long-fade: .75s;
+$long-fade: .7s;

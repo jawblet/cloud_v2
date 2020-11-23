@@ -8,6 +8,8 @@
         align-items: center;
         cursor: pointer;
         transition: all $short-fade;
+        background-color: $sand2;
+       // border: 1px solid $soft-outline;
         &:hover {
          // box-shadow:  2px 2px 8px $shadow;  
          // border-radius: $border-small;
@@ -53,3 +55,21 @@
   }
   &--small { font-size: 0.8rem; }
 }
+
+//fixed btn
+.fixedBtn {
+  position: fixed;
+  bottom: 3rem;
+  left: 3rem;
+}
+
+//dot  
+d {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: $body-light;
+  transition: all .2s ease-in-out;
+}
+

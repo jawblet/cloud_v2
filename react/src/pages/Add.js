@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react'; 
 import Header from './../sections/Header';
 import { UserContext } from './../hooks/UserContext';
 import CTA from './../components/CTA'; 
 import UploadContainer from '../components/upload/UploadContainer';
-import useToggle from '../hooks/useToggle'; 
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import useUpload from '../hooks/useUpload';
-
 
 export default function Add() {
     const buttons = [

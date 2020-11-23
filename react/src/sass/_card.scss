@@ -1,0 +1,93 @@
+.card {
+    cursor: pointer; 
+    width: 35rem;
+    height: 20rem;
+    display: flex; 
+    margin: 0;
+    border: 1px solid $sand2; 
+    border-radius: $border-small;
+    transition: all .2s ease-in-out;  
+    transition-property: border, width, margin;
+    &.kitchen{
+        width: 30rem;
+        margin-top: 5rem;
+    }
+    &.livingRoom{
+        width: 30rem;
+        margin-top: 7rem;
+    }
+    &.bedroom {
+        width: 25rem;
+        margin-left: 5rem;
+        margin-top: -15rem;
+    }
+    &.basement{
+        width: 40rem;
+        height: 17rem;
+        margin-left: -10rem;
+        margin-top: -10rem;
+    }
+    &.front {  
+        z-index: 3;
+        border-color: $sand;
+        background-color: $off-white;
+        box-shadow: $softest-shadow;
+       //animation: float 3s ease-in-out infinite 1s;
+    }
+    &.middle {
+        z-index: 2;
+        border-color: $sand;
+        background-color: hsl(34, 100%, 99%);
+        box-shadow: $softer-shadow; 
+       // animation: float 3s ease-in-out infinite 2s;
+    }
+    &.middleBack { 
+        z-index: 1;
+        background-color: hsl(34, 100%, 99%);
+        box-shadow: $soft-shadow; 
+       // animation: float 3s ease-in-out infinite 1.5s;
+    }
+    &.back { 
+        z-index: 0;
+        background-color: hsl(30, 37%, 97%);
+        box-shadow: $soft-shadow; 
+       // animation: float 3s ease-in-out infinite 1.5s;
+
+    }
+}
+
+.card__label {
+    padding: 1rem;
+    &.livingRoom{
+        width: 100%; 
+        display: flex;
+        justify-content: flex-end;
+    }
+    &.bedroom {
+        display: flex;
+        align-items: flex-end;
+    }
+    &.basement{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
+
+.floor {
+    display: flex;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+    100% {
+        transform: translateY(0px);
+
+    }
+}
