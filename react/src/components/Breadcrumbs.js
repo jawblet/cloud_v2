@@ -14,8 +14,6 @@ const BreadcrumbNav = ({crumbs}) => {
 }
 
 const Breadcrumbs = ({crumbs, active}) => {
-    console.log(active); 
-
     return (
         <div className="breadcrumbs">
             {crumbs.map(crumb => {

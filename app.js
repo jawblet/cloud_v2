@@ -18,7 +18,6 @@ app.use(cors());
 app.use(morgan('tiny')); 
 
 //serve static files from react app 
-app.use(express.static(path.join(__dirname, 'react/build')));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -36,9 +35,13 @@ app.use('/houses', houseRouter);
 app.use('/tags', tagRouter);
 app.use('/users', userRouter);
 
-app.get('*', (req, res) =>{
-	res.sendFile(path.join(__dirname+'/react/build/index.html'));
-});
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+   app.use(express.static(path.join(__dirname, 'react/build')));
+   app.get('*', (req, res) =>{
+      res.sendFile(path.join(__dirname+'/react/build/index.html'));
+   });
+}
 
 app.use(errorController); 
 
