@@ -9,6 +9,7 @@ const houseSchema = mongoose.Schema({
         unique: [true, 'That name is taken.'],
         maxLength: [12, 'House names should be 12 characters or less']
     },
+    boardersUnconfirmed: Array,
     boarders: [{
         type: Schema.Types.ObjectId,
         ref: 'User',

@@ -14,9 +14,11 @@
       transform: scaleY(0);
       transition: all $long-fade; 
       &.A {
-        height: 5rem; 
+        height: 3rem; 
         transform: scaleY(1);
         transition: all 1s; 
+        display: flex;
+        justify-content: center;
       }
       &.B{
         height: 10rem;

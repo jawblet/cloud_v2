@@ -4,10 +4,10 @@ import { VscClose, VscAdd } from 'react-icons/vsc';
 const Search = forwardRef((props, ref) => {
     const [focus, setFocus] = useState(false);
 
-    const handleFocus = () => {
-        setFocus(true); 
+    const handleFocus = () => { 
+        setFocus(true);  
     }
-
+ 
     return(
         <>
             <div className="search">
@@ -16,7 +16,7 @@ const Search = forwardRef((props, ref) => {
                 </div> }
                     <input type="text" className="input search__bar" ref={ref} 
                     name={props.name} value={props.value} placeholder={props.placeholder} 
-                    onInput={props.handleChange} onKeyDown={props.handleKeyDown}
+                    onChange={props.handleChange} onKeyDown={props.handleKeyDown}
                     onFocus={handleFocus}
                     />
                 {focus && <div className="search__icon--end" onClick={props.addEmails}>

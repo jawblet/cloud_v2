@@ -30,10 +30,10 @@ function App() {
        <UserContext.Provider value={{ user, setUser, isLoading }}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
-          <Route path="/register" component={Register}/>
+          <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute path="/rent" component={CreateHouse}/>
+          <PrivateRoute path="/register/rent" component={CreateHouse}/>
           <PrivateRoute path="/home" component={Home}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>

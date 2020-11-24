@@ -1,11 +1,11 @@
-import React from 'react'; 
+import React from 'react';
 import UserForm from './../sections/UserForm';
 import Error from './../components/Error';
 import useForm from './../hooks/useForm';
 import { Link } from 'react-router-dom';
-import CTA from './../components/CTA'; 
 import Prompt from './../components/Prompt';
- 
+import CTA from './../components/CTA';
+
 export default function Register() {
 
     const { values, handleChange, handleSubmit, error} = useForm({
@@ -16,9 +16,8 @@ export default function Register() {
             password: '', passwordConfirm: ''
         }
     });
- 
-    let user = {};
 
+    let user = {};
     let invalidFields;
     error ? invalidFields = error.fields : invalidFields = []; 
 

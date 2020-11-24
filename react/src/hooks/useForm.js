@@ -15,7 +15,7 @@ export default function useForm({ initialValues }) {
         const value = event.target.value; 
         const name = event.target.name;
         setValues({
-            ...values,
+            ...values, 
             [name]: value
         }); 
     };
@@ -32,9 +32,12 @@ export default function useForm({ initialValues }) {
             break;
             case 'user':
             updateUser({ values });
-            if(values.password || values.passwordConfirm) {
-                updatePassword({ values });
-            }
+                if(values.password || values.passwordConfirm) {
+                    updatePassword({ values });
+                }
+            break;
+            case 'rent':
+            rentHouse({ values });
             break;
             default: 
             console.log('no form found');
@@ -58,11 +61,11 @@ export default function useForm({ initialValues }) {
                     console.log(res);
                     const user = res.data.data.user;
                     setUser(user); 
-                    history.push('/home'); 
+                    history.push('/register/rent'); 
                 })
             } catch(err) {
                  console.log(err);
-                 setError(err.response.data);
+                // setError(err.response.data);
             }
       };
 
@@ -134,43 +137,68 @@ export default function useForm({ initialValues }) {
         }
     }
 
-//create house
-    const searchRef = React.createRef();
+// rent house + handle the email chips
+    const searchRef = React.createRef(); //def searchRef
 
-//clear search
-    const clearInput = () => {
-        searchRef.current.value = " ";
-    }
-
-//remove boarder 
-const removeTag = (tag) => {
-    let newBoarders = values.boarders.filter(el => el !== tag);
-    setValues(prevValues => ( {
-        ...prevValues,
-        boarders: newBoarders
-    }));
- };
-
-const addEmails = () => {
-        //let boarders = values.boarders;
-        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.emailInput)) {
-            if(values.boarders.length < 4) {
-                values.boarders.push(values.emailInput);
+ //handle add
+    const addEmails = () => { 
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.input)) {
+            if(values.boardersUnconfirmed.length < 4) {
+                setValues({
+                    ...values,
+                    boardersUnconfirmed: [...values.boardersUnconfirmed, values.input]
+                })
                 clearInput();
             }
         } else {
            return console.log('not an email'); 
         }
-}
+    };
 
+//handle clear
+    const clearInput = () => {
+        searchRef.current.value = "";
+    }
+
+//handle delete boarder 
+const removeTag = (tag) => {
+    let newBoarders = values.boardersUnconfirmed.filter(el => el !== tag);
+    setValues({
+        ...values,
+        boardersUnconfirmed: newBoarders
+    });
+ };
+
+//submit + rent house 
+const rentHouse = async (formValues) => {
+    const { house, boardersUnconfirmed } = formValues.values;
+    console.log(boardersUnconfirmed);
+
+    try {
+        await axios({
+            method: 'POST',
+            url: `houses`,
+            data: {
+              house,
+              boardersUnconfirmed, // save new emails as unconfirmed users
+              boarders: user._id //save creator as confirmed user
+            }
+        }).then(res => {
+            console.log(res);
+            history.push('/home'); 
+        })
+    } catch(err) {
+        console.log(err);
+    }
+}
     return {
-        addEmails,
         handleChange,
         handleSubmit,
         values,
         error,
         success,
         searchRef,
+        addEmails,
         clearInput,
         removeTag
     }

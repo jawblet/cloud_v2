@@ -244,9 +244,11 @@ textarea {
     transform: scaleY(0);
     transition: all 0.7s; }
     .inlineForm__toggle.A {
-      height: 5rem;
+      height: 3rem;
       transform: scaleY(1);
-      transition: all 1s; }
+      transition: all 1s;
+      display: flex;
+      justify-content: center; }
     .inlineForm__toggle.B {
       height: 10rem;
       transform: scaleY(1); }
@@ -703,7 +705,7 @@ row {
   position: relative;
   padding: 7px;
   margin-bottom: 3px;
-  margin-left: 1rem;
+  margin-right: 1rem;
   transition: all 0.35s;
   line-height: 150%; }
   .tag--edit {
@@ -719,12 +721,15 @@ row {
     top: 50%;
     cursor: pointer; }
 
+.tagBank {
+  display: flex;
+  flex-wrap: wrap; }
+
 .toggle {
   height: 1.5rem;
   width: 3rem;
   border: 1px solid #DCD8D1;
-  border-right-width: 2px;
-  border-left-width: 2px;
+  padding: 1px;
   border-radius: 1rem;
   background-color: #DCD8D1;
   display: flex;
@@ -743,6 +748,8 @@ row {
     border-radius: 50%;
     background-color: #fffdfa; }
   .toggle__wrapper {
+    height: 3rem;
     display: flex;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    margin-bottom: 5px; }
