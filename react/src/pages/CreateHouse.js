@@ -19,9 +19,8 @@ export default function CreateHouse() {
             boardersUnconfirmed: []
         }
     });
-
+ 
     return(
-        <div className="page" style={{justifyContent:'center'}}>
              <div className="inlineForm">
                 <h3>Rent a house</h3>
                 <div className="inlineForm__notif">
@@ -49,7 +48,6 @@ export default function CreateHouse() {
                     </div>
                 </form>
              </div>
-        </div>
     )
 }
 

@@ -753,3 +753,16 @@ row {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px; }
+
+.breadcrumbs {
+  display: flex;
+  justify-content: space-between;
+  color: #C3C2BD; }
+
+.crumb--w.active {
+  color: #44433e; }
+
+.crumb + .crumb::before {
+  content: '/';
+  color: inherit;
+  margin: 0 3rem; }

@@ -61,7 +61,7 @@ export default function useForm({ initialValues }) {
                     console.log(res);
                     const user = res.data.data.user;
                     setUser(user); 
-                    history.push('/register/rent'); 
+                    history.push('/register#rent'); 
                 })
             } catch(err) {
                  console.log(err);

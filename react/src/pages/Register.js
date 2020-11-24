@@ -1,45 +1,28 @@
-import React from 'react';
-import UserForm from './../sections/UserForm';
-import Error from './../components/Error';
-import useForm from './../hooks/useForm';
-import { Link } from 'react-router-dom';
-import Prompt from './../components/Prompt';
-import CTA from './../components/CTA';
+import React, { useState, useEffect } from 'react';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import CreateUser from './CreateUser';
+import CreateHouse from './CreateHouse';
 
-export default function Register() {
+export default function Register(props) {
+    const [createUser, setRegistration] = useState(true);
+    const [active, setActive] = useState('register');
 
-    const { values, handleChange, handleSubmit, error} = useForm({
-        initialValues: {
-            form: 'register',
-            email: '',
-            username: '',
-            password: '', passwordConfirm: ''
+    useEffect(() => {
+        if(props.location.hash === '#rent') {
+            setRegistration(false);
+            setActive('rent')
         }
-    });
-
-    let user = {};
-    let invalidFields;
-    error ? invalidFields = error.fields : invalidFields = []; 
+    }, [props]);
 
     return(
         <div className="page" style={{justifyContent:'center'}}>
-            <div className="inlineForm">
-            <h3>Register</h3>
-                <div className="inlineForm__notif">
-                {error && <Error error={error.messages}/>}
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}
-                    user={user} invalidFields={invalidFields}/>
-                <div className="inlineForm__submit">
-                    <Link to='/login'>
-                        <Prompt prompt={"Existing account? Log in."}/>
-                    </Link>
-                    <CTA name={"register"} type={"submit"}
-                    /> 
-                </div>
-                </form>
+            <div style={{width: '35%', marginTop:'-5rem', paddingBottom:'5rem',}}>
+                <Breadcrumbs crumbs={['register', 'rent']} active={active}/>
             </div>
+            {createUser 
+                ? <CreateUser />
+                : <CreateHouse />
+            }
         </div>
     )
 }

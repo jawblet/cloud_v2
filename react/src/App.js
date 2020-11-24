@@ -20,7 +20,6 @@ function App() {
  
   useEffect(() => {
     if(userStatus) {
-      console.log('The App useEffect ran');
       setUser(userStatus);
     }
   }, [userStatus]);
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute path="/register/rent" component={CreateHouse}/>
           <PrivateRoute path="/home" component={Home}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>

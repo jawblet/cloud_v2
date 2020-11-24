@@ -9,7 +9,8 @@ export default function TagBank({tags, handleDelete}) {
             :   <div className="tagBank">
                     {tags.map(tag => {
                         return( <div className="tag tag--edit" key={tag}>
-                            <h4>{tag}</h4> <VscClose className="tag__X" onClick={() => handleDelete(tag)}/> 
+                            <h4>{tag}</h4> 
+                            <VscClose className="tag__X" onClick={() => handleDelete(tag)}/> 
                         </div>
                         )
                     })}
