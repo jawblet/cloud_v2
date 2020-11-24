@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import RoomCard from './../components/RoomCard';
 
 export default function Cards( {squeeze, rooms} ) {

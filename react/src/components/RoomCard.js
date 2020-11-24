@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom'; 
-
+ 
 export default function Card({room, squeeze, getPositionClass, handleCardClick}) {
     return(
         <div className={`card 
