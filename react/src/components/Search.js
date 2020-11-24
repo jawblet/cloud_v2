@@ -1,20 +1,30 @@
-import React, { useRef, useEffect } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { VscClose, VscAdd } from 'react-icons/vsc';
 
-export default function Search() {
-    const searchRef = useRef(null);
+const Search = forwardRef((props, ref) => {
+    const [focus, setFocus] = useState(false);
 
-    useEffect(() => { searchRef.current.focus(); }, []);
+    const handleFocus = () => {
+        setFocus(true); 
+    }
 
     return(
-        <div className="search">
-           <div className="search__icon">
-                <VscClose className="icon icon__btn icon--small"/>
+        <>
+            <div className="search">
+            {focus && <div className="search__icon">
+                    <VscClose className="icon icon__btn icon--small" onClick={props.clearInput}/>
+                </div> }
+                    <input type="text" className="input search__bar" ref={ref} 
+                    name={props.name} value={props.value} placeholder={props.placeholder} 
+                    onInput={props.handleChange} onKeyDown={props.handleKeyDown}
+                    onFocus={handleFocus}
+                    />
+                {focus && <div className="search__icon--end" onClick={props.addEmails}>
+                    <VscAdd className="icon icon__btn icon--small"/>
+                </div>}
             </div>
-            <input type="text" className="input search__bar" ref={searchRef}/>
-            <div className="search__icon end">
-                <VscAdd className="icon icon__btn icon--small"/>
-            </div>
-        </div>
+        </>
     )
-}
+}); 
+
+export default Search;

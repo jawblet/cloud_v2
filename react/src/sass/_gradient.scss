@@ -1,0 +1,15 @@
+.gradient {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+   // border: 1px solid black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  //  background-image:  radial-gradient(transparent, #ffffff),
+                       // conic-gradient(goldenrod, lavender, aqua);
+   background-image: radial-gradient(ellipse at 0 0, #f35 0%, transparent 50%);
+    &__pin {
+        cursor: pointer;
+    }
+}

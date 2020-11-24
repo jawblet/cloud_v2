@@ -26,7 +26,7 @@ export default function Add() {
             author: user._id
         }
     });
-
+ 
     return (
         <div className="page">
             <Header/>

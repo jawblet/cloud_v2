@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import RoomCard from './../components/RoomCard';
 
-export default function Cards( {squeeze} ) {
-    const rooms = ['kitchen', 'livingRoom', 'bedroom', 'basement'];
+export default function Cards( {squeeze, rooms} ) {
 
     //on click, remove clicked item from array and push to position 0 
     //0 (front), 1 (middle), 2 (back)

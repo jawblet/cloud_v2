@@ -4,10 +4,9 @@ const router = express.Router();
 
 router.get('/', userController.getAllUsers);
 router.get('/:id', userController.getUserById);
-//router.get('/:username', userController.getUserByUsername);
+router.put('/:id', userController.updateUser); // update user 
 router.delete('/', userController.deleteAllUsers);
-router.delete('/:id', userController.deleteOneUser);
-router.put('/:id', userController.updateUser); // change to patch? 
+router.delete('/:id', userController.deleteOneUser); 
 
 
 module.exports = router; 

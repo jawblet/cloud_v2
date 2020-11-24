@@ -1,27 +1,23 @@
 import FormInput from './../components/FormInput';
 import ConfirmPasswordInput from './../components/ConfirmPasswordInput';
 
-export default function useForm(props) {
-  console.log(props.invalidFields);
+export default function useForm({values, invalidFields, handleChange}) {
+  console.log(invalidFields);
   const passwordFields = ['password', 'passwordConfirm'];
-  const passwordFail = props.invalidFields.some(el => passwordFields.indexOf(el) !== -1);
+  const passwordFail = invalidFields.some(el => passwordFields.indexOf(el) !== -1);
     return( 
      <span className="formFields">
-        <FormInput type={"text"} placeholder={"Email"} 
-                    name={"email"} value={props.values.email} 
-                    fail={props.invalidFields.includes("email")}
-                    handleChange={props.handleChange} />
+        <FormInput type={"text"} placeholder={"Email"} name={"email"} value={values.email} 
+                    fail={invalidFields.includes("email")} handleChange={handleChange} />
 
-        <FormInput type={"text"} placeholder={"Username"} 
-                    name={"username"} value={props.values.username} 
-                    fail={props.invalidFields.includes("username")}
-                    handleChange={props.handleChange} />
+        <FormInput type={"text"} placeholder={"Username"} name={"username"} value={values.username} 
+                    fail={invalidFields.includes("username")} handleChange={handleChange} />
 
         <ConfirmPasswordInput type={"password"} fail={passwordFail}
                     placeholder={"Password"} placeholderConfirm={"Confirm password"}
-                    name={"password"} nameConfirm={"passwordConfirm"}
-                    value={props.values.password} valueConfirm={props.values.passwordConfirm}
-                    handleChange={props.handleChange}/>
+                    name={"password"} nameConfirm={"passwordConfirm"} 
+                    value={values.password} valueConfirm={values.passwordConfirm}
+                    handleChange={handleChange}/>
       </span>
     )
 }

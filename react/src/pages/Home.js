@@ -5,6 +5,8 @@ import Button from './../components/Button';
 import ExpandButton from './../atoms/ExpandButton';
 
 export default function Home() {
+    const rooms = ['kitchen', 'livingRoom', 'bedroom', 'basement'];
+
     const [squeeze, setSqueeze] = useState(true);
     
     const handleExpandClick = () => {
@@ -13,9 +15,8 @@ export default function Home() {
 
     return(
         <div className="page">
-            <Header/>
-            <Cards squeeze={squeeze}/>
-
+            <Header/> 
+            <Cards squeeze={squeeze} rooms={rooms}/>
             <span className="fixedBtn">
                 <Button handleClick={handleExpandClick}
                 button={<ExpandButton squeeze={squeeze}/>}/>

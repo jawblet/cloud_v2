@@ -25,6 +25,9 @@
     &__form { //upload, tags, and comments
         flex: 0 0 90%;
     }
+    &__extras { //tags and comments
+        padding: 0 1.5rem;
+    }
 
     //tags for tags and comments 
     &__label {

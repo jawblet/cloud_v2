@@ -19,7 +19,7 @@ export default function UploadContainer(props) {
         <div className="upload__container">  
             <div className="upload__controller">
             <ButtonBar buttons={buttons} ref={textRef} switchType={switchType} type={type}
-                    getTooltip={getTooltip} hideTooltip={hideTooltip}/>
+                        direction="column" getTooltip={getTooltip} hideTooltip={hideTooltip}/>
                     {tooltip && <Tooltip tooltip={tooltip} tooltipCoords={tooltipCoords}/>}
             </div>
             <div className="upload__form">
@@ -28,14 +28,16 @@ export default function UploadContainer(props) {
                     { type === 'note' && <NoteUpload/> }
                     { type === 'file' && <DragUpload/> }
                 </div>
-                <div className="flex">
-                    <div className="upload__label" style={{marginTop:'-1rem'}}>
-                        <InlineButton name={"add tags"} handleClick={() => setTags(!tags)}/>
-                    </div> 
-                     <AddTags tags={tags}/>
-                </div>
-                <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
-                    <InlineButton name={"say more"}/> 
+                <div className="upload__extras">
+                    <div className="flex">
+                        <div className="upload__label" style={{marginTop:'-1rem'}}>
+                            <InlineButton name={"add tags"} handleClick={() => setTags(!tags)}/>
+                        </div> 
+                        <AddTags tags={tags}/>
+                    </div>
+                    <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
+                        <InlineButton name={"say more"}/> 
+                    </div>
                 </div>
             </div>
         </div> 

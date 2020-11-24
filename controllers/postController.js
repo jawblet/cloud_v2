@@ -7,4 +7,6 @@ exports.getPostById = functionHandler.getOne(Post, 'author');
 exports.updatePost = functionHandler.updateOne(Post); 
 exports.createPost = functionHandler.create(Post);
 exports.updatePost = functionHandler.updateOne(Post);
-exports.getPostsByUser = functionHandler.getAllByUserId(Post);
+exports.getPostsByUser = functionHandler.getAllByUserId(Post); 
+exports.deleteOnePost = functionHandler.deleteOne(Post);
+exports.deleteAllPosts = functionHandler.deleteAll(Post);

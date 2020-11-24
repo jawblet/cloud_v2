@@ -1,11 +1,30 @@
 .inlineForm {
     width: 35%; 
     text-align: center;
+    // for showing success or error messages 
     &__notif {
       height: 5rem;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    // for changing form contents based on choice 
+    &__toggle { 
+      height: 0;
+      transform: scaleY(0);
+      transition: all $long-fade; 
+      &.A {
+        height: 5rem; 
+        transform: scaleY(1);
+        transition: all 1s; 
+      }
+      &.B{
+        height: 10rem;
+        transform: scaleY(1);
+      }
+      & > * {
+        margin-top: 1.5rem;
+      }
     }
     &__submit {
       padding-top: 2rem;

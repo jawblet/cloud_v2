@@ -1,7 +1,7 @@
 .card {
     cursor: pointer; 
     width: 35rem;
-    height: 20rem;
+    height: 20rem; 
     display: flex; 
     margin: 0;
     border: 1px solid $sand2; 
@@ -56,7 +56,7 @@
     }
 }
 
-.card__label {
+.card__label { // might have to make this abs positioned 
     padding: 1rem;
     &.livingRoom{
         width: 100%; 

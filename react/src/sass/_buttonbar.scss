@@ -1,9 +1,11 @@
-//button bar
+//button bar with tooltip
 .btn__bar { 
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     border-radius: $border-small;
+    &.column {
+      flex-direction: column;
+    }
     &__wrapper {
       height: inherit; 
       border: 3px solid $sand; //background color here 

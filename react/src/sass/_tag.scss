@@ -1,0 +1,27 @@
+.tag {
+    background-color: transparent;
+    border-radius: $border-small;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 7px;
+    margin-bottom: 3px;
+    margin-left: 1rem; 
+    transition: all $short-fade;
+   // vertical-align: middle;
+   line-height: 150%;
+    &--edit {
+        padding-right: 1.7rem;
+        border-radius: $border-small;
+        background-color: $sand2;
+    }
+    &__X {
+        font-size: 1rem;
+        color: $body-light;
+        position: absolute;
+        right: 5px;
+        transform: translateY(-50%);
+        top: 50%;
+        cursor: pointer;
+    }
+}

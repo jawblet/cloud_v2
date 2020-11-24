@@ -14,9 +14,9 @@ exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
     });
 });
 
-//get by user id 
+//get tag, post by user or house or boarders
 exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
-    const results = await Model.find({ author: req.params.userId});
+    const results = await Model.find({ user: req.params.userId});
     console.log(results);
     res.status(200).json({
         status: 'success',
@@ -25,7 +25,6 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
         }
     })  
 });
-
 
 //get all 
 exports.getAll = (Model) => catchAsync(async(req, res) => {

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'; 
+import React, { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from './UserContext';  
@@ -127,18 +127,51 @@ export default function useForm({ initialValues }) {
                 }
             }).then(res => {
                 console.log(res);
-                setSuccess('Profile update complete.');            })
+                setSuccess('Profile update complete.'); })
         } catch(err) {
             console.log(err);
             setError(err.response.data);
         }
     }
 
+//create house
+    const searchRef = React.createRef();
+
+//clear search
+    const clearInput = () => {
+        searchRef.current.value = " ";
+    }
+
+//remove boarder 
+const removeTag = (tag) => {
+    let newBoarders = values.boarders.filter(el => el !== tag);
+    setValues(prevValues => ( {
+        ...prevValues,
+        boarders: newBoarders
+    }));
+ };
+
+const addEmails = () => {
+        //let boarders = values.boarders;
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.emailInput)) {
+            if(values.boarders.length < 4) {
+                values.boarders.push(values.emailInput);
+                clearInput();
+            }
+        } else {
+           return console.log('not an email'); 
+        }
+}
+
     return {
+        addEmails,
         handleChange,
         handleSubmit,
         values,
         error,
-        success
+        success,
+        searchRef,
+        clearInput,
+        removeTag
     }
 }

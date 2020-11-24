@@ -34,7 +34,7 @@ export default function User() {
 
     return(
         <div className="page" >
-            <Header/>
+            <Header/> 
             <div className="inlineForm">
                 <h3>@{user.username}</h3>
                 <div className="inlineForm__notif">

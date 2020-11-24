@@ -15,7 +15,7 @@ export default function Landing() {
                 </Link>
             </header>
            <h3>Hi Gr0tch</h3> <br/>
-           <h3>Register to this site plx</h3>
+           <h3>Register to this site pls</h3>
         </div>
     )
 }

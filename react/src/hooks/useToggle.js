@@ -5,7 +5,6 @@ export default function useToggle(initialState) {
 
     const handleToggle = () => {
         flipToggle(!newState);
-        console.log(newState);
     }
 
     return {newState, handleToggle}

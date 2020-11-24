@@ -3,14 +3,25 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     type: String, 
+    room: String, 
     content : {
         type: String,
         required: [true, 'Nothing to add.']
     },
-    author: {
+    house: {
+        type: Schema.Types.ObjectId,
+        ref: 'House'
+    },
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    tags: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Tag' 
+    }
+    ],
     comment: String,
     createdOn: {
         type: Date,

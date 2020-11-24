@@ -1,0 +1,31 @@
+.toggle {
+    height: 1.5rem;
+    width: 3rem;
+    border: 1px solid $shadow;
+    border-right-width: 2px;
+    border-left-width: 2px;
+    border-radius: $border-large;
+    background-color: $shadow;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    transition: all $long-fade; 
+    &.on {
+        background-color: $sand-bright;
+        border-color: $sand-bright;
+        justify-content: flex-end;
+    }
+    &__switch {
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: $off-white;
+    }
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

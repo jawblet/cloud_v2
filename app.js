@@ -6,7 +6,9 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routers/authRouter');
 const viewRouter = require('./routers/viewRouter');
 const userRouter = require('./routers/userRouter');
+const houseRouter = require('./routers/houseRouter');
 const postRouter = require('./routers/postRouter');
+const tagRouter = require('./routers/tagRouter');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const jwtSecret = process.env.JWT_SECRET;
@@ -30,6 +32,8 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);
+app.use('/houses', houseRouter);
+app.use('/tags', tagRouter);
 app.use('/users', userRouter);
 
 app.get('*', (req, res) =>{

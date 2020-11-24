@@ -1,21 +1,21 @@
 .search {
-    width: 100%;
+    width: 100%; 
     position: relative;
     align-self: flex-start;
-   // border: 1px solid black; 
     &__icon {
         position: absolute;
         left: 1rem;
         top: 50%;
         transform: translateY(-50%);
-        &.end{
-            right: 3rem;
-            display: flex;
-            justify-content: flex-end;
+        &--end {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
     &__bar {
-        padding-left: 2.5rem;
+        padding-left: 3rem; 
         border-bottom: 3px solid $sand;
         transition: all $short-fade;
         &:focus {
