@@ -3,7 +3,7 @@ import Header from './../sections/Header';
 import Button from '../components/Button';
 import ListMenu from '../components/ListMenu';
 import Post from '../components/Post';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { VscAdd } from 'react-icons/vsc';
 import useRoomFilter from '../hooks/useRoomFilter';
 
