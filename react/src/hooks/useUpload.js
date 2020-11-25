@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 export default function useUpload({ initialValues }) {
-    const [values, setValues] = useState(initialValues || {});
+    const [values, setValues] = useState(initialValues || {}); 
 
         //track form values
         const handleChange = event => {
@@ -14,6 +14,15 @@ export default function useUpload({ initialValues }) {
                 [name]: value
             }); 
         };
+
+        //handle room selection 
+        const selectItem = e => {
+            console.log(e.currentTarget.dataset.id);
+            setValues({
+                ...values,
+                room: e.currentTarget.dataset.id
+            }); 
+        }
 
         const handleSubmit = e => {
             e.preventDefault();
@@ -29,7 +38,9 @@ export default function useUpload({ initialValues }) {
                     data: {
                         type,
                         content,
-                        author
+                        author,
+                        //house,
+                        //room
                     }
                 }).then(res => {
                     console.log(res);
@@ -42,6 +53,7 @@ export default function useUpload({ initialValues }) {
         return {
             handleChange,
             handleSubmit,
+            selectItem,
             values
         }
 }

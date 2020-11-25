@@ -15,6 +15,7 @@ import Test from './pages/Test';
 import Room from './pages/Room';
 
 function App() {
+  const rooms = ['kitchen', 'living_room', 'bedroom', 'basement'];
   const [user, setUser] = useState(null);
   const { userStatus, isLoading } = useFindUser();
  
@@ -26,7 +27,7 @@ function App() {
    
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser, isLoading }}>
+       <UserContext.Provider value={{ user, setUser, rooms, isLoading }}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>

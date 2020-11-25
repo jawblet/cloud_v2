@@ -8,32 +8,33 @@ import SelectMenu from '../components/SelectMenu';
 import useUpload from '../hooks/useUpload';
 
 export default function Add(props) { 
-    console.log(props);
+    const { user, rooms } = useContext(UserContext);
+
+    //breadcrumbs
+    const roomFrom = props.location.state;
+    const nav = [ {name: roomFrom, url: roomFrom } ];
+ 
+    //upload component 
     const buttons = [
         {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
         {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
-        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>},
+        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>}
     ];
-
     const [type, setType]= useState('link');
     const switchType = (e) => { setType(e.target.dataset.id); }
 
-    const { user } = useContext(UserContext);
-
-    const { values, handleChange, handleSubmit, error} = useUpload({
+    //handle page state 
+    const { values, handleChange, selectItem, handleSubmit } = useUpload({
         initialValues: {
             type: 'link',
             content: '',
             comment: '',
-            author: user._id
+            house: '',
+            author: user._id,
+            room: roomFrom
         }
     });
 
-    const roomFrom = props.location.state;
-    const nav = [
-        {name: roomFrom, url: roomFrom }
-    ];
- 
     return ( 
         <div className="page">
             <Header nav={nav}/>
@@ -45,7 +46,10 @@ export default function Add(props) {
                 />
 
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
-                      <div className="flex"> <h4>Place in</h4> <SelectMenu active={props.location.state} /> </div>  
+                      <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
+                        <h4>Place in</h4> 
+                        <SelectMenu items={rooms} active={values.room} selectItem={selectItem}/> 
+                      </div>  
                       <CTA name={"add"} type={"submit"}/> 
                 </div>
             </form>

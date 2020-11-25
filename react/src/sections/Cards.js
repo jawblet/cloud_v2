@@ -1,8 +1,10 @@
-import React, { useState } from 'react'; 
+import React, { useState, useContext } from 'react'; 
+import { UserContext } from '../hooks/UserContext';
 import RoomCard from './../components/RoomCard';
 /*eslint-disable*/
 
-export default function Cards( {squeeze, rooms} ) {
+export default function Cards( {squeeze } ) {
+    const { rooms } = useContext(UserContext);
 
     //on click, remove clicked item from array and push to position 0 
     //0 (front), 1 (middle), 2 (middle/back), 3 (back)

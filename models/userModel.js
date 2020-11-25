@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');  
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const Schema = mongoose.Schema;
@@ -32,7 +32,10 @@ const userSchema = new Schema({
             }, message: 'Passwords don\'t match.'
         }
     },
-    house: String,
+    house: {
+        type: Schema.Types.ObjectId,
+        ref: 'House',
+    },
     confirmed: Boolean,
     createdOn: {
         type: Date, 

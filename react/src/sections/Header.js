@@ -9,7 +9,6 @@ export default function Header({ nav }) {
     const { user } = useContext(UserContext);
     const { logoutUser } = useLogout(); 
 
-
     return(
         <header className='page__header'>
             <div className='page__links'>

@@ -18,4 +18,4 @@ exports.getHouseByUser = catchAsync(async(req, res) => {
             results
         }
     })  
-});
+}); 

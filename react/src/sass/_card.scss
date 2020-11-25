@@ -10,12 +10,12 @@
     position: relative;
     transition-property: border, width, margin;
     &.kitchen{
-        width: 30rem;
+        width: 31rem;
         margin-top: 5rem;
     }
-    &.livingRoom{
+    &.living_room{
         width: 30rem;
-        margin-top: 7rem;
+        margin-top: 3rem;
     }
     &.bedroom {
         width: 25rem;
@@ -60,7 +60,7 @@
 .card__label { 
     padding: 1rem;
     position: absolute;
-    &.livingRoom{
+    &.living_room{
         right: 0;
     }
     &.bedroom {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema; 
 
-const houseSchema = mongoose.Schema({
+const houseSchema = mongoose.Schema({ 
     house: {
         type: String,
         required: [true, 'Houses must be named.'],

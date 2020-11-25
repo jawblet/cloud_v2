@@ -122,7 +122,7 @@ export default function useForm({ initialValues }) {
         setError(null);
         try {
             await axios({
-                method: 'PATCH',
+                method: 'PUT',
                 url: `auth/password/${user._id}`,
                 data: {
                   password,
@@ -173,7 +173,6 @@ const removeTag = (tag) => {
 const rentHouse = async (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
     console.log(boardersUnconfirmed);
-
     try {
         await axios({
             method: 'POST',
@@ -184,10 +183,18 @@ const rentHouse = async (formValues) => {
               boarders: user._id //save creator as confirmed user
             }
         }).then(res => {
-            console.log(res);
+            const house = res.data.data.doc._id;
+            axios ({
+                method: 'PUT',
+                url: `users/${user._id}`,
+                data: {
+                    house
+                }
+            })
+            console.log(house);
             history.push('/home'); 
         })
-    } catch(err) {
+        } catch(err) {
         console.log(err);
     }
 }

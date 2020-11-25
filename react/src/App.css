@@ -218,12 +218,14 @@ menu {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem; }
+  padding: 3rem;
+  padding-top: 0; }
   .page__header {
     align-self: center;
     width: 100%;
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    align-items: center; }
   .page__links {
     display: flex; }
   .page__links > * {
@@ -604,11 +606,11 @@ d {
   position: relative;
   transition-property: border, width, margin; }
   .card.kitchen {
-    width: 30rem;
+    width: 31rem;
     margin-top: 5rem; }
-  .card.livingRoom {
+  .card.living_room {
     width: 30rem;
-    margin-top: 7rem; }
+    margin-top: 3rem; }
   .card.bedroom {
     width: 25rem;
     margin-left: 5rem;
@@ -640,7 +642,7 @@ d {
 .card__label {
   padding: 1rem;
   position: absolute; }
-  .card__label.livingRoom {
+  .card__label.living_room {
     right: 0; }
   .card__label.bedroom {
     bottom: 0; }
@@ -781,6 +783,30 @@ row {
     flex: 0 0 15%; }
   .room__body {
     flex: 0 0 85%; }
+
+.selectmenu__picked {
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  position: relative; }
+
+.selectmenu__expand {
+  margin-left: 0.5rem; }
+
+.selectmenu__dropdown {
+  position: absolute;
+  transform-origin: top; }
+
+.selectmenu__item {
+  color: #72716B;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  background-color: inherit;
+  transition: all 0.35s;
+  border-radius: 5px; }
+  .selectmenu__item:hover {
+    background-color: #f5eee5; }
 
 .listmenu__title {
   padding-bottom: 1rem;

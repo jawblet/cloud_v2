@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     type: String, 
-    room: String, 
     content : {
         type: String,
         required: [true, 'Nothing to add.']
@@ -23,6 +22,7 @@ const postSchema = new Schema({
     }
     ],
     comment: String,
+    room: String, 
     createdOn: {
         type: Date,
         default: Date.now
