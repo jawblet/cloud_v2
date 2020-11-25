@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; 
 
 export default function useUpload({ initialValues }) {
     const [values, setValues] = useState(initialValues || {}); 
@@ -30,17 +30,17 @@ export default function useUpload({ initialValues }) {
         }
 
         const postLink = async (formValues) => {
-            const { content, author, type } = formValues.values;
+            const { type, content, user, house, room } = formValues.values;
             try {
                 await axios({
                     method: 'POST',
-                    url: 'posts/',
+                    url: 'posts',
                     data: {
                         type,
                         content,
-                        author,
-                        //house,
-                        //room
+                        user,
+                        house, 
+                        room
                     }
                 }).then(res => {
                     console.log(res);

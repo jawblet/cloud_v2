@@ -29,8 +29,8 @@ export default function Add(props) {
             type: 'link',
             content: '',
             comment: '',
-            house: '',
-            author: user._id,
+            house: user.house,
+            user: user._id,
             room: roomFrom
         }
     });

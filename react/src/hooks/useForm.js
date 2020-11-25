@@ -58,7 +58,6 @@ export default function useForm({ initialValues }) {
                   passwordConfirm
                 }
             }).then(res => {
-                    console.log(res);
                     const user = res.data.data.user;
                     setUser(user); 
                     history.push('/register#rent'); 
@@ -138,7 +137,7 @@ export default function useForm({ initialValues }) {
     }
 
 // rent house + handle the email chips
-    const searchRef = React.createRef(); //def searchRef
+    const searchRef = React.createRef(); //define searchRef
 
  //handle add
     const addEmails = () => { 
