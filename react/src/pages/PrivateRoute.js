@@ -1,21 +1,25 @@
 import React, { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { UserContext } from './../hooks/UserContext';
 import Loading from './../components/Loading'; 
 
-
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
+    //console.log(props);
+    //const Component = props.component; 
 
-    const Component = props.component; 
+
+    const { component: Component,
+        ...rest } = props;
 
       if(isLoading) {
           return <Loading/>
         }
 
-    //USER HAS TO BE CHECKED HERE
+    //USER HAS TO BE CHECKED HERE --> DOES THIS EVEN WORK? 
       if(user){
-          return <Component/>
+          return ( <Route {...rest} render={(props) => (<Component {...props}/>)}
+            />)
         } else {
             return <Redirect to={{pathname: '/'}} /> 
         };

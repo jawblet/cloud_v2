@@ -5,7 +5,6 @@ import { UserContext } from './hooks/UserContext';
 import PrivateRoute from './pages/PrivateRoute';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import CreateHouse from './pages/CreateHouse';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import User from './pages/User';
@@ -13,6 +12,7 @@ import Add from './pages/Add';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
+import Room from './pages/Room';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ function App() {
       setUser(userStatus);
     }
   }, [userStatus]);
-  
+   
   return (
    <Router>
        <UserContext.Provider value={{ user, setUser, isLoading }}>
@@ -32,7 +32,8 @@ function App() {
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute path="/home" component={Home}/>
+          <PrivateRoute exact path="/home" component={Home}/>
+          <PrivateRoute path='/home/:room' component={Room}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <Route component={NotFound}/>

@@ -6,7 +6,8 @@ import UploadContainer from '../components/upload/UploadContainer';
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import useUpload from '../hooks/useUpload';
 
-export default function Add() {
+export default function Add(props) { 
+    console.log(props);
     const buttons = [
         {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
         {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
@@ -26,10 +27,15 @@ export default function Add() {
             author: user._id
         }
     });
+
+    const roomFrom = props.location.state;
+    const nav = [
+        {name: roomFrom, url: roomFrom }
+    ];
  
-    return (
+    return ( 
         <div className="page">
-            <Header/>
+            <Header nav={nav}/>
             <div className="pageForm">
             <form className="fullWidth" onSubmit={handleSubmit}>
 
@@ -38,7 +44,7 @@ export default function Add() {
                 />
 
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
-                        <CTA name={"add"} type={"submit"}/> 
+                      <div>Add to {props.location.state} </div>  <CTA name={"add"} type={"submit"}/> 
                 </div>
             </form>
             </div>

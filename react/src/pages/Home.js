@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import { Route, useRouteMatch } from 'react-router-dom';
 import Header from './../sections/Header';
 import Cards from '../sections/Cards'; 
 import Button from './../components/Button';
 import ExpandButton from './../atoms/ExpandButton';
+import Room from './Room';
 
 export default function Home() {
     const rooms = ['kitchen', 'livingRoom', 'bedroom', 'basement'];
-
     const [squeeze, setSqueeze] = useState(true);
     
     const handleExpandClick = () => {
         setSqueeze(!squeeze);
     }
 
-    return(
+    return (
         <div className="page">
             <Header/> 
             <Cards squeeze={squeeze} rooms={rooms}/>
@@ -21,7 +22,7 @@ export default function Home() {
                 <Button handleClick={handleExpandClick}
                 button={<ExpandButton squeeze={squeeze}/>}/>
             </span>
-
+            <Route path='/home/:room' component={Room} />
         </div>
     )
 };

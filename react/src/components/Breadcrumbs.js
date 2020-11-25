@@ -1,14 +1,23 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const BreadcrumbNav = ({crumbs}) => {
+const BreadcrumbsNav = ({ nav } ) => {
     return(
-        <div className="breadcrumbNav">
-           {crumbs.map(crumb => {
-               return( 
-                    <h4 className="crumb" key={crumb}>
-                        {crumb}
-                    </h4> )
-           })}
+        <div className="breadcrumbsNav">
+             <NavLink to='/home'>
+                <h4> skylight </h4> 
+            </NavLink>
+            {nav &&
+                nav.map(crumb => {
+                    return ( 
+                        <h4 key={crumb.name}>
+                            <span className="crumb__break">/</span>
+                            <NavLink to={`/home/${crumb.url}`} className="crumb" activeClassName="crumb--active">
+                                {crumb.name}
+                            </NavLink>
+                        </h4> 
+                    )}) 
+                }
         </div>
     )
 }
@@ -26,4 +35,4 @@ const Breadcrumbs = ({crumbs, active}) => {
     )
 }
 
-export { BreadcrumbNav, Breadcrumbs }
+export { BreadcrumbsNav, Breadcrumbs }

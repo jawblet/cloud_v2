@@ -6,13 +6,13 @@ export default function ExpandButton( {squeeze} ) {
     return(
         <>
        <div className="flex column"> 
-            <d style={{margin:margin}}></d>
-            <d style={{margin:margin}}></d>
+            <d is="dot" style={{margin:margin}}></d>
+            <d is="dot" style={{margin:margin}}></d>
         </div>
 
         <div className="flex column">
-            <d style={{margin:margin}}></d>
-            <d style={{margin:margin}}></d>
+            <d is="dot" style={{margin:margin}}></d>
+            <d is="dot" style={{margin:margin}}></d>
         </div>
         </>
     )

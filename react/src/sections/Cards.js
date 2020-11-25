@@ -1,10 +1,11 @@
 import React, { useState } from 'react'; 
 import RoomCard from './../components/RoomCard';
+/*eslint-disable*/
 
 export default function Cards( {squeeze, rooms} ) {
 
     //on click, remove clicked item from array and push to position 0 
-    //0 (front), 1 (middle), 2 (back)
+    //0 (front), 1 (middle), 2 (middle/back), 3 (back)
     const [positionArray, changePosition] = useState(rooms);
 
     const getPositionClass = (room) => {
@@ -28,12 +29,9 @@ export default function Cards( {squeeze, rooms} ) {
 
     const handleCardClick = (e) => {
         const clickedRoom = e.currentTarget.dataset.id;
-        console.log(clickedRoom);
         const roomArr = positionArray; 
         const newArr = roomArr.filter(rm => rm !== clickedRoom); 
-        console.log(newArr);
         newArr.unshift(clickedRoom);
-        console.log(newArr);
         changePosition(newArr);
     };
 
@@ -43,7 +41,7 @@ export default function Cards( {squeeze, rooms} ) {
         {rooms.map((room, index) => {
             if(index <= 1) {
                 return (
-                    <RoomCard room={room} squeeze={squeeze}
+                    <RoomCard room={room} squeeze={squeeze} key={room}
                     handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
                     )
             }
@@ -53,7 +51,7 @@ export default function Cards( {squeeze, rooms} ) {
         {rooms.map((room, index) => {
             if(index > 1) {
                 return (
-                    <RoomCard room={room} squeeze={squeeze}
+                    <RoomCard room={room} squeeze={squeeze} key={room}
                     handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
                     )
             }

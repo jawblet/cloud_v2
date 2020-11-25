@@ -1,17 +1,23 @@
-//phased breadcrumbs
+//phased breadcrumbs 
 .breadcrumbs {
     display: flex;
     justify-content: space-between;
     color: $body-lightest;
 }
-
 .crumb--w {
     &.active { color: $body-medium; }
 }
 
 //nav breadcrumbs
-.crumb + .crumb::before {  
-    content: '/';
-    color: inherit;
-    margin: 0 3rem;
+.breadcrumbsNav {
+    display: flex;
+}
+
+.crumb {  
+    &--active {
+        color: $body;
+    }
+    &__break {
+        margin: 0 1.5rem;
+    }
 }

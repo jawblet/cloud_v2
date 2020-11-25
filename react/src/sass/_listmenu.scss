@@ -1,0 +1,24 @@
+.listmenu {
+    &__title {
+        //font-weight: 600;
+        padding-bottom: 1rem;
+        letter-spacing: 1.5px;
+    }
+    &__item {
+        cursor: pointer;
+        color: $body-light; 
+        padding-bottom: 0.5rem;
+        transition: all $short-fade;
+        &:hover {
+            color: $body;
+        }
+        &.active{
+           // font-style: italic;
+            color: $body-medium;
+            &::after {
+                content: '✴';
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

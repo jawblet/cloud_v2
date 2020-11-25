@@ -107,10 +107,3 @@ exports.logoutUser = catchAsync(async (req, res) => {
     });
     res.status(200).send('user is logged out');
   });
-
-/*
-    {
-        username: 'juliAA',
-        password: '12345678'
-      }     
-*/
