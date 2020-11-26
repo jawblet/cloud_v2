@@ -1,0 +1,75 @@
+import { useEffect, useContext, useState } from 'react';
+import axios from 'axios';
+import { UserContext } from './UserContext';
+
+export default function useTags(activeItem) {
+const { user } = useContext(UserContext); 
+const [tags, setTags] = useState(null);
+const [tagTotal, countTagTotal] = useState(null);
+const [lastThreeTags, setLastTags] = useState(null);
+
+//get all tags by house
+useEffect(() => {
+    console.log(activeItem);
+    let sort;
+    switch(activeItem) {
+        case 'recent': sort = 'h';
+        break;
+        case 'A - Z': sort = 'AtoZ';
+        break;
+        default: sort = 'h'; 
+    }
+
+    try {
+        axios({
+            method: 'GET',
+            url: `tags/${sort}/${user.house}` 
+        }).then(res => {
+            console.log(res.data.data.results);
+            setTags(res.data.data.results);
+            countTagTotal(res.data.data.results.length);
+        })
+    } catch(err) {
+        console.log(err)
+
+    }
+}, [activeItem]);
+
+//alphabetize tags
+    const alphabetizeTags = () => {
+        try {
+            axios({
+                method: 'GET',
+                url: `tags/AtoZ/${user.house}`
+            }).then(res => {
+                console.log(res.data.data.results);
+                setTags(res.data.data.results);
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+//last 3 tags
+    const getRecentTags = () => {
+        try {
+            axios({
+                method: 'GET',
+                url: `tags/last3/${user.house}`
+            }).then(res => {
+                //console.log(res.data.data.results);
+                setLastTags(res.data.data.results);
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    return {
+        alphabetizeTags,
+        tags,
+        tagTotal,
+        getRecentTags, 
+        lastThreeTags
+    }
+}

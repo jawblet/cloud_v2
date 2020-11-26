@@ -344,6 +344,8 @@ menu {
     cursor: pointer; }
     .icon__btn:hover {
       color: #72716B; }
+  .icon--active {
+    color: #31302C; }
   .icon--small {
     font-size: 0.8rem; }
 
@@ -493,18 +495,6 @@ d {
     cursor: pointer; }
     .upload__label:hover {
       font-style: italic; }
-
-.addTags {
-  padding-top: 1rem;
-  min-height: 10rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  transform-origin: center 1rem;
-  width: 100%; }
-  .addTags__recent {
-    padding-top: 1rem;
-    align-self: flex-start; }
 
 .rollDown-enter {
   transform: scaleY(0); }
@@ -707,7 +697,7 @@ row {
   align-items: center;
   position: relative;
   padding: 7px;
-  margin-bottom: 3px;
+  margin-bottom: 1rem;
   margin-right: 1rem;
   transition: all 0.35s;
   line-height: 150%; }
@@ -724,9 +714,34 @@ row {
     top: 50%;
     cursor: pointer; }
 
+/* TAG LAYOUT */
 .tagBank {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: flex-start; }
+
+.addTags {
+  padding-top: 1rem;
+  min-height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transform-origin: center 1rem;
+  width: 100%; }
+  .addTags__recent {
+    padding-top: 1rem;
+    align-self: flex-start; }
+
+.houseTags {
+  column-count: 3; }
+  .houseTags__header {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 85%; }
+    .houseTags__header > * {
+      margin-right: 3rem; }
 
 .toggle {
   height: 1.5rem;
@@ -824,3 +839,24 @@ row {
     .listmenu__item.active::after {
       content: '✴';
       margin-left: 0.5rem; }
+
+.filter {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  height: 3rem;
+  background-color: #f5eee5;
+  border-radius: 0.5rem; }
+  .filter__item {
+    cursor: pointer;
+    color: #72716B;
+    margin-right: 1.5rem;
+    background-color: inherit;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: all 0.35s; }
+    .filter__item--active {
+      background-color: #f1e3d3;
+      border-radius: 5px; }
+  .filter__paint {
+    width: 1.5rem; }

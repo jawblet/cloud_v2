@@ -1,10 +1,10 @@
 import React from 'react';
 import { VscClose } from 'react-icons/vsc';
 
-export default function TagBank({tags, handleDelete}) {
+export default function TagBank({tags, handleDelete}) { 
     return(
         <>
-        {(!tags) 
+        {(!tags)  
             ?  <div>no fxkn tags</div>
             :   <div className="tagBank">
                     {tags.map(tag => {

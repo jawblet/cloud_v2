@@ -24,10 +24,12 @@ export default function Add(props) {
     const switchType = (e) => { setType(e.target.dataset.id); }
 
     //handle page state 
-    const { values, handleChange, selectItem, handleSubmit } = useUpload({
+    const { values, handleChange, selectItem, handleSubmit, searchRef, addTags, clearInput, removeTag } = useUpload({
         initialValues: {
             type: 'link',
             content: '',
+            input: '',
+            tags: [],
             comment: '',
             house: user.house,
             user: user._id,
@@ -42,9 +44,8 @@ export default function Add(props) {
             <form className="fullWidth" onSubmit={handleSubmit}>
 
                 <UploadContainer buttons={buttons} type={type} switchType={switchType}
-                                values={values} handleChange={handleChange} 
-                />
-
+                                values={values} handleChange={handleChange} searchRef={searchRef} 
+                                clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                       <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
                         <h4>Place in</h4> 

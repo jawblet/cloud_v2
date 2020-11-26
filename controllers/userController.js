@@ -4,7 +4,7 @@ const catchAsync = require('./../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');
 
 //function handled by generic handler 
-exports.getUserById = functionHandler.getOne(User);
+exports.getUserById = functionHandler.getOne(User, 'house');
 exports.getAllUsers = functionHandler.getAll(User);
 exports.deleteOneUser = functionHandler.deleteOne(User);
 exports.deleteAllUsers = functionHandler.deleteAll(User);

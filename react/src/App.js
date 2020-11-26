@@ -9,6 +9,7 @@ import Landing from './pages/Landing';
 import Home from './pages/Home';
 import User from './pages/User';
 import Add from './pages/Add';
+import Tags from './pages/Tags';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
@@ -37,6 +38,7 @@ function App() {
           <PrivateRoute path='/home/:room' component={Room}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
+          <PrivateRoute path="/tags" component={Tags}/>
           <Route component={NotFound}/>
         </Switch>
       </UserContext.Provider>

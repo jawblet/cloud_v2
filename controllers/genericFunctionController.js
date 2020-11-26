@@ -1,4 +1,5 @@
-const catchAsync = require('./../utils/catchAsync');
+const catchAsync = require('../utils/catchAsync');
+const APIFeatures = require('../utils/apiFeatures');
 
 //get one by id
 exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
@@ -14,9 +15,31 @@ exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
     });
 });
 
-//get tag, post by user or house or boarders
+//get by user
 exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
     const results = await Model.find({ user: req.params.userId});
+    console.log(results);
+    res.status(200).json({
+        status: 'success',
+        data: {
+            results
+        }
+    })  
+});
+
+//get by house
+exports.getAllByHouseId = (Model) => catchAsync(async(req, res) => {
+    //const results = await Model.find({ house: req.params.houseId});
+    const filter = { house: req.params.houseId };
+
+    const features = new APIFeatures(Model.find(filter), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const results = await features.query;
+
     console.log(results);
     res.status(200).json({
         status: 'success',
@@ -63,7 +86,6 @@ exports.updateOne = (Model) => catchAsync(async(req, res) => {
         }
     })   
 });
-
 
 //delete one by id 
 exports.deleteOne = (Model) => catchAsync(async(req, res) => {

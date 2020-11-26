@@ -1,4 +1,4 @@
-const express = require('express'); 
+const express = require('express');  
 const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -17,8 +17,6 @@ const app = express();
 app.use(cors());
 app.use(morgan('tiny')); 
 
-//serve static files from react app 
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(jwtSecret));
@@ -35,7 +33,7 @@ app.use('/houses', houseRouter);
 app.use('/tags', tagRouter);
 app.use('/users', userRouter);
 
-// Serve static assets if in production
+// Serve static assets from react if in production
 if (process.env.NODE_ENV === "production") {
    app.use(express.static(path.join(__dirname, 'react/build')));
    app.get('*', (req, res) =>{
@@ -43,6 +41,7 @@ if (process.env.NODE_ENV === "production") {
    });
 }
 
+//handle errors
 app.use(errorController); 
 
 app.all('*', (req, res, next) => {

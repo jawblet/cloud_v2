@@ -1,15 +1,15 @@
 .tag {
     background-color: transparent;
     border-radius: $border-small;
+    //display: flex;
     display: inline-flex;
     align-items: center;
     position: relative;
     padding: 7px;
-    margin-bottom: 3px;
+    margin-bottom: 1rem;
     margin-right: 1rem; 
     transition: all $short-fade;
-   // vertical-align: middle;
-   line-height: 150%;
+    line-height: $line-height;
     &--edit {
         padding-right: 1.7rem;
         border-radius: $border-small;
@@ -26,7 +26,42 @@
     }
 }
 
-.tagBank {
+/* TAG LAYOUT */
+// show created tags in reg/upload forms
+.tagBank { 
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+//Panel that expands on add tags click in upload ==> tag search, recent tags, and tag bank 
+.addTags { // used in upload form 
+    padding-top: 1rem;
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform-origin: center 1rem; // roll out search from center(x) 1rem from top(y)
+    width: 100%;
+    &__recent {
+        padding-top: 1rem;
+        align-self: flex-start;
+    }
+}
+
+//global tags by house
+.houseTags {
+    column-count: 3;
+    // border: 1px solid red;
+    &__header {
+        align-self: flex-end;
+        //border: 1px solid red; 
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 85%;
+        & > * {
+            margin-right: 3rem;
+        }
+    }
 }

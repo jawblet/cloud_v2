@@ -1,19 +1,21 @@
 import React, { useRef } from 'react';
-import Search from './../components/Search';
+import Search from '../components/Search'; 
+import TagBank from './TagBank';
 import { CSSTransition } from 'react-transition-group';
 
-
-export default function AddTags({ tags }) {
+export default function AddTags({tagInput, values, handleChange, addTags, clearInput, removeTag, searchRef}) {
     const nodeRef = useRef(null);
-
     return(
         <>
-        <CSSTransition in={tags} timeout={700} nodeRef={nodeRef} classNames="rollDown" unmountOnExit>
+        <CSSTransition in={tagInput} timeout={700} nodeRef={nodeRef} classNames="rollDown" unmountOnExit>
             <div className="addTags" ref={nodeRef}>
-                <Search/>
-               {/* <h4 className="addTags__recent"> Recent tags: </h4> */}
+                <Search name={"input"} values={values.input} ref={searchRef}
+                        handleChange={handleChange} addTags={addTags} clearInput={clearInput}/>
+                <span style={{width: '100%', paddingTop:'1.5rem'}}>
+                    <TagBank tags={values.tags} handleDelete={removeTag}/>
+                </span>
             </div>
         </CSSTransition>
         </>
     )
-}
+} 

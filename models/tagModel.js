@@ -6,12 +6,17 @@ const tagSchema = new Schema ({
     tag: {
         type: String,
         require: [true, 'Tags can\'t be empty.'],
-        validate: [validator.isAlphanumeric, 'Usernames may only have letters and numbers.']
+        lowercase: true,
+        validate: [validator.isAlphanumeric, 'Tags may only have letters and numbers.']
     },
     color: String,
     house: {
         type: Schema.Types.ObjectId,
         ref: 'House'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     createdOn: {
         type: Date,

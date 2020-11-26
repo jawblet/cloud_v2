@@ -53,6 +53,7 @@
     cursor: pointer;
     &:hover { color: $body-light; }
   }
+  &--active { color: $body }
   &--small { font-size: 0.8rem; }
 }
 

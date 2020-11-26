@@ -11,7 +11,7 @@ import useForm from './../hooks/useForm';
 export default function CreateHouse() {
     //eventually, house rooms will be configurable here too
     const { newState, handleToggle } = useToggle(false);
-    const { handleChange, handleSubmit, values, error, searchRef, addEmails, clearInput, removeTag } = useForm({
+    const { handleChange, handleSubmit, values, error, searchRef, addTags, clearInput, removeTag } = useForm({
         initialValues: {
             form: 'rent',
             house: '',
@@ -20,7 +20,7 @@ export default function CreateHouse() {
         }
     });
  
-    return(
+    return (
              <div className="inlineForm">
                 <h3>Rent a house</h3>
                 <div className="inlineForm__notif">
@@ -35,7 +35,7 @@ export default function CreateHouse() {
                                     ? 
                                         <>
                                             <Search placeholder={"Enter up to 3 email addresses."} name={"input"} 
-                                            values={values.input} handleChange={handleChange} addEmails={addEmails} 
+                                            values={values.input} handleChange={handleChange} addTags={addTags} 
                                             clearInput={clearInput} ref={searchRef} />  
                                             <TagBank tags={values.boardersUnconfirmed} handleDelete={removeTag}/>
                                         </>

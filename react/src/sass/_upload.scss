@@ -41,21 +41,6 @@
     }
 }
 
-//Expand this panel on add tags click ==> tag search, recent tags, and tag bank 
-.addTags {
-    padding-top: 1rem;
-    min-height: 10rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    transform-origin: center 1rem; // roll out search from center(x) 1rem from top(y)
-   // border: 1px solid blue;
-    width: 100%;
-    &__recent {
-        padding-top: 1rem;
-        align-self: flex-start;
-    }
-}
 
 
 

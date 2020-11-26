@@ -82,8 +82,8 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         currentUser = await User.findById(decoded.id);
       } else {
          currentUser =  null;
-         // const id = '5fbeb16d6ae6c01e25789818';
-         // currentUser = await User.findById(id);
+         //const id = '5fbeb16d6ae6c01e25789818';
+         //currentUser = await User.findById(id);
       }    
 
       res.status(200).send({ currentUser });

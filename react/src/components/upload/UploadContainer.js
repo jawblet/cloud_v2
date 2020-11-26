@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ButtonBar from '../ButtonBar';
 import Tooltip from '../Tooltip';
 import useTooltip from './../../hooks/useTooltip';
-import AddTags from './../../sections/AddTags';
+import AddTags from './../../sections/AddTags'; 
 import InlineButton from './../InlineButton'; 
 import LinkUpload from './LinkUpload';
 import NoteUpload from './NoteUpload';
@@ -10,12 +10,12 @@ import DragUpload from './DragUpload';
 
 export default function UploadContainer(props) { 
     const { type, buttons, switchType } = props;
-    const [tags, setTags] = useState(false);
+    const [tagInput, setTagInput] = useState(false);
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
 
-    return ( 
+    return (  
         <div className="upload__container">  
             <div className="upload__controller">
             <ButtonBar buttons={buttons} ref={textRef} switchType={switchType} type={type}
@@ -31,9 +31,9 @@ export default function UploadContainer(props) {
                 <div className="upload__extras">
                     <div className="flex">
                         <div className="upload__label" style={{marginTop:'-1rem'}}>
-                            <InlineButton name={"add tags"} handleClick={() => setTags(!tags)}/>
+                            <InlineButton name={"add tags"} handleClick={() => setTagInput(!tagInput)}/>
                         </div> 
-                        <AddTags tags={tags}/>
+                        <AddTags tagInput={tagInput} {...props}/> 
                     </div>
                     <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
                         <InlineButton name={"say more"}/> 

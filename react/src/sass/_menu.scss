@@ -1,7 +1,6 @@
 //select menu 
-.selectmenu {
+.selectmenu { 
     &__picked {
-       // border: 1px solid red; 
         padding: 0.5rem 0.5rem;
         display: flex;
         align-items: center;
@@ -14,7 +13,6 @@
     &__dropdown {
         position: absolute;
         transform-origin: top;
-      //  border: 1px solid $sand; 
     }
     &__item {
         color: $body-light;
@@ -44,7 +42,7 @@
         &:hover {
             color: $body;
         }
-        &.active{
+        &.active {
            // font-style: italic;
             color: $body-medium;
             &::after {
@@ -52,5 +50,31 @@
                 margin-left: 0.5rem;
             }
         }
+    }
+}
+
+//filter 
+.filter {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    height: 3rem;
+    background-color: $sand2;
+    border-radius: $border-small;
+    &__item {
+        cursor: pointer;
+        color: $body-light;
+        margin-right: 1.5rem;
+        background-color: inherit;
+        border-radius: $border-smallest;
+        padding: 0.5rem;
+        transition: all $short-fade;
+        &--active {
+            background-color: $sand3;
+            border-radius: $border-smallest;
+        }
+    }
+    &__paint {
+        width: 1.5rem;
     }
 }

@@ -140,7 +140,7 @@ export default function useForm({ initialValues }) {
     const searchRef = React.createRef(); //define searchRef
 
  //handle add
-    const addEmails = () => { 
+    const addTags = () => { 
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.input)) {
             if(values.boardersUnconfirmed.length < 4) {
                 setValues({
@@ -204,7 +204,7 @@ const rentHouse = async (formValues) => {
         error,
         success,
         searchRef,
-        addEmails,
+        addTags,
         clearInput,
         removeTag
     }
