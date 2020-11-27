@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Preview from './Preview';
  
-export default function Post() {
+export default function Post(props) { 
+    const getPostType = () => {
+        let icon;
+        switch(props.post.type) {
+            case "link": icon = "📎";
+            break;
+            default: icon="?";
+        }
+        return icon;
+    }
+
+    const [preview, showPreview] = useState(false);
+
     return(
-        <post>
-            <row>
-                <h4 className="lightest"> Jawblia</h4>  <h4 className="lightest">Oct 23 2020</h4>
-            </row>
-            <row>
-                <h4 className="post__text">https://stackoverflow.com/questions/18148166/find-document-with-array-that-contains-a-specific-value</h4>
-            </row>
-            <row className="post__tags">
-                <h4>Death of classicism, fall of roman empire, hair advice, good ideas for quar</h4>
-            </row>
-        </post>
+        <div className="post" onMouseEnter={() => showPreview(true)} onMouseLeave={() => showPreview(false)}>
+            <div className="post__row">
+                <h4 className="lightest">{props.post.username}</h4>  <h4 className="lightest">{props.post.date}</h4>
+            </div>
+            <div className="post__body">
+                {getPostType()}
+            </div>
+            <div className="post__tags">
+                {props.post.tags.map(tag => {
+                    return(<h4>{tag}</h4>)
+                })}
+            </div>
+        </div>
     )
 }

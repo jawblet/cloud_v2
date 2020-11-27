@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+const getCurrentDate = () => {
+    let date = new Date().toLocaleDateString('en', 
+                    { day: "numeric", 
+                    month: "short", 
+                    year: "numeric" });
+    return date;
+}
  
 const postSchema = new Schema({
     type: String, 
@@ -11,6 +19,7 @@ const postSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'House'
     },
+    username: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -23,6 +32,10 @@ const postSchema = new Schema({
     ],
     comment: String,
     room: String, 
+    date: {
+        type: String,
+        default: getCurrentDate()
+    },
     createdOn: {
         type: Date,
         default: Date.now

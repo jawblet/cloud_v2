@@ -10,3 +10,10 @@
         flex: 0 0 85%;
     }
 }
+
+.roomPosts {
+    display: flex;
+    & > * {
+        margin-right: 1.5rem;
+    }
+}

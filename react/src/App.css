@@ -651,33 +651,43 @@ d {
   100% {
     transform: translateY(0px); } }
 
-post {
-  height: 15rem;
+.post {
   width: 15rem;
+  height: 15rem;
   border: 1px solid #d8d7d3;
   border-radius: 1rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+  .post__row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    word-break: break-all;
+    white-space: normal;
+    flex: wrap; }
+  .post__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: 1px solid #f1e3d3;
+    cursor: pointer; }
+  .post__tags {
+    text-align: justify;
+    word-break: normal;
+    position: relative; }
 
-row {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  word-break: break-all;
-  white-space: normal;
-  flex: wrap; }
-
-.post__tags {
-  text-align: justify;
-  word-break: normal;
-  position: relative; }
-
-.post__more {
+.postPreview {
+  width: 20rem;
+  height: 15rem;
+  background-color: #fcf7f3;
+  border: 1px solid #f1e3d3;
   position: absolute;
-  bottom: 0;
-  left: 0; }
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem; }
 
 .gradient {
   height: 5rem;
@@ -798,6 +808,11 @@ row {
     flex: 0 0 15%; }
   .room__body {
     flex: 0 0 85%; }
+
+.roomPosts {
+  display: flex; }
+  .roomPosts > * {
+    margin-right: 1.5rem; }
 
 .selectmenu__picked {
   padding: 0.5rem 0.5rem;

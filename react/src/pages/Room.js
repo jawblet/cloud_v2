@@ -2,10 +2,11 @@ import React from 'react';
 import Header from './../sections/Header'; 
 import Button from '../components/Button';
 import ListMenu from '../components/ListMenu';
-import Post from '../components/Post';
+import PostList from '../sections/PostList';
 import { Link, useParams } from 'react-router-dom';
 import { VscAdd } from 'react-icons/vsc';
 import useOneFilter from '../hooks/useOneFilter';
+import usePosts from '../hooks/usePosts';
 
 export default function Room() {
     let params = useParams();
@@ -17,7 +18,10 @@ export default function Room() {
     const nav = [
         {name: params.room, url: params.room },
     ];
- 
+
+    //get posts by room 
+    const { posts, loading } = usePosts(params.room);
+    console.log(posts);
     return(
         <div className="page">
             <Header nav={nav}/>
@@ -27,7 +31,10 @@ export default function Room() {
                     <ListMenu title={'sort'} list={list} handleOneFilter={handleOneFilter} activeItem={activeItem}/>
                 </div>
                 <div className="room__body">
-                <Post/>
+                    {loading 
+                        ? <div>Loading</div>
+                        : <PostList posts={posts} />
+                     }
                 </div>
             </div>
             <span className="fixedBtn">

@@ -28,17 +28,27 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
 });
 
 //get by house
-exports.getAllByHouseId = (Model) => catchAsync(async(req, res) => {
-    //const results = await Model.find({ house: req.params.houseId});
-    const filter = { house: req.params.houseId };
+exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {
+    let filter = { house: req.params.houseId }; //filter by houseId by default 
+    
+    if(req.params.room) { //if there is a room param, filter by houseId and room 
+        filter = { house: req.params.houseId, room: req.params.room }
+    }
 
-    const features = new APIFeatures(Model.find(filter), req.query)
+    let features = new APIFeatures(Model.find(filter), req.query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
 
-    const results = await features.query;
+    //if(populateOpts) features = features.populate(populateOpts).execPopulate();
+
+    let results = await features.query;
+    
+    if(populateOpts) results = results.populate(populateOpts);
+
+    console.log(results);
+
 
     console.log(results);
     res.status(200).json({

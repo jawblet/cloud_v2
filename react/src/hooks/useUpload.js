@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'; 
 import { UserContext } from './UserContext';
-import { colors } from './colors';
+import { colors } from './colors'; 
 
 export default function useUpload({ initialValues }) {
     let history = useHistory();
@@ -10,7 +10,7 @@ export default function useUpload({ initialValues }) {
     const { user } = useContext(UserContext); 
     const [values, setValues] = useState(initialValues || {}); 
     const [tagIds, setTagIds] = useState([]);
-
+ 
 //track form values
     const handleChange = event => {
         const value = event.target.value; 
@@ -85,7 +85,7 @@ export default function useUpload({ initialValues }) {
 
 //handle URL POST 
     const postLink = async (formValues) => {
-        const { type, content, user, house, room } = formValues.values;
+        const { type, content, user, username, house, room } = formValues.values;
             try {
                 await axios({
                     method: 'POST',
@@ -94,6 +94,7 @@ export default function useUpload({ initialValues }) {
                         type,
                         content,
                         user,
+                        username,
                         house, 
                         room,
                         tags: tagIds

@@ -9,6 +9,7 @@ import useUpload from '../hooks/useUpload';
 
 export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
+    console.log(user);
 
     //breadcrumbs
     const roomFrom = props.location.state;
@@ -33,6 +34,7 @@ export default function Add(props) {
             comment: '',
             house: user.house,
             user: user._id,
+            username: user.username,
             room: roomFrom
         }
     });
