@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 
-export default function useTooltip() {
+export default function useTooltip() { 
     const textRef = React.createRef();
 
     const [tooltip, showTooltip] = useState(null);
@@ -14,6 +14,7 @@ export default function useTooltip() {
     }
 
     const hideTooltip = (e) => {
+        console.log(e.target);
         if(textRef.current && textRef.current.contains(e.target)) {
           showTooltip(null);
         }

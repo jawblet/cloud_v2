@@ -37,19 +37,41 @@
     opacity: 0%;
 }
 
+//recent tag
+.recentTags {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 1.5rem;
+        background-color: $sand;
+        border-radius: $border-small;
+        cursor: pointer;
+        color: $body-lightest; 
+        padding: 7px;
+        transition: all $short-fade;
+        &:hover { color: $body-light; }
+        &::before{
+            content: '+ \00a0';
+        }
+    }
+}
 
 /* TAG LAYOUT */
 // show created tags in reg/upload forms
 .tagBank { 
+    padding-top: 1.5rem;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+   // border: 1px solid black;
 }
 
 //Panel that expands on add tags click in upload ==> tag search, recent tags, and tag bank 
 .addTags { // used in upload form 
-    padding-top: 1rem;
-    min-height: 5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

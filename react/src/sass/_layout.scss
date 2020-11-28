@@ -31,3 +31,18 @@
   }
 }
 
+.skylight {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  &__sidebar {
+    flex: 0 0 5%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+  &__layout {
+    flex: 0 0 95%;
+  }
+}
+

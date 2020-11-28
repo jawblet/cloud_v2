@@ -63,26 +63,26 @@ useEffect(() => {
 //last 3 tags
 const [lastThreeTags, setLastTags] = useState(null);
 
-    const getRecentTags = () => {
-        try {
-            axios({
-                method: 'GET',
-                url: `tags/last3/${user.house}`
-            }).then(res => {
-                //console.log(res.data.data.results);
-                setLastTags(res.data.data.results);
-            })
-        } catch(err) {
-            console.log(err)
-        }
-    }
+useEffect(() => {
+            try {
+                axios({
+                    method: 'GET',
+                    url: `tags/last3/${user.house}`
+                }).then(res => {
+                    //console.log(res.data.data.results);
+                    setLastTags(res.data.data.results);
+                })
+            } catch(err) {
+                console.log(err)
+            }
+    }, [])
+       
 
     return {
         alphabetizeTags,
         tags,
         tagTotal,
         tagView,
-        getRecentTags, 
         lastThreeTags,
         handlePaintClick,  
         eyedrop

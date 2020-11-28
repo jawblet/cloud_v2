@@ -38,30 +38,28 @@ export default function Cards( {squeeze } ) {
     };
 
     return(
-        <>
-    <div className="floor">
-        {rooms.map((room, index) => {
-            if(index <= 1) {
-                return (
-                    <RoomCard room={room} squeeze={squeeze} key={room}
-                    handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
-                    )
-            }
-            })} 
-        </div>
+        <div className="floor__plan">
         <div className="floor">
-        {rooms.map((room, index) => {
-            if(index > 1) {
-                return (
-                    <RoomCard room={room} squeeze={squeeze} key={room}
-                    handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
-                    )
-            }
-            })} 
+            {rooms.map((room, index) => { 
+                if(index <= 1) {
+                    return (
+                        <RoomCard room={room} squeeze={squeeze} key={room}
+                        handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
+                        )
+                }
+                })} 
+            </div>
+            <div className="floor">
+            {rooms.map((room, index) => {
+                if(index > 1) {
+                    return (
+                        <RoomCard room={room} squeeze={squeeze} key={room}
+                        handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
+                        )
+                }
+                })} 
+            </div>
         </div>
-
-
-        </>
     )
 }
 

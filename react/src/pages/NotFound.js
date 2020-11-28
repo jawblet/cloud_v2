@@ -3,7 +3,7 @@ import React from 'react';
 export default function NotFound() {
     return(
         <div>
-            You seem lost. 
+            This is not a route yet. 
         </div>
     )
 }

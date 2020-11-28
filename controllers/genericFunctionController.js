@@ -28,8 +28,6 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
 }); 
 
 //get by house
-//we need to be able to populate from here so we can get docs (tags)
-//paginate
 exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {
     let filter;
     
@@ -38,9 +36,14 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
     } else { filter = { house: req.params.houseId }; //filter by houseId by default 
     }
 
-    let results = await Model.find(filter).populate(populateOpts);
+    //populate + filter 
+    let docs = new APIFeatures(Model.find(filter).populate(populateOpts), req.query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
 
-    console.log(results);
+    const results = await docs.query;
 
     res.status(200).json({
         status: 'success',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import ButtonBar from '../ButtonBar';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../atoms/Tooltip';
 import useTooltip from './../../hooks/useTooltip';
 import AddTags from './../../sections/AddTags'; 
 import InlineButton from './../InlineButton'; 
@@ -16,7 +16,6 @@ export default function UploadContainer(props) {
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
-
     return (  
         <div className="upload__container">  
             <div className="upload__controller">
@@ -31,18 +30,19 @@ export default function UploadContainer(props) {
                     { type === 'file' && <DragUpload/> }
                 </div>
                 <div className="upload__extras">
-                    <div className="flex">
-                        <div className="upload__label" style={{marginTop:'-1rem'}}>
-                            <InlineButton name={"add tags"} handleClick={() => setTagInput(!tagInput)}/>
+                    <div className="upload__tags">
+                        <div className="upload__label">
+                           <h4>Label</h4>
                         </div> 
                         <div className="addTags">
                             <Search values={props.values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
                                     handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
-                            <TagBank tags={props.values.tags} handleDelete={props.removeTag}/>
+                            
+                            <TagBank tags={props.values.tags} handleDelete={props.removeTag}/> 
                         </div>                    
             </div>
-                    <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
-                        <InlineButton name={"say more"}/> 
+                    <div className="upload__label"> 
+                            <h4>Say more</h4>
                     </div>
                 </div>
             </div>

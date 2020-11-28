@@ -39,11 +39,10 @@ export default function Add(props) {
 
     //console.log(values);
     return ( 
-        <div className="page">
+        <div className="page"> 
             <Header nav={nav}/>
             <div className="pageForm">
             <form className="fullWidth" onSubmit={handleSubmit}>
-
                 <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results}
                                 values={values} handleChange={handleChange} searchRef={searchRef} selectTag={selectTag}
                                 clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
