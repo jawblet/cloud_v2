@@ -78,8 +78,32 @@ const searchRef = React.createRef();
         }
     };
 
+//select existing tag from autocomplete
+    const selectTag = (e) => {
+        console.log(e.currentTarget.dataset.id);
+        console.log(e.currentTarget.dataset.name);
+
+        const tagId = e.currentTarget.dataset.id;
+        const tagName = e.currentTarget.dataset.name;
+        
+        //add tag name to tags 
+        setValues({
+            ...values,
+            tags: [...values.tags, tagName],
+            input: ''
+        });
+
+        //add tag id to tags
+        setTagIds([...tagIds, tagId]);
+    }
+
+    //clear input
     const clearInput = () => {
-        searchRef.current.value = "";
+       searchRef.current.value = ""; 
+       setValues({
+        ...values,
+        input: ''
+    });
     }
 
     const removeTag = (tag) => {
@@ -128,6 +152,7 @@ const searchRef = React.createRef();
             results,
             searchRef,
             addTags,
+            selectTag,
             clearInput,
             removeTag
         }

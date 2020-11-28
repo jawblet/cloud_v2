@@ -5,8 +5,6 @@ import AutoComplete from '../atoms/AutoComplete';
 const Search = forwardRef((props, ref) => { 
     const { input } = props.values;
     const results = props.results;
-    console.log(results);
-    //console.log(input, results);
     const [focus, setFocus] = useState(false);
 
     const handleFocus = () => {  
@@ -30,7 +28,7 @@ const Search = forwardRef((props, ref) => {
                 </div>}
             </div>
             {openAutoComplete &&
-                <AutoComplete results={results}/>
+                <AutoComplete results={results} selectTag={props.selectTag}/>
             }
         </div>
     )

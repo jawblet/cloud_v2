@@ -6,7 +6,7 @@ import UploadContainer from '../components/upload/UploadContainer';
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import SelectMenu from '../components/SelectMenu';
 import useUpload from '../hooks/useUpload';
-
+ 
 export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
 
@@ -24,7 +24,7 @@ export default function Add(props) {
     const switchType = (e) => { setType(e.target.dataset.id); }
 
     //handle page state 
-    const { values, handleChange, results, selectItem, searchRef, addTags, clearInput, removeTag, handleSubmit } = useUpload({
+    const { values, handleChange, results, selectItem, searchRef, addTags, selectTag, clearInput, removeTag, handleSubmit } = useUpload({
         initialValues: {
             type: 'link',
             content: '',
@@ -45,7 +45,7 @@ export default function Add(props) {
             <form className="fullWidth" onSubmit={handleSubmit}>
 
                 <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results}
-                                values={values} handleChange={handleChange} searchRef={searchRef} 
+                                values={values} handleChange={handleChange} searchRef={searchRef} selectTag={selectTag}
                                 clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                       <div className="flex alignCenter" style={{marginRight:'3rem'}}> 

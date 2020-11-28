@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function AutoComplete({ results }) {
+export default function AutoComplete({ results, selectTag }) {
     //const users = results.map(el => {return ( el.username )});
     return(
         <ul className="autocomplete">
           {results
          ? results.map(el => {
               return(
-                  <li className="autocomplete__item" key={el._id}>
+                  <li className="autocomplete__item" key={el._id} data-id={el._id} data-name={el.tag} onClick={selectTag}>
                      <h4>{el.tag}</h4>
                 </li>
               )

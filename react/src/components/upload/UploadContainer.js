@@ -36,11 +36,9 @@ export default function UploadContainer(props) {
                             <InlineButton name={"add tags"} handleClick={() => setTagInput(!tagInput)}/>
                         </div> 
                         <div className="addTags">
-                            <Search values={props.values} results={props.results} ref={props.searchRef} 
+                            <Search values={props.values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
                                     handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
-                            <span style={{width: '100%', paddingTop:'1.5rem'}}>
-                                <TagBank tags={props.values.tags} handleDelete={props.removeTag}/>
-                            </span>
+                            <TagBank tags={props.values.tags} handleDelete={props.removeTag}/>
                         </div>                    
             </div>
                     <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
