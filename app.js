@@ -9,7 +9,8 @@ const userRouter = require('./routers/userRouter');
 const houseRouter = require('./routers/houseRouter');
 const postRouter = require('./routers/postRouter');
 const tagRouter = require('./routers/tagRouter');
-const AppError = require('./utils/AppError');
+const searchRouter = require('./routers/searchRouter');
+const AppError = require('./utils/AppError'); 
 const errorController = require('./controllers/errorController');
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -32,6 +33,8 @@ app.use('/posts', postRouter);
 app.use('/houses', houseRouter);
 app.use('/tags', tagRouter);
 app.use('/users', userRouter);
+app.use('/search', searchRouter);
+
 
 // Serve static assets from react if in production
 if (process.env.NODE_ENV === "production") {

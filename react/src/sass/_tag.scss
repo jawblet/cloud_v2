@@ -1,4 +1,5 @@
 .tag {
+    position: relative;
     background-color: transparent;
     border-radius: $border-small;
     //display: flex;
@@ -26,6 +27,17 @@
     }
 }
 
+//for color change
+.colorInput {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%; 
+    height: 100%; 
+    opacity: 0%;
+}
+
+
 /* TAG LAYOUT */
 // show created tags in reg/upload forms
 .tagBank { 
@@ -52,6 +64,7 @@
 //global tags by house
 .houseTags {
     column-count: 3;
+    padding-bottom: 1.5rem;
     // border: 1px solid red;
     &__header {
         align-self: flex-end;

@@ -12,7 +12,7 @@ mongoose.connect(db, {
     useFindAndModify: false,
     useUnifiedTopology: true
 }).then(connection => {
-    console.log(`db is successful`); 
+    console.log('db is successful');
 })
 
 app.listen(port, () => {

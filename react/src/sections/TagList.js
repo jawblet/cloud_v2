@@ -1,7 +1,7 @@
 import React from 'react';
 import Tag from '../components/Tag';
  
-export default function TagList({ tags, tagTotal, activeFilter }) {
+export default function TagList({ tags, tagTotal, activeFilter, eyedrop }) {
     return(
         <>
         <div className="houseTags">
@@ -10,13 +10,13 @@ export default function TagList({ tags, tagTotal, activeFilter }) {
             : tags.map((tag, i) => {
                 return(
                     <div key={i}>
-                       <Tag tag={tag} activeFilter={activeFilter}/>
+                       <Tag tag={tag} activeFilter={activeFilter} eyedrop={eyedrop}/>
                   </div>
                 )
             })}
         </div>
             {activeFilter.includes('count') && 
-                <h4>Count: {tagTotal} tags </h4> }
+                <h4>{tagTotal} tags </h4> }
         </>
     )
 }

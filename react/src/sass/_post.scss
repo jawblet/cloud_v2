@@ -8,26 +8,71 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    &__row {
+    &__header {
         display: flex;
         justify-content: space-between;
-        padding-bottom: 1rem;
-        word-break: break-all;
-        white-space: normal;
-        flex: wrap;
+       // border: 1px solid black;
+        flex: 0 0 10%; 
     }
     &__body {
         display: flex;
+        flex: 0 0 70%;
         justify-content: center;
         align-items: center;
-        height: 100%;
-        border: 1px solid $sand3;
+       // border: 1px solid $sand3;
         cursor: pointer;
     }
     &__tags {
+        margin-top: 0.5rem;
+        display: flex;
+        flex: 0 0 20%;
+        flex-wrap: wrap;
         text-align: justify;
         word-break: normal;
         position: relative;
+       // border: 1px solid blue;
+        & > * {
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.post__tags > h4::after {
+    content: ','
+}
+.post__tags > h4:last-child::after {
+    content: ''
+}
+
+//gradient variant
+.postGradient {
+    width: 100%;
+    height: 100%;
+    //border: 1px solid black;
+    display: flex;
+    filter: blur(3px);
+    overflow: hidden; //hide overflow from blur
+}
+
+//color block variant
+.postBody {
+    width: 100%;
+    height: 100%;
+    //border: 1px solid black;
+    display: flex;
+    overflow: hidden; //hide overflow from blur
+}
+
+.postHalf {
+    &--1{
+        flex-grow: 1;
+        border-top-left-radius: $border-small;
+        border-bottom-left-radius: $border-small;
+    }
+    &--2{
+        flex-grow: 1;
+        border-top-right-radius: $border-small;
+        border-bottom-right-radius: $border-small;
     }
 }
 

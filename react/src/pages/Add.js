@@ -9,7 +9,6 @@ import useUpload from '../hooks/useUpload';
 
 export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
-    console.log(user);
 
     //breadcrumbs
     const roomFrom = props.location.state;
@@ -25,7 +24,7 @@ export default function Add(props) {
     const switchType = (e) => { setType(e.target.dataset.id); }
 
     //handle page state 
-    const { values, handleChange, selectItem, handleSubmit, searchRef, addTags, clearInput, removeTag } = useUpload({
+    const { values, handleChange, results, selectItem, searchRef, addTags, clearInput, removeTag, handleSubmit } = useUpload({
         initialValues: {
             type: 'link',
             content: '',
@@ -34,18 +33,18 @@ export default function Add(props) {
             comment: '',
             house: user.house,
             user: user._id,
-            username: user.username,
             room: roomFrom
         }
     });
 
+    //console.log(values);
     return ( 
         <div className="page">
             <Header nav={nav}/>
             <div className="pageForm">
             <form className="fullWidth" onSubmit={handleSubmit}>
 
-                <UploadContainer buttons={buttons} type={type} switchType={switchType}
+                <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results}
                                 values={values} handleChange={handleChange} searchRef={searchRef} 
                                 clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>

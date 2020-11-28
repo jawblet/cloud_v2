@@ -8,6 +8,6 @@ exports.updatePost = functionHandler.updateOne(Post);
 exports.createPost = functionHandler.create(Post);
 exports.updatePost = functionHandler.updateOne(Post);
 exports.getPostsByUser = functionHandler.getAllByUserId(Post); 
-exports.getPostsByHouse = functionHandler.getAllByHouseId(Post); 
+exports.getPostsByHouse = functionHandler.getAllByHouseId(Post, 'tags user'); 
 exports.deleteOnePost = functionHandler.deleteOne(Post);
 exports.deleteAllPosts = functionHandler.deleteAll(Post); 

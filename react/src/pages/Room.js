@@ -6,6 +6,7 @@ import PostList from '../sections/PostList';
 import { Link, useParams } from 'react-router-dom';
 import { VscAdd } from 'react-icons/vsc';
 import useOneFilter from '../hooks/useOneFilter';
+import useTags from '../hooks/useTags';
 import usePosts from '../hooks/usePosts';
 
 export default function Room() {
@@ -15,13 +16,16 @@ export default function Room() {
     const list = ['date', 'tag', 'boarder'];
     const { handleOneFilter, activeItem } = useOneFilter('date');
 
+    //view 
+    const { tagView } = useTags();
+
     const nav = [
         {name: params.room, url: params.room },
     ];
-
+ 
     //get posts by room 
     const { posts, loading } = usePosts(params.room);
-    console.log(posts);
+   // console.log(posts);
     return(
         <div className="page">
             <Header nav={nav}/>
@@ -33,7 +37,7 @@ export default function Room() {
                 <div className="room__body">
                     {loading 
                         ? <div>Loading</div>
-                        : <PostList posts={posts} />
+                        : <PostList posts={posts} tagView={tagView} />
                      }
                 </div>
             </div>

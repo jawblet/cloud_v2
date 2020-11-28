@@ -63,7 +63,7 @@ exports.loginUser = catchAsync(async(req, res, next) => {
     if (!username || !password) {
         return next(new AppError('Please provide a username and password.', 400));
       }
-
+ 
     //check if user & password are correct  
     const user = await User.findOne({ username }).select('+password');
 
@@ -82,8 +82,8 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         currentUser = await (await User.findById(decoded.id));
       } else {
         currentUser =  null;
-        // const id = '5fc059510626fb77c06748f6';
-        // currentUser = await User.findById(id);
+        //const id = '5fc059510626fb77c06748f6';
+        //currentUser = await User.findById(id);
       }    
 
       res.status(200).send({ currentUser });

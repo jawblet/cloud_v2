@@ -16,4 +16,11 @@
     & > * {
         margin-right: 1.5rem;
     }
+    &--empty {
+        height: 25vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

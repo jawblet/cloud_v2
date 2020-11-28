@@ -8,9 +8,9 @@ const BreadcrumbsNav = ({ nav } ) => {
                 <h4> skylight </h4> 
             </NavLink>
             {nav &&
-                nav.map(crumb => {
+                nav.map((crumb, index) => {
                     return ( 
-                        <h4 key={crumb.name}>
+                        <h4 key={index}>
                             <span className="crumb__break">/</span>
                             <NavLink to={`/home/${crumb.url}`} className="crumb" activeClassName="crumb--active">
                                 {crumb.name}

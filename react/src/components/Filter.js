@@ -1,7 +1,8 @@
 import React from 'react';
 import { VscPaintcan } from 'react-icons/vsc';
 
-export default function Filter (props) {
+export default function Filter (props) { 
+   // console.log(props);
     return(
         <menu className="filter">
             {props.filters.map(item => {
@@ -17,7 +18,7 @@ export default function Filter (props) {
                 <div className="filter__paint">
                 {props.activeFilter.includes('color') &&
                     <VscPaintcan className={`icon icon__btn ${props.eyedrop ? "icon--active" : ''}`}
-                        onClick={props.handleColorChangeClick}/>
+                        onClick={props.handlePaintClick}/>
                     }
                 </div>
       

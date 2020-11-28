@@ -3,22 +3,38 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios'; 
 import { UserContext } from './UserContext';
 import { colors } from './colors'; 
-
+ 
 export default function useUpload({ initialValues }) {
     let history = useHistory();
     const colorArr = colors;
     const { user } = useContext(UserContext); 
     const [values, setValues] = useState(initialValues || {}); 
+    const [results, setResults] = useState([]);
     const [tagIds, setTagIds] = useState([]);
+
+//define ref for searchbar 
+const searchRef = React.createRef(); 
  
 //track form values
-    const handleChange = event => {
+    const handleChange = (event) => {
         const value = event.target.value; 
         const name = event.target.name;
             setValues({
                 ...values,
                 [name]: value
             }); 
+
+        if(searchRef.current) {
+            try {
+                axios({
+                    method: 'GET',
+                    url: `search/?search=${value}`
+                }).then(res => {
+                    const returnObj = res.data.data.results; 
+                    setResults(returnObj);
+                })
+            } catch(err) { console.error(err); }
+        }
     };
 
 //handle room selection 
@@ -28,9 +44,6 @@ export default function useUpload({ initialValues }) {
             room: e.currentTarget.dataset.id
         }); 
     }
-
-//handle tag selection
-    const searchRef = React.createRef(); //define searchRef 
 
 //add tags to state and post them 
     const addTags = async () => {
@@ -85,7 +98,7 @@ export default function useUpload({ initialValues }) {
 
 //handle URL POST 
     const postLink = async (formValues) => {
-        const { type, content, user, username, house, room } = formValues.values;
+        const { type, content, user, house, room } = formValues.values;
             try {
                 await axios({
                     method: 'POST',
@@ -94,7 +107,6 @@ export default function useUpload({ initialValues }) {
                         type,
                         content,
                         user,
-                        username,
                         house, 
                         room,
                         tags: tagIds
@@ -113,6 +125,7 @@ export default function useUpload({ initialValues }) {
             handleSubmit,
             selectItem,
             values,
+            results,
             searchRef,
             addTags,
             clearInput,

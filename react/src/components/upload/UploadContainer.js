@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import ButtonBar from '../ButtonBar';
 import Tooltip from '../Tooltip';
 import useTooltip from './../../hooks/useTooltip';
@@ -7,6 +7,8 @@ import InlineButton from './../InlineButton';
 import LinkUpload from './LinkUpload';
 import NoteUpload from './NoteUpload';
 import DragUpload from './DragUpload';
+import Search from '../Search'; 
+import TagBank from '../../sections/TagBank';
 
 export default function UploadContainer(props) { 
     const { type, buttons, switchType } = props;
@@ -33,8 +35,14 @@ export default function UploadContainer(props) {
                         <div className="upload__label" style={{marginTop:'-1rem'}}>
                             <InlineButton name={"add tags"} handleClick={() => setTagInput(!tagInput)}/>
                         </div> 
-                        <AddTags tagInput={tagInput} {...props}/> 
-                    </div>
+                        <div className="addTags">
+                            <Search values={props.values} results={props.results} ref={props.searchRef} 
+                                    handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
+                            <span style={{width: '100%', paddingTop:'1.5rem'}}>
+                                <TagBank tags={props.values.tags} handleDelete={props.removeTag}/>
+                            </span>
+                        </div>                    
+            </div>
                     <div className="upload__label" style={{marginTop:'-1.5rem'}}> 
                         <InlineButton name={"say more"}/> 
                     </div>

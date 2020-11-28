@@ -20,24 +20,29 @@ export default function Tags() {
     const { handleFilterClick, activeFilter } = useManyFilters([]);
 
     //get tags
-    const { tags, tagTotal, alphabetizeTags } = useTags(activeItem);
+    const { tags, tagTotal, alphabetizeTags, 
+            handlePaintClick, eyedrop } = useTags(activeItem);
 
    // if(activeItem === 'A - Z') {
      //   alphabetizeTags();
-   // }
+   // } 
         
     return(
         <div className="page">
             <Header/> 
             <div className="houseTags__header"> 
-                    <h3>Tags</h3> <Filter filters={filters} activeFilter={activeFilter} handleFilterClick={handleFilterClick}/>
-                </div>
+                    <h3>Tags</h3> 
+                    <Filter filters={filters} activeFilter={activeFilter} handleFilterClick={handleFilterClick} 
+                            handlePaintClick={handlePaintClick} eyedrop={eyedrop}
+                            />
+            </div>
             <div className="room">
                 <div className="room__sidebar">
                     <ListMenu title={'sort'} list={list} activeItem={activeItem} handleOneFilter={handleOneFilter}/>
                 </div>
                 <div className="room__body">
-                    <TagList tags={tags} tagTotal={tagTotal} activeFilter={activeFilter}/>
+                    <TagList tags={tags} tagTotal={tagTotal} activeFilter={activeFilter} eyedrop={eyedrop}
+                    />
                 </div>
             </div>
         </div>

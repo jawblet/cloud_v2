@@ -19,7 +19,6 @@ const postSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'House'
     },
-    username: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

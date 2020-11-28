@@ -4,13 +4,12 @@ import { UserContext } from './UserContext';
 
 export default function useTags(activeItem) {
 const { user } = useContext(UserContext); 
-const [tags, setTags] = useState(null);
-const [tagTotal, countTagTotal] = useState(null);
-const [lastThreeTags, setLastTags] = useState(null);
 
 //get all tags by house
+const [tags, setTags] = useState(null);
+const [tagTotal, countTagTotal] = useState(null);
+
 useEffect(() => {
-    console.log(activeItem);
     let sort;
     switch(activeItem) {
         case 'recent': sort = 'h';
@@ -19,13 +18,13 @@ useEffect(() => {
         break;
         default: sort = 'h'; 
     }
-
+ 
     try {
         axios({
             method: 'GET',
             url: `tags/${sort}/${user.house}` 
         }).then(res => {
-            console.log(res.data.data.results);
+            // console.log(res.data.data.results);
             setTags(res.data.data.results);
             countTagTotal(res.data.data.results.length);
         })
@@ -35,6 +34,17 @@ useEffect(() => {
     }
 }, [activeItem]);
 
+//change tag view 
+    const [tagView, setTagView] = useState('gradient');
+
+//change tag color 
+    const [eyedrop, colorChangeActive] = useState(false);
+    const [colorPicker, setOpenColorPicker] = useState([]);
+
+    const handlePaintClick = () => {
+        colorChangeActive(!eyedrop);
+    }
+
 //alphabetize tags
     const alphabetizeTags = () => {
         try {
@@ -42,7 +52,7 @@ useEffect(() => {
                 method: 'GET',
                 url: `tags/AtoZ/${user.house}`
             }).then(res => {
-                console.log(res.data.data.results);
+               // console.log(res.data.data.results);
                 setTags(res.data.data.results);
             })
         } catch(err) {
@@ -51,6 +61,8 @@ useEffect(() => {
     }
 
 //last 3 tags
+const [lastThreeTags, setLastTags] = useState(null);
+
     const getRecentTags = () => {
         try {
             axios({
@@ -69,7 +81,10 @@ useEffect(() => {
         alphabetizeTags,
         tags,
         tagTotal,
+        tagView,
         getRecentTags, 
-        lastThreeTags
+        lastThreeTags,
+        handlePaintClick,  
+        eyedrop
     }
 }
