@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'; 
-import NavButton from '../atoms/NavButton';
-import Button from './Button';
+import NavButton from './NavButton';
+import TooltipButton from './TooltipButton';
 
 const NavBar = forwardRef((props, ref) => {
     return(
@@ -11,10 +11,9 @@ const NavBar = forwardRef((props, ref) => {
                         return ( <NavButton key={i} button={button} {...props} /> )
                     } else {
                         return ( 
-                        <Button key={i} button={button} {...props} handleClick={props.handleExpandClick}/> 
+                        <TooltipButton key={i} button={button} {...props} handleClick={props.handleExpandClick}/> 
                         )
                     }
-                    
                 })} 
             </nav>  
         </div>  

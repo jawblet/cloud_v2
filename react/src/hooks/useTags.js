@@ -18,11 +18,11 @@ useEffect(() => {
         break;
         default: sort = 'h'; 
     }
- 
+  
     try {
         axios({
             method: 'GET',
-            url: `tags/${sort}/${user.house}` 
+            url: `/tags/${sort}/${user.house._id}` 
         }).then(res => {
             // console.log(res.data.data.results);
             setTags(res.data.data.results);
@@ -50,7 +50,7 @@ useEffect(() => {
         try {
             axios({
                 method: 'GET',
-                url: `tags/AtoZ/${user.house}`
+                url: `/tags/AtoZ/${user.house._id}`
             }).then(res => {
                // console.log(res.data.data.results);
                 setTags(res.data.data.results);
@@ -67,7 +67,7 @@ useEffect(() => {
             try {
                 axios({
                     method: 'GET',
-                    url: `tags/last3/${user.house}`
+                    url: `/tags/last3/${user.house._id}`
                 }).then(res => {
                     //console.log(res.data.data.results);
                     setLastTags(res.data.data.results);

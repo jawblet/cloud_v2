@@ -2,7 +2,7 @@ import React from 'react';
 import { VscClose } from 'react-icons/vsc';
  
 export default function TagBank({tags, handleDelete}) { 
-    console.log(tags)
+    //console.log(tags);
     return(
         <>
         {tags.length > 0 &&  

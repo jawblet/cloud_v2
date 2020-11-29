@@ -1,8 +1,16 @@
+//base settings 
 @import "variables"; 
 @import "base"; 
 @import "utils";
-@import "layout";
-@import "form";
+@import "animations";
+
+//layouts  
+@import "./layout/room"; 
+@import "./layout/layout";
+@import "./layout/upload";
+@import "./layout/form";
+
+//components 
 @import "forminput"; 
 @import "confirmpass";
 @import "button";
@@ -11,8 +19,6 @@
 @import "loading";
 @import "prompt"; 
 @import "modal";
-@import "upload";
-@import "animations";
 @import "editor";
 @import "search";
 @import "dragDrop";
@@ -22,7 +28,7 @@
 @import "tag"; 
 @import "toggle"; 
 @import "breadcrumbs"; 
-@import "room"; 
 @import "menu"; 
 @import "dropdown"; 
 @import "filter"; 
+@import "preview"; 

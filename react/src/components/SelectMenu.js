@@ -10,7 +10,7 @@ export default function SelectMenu({ items, active, selectItem }) {
     useEffect(() => {
         setMenu(false); // close menu on selection 
     }, [active]);
-
+ 
     return(
         <div className="selectmenu">
             <h4 className="selectmenu__picked"> 

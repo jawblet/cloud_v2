@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import Preview from './Preview';
   
 export default function Post({ post, view }) { 
-    console.log(view);
    
-
     const getPostGradient = (tagObj) => {
         let colorArr = tagObj.map(el => el.color);
         let colorString = colorArr.toString();
@@ -13,7 +11,6 @@ export default function Post({ post, view }) {
             </div>
         )
     }
-
 
     const getPostColorBlock = (tagObj) => {
         let body;
@@ -48,8 +45,7 @@ export default function Post({ post, view }) {
                 <h4 className="lightest">{post.user.username}</h4>  <h4 className="lightest">{post.date}</h4>
             </div>
             <div className="post__body">
-                {view === 'gradient' && getPostGradient(post.tags)}
-                {/*getPostColorBlock(post.tags)*/}
+                {/*view === 'gradient' && getPostGradient(post.tags)*/}
             </div>
             <div className="post__tags">
                 {(post.tags.length > 0) 

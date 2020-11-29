@@ -3,18 +3,16 @@
     height: 100%;
     width: 100%;
     margin-top: 1.5rem;
-    &__sidebar {
-        flex: 0 0 15%;
-    }
-    &__body {
-        flex: 0 0 85%;
-    }
+    &__sidebar { flex: 0 0 15%; }
+    &__body { flex: 0 0 85%; }
 }
 
 .roomPosts {
     display: flex;
+    flex-wrap: wrap;
     & > * {
         margin-right: 1.5rem;
+        margin-bottom: 1.5rem; 
     }
     &--empty {
         height: 25vh;
@@ -24,3 +22,10 @@
         align-items: center;
     }
 }
+
+// custom style for add btn
+.fixedBtn {
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
+  }

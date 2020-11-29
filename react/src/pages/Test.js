@@ -1,12 +1,10 @@
 import React from 'react';
 import Gradient from './../atoms/Gradient';
-import Post from './../components/Post';
 
 export default function Test() {
     return(
-        <div className="page">
+        <div className="flex fullHeight justifyCenter alignCenter">
             <Gradient/>
-            <Post/>
         </div>
     )
 }

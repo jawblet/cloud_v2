@@ -1,10 +1,10 @@
 import React from 'react';
-import UserForm from './../sections/UserForm';
-import Error from './../components/Error';
-import useForm from './../hooks/useForm';
+import UserForm from '../sections/UserForm';
+import Error from '../atoms/Error';
+import useForm from '../hooks/useForm';
 import { Link } from 'react-router-dom';
-import Prompt from './../components/Prompt';
-import CTA from './../components/CTA';
+import Prompt from '../atoms/Prompt';
+import CTA from '../components/btns/CTA';
 
 export default function CreateUser() {
     const { values, handleChange, handleSubmit, error} = useForm({

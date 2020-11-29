@@ -1,17 +1,19 @@
 import React, { useContext, useState } from 'react'; 
 import Header from '../sections/Header';
 import { UserContext } from '../hooks/UserContext';
-import CTA from '../components/CTA'; 
+import CTA from '../components/btns/CTA'; 
 import UploadContainer from '../components/upload/UploadContainer';
-import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
+import { VscLink, VscSymbolParameter, VscArchive, VscTag } from 'react-icons/vsc';
 import SelectMenu from '../components/SelectMenu';
+import Drawer from '../components/Drawer';
 import useUpload from '../hooks/useUpload';
+import useTags from '../hooks/useTags';
  
 export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
 
     //breadcrumbs
-    const roomFrom = props.location.state;
+    const roomFrom = props.location.state || 'kitchen';
     const nav = [ {name: roomFrom, url: roomFrom } ];
  
     //upload component 
@@ -37,24 +39,25 @@ export default function Add(props) {
         }
     });
 
-    //console.log(values);
-    return ( 
+    const { tags } = useTags();
+     return ( 
         <div className="page"> 
             <Header nav={nav}/>
-            <div className="pageForm">
-            <form className="fullWidth" onSubmit={handleSubmit}>
-                <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results}
+            <form style={{width:'75%'}} onSubmit={handleSubmit}>
+                <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results} room={roomFrom}
                                 values={values} handleChange={handleChange} searchRef={searchRef} selectTag={selectTag}
                                 clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
-                      <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
+                    <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
                         <h4>Place in</h4> 
                         <SelectMenu items={rooms} active={values.room} selectItem={selectItem}/> 
-                      </div>  
-                      <CTA name={"add"} type={"submit"}/> 
-                </div>
+                    </div>  
+                        <CTA name={"add"} type={"submit"}/> 
+                    </div>
             </form>
-            </div>
+            <span className="fixedTab">
+                <Drawer items={tags}/>
+            </span>
         </div>
     )
 }

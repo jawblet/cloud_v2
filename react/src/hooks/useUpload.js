@@ -50,9 +50,10 @@ const searchRef = React.createRef();
         if(values.input) {
             setValues({
                 ...values,
-                tags: [...values.tags, values.input]
-            })
-            clearInput();
+                tags: [...values.tags, values.input],
+                input: ''
+            }); 
+            
             //post tag 
             const n = Math.floor(Math.random() * Math.floor(colorArr.length));
             let color = colorArr[n];
@@ -99,7 +100,7 @@ const searchRef = React.createRef();
 
     //clear input
     const clearInput = () => {
-       searchRef.current.value = ""; 
+       // searchRef.current.value = ""; 
        setValues({
         ...values,
         input: ''

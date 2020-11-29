@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import InlineButton from '../components/InlineButton';
+import InlineButton from '../components/btns/InlineButton';
 import { BreadcrumbsNav } from '../components/Breadcrumbs';
 import { UserContext } from '../hooks/UserContext';
 import useLogout from '../hooks/useLogout';

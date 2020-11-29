@@ -64,29 +64,14 @@
 }
 
 .postHalf {
-    &--1{
+    &--1 {
         flex-grow: 1;
         border-top-left-radius: $border-small;
         border-bottom-left-radius: $border-small;
     }
-    &--2{
+    &--2 {
         flex-grow: 1;
         border-top-right-radius: $border-small;
         border-bottom-right-radius: $border-small;
     }
 }
-
-//post modal 
-.postPreview {
-    width: 20rem;
-    height: 15rem;
-    background-color: $sand;
-    border: 1px solid $sand3;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    border-radius: $border-small;
-}
-
-
-//post layout 

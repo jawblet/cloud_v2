@@ -5,6 +5,7 @@
     display: inline-flex;
     justify-content: flex-start;
     border-radius: 0.7rem;
+    position: relative;
    }
   
 //button styles on bar -- column, row, active
@@ -41,19 +42,8 @@
     }
   }
 
-  // custom style for nav bar
-.fixedBtn {
-
-}
-
-  .bottom {
-    border-radius: 0;
-    border-bottom-right-radius: $border-small;
-    border-bottom-left-radius: $border-small;
-  }
   
-
-  //tooltip on button bar 
+//tooltip on button bar 
   .tooltip {
     color: $off-white;
     background-color: $body-medium;

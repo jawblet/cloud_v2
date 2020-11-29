@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 
+//need a leading slash, otherwise `home` is on the req path -- ? 
 export default function usePosts(room) {
     const { user } = useContext(UserContext);
     const [posts, setPosts] = useState(null);
@@ -11,9 +12,9 @@ export default function usePosts(room) {
         try {
             axios({
                 method: 'GET',
-                url: `/posts/h/${user.house}/${room}` //need a leading slash, otherwise `home` is on the req path -- ? 
+                url: `/posts/h/${user.house._id}/${room}` 
             }).then(res => {
-                console.log(res.data.data.results);
+                //console.log(res.data.data.results);
                 setPosts(res.data.data.results);
                 isLoading(false);
             })

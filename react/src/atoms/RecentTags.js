@@ -1,13 +1,10 @@
 import React from 'react'; 
 
 export default function RecentTags({ tags, selectTag }){
-    console.log(tags);
     if(!tags) {
-        return (
-            <div>No recent tags</div>
-        )
+        return ( <div>No recent tags</div> )
     }
-
+    
     return(
         <div className="recentTags">
             <h4 className="light" style={{marginRight:'1.5rem'}}>Recently used</h4>

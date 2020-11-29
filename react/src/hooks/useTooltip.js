@@ -6,15 +6,15 @@ export default function useTooltip() {
     const [tooltip, showTooltip] = useState(null);
     const [tooltipCoords, setCoords] = useState([]);
 
+    // this tooltip position --> right of cursor
     const getTooltip = (e) => {
         showTooltip(e.target.dataset.id);
-        const  x  = e.clientX;
-        const y = e.clientY - 40;
+        const  x  = e.clientX + 40; 
+        const y = e.clientY;
         setCoords([x, y]);
     }
 
     const hideTooltip = (e) => {
-        console.log(e.target);
         if(textRef.current && textRef.current.contains(e.target)) {
           showTooltip(null);
         }

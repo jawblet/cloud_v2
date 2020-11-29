@@ -33,27 +33,22 @@
         border-color: $sand;
         background-color: $off-white;
         box-shadow: $softest-shadow;
-       //animation: float 3s ease-in-out infinite 1s;
     }
     &.middle {
         z-index: 2;
         border-color: $sand;
         background-color: hsl(34, 100%, 99%);
         box-shadow: $softer-shadow; 
-       // animation: float 3s ease-in-out infinite 2s;
     }
     &.middleBack { 
         z-index: 1;
         background-color: hsl(34, 100%, 99%);
         box-shadow: $soft-shadow; 
-       // animation: float 3s ease-in-out infinite 1.5s;
     }
     &.back { 
         z-index: 0;
         background-color: hsl(30, 37%, 97%);
         box-shadow: $soft-shadow; 
-       // animation: float 3s ease-in-out infinite 1.5s;
-
     }
 }
 
@@ -72,27 +67,12 @@
     }
 }
 
-.floor {
+///style cards w/ posts 
+.card__body {
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
     display: flex;
-    &__plan { // center the cards on page
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(3px);
-    }
-    100% {
-        transform: translateY(0px);
-
-    }
+    flex-wrap: wrap;
+    // border: 1px solid yellow; 
 }

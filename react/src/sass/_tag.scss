@@ -27,6 +27,21 @@
     }
 }
 
+//tag for preview modals/menus 
+.tagPreview {
+    display: flex;
+    align-items: center;
+    &__color {
+        height: 1rem;
+        width: 1rem;
+        filter: blur(0.15rem);
+        border-radius: 50%;
+        margin-right: 1rem; 
+    }
+}
+
+
+
 //for color change
 .colorInput {
     position: absolute;
@@ -60,16 +75,6 @@
 }
 
 /* TAG LAYOUT */
-// show created tags in reg/upload forms
-.tagBank { 
-    padding-top: 1.5rem;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-   // border: 1px solid black;
-}
-
 //Panel that expands on add tags click in upload ==> tag search, recent tags, and tag bank 
 .addTags { // used in upload form 
     display: flex;
@@ -83,14 +88,23 @@
     }
 }
 
+// show created tags in reg/upload forms
+.tagBank { 
+    padding-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+   // border: 1px solid black;
+}
+
+
 //global tags by house
 .houseTags {
     column-count: 3;
     padding-bottom: 1.5rem;
-    // border: 1px solid red;
     &__header {
         align-self: flex-end;
-        //border: 1px solid red; 
         display: flex;
         align-items: center;
         justify-content: flex-start;

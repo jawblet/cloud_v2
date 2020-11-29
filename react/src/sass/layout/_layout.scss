@@ -1,4 +1,4 @@
-//page settings + headers 
+//** general page settings + header **// 
 .page { 
     background-color: $off-white;
     height: 100vh;
@@ -14,6 +14,9 @@
       justify-content: space-between;
       align-items: center;
     }
+    &__title {
+      text-transform: capitalize;
+    }
     &__links {
       display: flex
     }
@@ -22,6 +25,7 @@
     }
 }
 
+//header for landing page only
 .landing {
   &__header{
     width: 10rem;
@@ -30,14 +34,14 @@
     justify-content: space-between;
   }
 }
-
+ 
+//layout homepage 
 .skylight {
   display: flex;
   width: 100%;
   height: 100%;
   &__sidebar {
     flex: 0 0 5%;
-    position: relative;
     display: flex;
     align-items: flex-end;
   }
@@ -46,3 +50,21 @@
   }
 }
 
+.floor {
+  display: flex;
+  &__plan { // center the cards on page
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+}
+
+// custom style for nav bar at home
+.bottom {
+    border-radius: 0;
+    border-bottom-right-radius: $border-small;
+    border-bottom-left-radius: $border-small;
+}

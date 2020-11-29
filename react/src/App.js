@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
+import Library from './pages/Library';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/test" component={Test}/>
           <PrivateRoute exact path="/home" component={Home}/>
           <PrivateRoute path='/home/:room' component={Room}/>
+          <PrivateRoute path='/library' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/tags" component={Tags}/>

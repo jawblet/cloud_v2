@@ -10,28 +10,23 @@ import { UserContext } from '../hooks/UserContext';
 
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 
-
+    console.log(user.house.house);
     //set sort
     const list = ['recent', 'A - Z', 'count'];
     const { handleOneFilter, activeItem } = useOneFilter('recent');
 
     //set filter 
     const filters = ['count', 'color'];
-    const { handleFilterClick, activeFilter } = useManyFilters([]);
+    const { handleFilterClick, activeFilter } = useManyFilters(['color']);
 
     //get tags
-    const { tags, tagTotal, alphabetizeTags, 
-            handlePaintClick, eyedrop } = useTags(activeItem);
-
-   // if(activeItem === 'A - Z') {
-     //   alphabetizeTags();
-   // } 
-        
+    const { tags, tagTotal, handlePaintClick, eyedrop } = useTags(activeItem);
+ 
     return(
         <div className="page">
             <Header/> 
             <div className="houseTags__header"> 
-                    <h3>Tags</h3> 
+                    <h3>{user.house.house} labels</h3> 
                     <Filter filters={filters} activeFilter={activeFilter} handleFilterClick={handleFilterClick} 
                             handlePaintClick={handlePaintClick} eyedrop={eyedrop}
                             />

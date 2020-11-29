@@ -1,12 +1,12 @@
 import React from 'react';
-import FormInput from './../components/FormInput'; 
-import CTA from './../components/CTA'; 
+import FormInput from '../components/FormInput'; 
+import CTA from '../components/btns/CTA'; 
 import Toggle from '../components/Toggle';
 import useToggle from './../hooks/useToggle';
 import Search from '../components/Search';
-import Prompt from '../components/Prompt';
+import Prompt from '../atoms/Prompt';
 import TagBank from './../sections/TagBank';
-import useForm from './../hooks/useForm';
+import useForm from '../hooks/useForm';
 
 export default function CreateHouse() {
     //eventually, house rooms will be configurable here too

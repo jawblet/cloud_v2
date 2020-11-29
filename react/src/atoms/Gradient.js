@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Preview from '../components/Preview';
 
+export default function Gradient({ post }) {
+    const [preview, showPreview] = useState(false);
+    const [angle, setAngle] = useState(0);
+    const [colors, setColors] = useState('');
 
-export default function Gradient() {
-    //show up to four tags 
-    return(
-        <div className="gradient">
-            <d className="gradient__pin"></d>
-        </div>
-    )
+    //generate angle and gradients for post 
+    useEffect(() => {
+        setAngle(Math.floor(Math.random() * Math.floor(360))); 
+        const colorArr = post.tags.map(tag => tag.color);
+        const colorString = colorArr.toString();
+        setColors(colorString);
+    }, [post])
+  
+    return (
+        <>
+                <Preview preview={preview} post={post}/>
+            <div className="gradient__post">
+                <div className="gradient"                 
+                        style={{background:`conic-gradient(${colors})`,
+                        transform:`rotate(${angle}deg)`
+                        }}>
+                </div>
+                <span className="gradient__pin" onMouseEnter={() => showPreview(true)}
+                                                onMouseLeave={() => showPreview(false)} >
+                </span>
+            </div>
+        </>  
+ )
 }

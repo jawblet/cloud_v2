@@ -79,11 +79,11 @@ exports.checkUser = catchAsync(async(req, res, next) => {
     if (req.cookies.jwt) {
         const token = req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-        currentUser = await (await User.findById(decoded.id));
+        currentUser = await User.findById(decoded.id).populate('house');
       } else {
         currentUser =  null;
         //const id = '5fc059510626fb77c06748f6';
-        //currentUser = await User.findById(id);
+        //currentUser = await User.findById(id).populate('house');
       }    
 
       res.status(200).send({ currentUser });

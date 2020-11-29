@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './../sections/Header'; 
-import Button from '../components/Button';
+import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
 import PostList from '../sections/PostList';
 import { Link, useParams } from 'react-router-dom';
@@ -12,24 +12,21 @@ import usePosts from '../hooks/usePosts';
 export default function Room() {
     let params = useParams();
     
-    //sort
+    // page settings (room, filter, view)
+    const nav = [ {name: params.room, url: params.room } ];
+
     const list = ['date', 'tag', 'boarder'];
     const { handleOneFilter, activeItem } = useOneFilter('date');
 
-    //view 
     const { tagView } = useTags();
 
-    const nav = [
-        {name: params.room, url: params.room },
-    ];
- 
     //get posts by room 
     const { posts, loading } = usePosts(params.room);
-   // console.log(posts);
+    
     return(
         <div className="page">
             <Header nav={nav}/>
-            <h3>{params.room}</h3>
+            <h3 className="page__title">{params.room}</h3>
             <div className="room">
                 <div className="room__sidebar">
                     <ListMenu title={'sort'} list={list} handleOneFilter={handleOneFilter} activeItem={activeItem}/>
@@ -43,8 +40,8 @@ export default function Room() {
             </div>
             <span className="fixedBtn">
                 <Link to={{pathname: "/add", state: params.room}}>
-                    <Button button={<VscAdd className="icon icon__btn"/>}/>
-                </Link>
+                    <Button icon={<VscAdd className="icon icon__btn"/>}/>
+                </Link> 
             </span>
         </div>
     )

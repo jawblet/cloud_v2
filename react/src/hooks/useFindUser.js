@@ -11,7 +11,6 @@ const [isLoading, setLoading] = useState(true);
                 method: 'GET',
                 url: '/user'
             }).then(res => {
-               // console.log("The findUser function ran");
                 setUserStatus(res.data.currentUser);
                 setLoading(false);
             })

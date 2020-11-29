@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InlineButton from './../components/InlineButton';
+import InlineButton from './../components/btns/InlineButton';
 //import Notification from './../components/Notification'; 
 
 export default function Landing() {

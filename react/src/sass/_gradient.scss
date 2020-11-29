@@ -1,15 +1,50 @@
-.gradient {
-    height: 5rem;
-    width: 5rem;
+.gradient { 
     border-radius: 50%;
-   // border: 1px solid black; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  //  background-image:  radial-gradient(transparent, #ffffff),
-                       // conic-gradient(goldenrod, lavender, aqua);
-   background-image: radial-gradient(ellipse at 0 0, #f35 0%, transparent 50%);
+    filter: blur(0.5rem);
+    height: 3.5rem;
+    width: 5rem;
     &__pin {
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background-color: $body-light;
         cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
+    &__post { 
+        display: inline-flex;
+        position: relative;
+        margin: 0.5rem;
+    }
+}
+
+//post modal 
+.postPreview {
+    position: relative; 
+    display: flex; 
+    align-items: flex-end; //align bottoms of previews 
+    justify-content: center; //center previews against posts  
+&__content {
+    width: 15rem;
+    min-height: 5rem;
+    padding: 1rem;
+    background-color: $sand;
+    border: 1px solid $sand3;
+    display: flex;
+    flex-direction: column;
+    border-radius: $border-small;
+    box-shadow: $softer-shadow;
+    position: absolute;
+    z-index: 1;
+} 
+    &__header {
+        padding-bottom: 1rem;
+    }
+    &__tags {
+        padding-top: 1rem;
+       & > * { padding-bottom: 5px; }
+   }
 }

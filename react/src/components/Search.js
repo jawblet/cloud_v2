@@ -7,16 +7,15 @@ import useTags from '../hooks/useTags';
 const Search = forwardRef((props, ref) => { 
     const { input } = props.values;
     const results = props.results;
-
     const { lastThreeTags } = useTags();
+    
     const [focus, setFocus] = useState(false);
-
     const handleFocus = () => {  
         setFocus(true);  
     };
 
     const openAutoComplete = ((results.length !== 0) && (input !== ''));
-    console.log(lastThreeTags);
+    
     return(
         <div className="searchContainer">
             <div className="search">

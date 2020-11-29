@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Tag({ tag, activeFilter, eyedrop }) {
-    console.log(eyedrop);
     return(
         <div className="tag"
             style={activeFilter.includes('color') ? {backgroundColor: tag.color} : {}} >

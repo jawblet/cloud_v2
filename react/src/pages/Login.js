@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FormInput from './../components/FormInput';
-import CTA from './../components/CTA';
-import Prompt from './../components/Prompt';
-import Error from './../components/Error';
-import useForm from './../hooks/useForm';
+import FormInput from '../components/FormInput';
+import CTA from '../components/btns/CTA';
+import Prompt from '../atoms/Prompt';
+import Error from '../atoms/Error';
+import useForm from '../hooks/useForm';
 
 export default function Login() {
 

@@ -8,9 +8,9 @@ export default function TooltipButton(props) {
     return( 
         <button type="button" key={button.name}
             className={`btn btnBar--${direction} ${active === button.name ? 'btnBar--active' : ''}`} 
-            data-id={button.name} onClick={(e) => props.switchType(e)}
+            data-id={button.name} onClick={(e) => props.handleClick(e)}
             onMouseEnter={(e) => props.getTooltip(e)}>
                 {button.icon}
         </button>
     )
-}
+} 
