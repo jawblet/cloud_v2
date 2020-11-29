@@ -16,7 +16,7 @@ export default function Drawer({ items }) {
                 {(items && items.length > 0)
                         ?   items.map(tag => {
                                 return (
-                                    <div className="drawer__item">
+                                    <div className="drawer__item" key={tag._id}>
                                         <TagPreview tag={tag}/>
                                     </div>
                                     )

@@ -28,7 +28,7 @@ const searchRef = React.createRef();
             try {
                 axios({
                     method: 'GET',
-                    url: `search/?search=${value}`
+                    url: `search/${user.house._id}?search=${value}`
                 }).then(res => {
                     const returnObj = res.data.data.results; 
                     setResults(returnObj);

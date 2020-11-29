@@ -11,13 +11,12 @@ router.delete('/', tagController.deleteAllTags);
 
 
 /* sorting and filtering */
-
 //sort A - Z 
 router.route('/AtoZ/:houseId')
     .get(sort.aliasAtoZ, tagController.getTagsByHouse);
+//get last 3 
 router.route('/last3/:houseId')
     .get(sort.lastThree, tagController.getTagsByHouse);
-
 
 
 module.exports = router; 

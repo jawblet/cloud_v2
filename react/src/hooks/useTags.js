@@ -18,7 +18,6 @@ useEffect(() => {
         break;
         default: sort = 'h'; 
     }
-  
     try {
         axios({
             method: 'GET',
@@ -62,7 +61,6 @@ useEffect(() => {
 
 //last 3 tags
 const [lastThreeTags, setLastTags] = useState(null);
-
 useEffect(() => {
             try {
                 axios({

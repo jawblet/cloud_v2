@@ -3,7 +3,7 @@ import Header from '../sections/Header';
 import { UserContext } from '../hooks/UserContext';
 import CTA from '../components/btns/CTA'; 
 import UploadContainer from '../components/upload/UploadContainer';
-import { VscLink, VscSymbolParameter, VscArchive, VscTag } from 'react-icons/vsc';
+import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import SelectMenu from '../components/SelectMenu';
 import Drawer from '../components/Drawer';
 import useUpload from '../hooks/useUpload';

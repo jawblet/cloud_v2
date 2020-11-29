@@ -7,7 +7,7 @@ export default function RecentTags({ tags, selectTag }){
     
     return(
         <div className="recentTags">
-            <h4 className="light" style={{marginRight:'1.5rem'}}>Recently used</h4>
+            <h4 className="light" style={{marginRight:'1.5rem'}}>Recently created</h4>
             {tags.map(el => {
                 return(
                     <h4 className="recentTags__tag" key={el._id} data-id={el._id} data-name={el.tag} onClick={selectTag}>

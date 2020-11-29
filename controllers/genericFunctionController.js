@@ -14,7 +14,7 @@ exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
         }
     });
 });
-
+ 
 //get by user
 exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
     const results = await Model.find({ user: req.params.userId});
