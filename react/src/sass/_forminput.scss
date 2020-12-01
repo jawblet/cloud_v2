@@ -14,12 +14,12 @@
     &--white {
         background-color: $off-white;
         border: 3px solid $sand2;
-    }
+        }
     }
 
     .longInput {
         transform-origin: top;
-        height: 3rem;
+        min-height: 5rem;
     }
 
     

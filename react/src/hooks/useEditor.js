@@ -4,7 +4,13 @@ import { EditorState } from 'draft-js';
 export default function useEditor () {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+    const onNoteChange = (editorState) => {
+        setEditorState(editorState);  
+      }
+
     return {
-        editorState, setEditorState
+        editorState, 
+        setEditorState,
+        onNoteChange
     }
 }

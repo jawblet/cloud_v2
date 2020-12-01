@@ -27,12 +27,11 @@ html {
 ::selection {
   background-color: #EBC57A; }
 
-a {
-  text-decoration: none;
-  color: #72716B;
-  cursor: pointer; }
-  a:hover {
-    font-style: italic; }
+::-webkit-scrollbar {
+  width: 0.5rem; }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background: #f5eee5; }
 
 /* text styles */
 h1 {
@@ -79,9 +78,16 @@ code {
   padding: 0.5rem;
   border-radius: 0.5rem; }
 
+a {
+  text-decoration: none;
+  color: #72716B;
+  cursor: pointer; }
+  a:hover {
+    font-style: italic; }
+
 input, textarea {
   font-family: 'Graphik', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 0.5px; }
   input:focus, textarea:focus {
     outline: none;
@@ -401,6 +407,9 @@ menu {
   display: flex;
   margin-top: 3px;
   height: auto; }
+  .upload__error {
+    position: absolute;
+    transform: translateY(-1.5rem); }
   .upload__container {
     display: flex;
     margin-top: 15%; }
@@ -415,9 +424,9 @@ menu {
       padding-bottom: 1rem; }
   .upload__form {
     flex: 0 0 90%; }
-  .upload__tags {
+  .upload__extra {
     display: flex;
-    padding-top: 1.5rem; }
+    padding-top: 1rem; }
   .upload__label {
     padding-top: 1rem;
     flex: 0 0 15%;
@@ -428,13 +437,6 @@ menu {
       cursor: pointer; }
       .upload__label.active:hover {
         font-style: italic; }
-
-.tooltip__wrap {
-  flex: 0 0 50%;
-  border: 1px solid red;
-  position: relative;
-  display: flex;
-  align-items: flex-end; }
 
 .inlineForm {
   width: 35%;
@@ -488,7 +490,7 @@ menu {
 
 .longInput {
   transform-origin: top;
-  height: 3rem; }
+  min-height: 5rem; }
 
 .input__pass {
   position: relative;
@@ -628,6 +630,9 @@ d {
 
 .prompt.light {
   color: #72716B; }
+
+.prompt.warning {
+  color: #78201B; }
 
 .modal {
   position: fixed;
@@ -1072,7 +1077,6 @@ d {
   width: 15rem;
   border-radius: 0.5rem;
   margin-left: 0.5rem;
-  margin-bottom: -0.5rem;
   background-color: #fcf7f3; }
   .drawer__tab {
     color: #C3C2BD;
@@ -1083,6 +1087,8 @@ d {
     padding: 1rem; }
   .drawer__dropdown {
     min-height: 5rem;
+    max-height: 75vh;
+    overflow: scroll;
     transform-origin: bottom center; }
 
 .fixedTab {

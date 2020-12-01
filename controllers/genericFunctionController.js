@@ -34,7 +34,7 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
     if(req.params.room) { //if there is a room param, filter by houseId and room 
         filter = { house: req.params.houseId, room: req.params.room }
     } else { filter = { house: req.params.houseId }; //filter by houseId by default 
-    }
+    } 
 
     //populate + filter 
     let docs = new APIFeatures(Model.find(filter).populate(populateOpts), req.query)

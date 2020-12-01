@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useRef } from 'react'; 
 import { Link } from 'react-router-dom';
 import Button from '../btns/Button'
 import ButtonBar from '../btns/ButtonBar';
@@ -10,13 +10,22 @@ import DragUpload from './DragUpload';
 import Search from '../Search'; 
 import TagBank from '../../sections/TagBank'; 
 import { VscClose } from 'react-icons/vsc';
+import Prompt from '../../atoms/Prompt'; 
+import CommentInput from '../../components/CommentInput'; 
+import { CSSTransition } from 'react-transition-group';
+import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 
 export default function UploadContainer(props) { 
-    const { type, buttons, room, switchType } = props;
-    const [tagInput, setTagInput] = useState(false);
+    const nodeRef = useRef(null);
+    const { type, room, switchType, values } = props;
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
+    const buttons = [
+        {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
+        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
+        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>}
+    ];
     return (  
         <div className="upload__container">  
             <div className="upload__controller">
@@ -26,27 +35,31 @@ export default function UploadContainer(props) {
                 <Link to={`/home/${room}`}>
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>
                 </Link>
-            </div>
+            </div> 
             <div className="upload__form">
+                <CSSTransition in={values.error} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
+                    <div className="upload__error" ref={nodeRef}> <Prompt type="warning" prompt={values.error}/>
+                    </div>
+                </CSSTransition>
                 <div className="upload">
                     { type === 'link' && <LinkUpload {...props} /> }
-                    { type === 'note' && <NoteUpload/> }
+                    { type === 'note' && <NoteUpload {...props}/> }
                     { type === 'file' && <DragUpload/> }
                 </div>
-                    <div className="upload__tags"> 
-                        <div className="upload__label">
-                           <h4>Label</h4>
-                        </div> 
+                    <div className="upload__extra"> 
+                        <div className="upload__label"> <h4>Label</h4> </div> 
                         <div className="addTags">
-                            <Search values={props.values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
+                            <Search values={values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
                                     handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
-                        
-                            <TagBank tags={props.values.tags} handleDelete={props.removeTag}/> 
+                            <TagBank tags={values.tags} handleDelete={props.removeTag}/> 
                         </div>                    
                     </div>
-                    <div className="upload__label active"> 
+                    <div className="upload__extra"> 
+                        <div className="upload__label active" onClick={() => setComments(!comments)}> 
                             <h4>Say more</h4>
-                    </div>
+                        </div>
+                        <CommentInput show={comments} value={values.comment} handleChange={props.handleChange}  />
+                    </div> 
                 </div>
         </div> 
     )

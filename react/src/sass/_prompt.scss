@@ -2,4 +2,7 @@
     &.light {
         color: $body-light;
     }
+    &.warning {
+        color: $accent-red;
+    }
 }

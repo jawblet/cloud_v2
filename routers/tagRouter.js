@@ -5,10 +5,10 @@ const sort = require('../middleware/sort');
 
 router.get('/', tagController.getAllTags);
 router.post('/', tagController.createTag); 
+router.get('/:id', tagController.getTagById); 
 router.get('/u/:userId', tagController.getTagsByUser);
 router.get('/h/:houseId', tagController.getTagsByHouse);
 router.delete('/', tagController.deleteAllTags);
-
 
 /* sorting and filtering */
 //sort A - Z 

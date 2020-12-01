@@ -3,50 +3,73 @@ import Header from '../sections/Header';
 import { UserContext } from '../hooks/UserContext';
 import CTA from '../components/btns/CTA'; 
 import UploadContainer from '../components/upload/UploadContainer';
-import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import SelectMenu from '../components/SelectMenu';
 import Drawer from '../components/Drawer';
+import useEditor from '../hooks/useEditor';
 import useUpload from '../hooks/useUpload';
 import useTags from '../hooks/useTags';
+import useSubmit from '../hooks/useSubmit';
+import { convertToRaw } from 'draft-js';
+
  
 export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
-
+    
     //breadcrumbs
     const roomFrom = props.location.state || 'kitchen';
     const nav = [ {name: roomFrom, url: roomFrom } ];
  
-    //upload component 
-    const buttons = [
-        {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
-        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
-        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>}
-    ];
+    //set upload type 
     const [type, setType]= useState('link');
     const switchType = (e) => { setType(e.target.dataset.id); }
 
+    //handle editor state 
+    const { editorState, onNoteChange } = useEditor();
+
     //handle page state 
-    const { values, handleChange, results, selectItem, searchRef, addTags, selectTag, clearInput, removeTag, handleSubmit } = useUpload({
-        initialValues: {
-            type: 'link',
+    const { values, handleChange, selectItem, 
+            searchRef, addTags, results,
+            selectTag, clearInput, removeTag } = useUpload({
+            initialValues: {
             content: '',
             input: '',
             tags: [],
             comment: '',
             house: user.house,
             user: user._id,
-            room: roomFrom
+            room: roomFrom,
+            error: null
         }
     });
-
+    
     const { tags } = useTags();
+
+    const { handleLinkSubmit, handleNoteSubmit } = useSubmit();
+
+    const sendSubmit = (e) => {
+        e.preventDefault();
+        switch(type) {
+            case 'link': handleLinkSubmit({ values });
+            break;
+            case 'note': 
+            const data = editorState.getCurrentContent();
+            const note = JSON.stringify(convertToRaw(data));
+            handleNoteSubmit(values, note);
+        }
+    }
+
      return ( 
         <div className="page"> 
             <Header nav={nav}/>
-            <form style={{width:'75%'}} onSubmit={handleSubmit}>
-                <UploadContainer buttons={buttons} type={type} switchType={switchType} results={results} room={roomFrom}
-                                values={values} handleChange={handleChange} searchRef={searchRef} selectTag={selectTag}
-                                clearInput={clearInput} removeTag={removeTag} addTags={addTags}/>
+            <form style={{width:'75%'}} onSubmit={sendSubmit}>
+                <UploadContainer type={type} switchType={switchType} 
+                                results={results} room={roomFrom} values={values} 
+                                handleChange={handleChange} searchRef={searchRef} 
+                                clearInput={clearInput} removeTag={removeTag} 
+                                addTags={addTags} selectTag={selectTag}
+                                editorState={editorState} onNoteChange={onNoteChange}
+                                
+                                />
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                     <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
                         <h4>Place in</h4> 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Preview from '../components/Preview';
-
+ 
 export default function Gradient({ post }) {
     const [preview, showPreview] = useState(false);
     const [angle, setAngle] = useState(0);
@@ -9,7 +9,10 @@ export default function Gradient({ post }) {
     //generate angle and gradients for post 
     useEffect(() => {
         setAngle(Math.floor(Math.random() * Math.floor(360))); 
-        const colorArr = post.tags.map(tag => tag.color);
+        let colorArr = post.tags.map(tag => tag.color);
+            if(colorArr.length === 1) { //fix gradient if only one color selected
+                colorArr = ['snow 30deg', `${colorArr[0]} 90deg`, 'snow 300deg']; 
+            }
         const colorString = colorArr.toString();
         setColors(colorString);
     }, [post])

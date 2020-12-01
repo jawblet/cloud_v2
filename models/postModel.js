@@ -9,7 +9,7 @@ const getCurrentDate = () => {
     return date;
 }
  
-const postSchema = new Schema({
+const postSchema = new Schema({ 
     type: String, 
     content : {
         type: String,

@@ -29,18 +29,22 @@ html {
     color: $body;
   }
 
+//highlight 
 ::selection {
     background-color: $sand-bright;
   }
 
-a {
-    text-decoration: none;
-    color: $body-light;
-    cursor: pointer;
-    &:hover{
-      font-style: italic;
-    }
-  } 
+//scrollbar
+::-webkit-scrollbar {
+   width: 0.5rem;
+   &-track {
+    //background-color: $off-white;
+ }
+ &-thumb {
+   border-radius: $border-small;
+   background: $sand2;
+ }
+}
 
 /* text styles */
 h1 { 
@@ -95,12 +99,20 @@ code {
   border-radius: $border-small;
 }
 
+a {
+  text-decoration: none;
+  color: $body-light;
+  cursor: pointer;
+  &:hover{
+    font-style: italic;
+  }
+} 
 
 //remove and change default styling
 input, textarea {
-    font-family: 'Graphik', sans-serif; 
-    font-size: 1rem;
-    letter-spacing: 0.5px;
+  font-family: 'Graphik', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
     &:focus{
       outline: none;
       border: none;

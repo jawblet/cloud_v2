@@ -1,7 +1,6 @@
 import React from 'react';
-
+ 
 export default function AutoComplete({ results, selectTag }) {
-    //const users = results.map(el => {return ( el.username )});
     return(
         <ul className="autocomplete">
           {results

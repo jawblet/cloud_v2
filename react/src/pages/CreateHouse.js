@@ -28,8 +28,8 @@ export default function CreateHouse() {
                     <form className="formFields" onSubmit={handleSubmit}>
                         <FormInput type={"text"} placeholder={"House name"} 
                             name={"house"} values={values.house} handleChange={handleChange}/>
-                        <Toggle handleToggle={handleToggle} toggleState={newState}
-                                label="Add other boarders by email"/>
+                        <Toggle handleToggle={handleToggle} toggleState={newState} label="Add other boarders by email"/>
+                        
                             <div className={`inlineForm__toggle ${newState ? 'B' : 'A'}`}>
                                 {newState 
                                     ? 

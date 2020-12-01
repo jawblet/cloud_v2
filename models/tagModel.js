@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const tagSchema = new Schema ({ 
     tag: {
-        type: String,
+        type: String, 
         require: [true, 'Tags can\'t be empty.'],
-        lowercase: true,
-        validate: [validator.isAlphanumeric, 'Tags may only have letters and numbers.']
+        lowercase: true
+        //validate: [validator.isAlphanumeric, 'Tags may only have letters and numbers.']
     },
     color: String,
     house: {

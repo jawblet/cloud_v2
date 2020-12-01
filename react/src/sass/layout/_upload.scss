@@ -8,7 +8,11 @@
     display: flex;
     margin-top: 3px;
     height: auto; 
-    
+    //upload submission errors
+    &__error {
+        position: absolute;
+        transform: translateY(-1.5rem);
+    }
     //lay out upload form
     &__container {
         display: flex;
@@ -28,9 +32,9 @@
     &__form { //upload, tags, and comments
         flex: 0 0 90%;
     }
-    &__tags {
+    &__extra {
         display: flex;
-        padding-top: 1.5rem;
+        padding-top: 1rem;
     }
     //labels for tags and comments 
     &__label {
@@ -47,12 +51,3 @@
     }
 }
 
-
-
-.tooltip__wrap {
-    flex: 0 0 50%;
-    border: 1px solid red; 
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-}

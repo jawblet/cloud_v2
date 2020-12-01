@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Editor } from 'draft-js';
 import useEditor from './../../hooks/useEditor';
-
-const NoteUpload = () => {
+ 
+const NoteUpload = (props) => {
+    const { editorState, onNoteChange } = props; 
     const editRef = useRef(null);
-    const { editorState, setEditorState } = useEditor();
+    const { setEditorState } = useEditor();
 
     useEffect(() => {
         editRef.current.focus();
@@ -13,7 +14,10 @@ const NoteUpload = () => {
     return (
         <Editor editorState={editorState} 
                 onChange={setEditorState}
-                ref={editRef}/>
+                ref={editRef}
+                onChange={onNoteChange}
+                spellCheck={true}
+                />
         )
     }
 

@@ -31,8 +31,7 @@ export default function Preview({ preview, post }) {
     }
         
     return(
-            <CSSTransition in={preview} timeout={350} nodeRef={nodeRef} classNames="fade" 
-                            unmountOnExit>
+            <CSSTransition in={preview} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
                 <div className="postPreview" ref={nodeRef} key={post._id} >
                     <div className="postPreview__content">
                         <div className="postPreview__header">
