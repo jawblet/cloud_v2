@@ -11,9 +11,9 @@ import useTags from '../hooks/useTags';
 import useSubmit from '../hooks/useSubmit';
 import { convertToRaw } from 'draft-js';
 
- 
-export default function Add(props) { 
+ export default function Add(props) { 
     const { user, rooms } = useContext(UserContext);
+    const { tags } = useTags();
     
     //breadcrumbs
     const roomFrom = props.location.state || 'kitchen';
@@ -21,7 +21,7 @@ export default function Add(props) {
  
     //set upload type 
     const [type, setType]= useState('link');
-    const switchType = (e) => { setType(e.target.dataset.id); }
+    const switchType = (e) => { setType(e.currentTarget.dataset.id); }
 
     //handle editor state 
     const { editorState, onNoteChange } = useEditor();
@@ -41,8 +41,6 @@ export default function Add(props) {
             error: null
         }
     });
-    
-    const { tags } = useTags();
 
     const { handleLinkSubmit, handleNoteSubmit } = useSubmit();
 
@@ -52,9 +50,10 @@ export default function Add(props) {
             case 'link': handleLinkSubmit({ values });
             break;
             case 'note': //convert draft-js to a string 
-            const data = editorState.getCurrentContent();
-            const note = JSON.stringify(convertToRaw(data));
-            handleNoteSubmit(values, note);
+                const data = editorState.getCurrentContent();
+                const note = JSON.stringify(convertToRaw(data));
+                handleNoteSubmit(values, note);
+            default: handleLinkSubmit({ values });
         }
     }
 

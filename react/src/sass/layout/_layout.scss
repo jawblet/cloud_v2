@@ -1,13 +1,12 @@
 //** general page settings + header **// 
 .page { 
     background-color: $off-white;
-    height: 100vh;
+    min-height: 100vh;
     display: flex; 
     flex-direction: column;
     align-items: center;
     padding: 3rem;
     padding-top: 0;
-   // overflow: visible;
     &__header {
       align-self: center;
       width: 100%;

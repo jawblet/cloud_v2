@@ -1,6 +1,8 @@
 import { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
+
 
 export default function usePosts(room) {
     const { user } = useContext(UserContext);
@@ -22,10 +24,28 @@ export default function usePosts(room) {
         } catch(err) {
             console.log(err)
         }
-    }, [room]);  
+    }, [room]); 
+    
+    const displayPostBody = (post) => {
+        let editorState; 
+
+        if(post.type ==='note') {
+            const contentState = convertFromRaw(JSON.parse(post.content));
+             editorState = EditorState.createWithContent(contentState); 
+            return ( <div className="post__body__note">
+                        <Editor editorState={editorState} readOnly={true} />
+                        <span className="post__body__fade"></span>   
+                    </div>            
+            )
+        }
+        if(post.type === 'link') {
+            return <div> Link </div>
+        }
+    }
 
     return {
         posts,
-        loading
+        loading,
+        displayPostBody
     }
 }

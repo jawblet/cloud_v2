@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
+import Room from './pages/Room';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
@@ -14,7 +15,7 @@ import Library from './pages/Library';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
-import Room from './pages/Room';
+
 
 function App() {
   const rooms = ['kitchen', 'living_room', 'bedroom', 'basement'];
@@ -36,7 +37,7 @@ function App() {
           <Route path="/login" component={Login}/>
           <Route path="/test" component={Test}/>
           <PrivateRoute exact path="/home" component={Home}/>
-          <PrivateRoute path='/home/:room' component={Room}/>
+          <PrivateRoute path='/home/:room/:postId?' component={Room}/>
           <PrivateRoute path='/library' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>

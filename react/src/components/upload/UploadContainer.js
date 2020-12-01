@@ -22,9 +22,9 @@ export default function UploadContainer(props) {
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
     const buttons = [
-        {name: 'link', icon: <VscLink className="icon icon__btn" data-id="link"/>}, 
-        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn" data-id="note"/>},
-        {name: 'file', icon: <VscArchive className="icon icon__btn" data-id="file"/>}
+        {name: 'link', icon: <VscLink className="icon icon__btn"/>}, 
+        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>},
+        {name: 'file', icon: <VscArchive className="icon icon__btn"/>}
     ];
     return (  
         <div className="upload__container">  

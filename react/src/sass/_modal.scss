@@ -1,3 +1,4 @@
+//modal
 .modal {
     position: fixed;
     top: 50%;
@@ -9,10 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: $soft-shadow;
+    box-shadow: $softer-shadow;
     padding: 3rem; 
     line-height: 150%;
-    &__close {
+    &__X {
         position: absolute;
         right: 1rem;
         top: 1rem;
@@ -26,9 +27,43 @@
         }
     }
     &__background {
-        position: fixed;  
+        position: absolute;  
         height: 100vh;
         width: 100vw;
         background-color: rgba(255, 255, 255, 0.8);
+       // border: 1px solid blue; 
+    }
+}
+
+//edit content modal 
+.edit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 40rem;
+    width: 90vw;
+    min-height: 85vh;
+    border-radius: $border-small;
+    background-color: $off-white;
+    display: flex;
+    box-shadow: $soft-shadow;
+    padding: 3rem; 
+    line-height: 150%;
+    &__content {
+        width: 100%;
+        display: flex;
+       // border: 1px solid orange;
+    }
+    &__sidebar {
+        flex: 0 0 25%;
+    }
+    &__body {
+        flex: 0 0 75%;
+        padding: 0 5rem;
+        //border: 1px solid blue;
+    }
+    &__metadata {
+        margin-bottom: 1.5rem;
     }
 }

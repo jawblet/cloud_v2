@@ -8,10 +8,10 @@ export default function Landing() {
     const history = useHistory();
     const { user } = useContext(UserContext);
     
-   //if user is logged in, send them directly to home 
-    if(user && user._id) {
-        history.push('/home');
-    }
+    //if user is logged in, send them directly to home 
+    // if(user && user._id) {
+    //   history.push('/home');
+    // }
 
     return(
         <div className="page">

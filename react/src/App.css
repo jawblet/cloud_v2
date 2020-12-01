@@ -27,12 +27,18 @@ html {
 ::selection {
   background-color: #EBC57A; }
 
+/*
 ::-webkit-scrollbar {
-  width: 0.5rem; }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 0.5rem;
-    background: #f5eee5; }
-
+   width: 0.5rem;
+   &-track {
+    //background-color: $off-white;
+ }
+ &-thumb {
+   border-radius: $border-small;
+   background: $sand2;
+ }
+}
+*/
 /* text styles */
 h1 {
   font-size: 2.5rem;
@@ -346,7 +352,7 @@ menu {
 
 .page {
   background-color: #fffdfa;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -645,10 +651,10 @@ d {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff;
+  box-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), -4px -4px 16px #fff;
   padding: 3rem;
   line-height: 150%; }
-  .modal__close {
+  .modal__X {
     position: absolute;
     right: 1rem;
     top: 1rem; }
@@ -659,20 +665,59 @@ d {
     .modal__actions > :first-child {
       margin-right: 3rem; }
   .modal__background {
-    position: fixed;
+    position: absolute;
     height: 100vh;
     width: 100vw;
     background-color: rgba(255, 255, 255, 0.8); }
 
+.edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 40rem;
+  width: 90vw;
+  min-height: 85vh;
+  border-radius: 0.5rem;
+  background-color: #fffdfa;
+  display: flex;
+  box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff;
+  padding: 3rem;
+  line-height: 150%; }
+  .edit__content {
+    width: 100%;
+    display: flex; }
+  .edit__sidebar {
+    flex: 0 0 25%; }
+  .edit__body {
+    flex: 0 0 75%;
+    padding: 0 5rem; }
+  .edit__metadata {
+    margin-bottom: 1.5rem; }
+
 .DraftEditor-root {
   border-radius: 0.5rem;
   background-color: #fffdfa;
-  padding: 1rem;
   width: 100%; }
 
 .DraftEditor-editorContainer {
   text-align: left;
   min-height: 6.5rem; }
+
+.public-DraftEditor-content {
+  font-family: 'Graphik', sans-serif;
+  line-height: 150%;
+  font-size: 0.9rem; }
+
+.editorWrapper {
+  width: 100%;
+  padding: 1rem;
+  background-color: #fffdfa;
+  border-radius: 0.5rem; }
+
+.editorTag {
+  padding: 2px;
+  border-radius: 3px; }
 
 .searchContainer {
   position: relative;
@@ -815,21 +860,33 @@ d {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  overflow: hidden; }
   .post__header {
     display: flex;
     justify-content: space-between;
     flex: 0 0 10%; }
   .post__body {
     display: flex;
-    flex: 0 0 70%;
-    justify-content: center;
-    align-items: center;
+    flex: 0 0 80%;
+    padding: 0;
+    overflow: hidden;
     cursor: pointer; }
+    .post__body__note {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden; }
+    .post__body__fade {
+      position: absolute;
+      height: 30%;
+      width: 100%;
+      bottom: 0;
+      background: linear-gradient(transparent, 20%, #fffdfa); }
   .post__tags {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
     display: flex;
-    flex: 0 0 20%;
+    flex: 0 0 10%;
     flex-wrap: wrap;
     text-align: justify;
     word-break: normal;

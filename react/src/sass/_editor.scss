@@ -2,13 +2,29 @@
 .DraftEditor-root {
     border-radius: $border-small;
     background-color: $off-white;
-    padding: 1rem;
+    //padding: 1rem;
     width: 100%;
 }
 
 .DraftEditor-editorContainer {
-   // border: 1px solid blue; 
     text-align: left;
     min-height: 6.5rem;
 }
 
+.public-DraftEditor-content {
+    font-family: 'Graphik', sans-serif;
+    line-height: 150%;
+    font-size: 0.9rem;
+}
+
+.editorWrapper {
+    width: 100%;
+    padding: 1rem;
+    background-color: $off-white;
+    border-radius: $border-small;
+}
+
+.editorTag {
+    padding: 2px;
+    border-radius: 3px;
+}

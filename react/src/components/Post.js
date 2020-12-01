@@ -1,61 +1,36 @@
 import React, { useState } from 'react';
-import Preview from './Preview';
+import Preview from './Preview'
+import { Route, Link, useLocation } from 'react-router-dom';
+import usePosts from '../hooks/usePosts';
   
-export default function Post({ post, view }) { 
-   
-    const getPostGradient = (tagObj) => {
-        let colorArr = tagObj.map(el => el.color);
-        let colorString = colorArr.toString();
-        return (
-            <div className="postGradient" style={{background:`conic-gradient(${colorString})`}}>
-            </div>
-        )
-    }
-
-    const getPostColorBlock = (tagObj) => {
-        let body;
-        let colors = tagObj.map(el => el.color);
-        
-        const TwoTags = (colors) => {
-            return(
-                <div className="postBody">
-                    <span className="postHalf--1" style={{backgroundColor:colors[0]}}> </span>
-                    <span className="postHalf--2" style={{backgroundColor:colors[1]}}> </span>
-                </div>
-            )
-        }
-
-        switch(tagObj.length) {
-            case 1: body = "1";
-            break;
-            case 2: body = TwoTags(colors);
-            break;
-            case 3: body = "3";
-            break;
-            default: body = "nobody";
-        }
-        return body; 
-    }
-
+export default function Post({ post, view, editPost }) { 
+    let location = useLocation();
     const [preview, showPreview] = useState(false);
 
+    const { displayPostBody } = usePosts();
+
     return(
-        <div className="post" key={post._id} onMouseEnter={() => showPreview(true)} onMouseLeave={() => showPreview(false)}>
+        <div className="post" key={post._id} data-id={post._id}
+            onMouseEnter={() => showPreview(true)} onMouseLeave={() => showPreview(false)}>                      
             <div className="post__header">
                 <h4 className="lightest">{post.user.username}</h4>  <h4 className="lightest">{post.date}</h4>
             </div>
-            <div className="post__body">
-                {/*view === 'gradient' && getPostGradient(post.tags)*/}
-            </div>
+            <Link to={{pathname: `${location.pathname}/${post._id}`,
+                       state: {post: post }}}
+                       className="post__body">
+                <div onClick={editPost}>
+                    {displayPostBody(post)}
+                </div>
+            </Link>
             <div className="post__tags">
                 {(post.tags.length > 0) 
                 ? post.tags.map(el => {
-                        return (
-                        <h4 key={el.tag}>
-                            {el.tag}
-                        </h4>
-                        )
-                    })
+                    return (
+                    <h4 key={el.tag}>
+                        {el.tag}
+                    </h4>
+                    )
+                })
                 : <h4 className="lightest">No tags</h4> }
             </div>
         </div>

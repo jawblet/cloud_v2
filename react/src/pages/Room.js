@@ -3,16 +3,18 @@ import Header from './../sections/Header';
 import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
 import PostList from '../sections/PostList';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation, Route } from 'react-router-dom';
 import { VscAdd } from 'react-icons/vsc';
-import useOneFilter from '../hooks/useOneFilter';
+import useOneFilter from '../hooks/useOneFilter'; 
 import useTags from '../hooks/useTags';
 import usePosts from '../hooks/usePosts';
+import Edit from '../sections/Edit';
+import useEditPost from '../hooks/useEditPost';
 
 export default function Room() {
     let params = useParams();
     
-    // page settings (room, filter, view)
+    // page settings (room, filter, view) 
     const nav = [ {name: params.room, url: params.room } ];
 
     const list = ['date', 'tag', 'boarder'];
@@ -22,6 +24,9 @@ export default function Room() {
 
     //get posts by room 
     const { posts, loading } = usePosts(params.room);
+
+    //edit post
+    const { edit, editPost } = useEditPost(); 
     
     return(
         <div className="page">
@@ -34,7 +39,7 @@ export default function Room() {
                 <div className="room__body">
                     {loading 
                         ? <div>Loading</div>
-                        : <PostList posts={posts} tagView={tagView} />
+                        : <PostList posts={posts} tagView={tagView} editPost={editPost}/>
                      }
                 </div>
             </div>
@@ -43,6 +48,8 @@ export default function Room() {
                     <Button icon={<VscAdd className="icon icon__btn"/>}/>
                 </Link> 
             </span>
+            {edit && 
+            <Edit editPost={editPost}/> }
         </div>
     )
 }

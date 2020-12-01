@@ -12,12 +12,14 @@ const NoteUpload = (props) => {
     }, []);
     
     return (
-        <Editor editorState={editorState} 
-                onChange={setEditorState}
-                ref={editRef}
-                onChange={onNoteChange}
-                spellCheck={true}
-                />
+        <div className="editorWrapper">
+            <Editor editorState={editorState} 
+                    onChange={setEditorState}
+                    ref={editRef}
+                    onChange={onNoteChange}
+                    spellCheck={true}
+                    />
+        </div>
         )
     }
 
