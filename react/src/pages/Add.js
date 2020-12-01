@@ -51,7 +51,7 @@ export default function Add(props) {
         switch(type) {
             case 'link': handleLinkSubmit({ values });
             break;
-            case 'note': 
+            case 'note': //convert draft-js to a string 
             const data = editorState.getCurrentContent();
             const note = JSON.stringify(convertToRaw(data));
             handleNoteSubmit(values, note);
