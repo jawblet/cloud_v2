@@ -352,7 +352,8 @@ menu {
 
 .page {
   background-color: #fffdfa;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -380,11 +381,13 @@ menu {
 .skylight {
   display: flex;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  border: 1px solid blue; }
   .skylight__sidebar {
     flex: 0 0 5%;
     display: flex;
-    align-items: flex-end; }
+    align-items: flex-end;
+    border: 1px solid blue; }
   .skylight__layout {
     flex: 0 0 95%; }
 

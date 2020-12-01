@@ -9,9 +9,7 @@ import Tooltip from '../atoms/Tooltip';
 
 export default function Home() {
     const [squeeze, setSqueeze] = useState(true);
-    
     const handleExpandClick = () => { setSqueeze(!squeeze); }
-
     const buttons = [
         {name: 'tags', url: 'tags', icon: <VscTag className="icon icon__btn" data-id="tags"/>}, 
         {name: 'library', url: 'library', icon: <VscSave className="icon icon__btn" data-id="library"/>},
