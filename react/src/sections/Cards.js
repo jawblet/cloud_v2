@@ -5,10 +5,11 @@ import RoomCard from './../components/RoomCard';
 
 export default function Cards( {squeeze } ) {
     const { rooms } = useContext(UserContext);
+    const roomIdArr = rooms.map(room => room.id);
 
     //on click, remove clicked item from array and push to position 0 
     //0 (front), 1 (middle), 2 (middle/back), 3 (back)
-    const [positionArray, changePosition] = useState(rooms);
+    const [positionArray, changePosition] = useState(roomIdArr); 
 
     const getPositionClass = (room) => {
         if(positionArray.length > 0) {
@@ -43,8 +44,8 @@ export default function Cards( {squeeze } ) {
             {rooms.map((room, index) => { 
                 if(index <= 1) {
                     return (
-                        <RoomCard room={room} squeeze={squeeze} key={room}
-                        handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
+                        <RoomCard room={room} squeeze={squeeze} key={room.id}
+                        handleCardClick={handleCardClick} getPositionClass={() => getPositionClass(room.id)}/>
                         )
                 }
                 })} 
@@ -53,8 +54,8 @@ export default function Cards( {squeeze } ) {
             {rooms.map((room, index) => {
                 if(index > 1) {
                     return (
-                        <RoomCard room={room} squeeze={squeeze} key={room}
-                        handleCardClick={handleCardClick} getPositionClass={getPositionClass}/>
+                        <RoomCard room={room} squeeze={squeeze} key={room.id}
+                        handleCardClick={handleCardClick} getPositionClass={() => getPositionClass(room.id)}/>
                         )
                 }
                 })} 

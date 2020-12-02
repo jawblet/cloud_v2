@@ -2,7 +2,6 @@
 .DraftEditor-root {
     border-radius: $border-small;
     background-color: $off-white;
-    //padding: 1rem;
     width: 100%;
 }
 
@@ -13,7 +12,7 @@
 
 .public-DraftEditor-content {
     font-family: 'Graphik', sans-serif;
-    line-height: 150%;
+    line-height: 180%;
     font-size: 0.9rem;
 }
 
@@ -27,4 +26,19 @@
 .editorTag {
     padding: 2px;
     border-radius: 3px;
+}
+
+//STYLE BUTTONS
+.toolbar {
+    display: flex;
+    align-items: center;
+    background-color: $sand;
+    color: $body-light;
+}
+
+//set styles for edit components 
+.public-DraftStyleDefault-ul,
+.public-DraftStyleDefault-ol {
+    margin: 1em 0; 
+    padding-left: 2.5em; 
 }

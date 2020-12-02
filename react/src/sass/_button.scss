@@ -12,18 +12,15 @@
         &:active {
           background-color: $sand2;
         }
-        &--active {
-          background-color: $sand3;
-          & .btn:hover {
-            box-shadow: none;
-          }
-        }
         &--CTA {
           width: 6rem;
           background-color: $sand3;
         }
         &.warning{
           background-color: $error;
+        }
+        &.active {
+          background-color: $sand3;
         }
 }
 

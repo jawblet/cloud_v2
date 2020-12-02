@@ -5,11 +5,32 @@ import { UserContext } from './UserContext';
 export default function useTags(activeItem) {
 const { user } = useContext(UserContext); 
 
-//get all tags by house
+//get global tags for context 
+const [globalTags, setGlobalTags] = useState(null);
+const [loading, isLoading] = useState(true);
+
+//get all tags by house + add sort ability 
 const [tags, setTags] = useState(null);
 const [tagTotal, countTagTotal] = useState(null);
 
+
+//set global tags 
 useEffect(() => {
+    try {
+        axios({
+            method: 'GET',
+            url: `/tags/h/${user.house._id}` 
+        }).then(res => {
+            setGlobalTags(res.data.data.results);
+            isLoading(false);
+        })
+    } catch(err) {
+        console.log(err)
+
+    }
+}, [])
+
+useEffect(() => { 
     let sort;
     switch(activeItem) {
         case 'recent': sort = 'h';
@@ -29,7 +50,6 @@ useEffect(() => {
         })
     } catch(err) {
         console.log(err)
-
     }
 }, [activeItem]);
 
@@ -77,6 +97,8 @@ useEffect(() => {
        
 
     return {
+        globalTags,
+        loading,
         alphabetizeTags,
         tags,
         tagTotal,

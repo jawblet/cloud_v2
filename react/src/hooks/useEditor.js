@@ -1,26 +1,25 @@
 import { useState, useEffect, useContext } from 'react';
 import { EditorState, CompositeDecorator } from 'draft-js';
 import { UserContext } from './UserContext';
-import axios from 'axios'; 
+import axios from 'axios';  
 
 
 export default function useEditor() {
     const { user } = useContext(UserContext);
-
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
       }
 
-//define and set decorator to find tags 
+//define and set decorator to find tags while writing note
 useEffect(async () => {
     let tags;
     let tagNames; 
     await axios.get(`/tags/h/${user.house._id}`).then(res => {
         tags = res.data.data.results;
         tagNames = tags.map(el => el.tag);
-    });
+    }).catch(err => console.log(err));
 
     const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi");
 
@@ -49,16 +48,14 @@ useEffect(async () => {
         }
 
         const decorator = new CompositeDecorator([
-            {
-              strategy: findTags,
-              component: highlightSpan
-            }
+            { strategy: findTags,
+              component: highlightSpan }
         ]);
 
         const contentState = editorState.getCurrentContent(); 
         const newEditorState = EditorState.createWithContent(contentState, decorator);
         setEditorState(newEditorState);
-    }, []);
+    }, []); 
 
 
     return {

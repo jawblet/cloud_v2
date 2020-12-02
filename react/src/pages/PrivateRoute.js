@@ -5,9 +5,6 @@ import Loading from './../components/Loading';
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
-    //console.log(props);
-    //const Component = props.component; 
-
 
     const { component: Component,
         ...rest } = props;
@@ -16,7 +13,6 @@ export default function PrivateRoute(props) {
           return <Loading/>
         }
 
-    //USER HAS TO BE CHECKED HERE --> DOES THIS EVEN WORK? 
       if(user){
           return ( <Route {...rest} render={(props) => (<Component {...props}/>)}
             />)

@@ -1,51 +1,109 @@
-import { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
-
+import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
 export default function usePosts(room) {
-    const { user } = useContext(UserContext);
+    const { user, globalTags } = useContext(UserContext);
+    const tags = globalTags;
+    const tagNames = tags.map(el => el.tag);
+    
     const [posts, setPosts] = useState(null);
     const [loading, isLoading] = useState(true);
- 
-    //get house posts by room 
-    useEffect(() => {
-        console.log('i was called');
-        try {
-            axios({
-                method: 'GET',
-                url: `/posts/h/${user.house._id}/${room}` 
-            }).then(res => {
-                //console.log(res.data.data.results);
-                setPosts(res.data.data.results);
-                isLoading(false);
-            })
-        } catch(err) {
-            console.log(err)
-        }
-    }, [room]); 
-    
-    const displayPostBody = (post) => {
-        let editorState; 
+    const [postDetail, showPostDetail] = useState(false);
+    const [isReadOnly, setEditable] = useState(true);
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-        if(post.type ==='note') {
-            const contentState = convertFromRaw(JSON.parse(post.content));
-             editorState = EditorState.createWithContent(contentState); 
-            return ( <div className="post__body__note">
-                        <Editor editorState={editorState} readOnly={true} />
-                        <span className="post__body__fade"></span>   
-                    </div>            
-            )
+    const onNoteChange = (editorState) => {
+        setEditorState(editorState);  
+      }
+ 
+//get posts by room + house, get tags by house
+useEffect(() => {
+         axios.get(`/posts/h/${user.house._id}/${room}`)
+        .then(res => {  
+            setPosts(res.data.data.results); //set posts
+            isLoading(false); 
+        }).catch(err => console.log(err));
+    }, [room]); 
+
+//open post detail pg
+const openPost = () => {
+    showPostDetail(!postDetail);
+}
+
+//enable editing for note detail 
+const editNote = () => {
+    setEditable(!isReadOnly);
+}
+
+//update note detail 
+const saveUpdate = async (newNote, id) => {
+    console.log(id);
+    await axios.put(`/posts/${id}`, {
+        content: newNote
+    }).then(res => {
+        console.log(res);
+        setEditable(true);
+    });
+}
+
+//display notes on tiles and detail pg 
+const displayNoteBody = async (post) => {
+    const contentState = convertFromRaw(JSON.parse(post.content));
+    let newEditorState;
+
+    if (tagNames) { // decorate tags if tags exist/have been retrieved 
+        const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi");
+        const findWithRegex = (regex, contentBlock, callback) => {
+            const text = contentBlock.getText();
+            let matchArr, start, end;
+            while ((matchArr = regex.exec(text)) !== null) {
+                start = matchArr.index;
+                end = start + matchArr[0].length;
+                callback(start, end); 
+            }
         }
-        if(post.type === 'link') {
-            return <div> Link </div>
-        }
+
+        function findTags(contentBlock, callback, contentState) {
+            findWithRegex(TAGS_REGEX, contentBlock, callback);
+        };
+
+        const highlightSpan = (props) => {
+            const tag = props.decoratedText.toLowerCase();
+            const c = tags.find(obj => obj.tag === tag).color;   
+            return (
+                <span className="editorTag" style={{ backgroundColor: c }}>
+                    {props.children}
+                </span>
+                )}
+
+            const decorator = new CompositeDecorator([
+                { strategy: findTags,
+                component: highlightSpan }
+            ]);
+
+        newEditorState = EditorState.createWithContent(contentState, decorator); 
+        return setEditorState(newEditorState);
+
+        } else { // without tags, just fill content 
+            newEditorState = EditorState.createWithContent(contentState); 
+           return setEditorState(newEditorState);
+        } 
     }
 
     return {
         posts,
+        tags,
         loading,
-        displayPostBody
+        displayNoteBody,
+        editorState,
+        setEditorState,
+        onNoteChange,
+        openPost,
+        postDetail,
+        editNote,
+        isReadOnly,
+        saveUpdate
     }
 }

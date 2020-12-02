@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'; 
+import React from 'react'; 
 import { Link } from 'react-router-dom';  
 import usePosts from '../hooks/usePosts';
 import Gradient from '../atoms/Gradient';
-import Loading from '../components/Loading';
-
-export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
-   const { posts, loading } = usePosts(room);
  
+export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
+   const { posts, loading } = usePosts(room.id);
     return(
         <div className={`card 
-                    ${squeeze ? room : ''} 
-                    ${squeeze ? getPositionClass(room) : ''}`} 
-        key={room} data-id={room} onClick={(e) => handleCardClick(e)}>
-                <Link className={`card__label ${room}`} to={`/home/${room}`}> 
-                    <h4> {room} </h4> 
+                    ${squeeze ? room.id : ''} 
+                    ${squeeze ? getPositionClass(room.id) : ''}`} 
+        key={room.id} data-id={room.id} onClick={(e) => handleCardClick(e)}>
+                <Link className={`card__label ${room.id}`} to={`/home/${room.id}`}> 
+                    <h4> {room.label} </h4>  
                 </Link>
                 <div className="card__body">
                     {(!loading) && posts.map(post => {

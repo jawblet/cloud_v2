@@ -53,6 +53,7 @@ import { convertToRaw } from 'draft-js';
                 const data = editorState.getCurrentContent();
                 const note = JSON.stringify(convertToRaw(data));
                 handleNoteSubmit(values, note);
+            break;
             default: handleLinkSubmit({ values });
         }
     }

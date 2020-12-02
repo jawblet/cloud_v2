@@ -34,7 +34,7 @@ export default function UploadContainer(props) {
                         {tooltip && <Tooltip tooltip={tooltip} tooltipCoords={tooltipCoords}/>}
                 <Link to={`/home/${room}`}>
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>
-                </Link>
+                </Link> 
             </div> 
             <div className="upload__form">
                 <CSSTransition in={values.error} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>

@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import TagPreview from '../atoms/TagPreview';
-import { VscClose } from 'react-icons/vsc';
-import usePosts from '../hooks/usePosts';
+import InlineButton from '../components/btns/InlineButton';
+import { VscClose, VscEdit } from 'react-icons/vsc';
+import { Editor, convertToRaw } from 'draft-js';
+import usePosts from '../hooks/usePosts'; 
 
-export default function Edit( {editPost} ) {
+export default function Edit( {openPost} ) {
     const params = useParams();
     const location = useLocation();
     const post = location.state.post;
+    const editRef = useRef(null); 
 
-    const { displayPostBody } = usePosts();
-   
+    const { displayNoteBody, editorState, 
+            setEditorState, onNoteChange, 
+            postDetail, editNote, isReadOnly,
+            saveUpdate  } = usePosts();
+
+    useEffect(() => {
+        if(post.type === 'note') { 
+            displayNoteBody(post);
+        }
+    }, [])
+
+    useEffect(() => {
+        if(!isReadOnly) { //set note in focus if it's being edited 
+        editRef.current.focus();
+        }
+    }, [isReadOnly]);
+
+    const updatePost = () => {
+        const data = editorState.getCurrentContent();
+        const newNote = JSON.stringify(convertToRaw(data));
+        saveUpdate(newNote, post._id);
+    };
+    
     return(
         <div className="modal__background">
             <div className="edit">
                 <Link to={`/home/${params.room}`}>
-                    <div className="modal__X" onClick={editPost}>
+                    <div className="modal__X" onClick={openPost}> 
                         <VscClose className="icon icon__btn"/>
                     </div>
                 </Link>
@@ -57,10 +81,25 @@ export default function Edit( {editPost} ) {
                         </div>
                     </div>
                     <div className="edit__body">
-                    <h4 className="lightest">{post.type}:</h4>
-                    {displayPostBody(post)}
+                        <div className="edit__body__edit">
+                            <h4 className="lightest">{post.type}:</h4> 
+                            <VscEdit className={`icon icon__btn ${isReadOnly ? '' : 'icon--active'}`} onClick={editNote}/>
+                        </div>
+                        {post.type === 'note' 
+                        ?
+                            <div className={`edit__body__noteDetail ${isReadOnly ? '' : 'active'}`}>
+                                <Editor readOnly={isReadOnly} 
+                                editorState={editorState} ref={editRef}
+                                setEditorState={setEditorState}
+                                onChange={onNoteChange} />
+                            </div>   
+                            : 
+                            <div> Link </div>         
+                        }
+                        <div className={`edit__body__save ${isReadOnly ? '' : 'active'}`}>
+                            <InlineButton name={"save changes"} handleClick={updatePost}/>
+                        </div>
                     </div>
-     
                 </div>
             </div>
         </div>

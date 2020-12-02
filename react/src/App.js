@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'; 
-import './App.css';
+import './App.css'; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 import { UserContext } from './hooks/UserContext';
 import PrivateRoute from './pages/PrivateRoute';
@@ -16,21 +16,30 @@ import NotFound from './pages/NotFound';
 import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
 
-
 function App() {
-  const rooms = ['kitchen', 'living_room', 'bedroom', 'basement'];
+
+  const rooms = [{label: 'kitchen', id: 'kitchen'}, 
+                {label: 'living room', id: 'living_room'}, 
+                {label: 'bedroom', id: 'bedroom'}, 
+                {label: 'basement', id:'basement'}];
+
   const [user, setUser] = useState(null);
-  const { userStatus, isLoading } = useFindUser();
+  const [globalTags, setGlobalTags] = useState(null);
+  const { userStatus, houseTags, isLoading } = useFindUser();
  
   useEffect(() => {
-    if(userStatus) {
+    if(houseTags) {
+      console.log('call main useEffect');
       setUser(userStatus);
+      setGlobalTags(houseTags);
     }
-  }, [userStatus]);
+  }, [userStatus, houseTags]);
+
+  //console.log(user);
    
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser, rooms, isLoading }}>
+       <UserContext.Provider value={{ user, setUser, globalTags, rooms, isLoading}}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>

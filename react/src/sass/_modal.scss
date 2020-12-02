@@ -49,21 +49,54 @@
     display: flex;
     box-shadow: $soft-shadow;
     padding: 3rem; 
+    padding-bottom: 1rem;
     line-height: 150%;
     &__content {
         width: 100%;
         display: flex;
+        overflow: scroll;
        // border: 1px solid orange;
     }
     &__sidebar {
         flex: 0 0 25%;
-    }
-    &__body {
-        flex: 0 0 75%;
-        padding: 0 5rem;
-        //border: 1px solid blue;
+        padding-left: 1rem;
     }
     &__metadata {
         margin-bottom: 1.5rem;
     }
+    &__body {
+        flex: 0 0 75%;
+        padding: 0 5rem;
+       // border: 1px solid blue;
+        display: flex;
+        flex-direction: column;
+        &__edit {
+            flex: 0 0 3%;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__noteDetail {
+            width: 100%;
+            flex: 1; //expand 
+            border: 3px solid $sand;
+            padding: 1rem;
+            border-radius: $border-small;
+            transition: all $short-fade;
+            &.active {
+                border: 3px solid $sand2;
+            }
+        }
+        &__save {
+            flex: 0 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: $body-lightest;
+            transition: all $short-fade;
+            &.active {
+                color: $body; 
+            }
+        }
+    }
+  
 }
