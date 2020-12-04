@@ -32,13 +32,11 @@ function App() {
     if(userStatus) {
       console.log('call main useEffect');
       setUser(userStatus);
-      console.log(userStatus);
+      console.log(houseTags);
       setGlobalTags(houseTags);
     }
-  }, [userStatus]); //removed dependency array 
+  }, [userStatus, houseTags]); //need dependency array 
 
-  //console.log(user);
-   
   return (
    <Router>
        <UserContext.Provider value={{ user, setUser, globalTags, rooms, isLoading}}>

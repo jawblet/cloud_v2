@@ -5,6 +5,7 @@ import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
 export default function usePosts(room) {
     const { user, globalTags } = useContext(UserContext);
+    console.log(globalTags);
     const tags = globalTags;
     let tagNames;
     if(tags && tags.length > 0) {
@@ -21,7 +22,7 @@ export default function usePosts(room) {
         setEditorState(editorState);  
       }
  
-console.log(user);      
+//console.log(user);      
 //get posts by room + house, get tags by house
 useEffect(() => {
    async function getPostsByRoom() {
@@ -69,6 +70,7 @@ const displayNoteBody = async (post) => {
     let newEditorState;
 
     if (tagNames) { // decorate tags if tags exist/have been retrieved 
+        console.log('yes tags');
         const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi");
         const findWithRegex = (regex, contentBlock, callback) => {
             const text = contentBlock.getText();
@@ -102,6 +104,7 @@ const displayNoteBody = async (post) => {
         return setEditorState(newEditorState);
 
         } else { // without tags, just fill content 
+            console.log('no tags');
             newEditorState = EditorState.createWithContent(contentState); 
            return setEditorState(newEditorState);
         } 

@@ -38,8 +38,11 @@ export default function Preview({ preview, post }) {
                             <h4 className="lightest">{post.user.username}</h4> 
                         </div>
                         <div className="postPreview__body">
-                            <p style={{textTransform:'capitalize'}}> 
-                                {post.type} posted on {post.date} </p> 
+                        <p> 
+                            <span style={{textTransform:'capitalize'}}>
+                                {post.type}&nbsp;
+                            </span> 
+                         posted on {post.date} </p> 
                                 {getTags(post.tags.length)} 
                         </div>
                     </div>

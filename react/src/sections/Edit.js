@@ -5,7 +5,7 @@ import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
 import usePosts from '../hooks/usePosts'; 
-
+ 
 export default function Edit( {openPost} ) {
     const params = useParams();
     const location = useLocation();

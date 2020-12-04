@@ -7,7 +7,6 @@ import Prompt from '../atoms/Prompt';
 import Error from '../atoms/Error'; 
 
 export default function Confirm() {
-
     const {values, handleChange, handleCheckUser, error } = useConfirm({
         initialValues: {
             email: '',
@@ -24,7 +23,6 @@ export default function Confirm() {
         e.preventDefault();
         handleCheckUser({ values });
     }
-
     return(
         <div className="page" style={{justifyContent:'center'}}>
             <div className="inlineForm">
