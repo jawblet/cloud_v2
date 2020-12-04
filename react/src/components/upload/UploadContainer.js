@@ -10,8 +10,11 @@ import DragUpload from './DragUpload';
 import Search from '../Search'; 
 import TagBank from '../../sections/TagBank'; 
 import { VscClose } from 'react-icons/vsc';
+import AutoComplete from '../../atoms/AutoComplete';
+import RecentTags from '../../atoms/RecentTags';
 import Prompt from '../../atoms/Prompt'; 
 import CommentInput from '../../components/CommentInput'; 
+import useTags from '../../hooks/useTags';
 import { CSSTransition } from 'react-transition-group';
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 
@@ -26,6 +29,11 @@ export default function UploadContainer(props) {
         {name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>},
         {name: 'file', icon: <VscArchive className="icon icon__btn"/>}
     ];
+
+    const { lastThreeTags } = useTags();
+
+    const openAutoComplete = ((props.results.length !== 0) && (props.values.input !== ''));
+
     return (  
         <div className="upload__container">  
             <div className="upload__controller">
@@ -43,7 +51,7 @@ export default function UploadContainer(props) {
                 </CSSTransition>
                 <div className="upload">
                     { type === 'link' && <LinkUpload {...props} /> }
-                    { type === 'note' && <NoteUpload {...props}/> }
+                    { type === 'note' && <NoteUpload {...props} /> }
                     { type === 'file' && <DragUpload/> }
                 </div>
                     <div className="upload__extra"> 
@@ -52,6 +60,12 @@ export default function UploadContainer(props) {
                             <Search values={values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
                                     handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
                             <TagBank tags={values.tags} handleDelete={props.removeTag}/> 
+                            <div style={{alignSelf:'flex-start'}}>
+                            {openAutoComplete &&
+                                  <AutoComplete results={props.results} selectTag={props.selectTag}/>                       
+                                 }
+                                <RecentTags tags={lastThreeTags} selectTag={props.selectTag}/>
+                            </div>
                         </div>                    
                     </div>
                     <div className="upload__extra"> 
@@ -64,3 +78,4 @@ export default function UploadContainer(props) {
         </div> 
     )
 }
+

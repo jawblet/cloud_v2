@@ -762,6 +762,34 @@ d {
   margin: 1em 0;
   padding-left: 2.5em; }
 
+h1[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 1.8rem;
+  line-height: 200%; }
+
+h2[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 1.5rem;
+  line-height: 170%; }
+
+h3[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 1.17rem; }
+
+h4[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 1rem;
+  text-transform: none; }
+
+h5[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 400; }
+
+h6[data-block] {
+  font-family: 'Graphik', sans-serif;
+  font-size: 0.67rem; }
+
 .searchContainer {
   position: relative;
   width: 100%; }
@@ -1149,18 +1177,24 @@ d {
   margin: 0 1.5rem; }
 
 .selectmenu__picked {
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   display: flex;
   align-items: center;
   background-color: inherit;
-  position: relative; }
+  position: relative;
+  cursor: pointer;
+  display: flex; }
 
 .selectmenu__expand {
   margin-left: 0.5rem; }
 
 .selectmenu__dropdown {
   position: absolute;
-  transform-origin: top; }
+  transform-origin: top;
+  background-color: #fffdfa;
+  min-width: 5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem; }
 
 .selectmenu__item {
   color: #72716B;
@@ -1168,7 +1202,13 @@ d {
   padding: 1rem 0.5rem;
   background-color: inherit;
   transition: all 0.35s;
-  border-radius: 5px; }
+  min-width: 7rem; }
+  .selectmenu__item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
+  .selectmenu__item:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; }
   .selectmenu__item:hover {
     background-color: #f5eee5; }
 
@@ -1235,4 +1275,5 @@ d {
     width: 1.5rem; }
 
 .libraryWrapper {
-  border: 1px solid red; }
+  border: 1px solid red;
+  padding: 1rem; }

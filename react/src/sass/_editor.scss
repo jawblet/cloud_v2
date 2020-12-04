@@ -42,3 +42,37 @@
     margin: 1em 0; 
     padding-left: 2.5em; 
 }
+
+h1[data-block] {
+   font-family: 'Graphik', sans-serif;
+   font-size: 1.8rem;
+   line-height: 200%;
+}
+
+h2[data-block] {
+    font-family: 'Graphik', sans-serif;
+    font-size: 1.5rem;
+    line-height: 170%;
+ }
+
+ h3[data-block] {
+    font-family: 'Graphik', sans-serif;
+    font-size: 1.17rem;
+ }
+
+ h4[data-block] {
+    font-family: 'Graphik', sans-serif;
+    font-size: 1rem;
+    text-transform: none;
+ }
+
+ h5[data-block] {
+    font-family: 'Graphik', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 400;
+ }
+
+ h6[data-block] {
+    font-family: 'Graphik', sans-serif;
+    font-size: 0.67rem;
+ }

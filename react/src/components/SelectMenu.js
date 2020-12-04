@@ -13,10 +13,10 @@ export default function SelectMenu({ items, active, selectItem }) {
  
     return( 
         <div className="selectmenu">
-            <h4 className="selectmenu__picked"> 
+            <h4 className="selectmenu__picked" onClick={() => setMenu(!menu)}> 
                 {active} 
-                <VscChevronDown className="icon icon__btn selectmenu__expand" onClick={() => setMenu(!menu)}/> 
-            </h4>
+                <VscChevronDown className="icon icon__btn selectmenu__expand"/> 
+            </h4> 
               <CSSTransition in={menu} timeout={700} nodeRef={nodeRef} classNames="rollDown" unmountOnExit> 
                 <menu className="selectmenu__dropdown" ref={nodeRef}>
                     {list.map(item => {

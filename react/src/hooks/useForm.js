@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; 
 import { UserContext } from './UserContext';  
 
 export default function useForm({ initialValues }) {
@@ -64,7 +64,7 @@ export default function useForm({ initialValues }) {
                 })
             } catch(err) {
                  console.log(err);
-                // setError(err.response.data);
+                 setError(err.response.data);
             }
       };
 
@@ -169,11 +169,11 @@ const removeTag = (tag) => {
  };
 
 //submit + rent house 
-const rentHouse = async (formValues) => {
+const rentHouse = (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
     console.log(boardersUnconfirmed);
     try {
-        await axios({
+         axios({
             method: 'POST',
             url: `houses`,
             data: {
@@ -183,15 +183,18 @@ const rentHouse = async (formValues) => {
             }
         }).then(res => {
             const house = res.data.data.doc._id;
-            axios ({
+            return axios ({
                 method: 'PUT',
                 url: `users/${user._id}`,
                 data: {
                     house
                 }
+            }).then(res => {
+                 //console.log(res.data.data.doc);
+                 const updatedUser = res.data.data.doc;
+                 setUser(updatedUser);
+                 setSuccess(true);
             })
-            console.log(house);
-            history.push('/home'); 
         })
         } catch(err) {
         console.log(err);

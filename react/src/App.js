@@ -5,6 +5,7 @@ import { UserContext } from './hooks/UserContext';
 import PrivateRoute from './pages/PrivateRoute';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Confirm from './pages/Confirm';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Room from './pages/Room';
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
+          <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
           <PrivateRoute exact path="/home" component={Home}/>
           <PrivateRoute path='/home/:room/:postId?' component={Room}/>

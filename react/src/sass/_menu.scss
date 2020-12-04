@@ -1,18 +1,24 @@
 //select menu 
 .selectmenu { 
     &__picked {
-        padding: 0.5rem 0.5rem;
+        padding: 1rem 0.5rem;
         display: flex;
         align-items: center;
         background-color: inherit;
         position: relative;
-    }
+        cursor: pointer;
+        display: flex;
+    } 
     &__expand {
         margin-left: 0.5rem;
     }
     &__dropdown {
         position: absolute;
         transform-origin: top;
+        background-color: $off-white;
+        min-width: 5rem;
+        border-bottom-left-radius: $border-small;
+        border-bottom-right-radius: $border-small;
     }
     &__item {
         color: $body-light;
@@ -20,7 +26,15 @@
         padding: 1rem 0.5rem;
         background-color: inherit;
         transition: all $short-fade;
-        border-radius: $border-smallest;
+        min-width: 7rem;
+        &:first-child {
+            border-top-left-radius: $border-smallest;
+            border-top-right-radius: $border-smallest;
+        }
+        &:last-child {
+            border-bottom-left-radius: $border-smallest;
+            border-bottom-right-radius: $border-smallest;
+        }
         &:hover {
             background-color: $sand2;
         }

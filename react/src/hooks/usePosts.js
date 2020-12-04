@@ -19,12 +19,14 @@ export default function usePosts(room) {
       }
  
 //get posts by room + house, get tags by house
-useEffect(() => {
-         axios.get(`/posts/h/${user.house._id}/${room}`)
-        .then(res => {  
-            setPosts(res.data.data.results); //set posts
-            isLoading(false); 
-        }).catch(err => console.log(err));
+useEffect( async() => {
+    console.log(user);
+    await axios.get(`/posts/h/${user.house._id}/${room}`)
+    .then(res => {  
+        setPosts(res.data.data.results); //set posts
+        isLoading(false); 
+    }).catch(err => console.log(err));
+    
     }, [room]); 
 
 //open post detail pg

@@ -5,6 +5,7 @@ import Gradient from '../atoms/Gradient';
  
 export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
    const { posts, loading } = usePosts(room.id);
+   
     return(
         <div className={`card 
                     ${squeeze ? room.id : ''} 

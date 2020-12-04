@@ -5,7 +5,7 @@ export default function useFindUser() {
 const [userStatus, setUserStatus] = useState({});
 const [houseTags, setHouseTags] = useState({});
 const [isLoading, setLoading] = useState(true);
-
+ 
 useEffect(() => {
      axios.get('/user')
             .then(res => {

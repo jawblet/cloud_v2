@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import CreateUser from './CreateUser';
 import CreateHouse from './CreateHouse';
-
+ 
 export default function Register(props) {
     const [createUser, setRegistration] = useState(true);
     const [active, setActive] = useState('register');
@@ -15,8 +15,8 @@ export default function Register(props) {
     }, [props]);
 
     return(
-        <div className="page" style={{justifyContent:'center'}}>
-            <div style={{width: '35%', marginTop:'-5rem', paddingBottom:'5rem',}}>
+        <div className="page" >
+            <div style={{width: '35%', marginTop:'3rem', paddingBottom:'5rem',}}>
                 <Breadcrumbs crumbs={['register', 'rent']} active={active}/>
             </div>
             {createUser 
