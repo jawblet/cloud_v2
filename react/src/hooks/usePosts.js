@@ -22,11 +22,21 @@ export default function usePosts(room) {
 useEffect(() => {
    async function getPostsByRoom() {
     console.log(user.house); // is user populated with house?
-    await axios.get(`/posts/h/${user.house}/${room}`)
-    .then(res => {  
-        setPosts(res.data.data.results); //set posts
-        isLoading(false); 
-    }).catch(err => console.log(err));
+
+    if(user.house && user.house.boarders) {
+        await axios.get(`/posts/h/${user.house._id}/${room}`)
+        .then(res => {  
+            setPosts(res.data.data.results); //set posts
+            isLoading(false); 
+        }).catch(err => console.log(err));
+    } else {     //get posts @ reg and login before house is populated 
+        await axios.get(`/posts/h/${user.house}/${room}`)
+        .then(res => {  
+            setPosts(res.data.data.results); //set posts
+            isLoading(false); 
+        }).catch(err => console.log(err));
+    }
+
     }
   
     getPostsByRoom();
