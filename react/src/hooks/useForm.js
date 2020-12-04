@@ -43,7 +43,7 @@ export default function useForm({ initialValues }) {
             console.log('no form found');
         }
     };
-
+ 
     //register user  
     const registerUser = async (formValues) => {
         const { username, email, password, passwordConfirm } = formValues.values;
@@ -189,10 +189,8 @@ const rentHouse = (formValues) => {
                     house
                 }
             }).then(res => {
-                 //console.log(res.data.data.doc);
                  const updatedUser = res.data.data.doc;
                  setUser(updatedUser);
-                 setSuccess(true);
                  history.push('/home');
             })
         })

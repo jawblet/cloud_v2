@@ -7,7 +7,6 @@ import axios from 'axios';
 export default function useEditor() {
     const { user } = useContext(UserContext);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
       }

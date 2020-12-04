@@ -17,6 +17,7 @@
     }
     &__title {
       text-transform: capitalize;
+      align-self: flex-start;
     }
     &__links {
       display: flex

@@ -372,7 +372,8 @@ menu {
     justify-content: space-between;
     align-items: center; }
   .page__title {
-    text-transform: capitalize; }
+    text-transform: capitalize;
+    align-self: flex-start; }
   .page__links {
     display: flex; }
   .page__links > * {

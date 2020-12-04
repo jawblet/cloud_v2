@@ -27,8 +27,6 @@ useEffect(() => {
     }
 }
 
-
-
 /*
     useEffect(() =>{
         try {

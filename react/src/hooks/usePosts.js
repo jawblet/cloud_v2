@@ -19,13 +19,17 @@ export default function usePosts(room) {
       }
  
 //get posts by room + house, get tags by house
-useEffect( async() => {
-    console.log(user);
-    await axios.get(`/posts/h/${user.house._id}/${room}`)
+useEffect(() => {
+   async function getPostsByRoom() {
+    console.log(user.house); // is user populated with house?
+    await axios.get(`/posts/h/${user.house}/${room}`)
     .then(res => {  
         setPosts(res.data.data.results); //set posts
         isLoading(false); 
     }).catch(err => console.log(err));
+    }
+  
+    getPostsByRoom();
     
     }, [user, room]); 
 

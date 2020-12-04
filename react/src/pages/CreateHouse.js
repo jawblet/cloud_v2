@@ -11,7 +11,7 @@ import useForm from '../hooks/useForm';
 export default function CreateHouse() {
     //eventually, house rooms will be configurable here too
     const [boarders, openBoarders] = useState(false);
-    const { handleChange, handleSubmit, values, error, success,
+    const { handleChange, handleSubmit, values, error,
          searchRef, addTags, clearInput, removeTag } = useForm({
         initialValues: {
             form: 'rent',
@@ -20,12 +20,6 @@ export default function CreateHouse() {
             boardersUnconfirmed: []
         }
     });
-
-    /*
-    if(success) {
-        return <Redirect to="/home"/>
-    }
-    */
  
     return (
              <div className="inlineForm">
