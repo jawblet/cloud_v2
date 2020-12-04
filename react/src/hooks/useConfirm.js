@@ -39,38 +39,34 @@ export default function useConfirm({ initialValues }) {
                 setError(err.response.data); // 404 // house doesn't exist 
             });
         }
-
+ 
         //register user  
-        const registerUser = async (values, house) => {
+        const registerUser = (values, house) => {
             const { username, email, password, passwordConfirm } = values;
-            try { // create user 
-                await axios({
-                    method: 'POST',
-                    url: `auth/register`, 
-                    data: {
+
+                 axios.post('auth/register', { //create user
                       username,
                       email,
                       password,
                       passwordConfirm,
                       house: house._id
-                    }
-                }).then(res => {
-                        const user = res.data.data.user;
-                        //remove user from unconfirmed array and into confirmed on house model 
+                    }).then(res => {
+                        const user = res.data.data.user; // get new user
                         const newUnconfirmed = house.boardersUnconfirmed.filter(el => el !== values.email);
                         const newConfirmed = [...house.boarders, user._id];
                         return axios.put(`houses/${house._id}`, {
-                            boardersUnconfirmed: newUnconfirmed,
-                            boarders: newConfirmed
-                        }).then(res => {
-                            setUser(user); //log user in 
-                            history.push('/home'); //send them to home 
+                            boardersUnconfirmed: newUnconfirmed, // remove from boarders unconfirmed
+                            boarders: newConfirmed // add to boarders confirmed
+                            })
+                        }).then(() => {
+                            return axios.get('/user').then(res => { // check user's jwt 
+                            setUser(res.data.currentUser);      // use jwt value to set current user
+                            history.push('/home');              // push user home
                         });
-                    })
-                } catch(err) {
+                    }).catch((err) => {
                      console.log(err);
                      setError(err.response.data);
-                }
+                })
           };
 
     return {
