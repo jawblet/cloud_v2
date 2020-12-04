@@ -167,7 +167,7 @@ const removeTag = (tag) => {
         boardersUnconfirmed: newBoarders
     });
  };
-
+ 
 //submit + rent house 
 const rentHouse = (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
@@ -195,6 +195,7 @@ const rentHouse = (formValues) => {
             })
         })
         } catch(err) {
+        setError(err.response.data);
         console.log(err);
     }
 }

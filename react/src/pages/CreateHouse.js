@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import FormInput from '../components/FormInput'; 
 import CTA from '../components/btns/CTA'; 
 import Toggle from '../components/Toggle';
@@ -7,6 +6,7 @@ import Search from '../components/Search';
 import Prompt from '../atoms/Prompt';
 import TagBank from './../sections/TagBank';
 import useForm from '../hooks/useForm';
+import Error from '../atoms/Error';
  
 export default function CreateHouse() {
     //eventually, house rooms will be configurable here too
@@ -25,6 +25,7 @@ export default function CreateHouse() {
              <div className="inlineForm">
                 <h3>Rent a house</h3>
                 <div className="inlineForm__notif">
+                    {error && <Error error={error.messages}/>}
                 </div>
                     <form className="formFields" onSubmit={handleSubmit}>
                         <FormInput type={"text"} placeholder={"House name"} 

@@ -57,7 +57,7 @@ const searchRef = React.createRef();
                         house: user.house,
                         user: user._id,
                         color
-                    }
+                    } 
                 }).then(res => {
                     if (res.status === 200) {
                         console.log(res.data.data.checkTag[0]._id);

@@ -18,7 +18,7 @@ const handleValidationError = (err, res) => {
     } else {
         res.status(code).send({messages: errors, fields: fields})
     }
-}
+} 
 
 //error controller function
 module.exports = (err, req, res, next) => {

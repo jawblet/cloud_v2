@@ -4,11 +4,11 @@ import UserForm from '../sections/UserForm';
 import FormInput from '../components/FormInput';
 import useConfirm from '../hooks/useConfirm';
 import Prompt from '../atoms/Prompt';
-import Error from '../atoms/Error';
+import Error from '../atoms/Error'; 
 
 export default function Confirm() {
 
-    const {values, handleChange, error } = useConfirm({
+    const {values, handleChange, handleCheckUser, error } = useConfirm({
         initialValues: {
             email: '',
             username: '',
@@ -18,7 +18,13 @@ export default function Confirm() {
     });
 
     let invalidFields;
+    console.log(invalidFields);
     error ? invalidFields = error.fields : invalidFields = []; 
+
+    const sendSubmit = (e) => {
+        e.preventDefault();
+        handleCheckUser({ values });
+    }
 
     return(
         <div className="page" style={{justifyContent:'center'}}>
@@ -31,7 +37,7 @@ export default function Confirm() {
                                 To join the house, register with <br/> the email address you used to open this link. 
                             </p> }
                     </div>
-                <form>
+                <form onSubmit={sendSubmit}>
                 <UserForm values={values} handleChange={handleChange}
                 invalidFields={invalidFields}/>
                 <div className="flex justifyStart padBottomOne">
@@ -39,9 +45,9 @@ export default function Confirm() {
                 </div>
                 <FormInput type={"text"} placeholder={"House"} name={"house"} value={values.house} 
                 handleChange={handleChange}/>
-                <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
-                    <CTA name="register" type={"submit"}/>
-                </div>
+                    <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
+                        <CTA name="register" type={"submit"}/>
+                    </div>
                 </form>
             </div>
         </div>

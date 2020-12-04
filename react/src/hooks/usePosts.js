@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useRef } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
@@ -21,8 +21,6 @@ export default function usePosts(room) {
 //get posts by room + house, get tags by house
 useEffect(() => {
    async function getPostsByRoom() {
-    console.log(user.house); // is user populated with house?
-
     if(user.house && user.house.boarders) {
         await axios.get(`/posts/h/${user.house._id}/${room}`)
         .then(res => {  
@@ -34,11 +32,9 @@ useEffect(() => {
         .then(res => {  
             setPosts(res.data.data.results); //set posts
             isLoading(false); 
-        }).catch(err => console.log(err));
+            }).catch(err => console.log(err));
+        }
     }
-
-    }
-  
     getPostsByRoom();
     
     }, [user, room]); 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 const Schema = mongoose.Schema; 
 
 const houseSchema = mongoose.Schema({ 
@@ -7,6 +8,7 @@ const houseSchema = mongoose.Schema({
         required: [true, 'Houses must be named.'],
         lowercase: true,
         unique: [true, 'That name is taken.'],
+        validate: [validator.isAlphanumeric, 'Houses may only have letters and numbers.'],
         maxLength: [12, 'House names should be 12 characters or less']
     },
     boardersUnconfirmed: Array,

@@ -32,7 +32,7 @@ const userSchema = new Schema({
             }, message: 'Passwords don\'t match.'
         }
     },
-    houseName: String,
+    houseName: String, //delete this
     house: {
         type: Schema.Types.ObjectId,
         ref: 'House',

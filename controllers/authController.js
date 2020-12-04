@@ -10,7 +10,7 @@ const signToken = id => {
         expiresIn: process.env.JWT_EXPIRES_IN
     });
 }
-
+ 
 const createUserToken = async(user, code, req, res) => {
     const token = signToken(user._id);
 
@@ -45,7 +45,8 @@ exports.registerUser = async(req, res, next) => {
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password,
-                passwordConfirm: req.body.passwordConfirm
+                passwordConfirm: req.body.passwordConfirm,
+                house: req.body.house //optional
             });
 
           createUserToken(newUser, 201, req, res);
@@ -81,9 +82,9 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id).populate('house');
       } else {
-       //currentUser =  null;
-       const id = '5fc059510626fb77c06748f6';
-       currentUser = await User.findById(id).populate('house');
+       currentUser =  null;
+       //const id = '5fc059510626fb77c06748f6';
+       //currentUser = await User.findById(id).populate('house');
       }    
 
       res.status(200).send({ currentUser });
