@@ -21,7 +21,6 @@ export default function useConfirm({ initialValues }) {
         
         //check user
         const handleCheckUser = ({ values }) => {
-            console.log(values);
             //check if house exists 
             const houseName = values.house; 
             axios.get(`/houses/h/${houseName}`)
@@ -43,7 +42,6 @@ export default function useConfirm({ initialValues }) {
         //register user  
         const registerUser = (values, house) => {
             const { username, email, password, passwordConfirm } = values;
-
                  axios.post('auth/register', { //create user
                       username,
                       email,
@@ -56,12 +54,13 @@ export default function useConfirm({ initialValues }) {
                         const newConfirmed = [...house.boarders, user._id];
                         return axios.put(`houses/${house._id}`, {
                             boardersUnconfirmed: newUnconfirmed, // remove from boarders unconfirmed
-                            boarders: newConfirmed // add to boarders confirmed
+                            boarders: newConfirmed              // add to boarders confirmed
                             })
                         }).then(() => {
                             return axios.get('/user').then(res => { // check user's jwt 
-                            setUser(res.data.currentUser);      // use jwt value to set current user
-                            history.push('/home');              // push user home
+                            console.log(res.data.currentUser);
+                            setUser(res.data.currentUser);          // use jwt value to set current user
+                            history.push('/home');                  // push user home
                         });
                     }).catch((err) => {
                      console.log(err);

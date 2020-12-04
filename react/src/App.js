@@ -35,7 +35,7 @@ function App() {
       console.log(userStatus);
       setGlobalTags(houseTags);
     }
-  }, []); //removed dependency array 
+  }, [userStatus]); //removed dependency array 
 
   //console.log(user);
    

@@ -18,7 +18,6 @@ export default function Confirm() {
     });
 
     let invalidFields;
-    console.log(invalidFields);
     error ? invalidFields = error.fields : invalidFields = []; 
 
     const sendSubmit = (e) => {

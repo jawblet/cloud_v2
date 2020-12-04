@@ -21,8 +21,7 @@ export default function usePosts(room) {
         setEditorState(editorState);  
       }
  
-console.log(user);  
-    
+console.log(user);      
 //get posts by room + house, get tags by house
 useEffect(() => {
    async function getPostsByRoom() {
