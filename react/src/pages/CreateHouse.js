@@ -21,9 +21,11 @@ export default function CreateHouse() {
         }
     });
 
+    /*
     if(success) {
         return <Redirect to="/home"/>
     }
+    */
  
     return (
              <div className="inlineForm">

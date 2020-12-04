@@ -171,7 +171,6 @@ const removeTag = (tag) => {
 //submit + rent house 
 const rentHouse = (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
-    console.log(boardersUnconfirmed);
     try {
          axios({
             method: 'POST',
@@ -194,6 +193,7 @@ const rentHouse = (formValues) => {
                  const updatedUser = res.data.data.doc;
                  setUser(updatedUser);
                  setSuccess(true);
+                 history.push('/home');
             })
         })
         } catch(err) {

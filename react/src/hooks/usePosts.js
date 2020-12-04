@@ -27,7 +27,7 @@ useEffect( async() => {
         isLoading(false); 
     }).catch(err => console.log(err));
     
-    }, [room]); 
+    }, [user, room]); 
 
 //open post detail pg
 const openPost = () => {

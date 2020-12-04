@@ -14,7 +14,7 @@ export default function CreateUser() {
             username: '',
             password: '', passwordConfirm: ''
         }
-    });
+    }); 
 
     let invalidFields;
     error ? invalidFields = error.fields : invalidFields = []; 

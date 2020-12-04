@@ -3,13 +3,14 @@ import axios from 'axios';
  
 export default function useFindUser() {
 const [userStatus, setUserStatus] = useState({});
-const [houseTags, setHouseTags] = useState({});
+const [houseTags, setHouseTags] = useState(null);
 const [isLoading, setLoading] = useState(true);
  
 useEffect(() => {
-     axios.get('/user')
+     axios.get('/user') 
             .then(res => {
                 const user = res.data.currentUser;
+                console.log(user);
                 setUserStatus(user);
            return axios.get(`/tags/h/${user.house._id}`);
         }).then(res => {

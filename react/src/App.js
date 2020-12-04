@@ -6,7 +6,7 @@ import PrivateRoute from './pages/PrivateRoute';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Confirm from './pages/Confirm';
-import Landing from './pages/Landing';
+import Landing from './pages/Landing'; 
 import Home from './pages/Home';
 import Room from './pages/Room';
 import User from './pages/User';
