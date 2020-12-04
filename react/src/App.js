@@ -29,12 +29,13 @@ function App() {
   const { userStatus, houseTags, isLoading } = useFindUser();
  
   useEffect(() => {
-    if(houseTags) {
+    if(userStatus) {
       console.log('call main useEffect');
       setUser(userStatus);
+      console.log(userStatus);
       setGlobalTags(houseTags);
     }
-  }, [userStatus, houseTags]);
+  }, []); //removed dependency array 
 
   //console.log(user);
    

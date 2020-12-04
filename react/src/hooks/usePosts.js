@@ -6,7 +6,10 @@ import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 export default function usePosts(room) {
     const { user, globalTags } = useContext(UserContext);
     const tags = globalTags;
-    const tagNames = tags.map(el => el.tag);
+    let tagNames;
+    if(tags && tags.length > 0) {
+        tagNames = tags.map(el => el.tag);
+    }
     
     const [posts, setPosts] = useState(null);
     const [loading, isLoading] = useState(true);
@@ -18,6 +21,8 @@ export default function usePosts(room) {
         setEditorState(editorState);  
       }
  
+console.log(user);  
+    
 //get posts by room + house, get tags by house
 useEffect(() => {
    async function getPostsByRoom() {
@@ -36,7 +41,6 @@ useEffect(() => {
         }
     }
     getPostsByRoom();
-    
     }, [user, room]); 
 
 //open post detail pg

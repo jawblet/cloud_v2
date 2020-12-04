@@ -59,7 +59,7 @@ export default function useForm({ initialValues }) {
                 }
             }).then(res => {
                     const user = res.data.data.user;
-                    setUser(user); 
+                    setUser(user); //set user in context w/o jwt 
                     history.push('/register#rent'); 
                 })
             } catch(err) {
@@ -68,28 +68,46 @@ export default function useForm({ initialValues }) {
             }
       };
 
+      //submit + rent house 
+const rentHouse = (formValues) => {
+    const { house, boardersUnconfirmed } = formValues.values;
+         axios.post('houses', {
+              house,
+              boardersUnconfirmed, // save new emails as unconfirmed users
+              boarders: user._id //save creator as confirmed user
+            }).then(res => {
+            const house = res.data.data.doc._id;
+            return axios.put(`users/${user._id}`, {
+                house
+                })
+            }).then(() => { 
+                return axios.get('/user').then(res => { // check user's jwt 
+                    setUser(res.data.currentUser);      // use jwt value to set current user
+                    history.push('/home');              // push user home
+                });  
+        }).catch((err) => {
+            setError(err.response.data);
+            console.log(err);
+    })
+};
+
+
     //login user 
     const loginUser = async (formValues) => {
  
         const { username, password } = formValues.values;
-        try {
-            await axios({
-                method: 'POST',
-                url: `auth/login`, 
-                data: {
+            await axios.post('auth/login', {
                   username,
-                  password,
-                }
-            }).then(res => { 
-                    console.log(res.data.data.user.username);
-                    const user = res.data.data.user;
-                    setUser(user); 
-                    history.push('/home'); 
-                })
-            } catch(err) {
+                  password
+            }).then(() => { 
+                return axios.get('/user').then(res => { // check user's jwt 
+                    setUser(res.data.currentUser);      // use jwt value to set current user
+                    history.push('/home');              // push user home
+                    });  
+                }).catch((err) => {
                  console.log(err);
                  setError(err.response.data);
-            }
+            })
       };
  
 //update user information
@@ -168,37 +186,6 @@ const removeTag = (tag) => {
     });
  };
  
-//submit + rent house 
-const rentHouse = (formValues) => {
-    const { house, boardersUnconfirmed } = formValues.values;
-    try {
-         axios({
-            method: 'POST',
-            url: `houses`,
-            data: {
-              house,
-              boardersUnconfirmed, // save new emails as unconfirmed users
-              boarders: user._id //save creator as confirmed user
-            }
-        }).then(res => {
-            const house = res.data.data.doc._id;
-            return axios ({
-                method: 'PUT',
-                url: `users/${user._id}`,
-                data: {
-                    house
-                }
-            }).then(res => {
-                 const updatedUser = res.data.data.doc;
-                 setUser(updatedUser);
-                 history.push('/home');
-            })
-        })
-        } catch(err) {
-        setError(err.response.data);
-        console.log(err);
-    }
-}
     return {
         handleChange,
         handleSubmit,
