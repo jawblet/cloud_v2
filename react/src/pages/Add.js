@@ -51,8 +51,7 @@ import { convertToRaw } from 'draft-js';
             break;
             case 'note': //convert draft-js to a string 
                 const data = editorState.getCurrentContent();
-                const note = JSON.stringify(convertToRaw(data));
-                handleNoteSubmit(values, note);
+                handleNoteSubmit(values, data);
             break;
             default: handleLinkSubmit({ values });
         }

@@ -3,7 +3,7 @@ const AppError = require('./../utils/AppError');
 const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
-
+ 
 //create token for authenticated user 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -83,13 +83,14 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         currentUser = await User.findById(decoded.id).populate('house');
       } else {
        currentUser = null;
-       // const id = '5fc059510626fb77c06748f6';
-       // currentUser = await User.findById(id).populate('house');
+       //const id = '5fcaecf29f5729626a5f7afe';
+       //currentUser = await User.findById(id).populate('house');
       }    
 
       res.status(200).send({ currentUser });
 });
  
+
 //update password 
 exports.changePassword = catchAsync(async (req, res, next) => {
     const user = await User.findById(req.params.id);

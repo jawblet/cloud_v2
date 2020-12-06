@@ -30,9 +30,8 @@ function App() {
  
   useEffect(() => {
     if(userStatus) {
-      console.log('call main useEffect');
+     // console.log('call main useEffect');
       setUser(userStatus);
-      console.log(houseTags);
       setGlobalTags(houseTags);
     }
   }, [userStatus, houseTags]); //need dependency array 

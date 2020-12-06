@@ -1,5 +1,4 @@
-const Post = require('./../models/postModel');
-const catchAsync = require('./../utils/catchAsync'); 
+const Post = require('../models/postModel');
 const functionHandler = require('./genericFunctionController');
 
 exports.getAllPosts = functionHandler.getAll(Post); 

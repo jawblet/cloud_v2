@@ -43,7 +43,7 @@
     transform: translate(-50%, -50%);
     min-width: 40rem;
     width: 90vw;
-    min-height: 85vh;
+    height: 85vh;
     border-radius: $border-small;
     background-color: $off-white;
     display: flex;
@@ -51,10 +51,10 @@
     padding: 3rem; 
     padding-bottom: 1rem;
     line-height: 150%;
+    overflow: scroll;
     &__content {
         width: 100%;
         display: flex;
-        overflow: scroll;
        // border: 1px solid orange;
     }
     &__sidebar {

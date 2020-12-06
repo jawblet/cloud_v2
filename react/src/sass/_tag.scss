@@ -2,7 +2,6 @@
     position: relative;
     background-color: transparent;
     border-radius: $border-small;
-    //display: flex;
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -17,7 +16,7 @@
         background-color: $sand2;
     }
     &__X {
-        font-size: 1rem;
+        font-size: 0.8rem; 
         color: $body-light;
         position: absolute;
         right: 5px;
@@ -93,7 +92,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-   // border: 1px solid black;
 }
 
 //global tags by house

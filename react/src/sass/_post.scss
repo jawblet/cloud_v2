@@ -1,5 +1,43 @@
 //post card 
-.post {
+.post100 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 3rem;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 1rem;
+    }
+    &__body{
+       // border: 1px solid rgba(0, 0, 255, 0.452);
+        &__note {
+           // border: 1px solid rgba(255, 0, 0, 0.411); 
+        }
+    }
+    &__editBtn{
+        margin-left: 1.5rem;        
+    }
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        word-break: normal;
+        color: $body-lightest;
+        & > * {
+            margin-right: 0.5rem;
+        }
+        & > h4::after {
+            content: ','
+        }
+        & > h4:last-child::after,
+        & > h4:first-child::after {
+            content: ''
+        }
+    }
+}
+
+.post { 
     width: 15rem;
     height: 15rem;
     border: 1px solid $soft-outline;
@@ -15,8 +53,8 @@
         flex: 0 0 10%; 
     }
     &__body {
-        display: flex;
         flex: 0 0 80%;
+        display: flex;
         padding: 0;
         overflow: hidden;
         cursor: pointer;
@@ -26,6 +64,14 @@
             position: relative;
             overflow: hidden;
         }
+        &__link {
+            align-self: stretch;
+           // border: 1px solid $shadow; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 100%;
+        }
         &__fade {
             position: absolute;
             height: 30%;
@@ -34,30 +80,11 @@
             background: linear-gradient(transparent, 20%, $off-white);
         }
     }
-    &__tags {
-        margin: 0.5rem 0;
-        display: flex;
-        flex: 0 0 10%;
-        flex-wrap: wrap;
-        text-align: justify;
-        word-break: normal;
-        position: relative;
-        & > * {
-            margin-right: 0.5rem;
-        }
-    }
-}
-
-.post__tags > h4::after {
-    content: ','
-}
-.post__tags > h4:last-child::after {
-    content: ''
 }
 
 
 
-
+ 
 
 
 

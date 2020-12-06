@@ -3,24 +3,43 @@
     height: 100%;
     width: 100%;
     margin-top: 1.5rem;
-    &__sidebar { flex: 0 0 15%; }
-    &__body { flex: 0 0 85%; }
+    &__sidebar { 
+        flex: 0 0 15%; 
+        margin-top: 1rem;
+        & > * {
+            margin-bottom: 3rem;
+        }
+    }
+    &__body { 
+        flex: 0 0 85%; 
+        margin-top: 1rem;
+    }
 }
 
-.roomPosts {
+//100% view 
+.postList100 {
+    display: flex;
+    flex-direction: column;
+}
+
+/// 25% view 
+.postList {
     display: flex;
     flex-wrap: wrap;
     & > * {
         margin-right: 1.5rem;
         margin-bottom: 1.5rem; 
     }
-    &--empty {
-        height: 25vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+}
+
+
+// empty room (all views)
+.emptyRoom {
+    height: 25vh;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 // custom style for add btn
@@ -29,3 +48,4 @@
     bottom: 3rem;
     left: 3rem;
   }
+

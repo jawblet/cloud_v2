@@ -1,5 +1,5 @@
-const Tag = require('./../models/tagModel');
-const House = require('./../models/houseModel');
+const Tag = require('../models/tagModel');
+const House = require('../models/houseModel');
 const functionHandler = require('./genericFunctionController');
 const catchAsync = require('./../utils/catchAsync');
 

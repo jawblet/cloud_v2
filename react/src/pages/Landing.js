@@ -1,17 +1,8 @@
-import React, { useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
-import { UserContext } from '../hooks/UserContext'
 
 export default function Landing() {
-    const history = useHistory();
-    const { user } = useContext(UserContext);
-    
-    //if user is logged in, send them directly to home 
-    // if(user && user._id) {
-    //   history.push('/home');
-    // }
 
     return(
         <div className="page">

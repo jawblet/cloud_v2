@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import TagPreview from '../atoms/TagPreview';
 
@@ -15,10 +15,11 @@ export default function Preview({ preview, post }) {
             const remainder = (post.tags.length - max);
             return(
                 <div className="postPreview__tags">
-                    {post.tags.map((tag, i) => { 
-                        if(i < max)
-                        return ( <TagPreview tag={tag} key={tag._id}/> ) 
-                    })}
+                    {post.tags.map((tag, i) => 
+                        { if(i < max) {
+                            return ( <TagPreview tag={tag} key={tag._id}/> ) 
+                        }
+                    }) }
                     <p>and {remainder} more.</p>
                 </div>
             )

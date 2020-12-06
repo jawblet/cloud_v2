@@ -5,7 +5,10 @@ import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
 import usePosts from '../hooks/usePosts'; 
- 
+import InlineComment from '../components/InlineComment';
+import useComment from '../hooks/useComment';
+import CommentList from '../components/CommentList';
+  
 export default function Edit( {openPost} ) {
     const params = useParams();
     const location = useLocation();
@@ -16,6 +19,8 @@ export default function Edit( {openPost} ) {
             setEditorState, onNoteChange, 
             postDetail, editNote, isReadOnly,
             saveUpdate  } = usePosts();
+
+    const { data, handleKeyDown, handleChange, deleteComment } = useComment(post._id);
 
     useEffect(() => {
         if(post.type === 'note') { 
@@ -68,17 +73,12 @@ export default function Edit( {openPost} ) {
                                 })}
                             </>
                             : <h4 className="lightest">no tags</h4>
-
                             }
                         </div>
                         <div className="edit__metadata">
-                        {post.comment !== ''
-                            ? <>
-                                <h4 className="lightest">comments</h4>
-                                <h4 className="light">{post.comment}</h4>
-                            </>
-                            : <h4 className="lightest">no comments</h4>}
+                            <CommentList postComments={data.postComments} deleteComment={deleteComment}/>
                         </div>
+                            <InlineComment handleChange={handleChange} handleKeyDown={handleKeyDown} comment={data.comment}/>
                     </div>
                     <div className="edit__body">
                         <div className="edit__body__edit">

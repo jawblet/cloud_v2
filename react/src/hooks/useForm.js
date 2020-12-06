@@ -10,6 +10,7 @@ export default function useForm({ initialValues }) {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
+    console.log(user);
     //track form values
     const handleChange = event => {
         const value = event.target.value; 
@@ -68,7 +69,15 @@ export default function useForm({ initialValues }) {
             }
       };
 
-      //submit + rent house 
+const emailBoarders = (house, users) => {
+    axios.post('/houses/email', {
+        house,
+        users
+    }).then(res => console.log(res))
+    .catch(err => console.log(err));
+};
+
+//submit + rent house 
 const rentHouse = (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
          axios.post('houses', {
@@ -76,9 +85,13 @@ const rentHouse = (formValues) => {
               boardersUnconfirmed, // save new emails as unconfirmed users
               boarders: user._id //save creator as confirmed user
             }).then(res => {
-            const house = res.data.data.doc._id;
+            console.log(boardersUnconfirmed);
+            if(boardersUnconfirmed.length !== 0) {
+                emailBoarders(house, boardersUnconfirmed); 
+            }
+            const houseId = res.data.data.doc._id;
             return axios.put(`users/${user._id}`, {
-                house
+                house: houseId
                 })
             }).then(() => { 
                 return axios.get('/user').then(res => { // check user's jwt 
@@ -86,11 +99,10 @@ const rentHouse = (formValues) => {
                     history.push('/home');              // push user home
                 });  
         }).catch((err) => {
-            setError(err.response.data);
+            //setError(err.response.data);
             console.log(err);
     })
 };
-
 
     //login user 
     const loginUser = async (formValues) => {

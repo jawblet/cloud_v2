@@ -10,4 +10,4 @@ export default function CommentInput({ show, value, handleChange }) {
                 onChange={handleChange} contentEditable={true} suppressContentEditableWarning={true}/>
             </CSSTransition>
     )
-} 
+}

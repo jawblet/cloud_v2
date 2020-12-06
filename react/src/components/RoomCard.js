@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom';  
 import usePosts from '../hooks/usePosts';
-import Gradient from '../atoms/Gradient';
+import Gradient from '../atoms/Gradient'; 
  
 export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
   const { posts, loading } = usePosts(room.id);

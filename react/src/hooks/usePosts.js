@@ -1,11 +1,10 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react'; 
 import axios from 'axios';
 import { UserContext } from './UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
 export default function usePosts(room) {
     const { user, globalTags } = useContext(UserContext);
-    console.log(globalTags);
     const tags = globalTags;
     let tagNames;
     if(tags && tags.length > 0) {

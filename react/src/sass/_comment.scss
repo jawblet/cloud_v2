@@ -1,0 +1,46 @@
+.comment {
+    background-color: $sand;
+    padding: 1rem 0.5rem 0 0.5rem;
+    border-radius: $border-small;
+    display: flex;
+    flex-direction: column;
+    &__body {
+        display: flex;
+    }
+    &__X {
+        flex-shrink: 1;
+        height: 1rem;
+     }
+    &__text {
+        text-transform: none;
+        letter-spacing: 0.5px;
+        margin: 0 1rem;
+    }
+    &__author {
+        flex-shrink: 1;
+        align-self: flex-end;
+        color: $body-lightest;
+    }
+   
+}
+
+//comment container for posts 
+.commentList{
+    & > *:not(:first-child) {
+        margin-bottom: 1rem;
+    }
+}
+
+//comment box
+//h5
+.inlineComment { 
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    border: 3px solid $sand2;
+    resize: none; 
+    &::placeholder {
+    color: $body-lightest;
+    }
+}
+

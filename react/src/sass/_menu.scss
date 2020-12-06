@@ -90,7 +90,7 @@
         &.active {
             color: $body-medium;
             &::after {
-                content: '✴';
+                content: '—';
                 margin-left: 0.5rem;
             }
         }

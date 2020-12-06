@@ -16,20 +16,19 @@ const postSchema = new Schema({
         required: [true, 'Nothing to add.']
     },
     house: {
-        type: Schema.Types.ObjectId,
-        ref: 'House'
+            type: Schema.Types.ObjectId,
+            ref: 'House'
     },
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+            type: Schema.Types.ObjectId,
+            ref: 'User'
     },
     tags: [
         {
-        type: Schema.Types.ObjectId,
-        ref: 'Tag' 
-    }
+            type: Schema.Types.ObjectId,
+            ref: 'Tag' 
+        }
     ],
-    comment: String,
     room: String, 
     date: {
         type: String,

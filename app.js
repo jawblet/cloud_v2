@@ -9,6 +9,7 @@ const userRouter = require('./routers/userRouter');
 const houseRouter = require('./routers/houseRouter');
 const postRouter = require('./routers/postRouter');
 const tagRouter = require('./routers/tagRouter');
+const commentRouter = require('./routers/commentRouter');
 const searchRouter = require('./routers/searchRouter');
 const AppError = require('./utils/AppError'); 
 const errorController = require('./controllers/errorController');
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);
+app.use('/comments', commentRouter);
 app.use('/houses', houseRouter);
 app.use('/tags', tagRouter);
 app.use('/users', userRouter);

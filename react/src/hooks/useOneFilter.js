@@ -7,7 +7,7 @@ export default function useRoomFilter(initialState) {
     const handleOneFilter = (e) => {
         setActiveItem(e.currentTarget.dataset.id);
     }
-
+ 
     return{
         handleOneFilter,
         activeItem

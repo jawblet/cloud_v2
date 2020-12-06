@@ -8,10 +8,9 @@ export default function Library() {
     const editRef = useRef(null);
     const nav = [ {name: 'library', url: 'library'} ];
 
-    const {editorState, setEditorState, 
-            onNoteChange, mapKeyToEditorCommand, 
-            handleKeyCommand, toggleInlineStyle,
-            toggleBlockType} = useRichEditor();
+    const {editorState, onNoteChange, mapKeyToEditorCommand, 
+            handleKeyCommand, toggleInlineStyle, toggleBlockType} 
+            = useRichEditor();
 
     useEffect(() => {
         editRef.current.focus();
@@ -31,7 +30,6 @@ export default function Library() {
                     />
                 <div className="libraryWrapper">
                     <Editor editorState={editorState} 
-                    onChange={setEditorState}
                     ref={editRef} spellCheck={true}
                     onChange={onNoteChange}
                     handleKeyCommand={handleKeyCommand}
