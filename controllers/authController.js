@@ -83,8 +83,8 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         currentUser = await User.findById(decoded.id).populate('house');
       } else {
        currentUser = null;
-       //const id = '5fcaecf29f5729626a5f7afe';
-       //currentUser = await User.findById(id).populate('house');
+       // const id = '5fcaecf29f5729626a5f7afe';
+       // currentUser = await User.findById(id).populate('house');
       }    
 
       res.status(200).send({ currentUser });

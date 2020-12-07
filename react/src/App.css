@@ -340,8 +340,7 @@ menu {
       margin-bottom: 3rem; }
   .room__body {
     flex: 0 0 50%;
-    margin-top: 1rem;
-    overflow: scroll; }
+    margin-top: 1rem; }
 
 .emptyRoom {
   height: 25vh;
@@ -720,6 +719,8 @@ d {
       transition: all 0.35s; }
       .edit__body__noteDetail.active {
         border: 3px solid #f5eee5; }
+    .edit__body__linkDetail {
+      flex: 1; }
     .edit__body__save {
       flex: 0 0 7%;
       display: flex;
@@ -945,21 +946,29 @@ h6[data-block] {
     .post100__tags > h4:first-child::after {
       content: ''; }
 
+.post25 {
+  width: 23.5%;
+  display: flex;
+  flex-direction: column;
+  height: 100%; }
+
 .post {
-  width: 25%;
+  align-self: stretch;
   border: 1px solid #d8d7d3;
   border-radius: 1rem;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 100%; }
   .post__header {
     display: flex;
-    flex: 0 0 10%; }
+    flex: 0 0 5%; }
   .post__body {
-    flex: 0 0 80%;
+    flex: 0 0 90%;
     display: flex;
+    justify-content: center;
     padding: 0;
     overflow: hidden;
     cursor: pointer; }
@@ -967,9 +976,7 @@ h6[data-block] {
       position: relative;
       overflow: hidden; }
     .post__body__link {
-      align-self: stretch;
       display: flex;
-      justify-content: center;
       align-items: center; }
     .post__body__fade {
       position: absolute;
@@ -981,9 +988,10 @@ h6[data-block] {
 .postRow25 {
   display: flex;
   height: 25%;
-  align-items: stretch; }
+  align-items: stretch;
+  margin-bottom: 2%; }
   .postRow25 > *:not(:last-child) {
-    margin-right: 1rem; }
+    margin-right: 2%; }
 
 .post5 {
   background-color: #f1e3d3;
@@ -1333,11 +1341,63 @@ h6[data-block] {
     .filter__paint--active {
       background-color: #f1e3d3; }
 
+.linkCard > .react_tinylink_card {
+  border: none !important;
+  padding: 0 !important;
+  height: 3rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .linkCard > .react_tinylink_card:hover {
+    background-color: inherit !important; }
+  .linkCard > .react_tinylink_card > .react_tinylink_card_content_wrapper {
+    padding: 0 !important; }
+    .linkCard > .react_tinylink_card > .react_tinylink_card_content_wrapper > .react_tinylink_card_content {
+      display: none !important; }
+      .linkCard > .react_tinylink_card > .react_tinylink_card_content_wrapper > .react_tinylink_card_content + .react_tinylink_footer {
+        padding: 5px !important;
+        font-family: 'Graphik', sans-serif; }
+        .linkCard > .react_tinylink_card > .react_tinylink_card_content_wrapper > .react_tinylink_card_content + .react_tinylink_footer > .react_tinylink_card_footer_description {
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          text-align: center !important; }
+    .linkCard > .react_tinylink_card > .react_tinylink_card_content_wrapper > .react_tinylink_card_content_header {
+      display: none !important; }
+
+.react_tinylink_card {
+  width: 100% !important;
+  border-radius: 0.5rem;
+  border: 1px solid #f5eee5 !important;
+  padding: 1rem;
+  box-shadow: none !important;
+  background-color: #fffdfa !important;
+  transition: all 0.35s !important; }
+  .react_tinylink_card:hover {
+    background-color: #f5eee5 !important; }
+  .react_tinylink_card_footer_description {
+    color: #72716B !important;
+    font-size: 0.8rem !important; }
+
+.react_tinylink_card_media {
+  opacity: 65% !important; }
+
+.react_tinylink_card_content {
+  font-family: 'Graphik', sans-serif; }
+  .react_tinylink_card_content_header_description {
+    font-weight: normal !important;
+    font-size: 0.9rem !important;
+    color: #72716B !important; }
+  .react_tinylink_card_content_description {
+    font-size: 0.8rem !important;
+    color: #C3C2BD !important; }
+
 .linkCard {
   border-radius: 0.5rem;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  width: 100%; }
 
 .toolbar {
   display: flex;

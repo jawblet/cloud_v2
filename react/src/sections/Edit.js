@@ -4,11 +4,12 @@ import TagPreview from '../atoms/TagPreview';
 import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
+import { LinkDetail } from '../components/posts/LinkPreview';
 import usePosts from '../hooks/usePosts'; 
 import InlineComment from '../components/InlineComment';
 import useComment from '../hooks/useComment';
 import CommentList from '../components/CommentList';
-  
+
 export default function Edit( {openPost} ) {
     const params = useParams();
     const location = useLocation();
@@ -94,7 +95,9 @@ export default function Edit( {openPost} ) {
                                 onChange={onNoteChange} />
                             </div>   
                             : 
-                            <div> Link </div>         
+                            <div className='edit__body__linkDetail'>
+                                <LinkDetail link={post.content}/> 
+                            </div>  
                         }
                         <div className={`edit__body__save ${isReadOnly ? '' : 'active'}`}>
                             <InlineButton name={"save changes"} handleClick={updatePost}/>

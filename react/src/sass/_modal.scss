@@ -86,6 +86,11 @@
                 border: 3px solid $sand2;
             }
         }
+        &__linkDetail {
+            //border: 1px solid blue; 
+           // padding: 1rem; 
+            flex: 1;
+        }
         &__save {
             flex: 0 0 7%;
             display: flex;

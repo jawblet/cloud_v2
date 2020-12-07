@@ -1,4 +1,4 @@
-import React from 'react';  
+import React from 'react';   
 import Post from '../components/posts/Post';
 
 export default function PostList25(props) { 

@@ -1,6 +1,81 @@
+
+.linkCard > .react_tinylink_card {
+    border: none !important; 
+    padding: 0 !important;
+    height: 3rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: inherit !important;
+    }
+    & > .react_tinylink_card_content_wrapper {
+     padding: 0 !important;   
+    // height: 5rem !important;
+     & > .react_tinylink_card_content {
+         display: none !important;
+         & + .react_tinylink_footer {
+            padding: 5px !important; 
+            font-family: 'Graphik', sans-serif;
+           // border: 1px solid blue !important; 
+            & > .react_tinylink_card_footer_description {
+                white-space: nowrap !important;
+                overflow: hidden !important;   
+                text-overflow: ellipsis !important; 
+                text-align: center !important;
+            }
+         }
+     }
+     & > .react_tinylink_card_content_header {
+        display: none !important;
+    }
+    }
+}
+
+.react_tinylink_card {
+    width: 100% !important;
+    border-radius: $border-small;
+    border: 1px solid $sand2 !important;
+    padding: 1rem;
+    box-shadow: none !important;
+    background-color: $off-white !important;
+    transition: all $short-fade !important;
+    &:hover {
+        background-color: $sand2 !important;
+    }
+    &_footer_description {
+        color: $body-light !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+.react_tinylink_card_media {
+    opacity: 65% !important;
+}
+
+.react_tinylink_card_content {
+    font-family: 'Graphik', sans-serif;
+    &_header_description {
+        font-weight: normal !important;
+        font-size: 0.9rem !important;
+        color: $body-light !important;
+    }
+    &_description {
+        font-size: 0.8rem !important;
+        color: $body-lightest !important;
+    }
+
+}
+
+
+
+
 .linkCard {
     border-radius: $border-small;
     display: flex;
     justify-content: center;
     align-items: center;
+  //  border: 1px solid orange;
+    width: 100%;
 }
+

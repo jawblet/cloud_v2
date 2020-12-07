@@ -14,7 +14,6 @@
     &__body{
        padding-bottom: 1rem;
         &__note {
-           // border: 1px solid rgba(255, 0, 0, 0.411); 
         }
     }
     &__editBtn{
@@ -39,8 +38,15 @@
 }
 
 //25% 
+.post25 {
+    width: 23.5%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .post { 
-    width: 25%;
+    align-self: stretch;
     border: 1px solid $soft-outline;
     border-radius: $border-large;
     padding: 0.5rem;
@@ -48,27 +54,25 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    height: 100%;
     &__header {
         display: flex;
-        flex: 0 0 10%; 
+        flex: 0 0 5%; 
     }
     &__body {
-        flex: 0 0 80%;
+        flex: 0 0 90%;
         display: flex;
+        justify-content: center;
         padding: 0;
         overflow: hidden;
         cursor: pointer;
         &__note {
-           // width: 100%;
             position: relative;
             overflow: hidden;
         }
         &__link {
-            align-self: stretch;
             display: flex;
-            justify-content: center;
             align-items: center;
-            // flex: 0 0 100%;
         }
         &__fade {
             position: absolute;
@@ -84,12 +88,11 @@
     display: flex;
     height: 25%;
     align-items: stretch;
+    margin-bottom: 2%;
     & > *:not(:last-child) {
-        margin-right: 1rem;
+        margin-right: 2%;
     }
 }
-
-
 
 //5% 
 .post5 {
