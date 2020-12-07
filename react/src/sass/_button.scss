@@ -25,7 +25,7 @@
 }
 
 //inline buttons
-.inlineBtn {
+.inlineBtn { 
   height: 3rem;
   display: flex;
   align-items: center;
@@ -43,6 +43,7 @@
   transition: all $short-fade;
   &__btn {
     cursor: pointer;
+    &--active { background-color: red;}
     &:hover { color: $body-light; }
   }
   &--active { color: $body-light }
@@ -51,7 +52,6 @@
     &:hover { color: $accent-red }
   }
 }
-
 
 //dot  
 d {

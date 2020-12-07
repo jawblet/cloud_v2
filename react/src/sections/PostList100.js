@@ -1,6 +1,5 @@
 import React from 'react';
-import Post100 from '../components/Post100';
-import { CSSTransition } from 'react-transition-group';
+import Post100 from '../components/posts/Post100';
  
 export default function PostList100(props) { 
     return(

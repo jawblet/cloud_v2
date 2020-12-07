@@ -15,7 +15,7 @@ export default function Filter (props) {
                 )
             })}
 
-                <div className="filter__paint">
+                <div className={`filter__paint ${props.eyedrop ? "filter__paint--active" : ''}`}>
                 {props.activeFilter.includes('color') &&
                     <VscPaintcan className={`icon icon__btn ${props.eyedrop ? "icon--active" : ''}`}
                         onClick={props.handlePaintClick}/>

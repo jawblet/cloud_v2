@@ -1,4 +1,5 @@
 .tag {
+    width: auto;
     position: relative;
     background-color: transparent;
     border-radius: $border-small;
@@ -6,10 +7,10 @@
     align-items: center;
     position: relative;
     padding: 7px;
-    margin-bottom: 1rem;
+   // margin-bottom: 1rem;
     margin-right: 1rem; 
-    transition: all $short-fade;
     line-height: $line-height;
+    transition: all $short-fade;
     &--edit {
         padding-right: 1.7rem;
         border-radius: $border-small;
@@ -23,6 +24,9 @@
         transform: translateY(-50%);
         top: 50%;
         cursor: pointer;
+    }
+    &__count {
+        margin-left: 0.5rem;
     }
 }
 
@@ -107,5 +111,9 @@
         & > * {
             margin-right: 3rem;
         }
+    }
+    &__stats {
+        display: flex;
+        margin-top: 3rem; 
     }
 }

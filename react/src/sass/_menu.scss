@@ -120,5 +120,13 @@
     }
     &__paint {
         width: 1.5rem;
+        height: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: inherit;
+        transition: all $short-fade;
+        border-radius: $border-smallest;
+        &--active { background-color: $sand3;}
     }
 }

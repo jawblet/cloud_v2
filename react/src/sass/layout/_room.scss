@@ -6,32 +6,17 @@
     &__sidebar { 
         flex: 0 0 15%; 
         margin-top: 1rem;
+        margin-right: 3rem;
         & > * {
             margin-bottom: 3rem;
         }
     }
-    &__body { 
-        flex: 0 0 85%; 
+    &__body { // standardized room layout for all 3 views 
+        flex: 0 0 50%; 
         margin-top: 1rem;
+        overflow: scroll;
     }
 }
-
-//100% view 
-.postList100 {
-    display: flex;
-    flex-direction: column;
-}
-
-/// 25% view 
-.postList {
-    display: flex;
-    flex-wrap: wrap;
-    & > * {
-        margin-right: 1.5rem;
-        margin-bottom: 1.5rem; 
-    }
-}
-
 
 // empty room (all views)
 .emptyRoom {

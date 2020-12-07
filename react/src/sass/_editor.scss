@@ -1,4 +1,5 @@
-//draft-js custom styling 
+//draft-js custom styling only // 
+
 .DraftEditor-root {
     border-radius: $border-small;
     background-color: $off-white;
@@ -7,33 +8,13 @@
 
 .DraftEditor-editorContainer {
     text-align: left;
-    min-height: 6.5rem;
+  //  min-height: 6.5rem;
 }
 
 .public-DraftEditor-content {
     font-family: 'Graphik', sans-serif;
     line-height: 180%;
     font-size: 0.9rem;
-}
-
-.editorWrapper {
-    width: 100%;
-    padding: 1rem;
-    background-color: $off-white;
-    border-radius: $border-small;
-}
-
-.editorTag {
-    padding: 2px;
-    border-radius: 3px;
-}
-
-//STYLE BUTTONS
-.toolbar {
-    display: flex;
-    align-items: center;
-    background-color: $sand;
-    color: $body-light;
 }
 
 //set styles for edit components 
@@ -76,3 +57,16 @@ h2[data-block] {
     font-family: 'Graphik', sans-serif;
     font-size: 0.67rem;
  }
+
+ ///******////
+ .editorWrapper {
+    width: 100%;
+    padding: 1rem;
+    border-radius: $border-small;
+}
+
+.editorTag {
+    padding: 2px;
+    border-radius: 3px;
+}
+ 

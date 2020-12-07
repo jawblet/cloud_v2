@@ -31,7 +31,7 @@ export default function Toolbar(props) {
     {label: 'OL', style: 'ordered-list-item', icon: <VscListOrdered className="icon icon__btn"/>},
     {label: 'Code Block', style: 'code-block', icon: <VscSymbolNamespace className="icon icon__btn"/>},
   ];
-
+ 
   const selection = props.editorState.getSelection();
   const blockType = props.editorState.getCurrentContent()
     .getBlockForKey(selection.getStartKey())

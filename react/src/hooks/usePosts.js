@@ -20,7 +20,7 @@ export default function usePosts(room) {
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
       }
- 
+  
 //console.log(user);      
 //get posts by room + house, get tags by house
 useEffect(() => {

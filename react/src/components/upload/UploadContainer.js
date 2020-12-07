@@ -57,9 +57,15 @@ export default function UploadContainer(props) {
                     <div className="upload__extra"> 
                         <div className="upload__label"> <h4>Label</h4> </div> 
                         <div className="addTags">
-                            <Search values={values} results={props.results} ref={props.searchRef} selectTag={props.selectTag}
-                                    handleChange={props.handleChange} addTags={props.addTags} clearInput={props.clearInput}/>
-                            <TagBank tags={values.tags} handleDelete={props.removeTag}/> 
+                            <Search values={values} 
+                                    results={props.results} 
+                                    ref={props.searchRef} 
+                                    selectTag={props.selectTag}
+                                    handleChange={props.handleChange} 
+                                    addTags={props.addTags} 
+                                    clearInput={props.clearInput}/>
+                            <TagBank tags={values.tags} 
+                                    handleDelete={props.removeTag}/> 
                             <div style={{alignSelf:'flex-start'}}>
                             {openAutoComplete &&
                                   <AutoComplete results={props.results} selectTag={props.selectTag}/>                       

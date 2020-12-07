@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Header from './../sections/Header'; 
 import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
@@ -9,6 +9,7 @@ import { Link, useParams} from 'react-router-dom';
 import { VscAdd } from 'react-icons/vsc';
 import useOneFilter from '../hooks/useOneFilter'; 
 import usePosts from '../hooks/usePosts';
+import useTags from '../hooks/useTags';
 import Edit from '../sections/Edit'; 
 import { CSSTransition } from 'react-transition-group';
 
@@ -16,14 +17,8 @@ export default function Room() {
     const nodeRef = useRef(null); // null === initial value 
 
     let params = useParams();
-    const [zoomIn, setZoomIn] = useState(false);
     const [activeView, setZoom] = useState('100%');
     const zoom = ['100%', '25%', '5%'];
-
-    const setActiveView = (e) => {
-        setZoom(e.currentTarget.dataset.id); //switch between views // need a transition
-        setZoomIn(true);
-    }
 
     // page settings (room, filter, view) 
     const nav = [ {name: params.room, url: params.room } ];
@@ -33,6 +28,19 @@ export default function Room() {
 
     //get posts by room and tags by house
     const { posts, loading, postDetail, openPost } = usePosts(params.room);
+    const { tags, t_loading, allTags, getAllTagsFromPosts } = useTags();
+
+  
+    const setActiveView = (e) => {  // need a transition
+            const zoomValue = e.currentTarget.dataset.id;
+            setZoom(zoomValue); 
+    }
+
+    useEffect(() =>{
+        if(activeView === '5%') {
+           getAllTagsFromPosts();
+       }
+    }, [activeView]);
     
     return (
             <div className="page">
@@ -47,7 +55,7 @@ export default function Room() {
                         {loading && <div>Loading</div>}
                         {(!loading  && activeView==='100%') && <PostList100 posts={posts} openPost={openPost}/> }
                         {(!loading && activeView === '25%') && <PostList25 posts={posts} openPost={openPost}/>}
-                        {(!loading && activeView === '5%') && <PostList5 posts={posts} openPost={openPost}/>}
+                        {(!t_loading && activeView === '5%') && <PostList5 tags={allTags}/>}
                     </div>
                 <span className="fixedBtn">
                     <Link to={{pathname: "/add", state: params.room}}>

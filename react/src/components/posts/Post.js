@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-//import Preview from './Preview'
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Editor } from 'draft-js'; 
-import usePosts from '../hooks/usePosts'; 
+import { LinkCard } from './LinkPreview';
+import usePosts from '../../hooks/usePosts'; 
   
-export default function Post({ post, view, openPost }) { 
-
+export default function Post({ post, openPost }) { 
     let location = useLocation();
-    const [preview, showPreview] = useState(false);
     const editRef = useRef(null); 
-
+    console.log(post);
+    
     const { displayNoteBody, editorState, setEditorState, onNoteChange } = usePosts();
  
     useEffect(() => {
@@ -19,11 +18,9 @@ export default function Post({ post, view, openPost }) {
     }, [post])
 
     return(
-        <div className="post" key={post._id} data-id={post._id}
-           // onMouseEnter={() => showPreview(true)} onMouseLeave={() => showPreview(false)}
-            >                      
+        <div className="post" key={post._id} data-id={post._id} >                      
             <div className="post__header">
-                <h4 className="lightest">{post.user.username}</h4>  <h4 className="lightest">{post.date}</h4>
+                <h4 className="lightest">{post.user.username}</h4> 
             </div>
             <Link to={{pathname: `${location.pathname}/${post._id}`,
                        state: {post: post }}} onClick={openPost}
@@ -39,7 +36,7 @@ export default function Post({ post, view, openPost }) {
                         </div>   
                         : 
                         <div className="post__body__link"> 
-                            Link
+                            <LinkCard link={post.content}/>
                         </div>         
                     }
             </Link>
@@ -47,21 +44,3 @@ export default function Post({ post, view, openPost }) {
     )
 }
 
-
-
-
-
-// post tags section
-/**
-              <div className="post__tags">
-                {(post.tags.length > 0) 
-                ? post.tags.map(el => {
-                    return (
-                    <h4 key={el.tag}>
-                        {el.tag}
-                    </h4>
-                    )
-                })
-                : <h4 className="lightest">No tags</h4> }
-            </div>
- **/

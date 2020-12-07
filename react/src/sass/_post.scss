@@ -1,9 +1,10 @@
-//post card 
-.post100 {
+/* post versions */
+
+//100% 
+.post100 { 
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     &__header {
         display: flex;
         justify-content: space-between;
@@ -11,7 +12,7 @@
         padding-bottom: 1rem;
     }
     &__body{
-       // border: 1px solid rgba(0, 0, 255, 0.452);
+       padding-bottom: 1rem;
         &__note {
            // border: 1px solid rgba(255, 0, 0, 0.411); 
         }
@@ -37,19 +38,18 @@
     }
 }
 
+//25% 
 .post { 
-    width: 15rem;
-    height: 15rem;
+    width: 25%;
     border: 1px solid $soft-outline;
     border-radius: $border-large;
-    padding: 1.5rem;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
     &__header {
         display: flex;
-        justify-content: space-between;
         flex: 0 0 10%; 
     }
     &__body {
@@ -59,18 +59,16 @@
         overflow: hidden;
         cursor: pointer;
         &__note {
-            width: 100%;
-            height: 100%;
+           // width: 100%;
             position: relative;
             overflow: hidden;
         }
         &__link {
             align-self: stretch;
-           // border: 1px solid $shadow; 
             display: flex;
             justify-content: center;
             align-items: center;
-            flex: 0 0 100%;
+            // flex: 0 0 100%;
         }
         &__fade {
             position: absolute;
@@ -82,12 +80,59 @@
     }
 }
 
+.postRow25{
+    display: flex;
+    height: 25%;
+    align-items: stretch;
+    & > *:not(:last-child) {
+        margin-right: 1rem;
+    }
+}
 
 
- 
+
+//5% 
+.post5 {
+    background-color: $sand3;
+    height: auto;
+    flex: 1 0 auto;
+    &::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+}
+
+.postRow5 {
+    display: flex;
+    border-radius: $border-small;
+    & > * {
+        border: 1.5px solid $sand; 
+    }
+    &__container {
+        border: 1px solid $sand3;
+        padding: 0.5rem;
+        border-radius: $border-small;
+        background-color: $sand;
+    }
+}
 
 
+//100% view 
+.postList100 {
+    display: flex;
+    flex-direction: column;
+}
 
+/// 25% view 
+.postList {
+    display: flex;
+    flex-wrap: wrap;
+    & > * {
+        margin-right: 1.5rem;
+        margin-bottom: 1.5rem; 
+    }
+}
 
 
 

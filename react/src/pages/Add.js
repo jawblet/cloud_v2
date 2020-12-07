@@ -9,12 +9,10 @@ import useEditor from '../hooks/useEditor';
 import useUpload from '../hooks/useUpload';
 import useTags from '../hooks/useTags';
 import useSubmit from '../hooks/useSubmit';
-import { convertToRaw } from 'draft-js';
 
  export default function Add(props) { 
-    const { user, rooms } = useContext(UserContext);
-    const { tags } = useTags();
-    
+    const { user, rooms, globalTags } = useContext(UserContext);
+
     //breadcrumbs
     const roomFrom = props.location.state || 'kitchen';
     const nav = [ {name: roomFrom, url: roomFrom } ];
@@ -61,13 +59,18 @@ import { convertToRaw } from 'draft-js';
         <div className="page"> 
             <Header nav={nav}/>
             <form style={{width:'75%'}} onSubmit={sendSubmit}>
-                <UploadContainer type={type} switchType={switchType} 
-                                results={results} room={roomFrom} values={values} 
-                                handleChange={handleChange} searchRef={searchRef} 
-                                clearInput={clearInput} removeTag={removeTag} 
-                                addTags={addTags} selectTag={selectTag}
-                                editorState={editorState} onNoteChange={onNoteChange}
-                                
+                <UploadContainer type={type} 
+                                switchType={switchType} 
+                                results={results} 
+                                room={roomFrom} values={values} 
+                                handleChange={handleChange} 
+                                searchRef={searchRef} 
+                                clearInput={clearInput} 
+                                removeTag={removeTag} 
+                                addTags={addTags} 
+                                selectTag={selectTag}
+                                editorState={editorState} 
+                                onNoteChange={onNoteChange}     
                                 />
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                     <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
@@ -78,7 +81,7 @@ import { convertToRaw } from 'draft-js';
                     </div>
             </form>
             <span className="fixedTab">
-                <Drawer items={tags}/>
+                <Drawer items={globalTags} />
             </span>
         </div>
     )

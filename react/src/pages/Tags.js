@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../sections/Header';
 import TagList from '../sections/TagList';
 import ListMenu from '../components/ListMenu';
@@ -10,9 +10,9 @@ import { UserContext } from '../hooks/UserContext';
 
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 
-    console.log(user.house.house);
+
     //set sort
-    const list = ['recent', 'A - Z', 'count'];
+    const list = ['recent', 'A - Z', 'count']; 
     const { handleOneFilter, activeItem } = useOneFilter('recent');
 
     //set filter 
@@ -20,8 +20,8 @@ export default function Tags() {
     const { handleFilterClick, activeFilter } = useManyFilters(['color']);
 
     //get tags
-    const { tags, tagTotal, handlePaintClick, eyedrop } = useTags(activeItem);
- 
+    const { tags, tagCount, handlePaintClick, eyedrop } = useTags(activeItem);
+
     return(
         <div className="page">
             <Header/> 
@@ -29,14 +29,14 @@ export default function Tags() {
                     <h3>{user.house.house} labels</h3> 
                     <Filter filters={filters} activeFilter={activeFilter} handleFilterClick={handleFilterClick} 
                             handlePaintClick={handlePaintClick} eyedrop={eyedrop}
-                            />
+                            /> 
             </div>
             <div className="room">
                 <div className="room__sidebar">
                     <ListMenu title={'sort'} list={list} activeItem={activeItem} handleOneFilter={handleOneFilter}/>
                 </div>
                 <div className="room__body">
-                    <TagList tags={tags} tagTotal={tagTotal} activeFilter={activeFilter} eyedrop={eyedrop}
+                    <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} eyedrop={eyedrop}
                     />
                 </div>
             </div>

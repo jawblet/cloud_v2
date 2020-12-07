@@ -41,7 +41,7 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
         .filter()
         .sort()
         .limitFields()
-        .paginate();
+        .paginate(); 
 
     const results = await docs.query;
 

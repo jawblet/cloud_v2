@@ -5,53 +5,48 @@ import { UserContext } from './UserContext';
 export default function useTags(activeItem) {
 const { user } = useContext(UserContext); 
 
-//get global tags for context 
-const [globalTags, setGlobalTags] = useState(null);
-const [loading, isLoading] = useState(true);
-
-//get all tags by house + add sort ability 
-const [tags, setTags] = useState(null);
-const [tagTotal, countTagTotal] = useState(null);
-
-
-//set global tags 
-useEffect(() => {
-    try {
-        axios({
-            method: 'GET',
-            url: `/tags/h/${user.house._id}` 
-        }).then(res => {
-            setGlobalTags(res.data.data.results);
-            isLoading(false);
-        })
-    } catch(err) {
-        console.log(err)
-
-    }
-}, [])
+const [t_loading, isLoading] = useState(true);
+const [tags, setTags] = useState(null); // all tag objects
+const [allTags, setAllTags] = useState(null);
+const [tagCount, setTagCount] = useState({
+    unique: '',
+    sum: ''
+})
 
 useEffect(() => { 
     let sort;
     switch(activeItem) {
-        case 'recent': sort = 'h';
+        case 'recent': sort = 'date';
         break;
-        case 'A - Z': sort = 'AtoZ';
+        case 'A - Z': sort = 'name';
         break;
-        default: sort = 'h'; 
+        case 'count': sort = 'count';
+        break;
+        default: sort = 'date'; 
     }
-    try {
-        axios({
-            method: 'GET',
-            url: `/tags/${sort}/${user.house._id}` 
-        }).then(res => {
-            // console.log(res.data.data.results);
-            setTags(res.data.data.results);
-            countTagTotal(res.data.data.results.length);
+
+    axios.get(`/posts/tags/${user.house._id}/${sort}`)
+    .then(res => {
+      //  console.log(res.data.data);
+        const tagData = res.data.data; 
+        setTags(tagData.allTags);
+        setTagCount({
+            unique: tagData.allTags.length,
+            sum: tagData.postTagSum
         })
-    } catch(err) {
-        console.log(err)
-    }
+        //isLoading(false);
+    }).catch((err) => { console.log(err) })
 }, [activeItem]);
+
+
+const getAllTagsFromPosts = () => {
+    axios.get(`/posts/allTags/${user.house._id}/`)
+    .then(res => {
+        const tagData = res.data.data; 
+        setAllTags(tagData.allTagsFromPosts);
+        isLoading(false);
+    }).catch((err) => { console.log(err) })
+};
 
 //change tag view 
     const [tagView, setTagView] = useState('gradient');
@@ -64,20 +59,6 @@ useEffect(() => {
         colorChangeActive(!eyedrop);
     }
 
-//alphabetize tags
-    const alphabetizeTags = () => {
-        try {
-            axios({
-                method: 'GET',
-                url: `/tags/AtoZ/${user.house._id}`
-            }).then(res => {
-               // console.log(res.data.data.results);
-                setTags(res.data.data.results);
-            })
-        } catch(err) {
-            console.log(err)
-        }
-    }
 
 //last 3 tags
 const [lastThreeTags, setLastTags] = useState(null);
@@ -94,14 +75,13 @@ useEffect(() => {
                 console.log(err)
             }
     }, [])
-       
-
+   
     return {
-        globalTags,
-        loading,
-        alphabetizeTags,
+        t_loading,
         tags,
-        tagTotal,
+        tagCount,
+        allTags,
+        getAllTagsFromPosts,
         tagView,
         lastThreeTags,
         handlePaintClick,  

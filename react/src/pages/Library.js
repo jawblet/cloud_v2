@@ -23,19 +23,20 @@ export default function Library() {
           <div className="room">
               <div className="room__body">
                 <h4>House rules</h4>
-                <Toolbar editorState={editorState}
-                        onToggleInline={toggleInlineStyle}
-                        toggleBlockType={toggleBlockType}
-
-                    />
-                <div className="libraryWrapper">
-                    <Editor editorState={editorState} 
-                    ref={editRef} spellCheck={true}
-                    onChange={onNoteChange}
-                    handleKeyCommand={handleKeyCommand}
-                    mapKeyToEditorCommand={mapKeyToEditorCommand}
-                    />
-                 </div>
+                <div style={{border:'1px solid gray', borderRadius:'0.5rem'}}>
+                    <Toolbar editorState={editorState}
+                            onToggleInline={toggleInlineStyle}
+                            toggleBlockType={toggleBlockType}
+                        /> 
+                    <div className="editorWrapper"> 
+                        <Editor editorState={editorState} 
+                        ref={editRef} spellCheck={true}
+                        onChange={onNoteChange}
+                        handleKeyCommand={handleKeyCommand}
+                        mapKeyToEditorCommand={mapKeyToEditorCommand}
+                        />
+                    </div>
+                </div>
               </div>
               <div className="room__sidebar">
                 <h4>Versions</h4>
