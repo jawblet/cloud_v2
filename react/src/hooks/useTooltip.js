@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function useTooltip() { 
     const textRef = React.createRef();
 
-    const [tooltip, showTooltip] = useState(null);
+    const [tooltip, showTooltip] = useState(null); 
     const [tooltipCoords, setCoords] = useState([]);
 
     // this tooltip position --> right of cursor

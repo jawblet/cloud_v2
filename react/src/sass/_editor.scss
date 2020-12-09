@@ -58,10 +58,9 @@ h2[data-block] {
     font-size: 0.67rem;
  }
 
- ///******////
+ ///custom note upload styling////
  .editorWrapper {
     width: 100%;
-    padding: 1rem;
     border-radius: $border-small;
 }
 
@@ -70,3 +69,11 @@ h2[data-block] {
     border-radius: 3px;
 }
  
+.upload > .editorWrapper {
+   padding: 0;
+}
+
+.editorWrapper > .DraftEditor-root {
+   min-height: 5rem;
+   padding: 1rem;
+}

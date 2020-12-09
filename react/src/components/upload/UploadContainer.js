@@ -19,7 +19,7 @@ import { CSSTransition } from 'react-transition-group';
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 
 export default function UploadContainer(props) { 
-    const nodeRef = useRef(null);
+    const nodeRef = useRef(null); 
     const { type, room, switchType, values } = props;
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();

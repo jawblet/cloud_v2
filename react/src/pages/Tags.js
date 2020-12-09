@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Header from '../sections/Header';
 import TagList from '../sections/TagList';
 import ListMenu from '../components/ListMenu';

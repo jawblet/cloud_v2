@@ -7,10 +7,8 @@ export default function usePosts(room) {
     const { user, globalTags } = useContext(UserContext);
     const tags = globalTags;
     let tagNames;
-    if(tags && tags.length > 0) {
-        tagNames = tags.map(el => el.tag);
-    }
-    
+    if(tags && tags.length > 0) { tagNames = tags.map(el => el.tag); }
+     
     const [posts, setPosts] = useState(null);
     const [loading, isLoading] = useState(true);
     const [postDetail, showPostDetail] = useState(false);
@@ -18,36 +16,60 @@ export default function usePosts(room) {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const onNoteChange = (editorState) => {
-        setEditorState(editorState);  
+        setEditorState(editorState);   
       }
-  
-//console.log(user);      
+
+
+async function getPostsByRoom() {
+    //fix this
+    if(user.house && user.house.boarders) {
+            await axios.get(`/posts/h/${user.house._id}/${room}`)
+            .then(res => {  
+                setPosts(res.data.data.results); //set posts
+                isLoading(false); 
+            }).catch(err => console.log(err));
+    } else { //get posts @ reg and login before house is populated 
+            await axios.get(`/posts/h/${user.house}/${room}`)
+            .then(res => {  
+                setPosts(res.data.data.results); //set posts
+                isLoading(false); 
+            }).catch(err => console.log(err));
+    }
+} 
+   
+//delete post 
+const deletePost = (e) => {
+    const postId = e.currentTarget.dataset.child;
+    axios.delete(`/posts/${postId}`).then(res => {
+         const newState = [...posts];
+         console.log(posts);
+         setPosts(newState.filter(post => post._id !== postId)); 
+         console.log(newState.filter(post => post._id !== postId));
+         getPostsByRoom();
+    }) 
+}
+
 //get posts by room + house, get tags by house
 useEffect(() => {
-   async function getPostsByRoom() {
-    if(user.house && user.house.boarders) {
-        await axios.get(`/posts/h/${user.house._id}/${room}`)
-        .then(res => {  
-            setPosts(res.data.data.results); //set posts
-            isLoading(false); 
-        }).catch(err => console.log(err));
-    } else {     //get posts @ reg and login before house is populated 
-        await axios.get(`/posts/h/${user.house}/${room}`)
-        .then(res => {  
-            setPosts(res.data.data.results); //set posts
-            isLoading(false); 
-            }).catch(err => console.log(err));
-        }
-    }
     getPostsByRoom();
-    }, [user, room]); 
+}, [user, room]); 
+
+
+//select item from edit menu 
+const selectItem = (e) => {
+    const action = e.currentTarget.dataset.id;
+    switch(action) {
+        case "delete": deletePost(e);
+        default: return null;
+    }
+}
 
 //open post detail pg
 const openPost = () => {
     showPostDetail(!postDetail);
 }
 
-//enable editing for note detail 
+//enable editing for note detail  
 const editNote = () => {
     setEditable(!isReadOnly);
 }
@@ -69,7 +91,6 @@ const displayNoteBody = async (post) => {
     let newEditorState;
 
     if (tagNames) { // decorate tags if tags exist/have been retrieved 
-        console.log('yes tags');
         const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi");
         const findWithRegex = (regex, contentBlock, callback) => {
             const text = contentBlock.getText();
@@ -113,10 +134,12 @@ const displayNoteBody = async (post) => {
         posts,
         tags,
         loading,
+        getPostsByRoom,
         displayNoteBody,
         editorState,
         setEditorState,
         onNoteChange,
+        selectItem,
         openPost,
         postDetail,
         editNote,

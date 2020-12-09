@@ -11,20 +11,22 @@
             margin-bottom: 3rem;
         }
     }
-    &__body { // standardized room layout for all 3 views 
+    &__body { // standardized room layout for all 3 views // ultimately change when making popup?
         flex: 0 0 50%; 
         margin-top: 1rem;
-       // border: 1px solid red;
+       // height: auto;
+       // overflow: hidden;
     }
 }
 
 // empty room (all views)
 .emptyRoom {
     height: 25vh;
-    width: 85%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+   // border: 1px solid orange;
 }
 
 // custom style for add btn

@@ -94,7 +94,8 @@ const rentHouse = (formValues) => {
                 house: houseId
                 })
             }).then(() => { 
-                return axios.get('/user').then(res => { // check user's jwt 
+                return axios.get('/user')
+                .then(res => {                          // check user's jwt 
                     setUser(res.data.currentUser);      // use jwt value to set current user
                     history.push('/home');              // push user home
                 });  
@@ -112,7 +113,8 @@ const rentHouse = (formValues) => {
                   username,
                   password
             }).then(() => { 
-                return axios.get('/user').then(res => { // check user's jwt 
+                return axios.get('/user')
+                .then(res => {                          // check user's jwt 
                     setUser(res.data.currentUser);      // use jwt value to set current user
                     history.push('/home');              // push user home
                     });  

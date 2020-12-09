@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactTinyLink, Description } from 'react-tiny-link';
+import { ReactTinyLink } from 'react-tiny-link';
 
 const LinkCard = ({ link }) => {
     return(
@@ -15,7 +15,6 @@ const LinkCard = ({ link }) => {
     </div>
     )
 }
-
 
 const LinkPreview = ({ link }) => {
     return(

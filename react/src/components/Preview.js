@@ -18,7 +18,8 @@ export default function Preview({ preview, post }) {
                     {post.tags.map((tag, i) => 
                         { if(i < max) {
                             return ( <TagPreview tag={tag} key={tag._id}/> ) 
-                        }
+                        } 
+                            return null; // return from map
                     }) }
                     <p>and {remainder} more.</p>
                 </div>

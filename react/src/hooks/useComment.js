@@ -6,7 +6,7 @@ export default function useComment( post ) {
 
     const { user } = useContext(UserContext);
 
-    const state = {
+    const state = { 
         postComments: [],
         comment: ''
     }

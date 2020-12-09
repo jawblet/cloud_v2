@@ -1,29 +1,47 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Editor } from 'draft-js'; 
 import { LinkPreview } from './LinkPreview';
 import usePosts from '../../hooks/usePosts'; 
 import { VscEllipsis } from 'react-icons/vsc';
+import BasicSelectMenu from '../menus/BasicSelectMenu';
 
-export default function Post100({ post }) {
-    const { displayNoteBody, editorState, setEditorState, onNoteChange } = usePosts();
+export default function Post100({ post, openPost, toggleMenu, menu, index, toggleRef }) { 
+    const { displayNoteBody, 
+            editorState, 
+            setEditorState, 
+            onNoteChange, 
+            selectItem } = usePosts();
+
     const editRef = useRef(null); 
 
-    console.log(post);
+    const options=['edit', 'delete'];
 
     useEffect(() => {
         if(post.type === 'note') { 
             displayNoteBody(post);
-        }
+        } 
+        return null
     }, [post])
 
-    return(
+    //set hover effect for tags 
+    const [hover, setHover] = useState(null);
+    return ( 
+        <>
         <div className="post100">
             <div className="post100__header">
                 <h4 className="lightest">{post.user.username}</h4>  
-                <div className="flex alignCenter">
+                <div className="post100__header__edit">
                     <h4 className="lightest">{post.date}</h4>
-                    <VscEllipsis className="icon icon__btn post100__editBtn"/>
-                </div>
+                    <VscEllipsis className="icon icon__btn post100__editBtn" data-id={index} onClick={toggleMenu}/>
+                     <div className="post100__header__editMenu">
+                        <BasicSelectMenu 
+                            toggleMenu={toggleMenu}
+                            show={menu[index]}
+                            items={options} 
+                            selectItem ={selectItem} 
+                            childData={post._id}/>
+                    </div>
+                </div> 
             </div>
             <div className="post100__body">
                 {post.type === 'note' 
@@ -40,17 +58,23 @@ export default function Post100({ post }) {
                         </div>         
                     }
                 </div> 
-                <div className="post100__tags">
-                    {post.tags && 
-                    <> <h4>tags:</h4>
-                        {post.tags.map(tag => {
+                    {post.tags.length !== 0 && 
+                    <div className="post100__tags">
+                    <h4 className="tag" style={{paddingLeft: 0}}>tags:</h4>
+                        {post.tags.map((tag, i) => {
                             return (
-                            <h4 key={tag._id}>{tag.tag}</h4>
+                            <h4 className="tag inlineTag" key={i} 
+                                onMouseEnter={() => setHover(tag._id)}
+                                onMouseLeave={() => setHover(null)}
+                                style={(hover && hover === tag._id) ? {backgroundColor: tag.color, color:'#31302C', cursor:'pointer'} : {}}>
+                                {tag.tag}
+                            </h4>
                             )
                         })}
-                    </>
+                    </div>
                     }
-                </div>
         </div>
+        </>
+         
     )
 }

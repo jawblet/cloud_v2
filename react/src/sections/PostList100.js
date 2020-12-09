@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Post100 from '../components/posts/Post100';
+import useToggleOne from '../hooks/useToggleOne';
+import { CSSTransition } from 'react-transition-group';
  
-export default function PostList100(props) { 
+export default function PostList100(props) {  
+    const { activeView, posts } = props;   
+    const nodeRef = useRef(null);
+
+    const { toggleMenu, toggleRef, menu } = useToggleOne(posts);
+  
     return(
-        <div className="postList100"> 
-        {props.posts.length > 0 
-           ? props.posts.map((post, index )=> {
-                return ( <Post100 post={post} key={index} 
-                                openPost={props.openPost}
-                /> )
-            })
-            :   <div className="emptyRoom">
-                    <h3 className="light">Empty room</h3>
-                </div>
-            }
-        </div>
+        <CSSTransition 
+        in={activeView === '100%'} timeout={250} 
+        nodeRef={nodeRef} classNames="zoomIn"
+        unmountOnExit
+        exit={false}>
+            <div className="postList100" ref={nodeRef}> 
+            {props.posts.map((post, index )=> {
+                    return ( <Post100 post={post} key={post._id} 
+                                    openPost={props.openPost}
+                                    toggleMenu={toggleMenu}
+                                    menu={menu} index={index}
+                                    toggleRef={toggleRef}
+                    /> )
+                })}
+            </div> 
+        </CSSTransition>
     )
 }

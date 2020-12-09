@@ -93,7 +93,7 @@ exports.updateOne = (Model) => catchAsync(async(req, res) => {
 
 //delete one by id 
 exports.deleteOne = (Model) => catchAsync(async(req, res) => {
-    await Model.findOneAndDelete(req.params.id); 
+    await Model.findByIdAndDelete(req.params.id); 
     res.status(204).json({
         status: 'deleted',
         data: null

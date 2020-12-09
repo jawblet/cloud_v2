@@ -5,7 +5,7 @@ import { UserContext } from './UserContext';
 
 export default function useConfirm({ initialValues }) {
     let history = useHistory();
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [values, setValues] = useState(initialValues || {});
     const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ export default function useConfirm({ initialValues }) {
         const handleChange = event => {
             const value = event.target.value; 
             const name = event.target.name;
-            setValues({
+            setValues({ 
                 ...values, 
                 [name]: value
             }); 

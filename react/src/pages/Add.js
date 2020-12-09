@@ -7,7 +7,6 @@ import SelectMenu from '../components/SelectMenu';
 import Drawer from '../components/Drawer';
 import useEditor from '../hooks/useEditor';
 import useUpload from '../hooks/useUpload';
-import useTags from '../hooks/useTags';
 import useSubmit from '../hooks/useSubmit';
 
  export default function Add(props) { 

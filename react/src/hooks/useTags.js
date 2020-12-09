@@ -25,9 +25,8 @@ useEffect(() => {
         default: sort = 'date'; 
     }
 
-    axios.get(`/posts/tags/${user.house._id}/${sort}`)
+axios.get(`/posts/tags/${user.house._id}/${sort}`)
     .then(res => {
-      //  console.log(res.data.data);
         const tagData = res.data.data; 
         setTags(tagData.allTags);
         setTagCount({

@@ -1,6 +1,11 @@
 /* post versions */
-
 //100% 
+.postList100 {
+    display: flex;
+    flex-direction: column;
+    transform-origin: top right;
+}
+
 .post100 { 
     display: flex;
     flex-direction: column;
@@ -10,17 +15,23 @@
         justify-content: space-between;
         width: 100%;
         padding-bottom: 1rem;
+        &__edit {
+           display: flex; 
+           position: relative;
+        }
+        &__editMenu {
+            transform: translateX(1rem)
+        }
     }
     &__body{
        padding-bottom: 1rem;
-        &__note {
-        }
     }
     &__editBtn{
         margin-left: 1.5rem;        
     }
     &__tags {
         display: flex;
+        align-items: center;
         flex-wrap: wrap;
         word-break: normal;
         color: $body-lightest;
@@ -38,14 +49,30 @@
 }
 
 //25% 
-.post25 {
-    width: 23.5%;
+.postRow25 {
+    &__container {
+        display: flex;
+        height: 100%;
+    }
+    height: 25%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    align-items: stretch;
+    margin-bottom: 2%;
+    & > * {
+        margin-right: 1rem;
+    }
+    & > *:last-child {
+        margin-right: 0;
+    }
 }
 
-.post { 
+.post25 { 
+    &__wrapper { // post wrapper 
+        width: 23.5%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;  
+    }
     align-self: stretch;
     border: 1px solid $soft-outline;
     border-radius: $border-large;
@@ -55,6 +82,12 @@
     justify-content: space-between;
     overflow: hidden;
     height: 100%;
+    width: 100%;
+    &__user {
+        color: $body-light;
+        padding-left: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
     &__header {
         display: flex;
         flex: 0 0 5%; 
@@ -84,18 +117,22 @@
     }
 }
 
-.postRow25{
-    display: flex;
-    height: 25%;
-    align-items: stretch;
-    margin-bottom: 2%;
-    & > *:not(:last-child) {
-        margin-right: 2%;
+//5% 
+.postRow5 { 
+        &__container { // container 
+            border: 1px solid $sand3;
+            padding: 0.5rem;
+            border-radius: $border-small;
+            background-color: $sand;
+        }
+    display: flex; // post
+    border-radius: $border-small;
+    & > * {
+        border: 1.5px solid $sand; 
     }
 }
 
-//5% 
-.post5 {
+.post5 { // post
     background-color: $sand3;
     height: auto;
     flex: 1 0 auto;
@@ -105,41 +142,6 @@
         padding-top: 100%;
     }
 }
-
-.postRow5 {
-    display: flex;
-    border-radius: $border-small;
-    & > * {
-        border: 1.5px solid $sand; 
-    }
-    &__container {
-        border: 1px solid $sand3;
-        padding: 0.5rem;
-        border-radius: $border-small;
-        background-color: $sand;
-    }
-}
-
-
-//100% view 
-.postList100 {
-    display: flex;
-    flex-direction: column;
-}
-
-/// 25% view 
-.postList {
-    display: flex;
-    flex-wrap: wrap;
-    & > * {
-        margin-right: 1.5rem;
-        margin-bottom: 1.5rem; 
-    }
-}
-
-
-
-
 
 //gradient variant
 .postGradient {

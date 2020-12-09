@@ -12,7 +12,7 @@ import CommentList from '../components/CommentList';
 
 export default function Edit( {openPost} ) {
     const params = useParams();
-    const location = useLocation();
+    const location = useLocation(); 
     const post = location.state.post;
     const editRef = useRef(null); 
 

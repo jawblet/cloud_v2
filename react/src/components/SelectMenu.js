@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { VscChevronDown } from 'react-icons/vsc';
 import { CSSTransition } from 'react-transition-group';
 
-export default function SelectMenu({ items, active, selectItem }) {
+export default function SelectMenu({ items, active, selectItem }) { 
     const nodeRef = useRef(null);
     const list = items.filter(item => item.id !== active); 
     const [menu, setMenu] = useState(false);
