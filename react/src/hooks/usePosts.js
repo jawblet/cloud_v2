@@ -20,21 +20,13 @@ export default function usePosts(room) {
       }
 
 
+//set posts by house id
 async function getPostsByRoom() {
-    //fix this
-    if(user.house && user.house.boarders) {
-            await axios.get(`/posts/h/${user.house._id}/${room}`)
+    await axios.get(`/posts/h/${user.house._id}/${room}`)
             .then(res => {  
-                setPosts(res.data.data.results); //set posts
+                setPosts(res.data.data.results); 
                 isLoading(false); 
-            }).catch(err => console.log(err));
-    } else { //get posts @ reg and login before house is populated 
-            await axios.get(`/posts/h/${user.house}/${room}`)
-            .then(res => {  
-                setPosts(res.data.data.results); //set posts
-                isLoading(false); 
-            }).catch(err => console.log(err));
-    }
+    }).catch(err => console.log(err));
 } 
    
 //delete post 
@@ -147,3 +139,20 @@ const displayNoteBody = async (post) => {
         saveUpdate
     }
 }
+
+
+/*
+if(user.house && user.house.boarders) {
+    await axios.get(`/posts/h/${user.house._id}/${room}`)
+    .then(res => {  
+        setPosts(res.data.data.results); //set posts
+        isLoading(false); 
+    }).catch(err => console.log(err));
+} else { //get posts @ reg and login before house is populated 
+    await axios.get(`/posts/h/${user.house}/${room}`)
+    .then(res => {  
+        setPosts(res.data.data.results); //set posts
+        isLoading(false); 
+    }).catch(err => console.log(err));
+}
+*/

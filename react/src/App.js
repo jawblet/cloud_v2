@@ -26,6 +26,7 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [globalTags, setGlobalTags] = useState(null);
+  const [loading, setLoading] = useState(null);
   const { userStatus, houseTags, isLoading } = useFindUser();
  
   useEffect(() => {
@@ -33,12 +34,13 @@ function App() {
      // console.log('call main useEffect');
       setUser(userStatus);
       setGlobalTags(houseTags);
+      setLoading(isLoading);
     }
   }, [userStatus, houseTags]); //need dependency array 
 
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser, globalTags, rooms, isLoading}}>
+       <UserContext.Provider value={{ user, setUser, globalTags, rooms, loading}}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>
