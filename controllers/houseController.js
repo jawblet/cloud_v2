@@ -47,3 +47,4 @@ exports.getHouseByHouseName = catchAsync(async(req, res) => {
         }
     })  
 }); 
+ 

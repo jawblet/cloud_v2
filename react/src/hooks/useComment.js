@@ -28,17 +28,15 @@ export default function useComment( post ) {
 
     const [data, dispatch] = useReducer(reducer, state);
 
-    //get post's comments
+//get post's comments
     useEffect(() => {
         async function getPostTags() {
            await axios.get(`/comments/${post}`)
                 .then(res =>{
-                    console.log(res.data.data.comments);
                     const c = res.data.data.comments;
                     dispatch({type: "getComments", c})
             }).catch(err => console.log(err));
         };
-
         getPostTags();
     }, []);
 
@@ -55,7 +53,6 @@ export default function useComment( post ) {
                 user,
                 comment: e.target.value
             }).then(res => {
-                console.log(res.data.data.doc);
                 const newComment = res.data.data.doc;
                 dispatch({type: "addComment", newComment})
                 dispatch({type: "writeComment", comment: ''});   
@@ -64,12 +61,11 @@ export default function useComment( post ) {
        }
     }
 
-    //delete remove 
+    //delete comment 
     const deleteComment = (e) => {
         const id = e.currentTarget.dataset.id;
        axios.delete(`/comments/${id}`)
-        .then((res) => {
-            console.log(res);
+        .then(() => {
            dispatch({type: "deleteComment", id })
         }).catch(err => console.log(err));
     }

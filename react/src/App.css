@@ -328,8 +328,7 @@ menu {
   filter: blur(0.5rem); }
 
 .zoom-enter-active {
-  transform: scale(0.95);
-  overflow: hidden;
+  transform: scale(2);
   transition: transform 0.25s ease;
   filter: blur(1rem); }
 
@@ -994,6 +993,7 @@ h6[data-block] {
 
 .postRow25 {
   height: 25%;
+  width: 100%;
   display: flex;
   align-items: stretch;
   margin-bottom: 2%; }

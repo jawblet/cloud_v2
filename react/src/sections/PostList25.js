@@ -11,7 +11,7 @@ export default function PostList25(props) {
     const postArrs = numRows.map((row, i) => props.posts.slice(i * postMax, i * postMax + postMax ));
         
         return(
-            <CSSTransition 
+        <CSSTransition  
             in={activeView === '25%'} 
             timeout={250} 
             nodeRef={nodeRef} classNames="zoom"

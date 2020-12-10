@@ -10,7 +10,6 @@ import { VscAdd } from 'react-icons/vsc';
 import useOneFilter from '../hooks/useOneFilter'; 
 import usePosts from '../hooks/usePosts';
 import useTags from '../hooks/useTags';
-import Edit from '../sections/Edit'; 
 
 export default function Room() {
     let params = useParams();
@@ -24,19 +23,17 @@ export default function Room() {
     const { handleOneFilter, activeItem } = useOneFilter('date');
 
     //get posts by room and tags by house
-    const { posts, loading, postDetail, openPost, getPostsByRoom } = usePosts(params.room);
+    const { data, loading, openPost } = usePosts(params.room);
     const { t_loading, allTags, getAllTagsFromPosts } = useTags();
 
-  
     const setActiveView = (e) => {  // need a transition
-            const zoomValue = e.currentTarget.dataset.id;
-            setZoom(zoomValue); 
+        const zoomValue = e.currentTarget.dataset.id;
+        setZoom(zoomValue); 
     }
 
     useEffect(() => {
-        console.log(posts);
-    }, [posts]);
-
+        console.log(data.posts)
+    }, [data]);
 
     useEffect(() => {
         if(activeView === '5%') {
@@ -55,13 +52,13 @@ export default function Room() {
                     </div>
                     <div className="room__body">
                         {loading && <div>Loading</div>} 
-                        {(!loading && posts.length === 0) && 
+                        {(!loading && data.posts.length === 0) && 
                             <div className="emptyRoom">
                                 <h3 className="light">Empty room</h3>
                             </div>
                         }
-                        {(!loading) && <PostList100 posts={posts} openPost={openPost} activeView={activeView}/> }
-                        {(!loading) && <PostList25 posts={posts} openPost={openPost} activeView={activeView}/>}
+                        {(!loading) && <PostList100 posts={data.posts} openPost={openPost} activeView={activeView}/> }
+                        {(!loading) && <PostList25 posts={data.posts} openPost={openPost} activeView={activeView}/>}
                         {(!t_loading) && <PostList5 tags={allTags} activeView={activeView}/>}
                     </div>
                 <span className="fixedBtn">
@@ -69,8 +66,6 @@ export default function Room() {
                         <Button icon={<VscAdd className="icon icon__btn"/>}/>
                     </Link> 
                 </span>
-                {postDetail && 
-                <Edit openPost={openPost}/>}
             </div>
         </div>
     )

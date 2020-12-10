@@ -49,7 +49,6 @@ export default function useSubmit() {
             const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi"); // create regex to search for names 
     
                 while ((tag = TAGS_REGEX.exec(text)) !== null) {
-                    console.log(tag[0]);
                     let tagObj = globalTags.find(obj => obj.tag === tag[0]);
                     console.log(tagObj);
                     tagArr.push(tagObj);

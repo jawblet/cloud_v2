@@ -1,10 +1,10 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom';  
-import usePosts from '../hooks/usePosts';
+import usePosts from '../hooks/usePosts'; 
 import Gradient from '../atoms/Gradient'; 
  
 export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
-  const { posts, loading } = usePosts(room.id);
+  const { data, loading } = usePosts(room.id);
    
     return(
         <div className={`card 
@@ -15,7 +15,7 @@ export default function Card({ room, squeeze, getPositionClass, handleCardClick 
                     <h4> {room.label} </h4>  
                 </Link>
                 <div className="card__body">
-                    {(!loading) && posts.map(post => {
+                    {(!loading) && data.posts.map(post => {
                             return (
                                 <div key={post._id}>
                                     <Gradient post={post}/>

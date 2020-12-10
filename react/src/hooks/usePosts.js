@@ -1,64 +1,86 @@
-import React, { useEffect, useContext, useState } from 'react'; 
+import React, { useEffect, useContext, useState, useReducer } from 'react'; 
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from './UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
 export default function usePosts(room) {
+    let history = useHistory();
+    let location = useLocation();
     const { user, globalTags } = useContext(UserContext);
     const tags = globalTags;
     let tagNames;
     if(tags && tags.length > 0) { tagNames = tags.map(el => el.tag); }
      
-    const [posts, setPosts] = useState(null);
+   // const [posts, setPosts] = useState([]);
+    const state = {
+        posts: []
+    }
+
     const [loading, isLoading] = useState(true);
-    const [postDetail, showPostDetail] = useState(false);
     const [isReadOnly, setEditable] = useState(true);
+
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const onNoteChange = (editorState) => {
-        setEditorState(editorState);   
-      }
+            setEditorState(editorState);   
+        }
 
+    const reducer = (state, action) => {
+        switch(action.type) {
+            case "setPosts": 
+                return {...state, posts: action.p};
+            case "deletePost":
+                console.log(state.posts);
+                return {posts: state.posts.filter(el => el._id !== action.postId)};
+            default:
+                return state;
+        }
+    };
+
+    const [data, dispatch] = useReducer(reducer, state);
 
 //set posts by house id
-async function getPostsByRoom() {
-    await axios.get(`/posts/h/${user.house._id}/${room}`)
-            .then(res => {  
-                setPosts(res.data.data.results); 
-                isLoading(false); 
-    }).catch(err => console.log(err));
-} 
-   
+    useEffect(() => {
+        async function getPostsByRoom() {
+            if(room !== undefined) {
+                await axios.get(`/posts/h/${user.house._id}/${room}`)
+                .then(res => {  
+                    console.log('this was reset');
+                    const p = res.data.data.results;
+                    dispatch({type: "setPosts", p});
+                    isLoading(false); 
+        }).catch(err => console.log(err)); 
+    }
+        } 
+        getPostsByRoom();
+    }, [room]); //user, room
+
 //delete post 
 const deletePost = (e) => {
-    const postId = e.currentTarget.dataset.child;
-    axios.delete(`/posts/${postId}`).then(res => {
-         const newState = [...posts];
-         console.log(posts);
-         setPosts(newState.filter(post => post._id !== postId)); 
-         console.log(newState.filter(post => post._id !== postId));
-         getPostsByRoom();
-    }) 
+        const postId = e.currentTarget.dataset.id;
+        axios.delete(`/posts/${postId}`)
+            .then(res => {
+                console.log(res);
+                dispatch({type: "deletePost", postId})
+    }).catch(err => console.log(err)); 
 }
-
-//get posts by room + house, get tags by house
-useEffect(() => {
-    getPostsByRoom();
-}, [user, room]); 
-
 
 //select item from edit menu 
 const selectItem = (e) => {
-    const action = e.currentTarget.dataset.id;
+    const action = e.currentTarget.dataset.label;
     switch(action) {
-        case "delete": deletePost(e);
+        case "delete": deletePost(e); 
+        break;
+        case "edit": openPost(e); // open post detail 
         default: return null;
     }
 }
 
 //open post detail pg
-const openPost = () => {
-    showPostDetail(!postDetail);
+const openPost = (e) => {
+    const postId = e.currentTarget.dataset.id;
+    history.push(`${location.pathname}/${postId}`);
 }
 
 //enable editing for note detail  
@@ -71,8 +93,7 @@ const saveUpdate = async (newNote, id) => {
     console.log(id);
     await axios.put(`/posts/${id}`, {
         content: newNote
-    }).then(res => {
-        console.log(res);
+    }).then(() => {
         setEditable(true);
     });
 }
@@ -123,36 +144,18 @@ const displayNoteBody = async (post) => {
     }
 
     return {
-        posts,
+        data,
         tags,
         loading,
-        getPostsByRoom,
         displayNoteBody,
         editorState,
         setEditorState,
         onNoteChange,
         selectItem,
         openPost,
-        postDetail,
         editNote,
         isReadOnly,
         saveUpdate
     }
 }
 
-
-/*
-if(user.house && user.house.boarders) {
-    await axios.get(`/posts/h/${user.house._id}/${room}`)
-    .then(res => {  
-        setPosts(res.data.data.results); //set posts
-        isLoading(false); 
-    }).catch(err => console.log(err));
-} else { //get posts @ reg and login before house is populated 
-    await axios.get(`/posts/h/${user.house}/${room}`)
-    .then(res => {  
-        setPosts(res.data.data.results); //set posts
-        isLoading(false); 
-    }).catch(err => console.log(err));
-}
-*/

@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'; 
 import { Route, Redirect } from 'react-router-dom';
 import { UserContext } from './../hooks/UserContext';
-import Loading from './../components/Loading'; 
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
-    console.log(user);
+   // console.log(user);
 
     const { component: Component,
         ...rest } = props;
 
       if(isLoading) {
-          return <Loading/>
+          return null;
         }
 
       if(user){
@@ -19,7 +18,7 @@ export default function PrivateRoute(props) {
             />)
         } else {
             return <Redirect to={{pathname: '/'}} /> 
-        };
+    };
 }
 
 

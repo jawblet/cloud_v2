@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import TagPreview from '../atoms/TagPreview';
 import InlineButton from '../components/btns/InlineButton';
@@ -9,25 +9,40 @@ import usePosts from '../hooks/usePosts';
 import InlineComment from '../components/InlineComment';
 import useComment from '../hooks/useComment';
 import CommentList from '../components/CommentList';
+import axios from 'axios';
 
-export default function Edit( {openPost} ) {
+export default function Edit({ openPost }) {
     const params = useParams();
-    const location = useLocation(); 
-    const post = location.state.post;
+    const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(true);
+   // const location = useLocation(); 
+
+   // const post = location.state.post;
+    const postId = params.postId;
+
+    useEffect(() => {
+        axios.get(`/posts/${postId}`).then(res => {
+            setPost(res.data.data.doc);
+            setLoading(false);
+        })
+    }, [postId]);
+ 
     const editRef = useRef(null); 
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
-            postDetail, editNote, isReadOnly,
+            editNote, isReadOnly,
             saveUpdate  } = usePosts();
 
-    const { data, handleKeyDown, handleChange, deleteComment } = useComment(post._id);
+    const { data, handleKeyDown, handleChange, deleteComment } = useComment(postId);
 
     useEffect(() => {
-        if(post.type === 'note') { 
-            displayNoteBody(post);
-        }
-    }, [])
+        if(post) {
+            if(post.type === 'note') { 
+                displayNoteBody(post);
+            }
+        } 
+    }, [post])
 
     useEffect(() => {
         if(!isReadOnly) { //set note in focus if it's being edited 
@@ -40,7 +55,13 @@ export default function Edit( {openPost} ) {
         const newNote = JSON.stringify(convertToRaw(data));
         saveUpdate(newNote, post._id);
     };
-    
+
+    if(loading) {
+        return (
+            <div>Loading/..//..//</div>
+        )
+    }
+
     return(
         <div className="modal__background">
             <div className="edit">
@@ -67,14 +88,14 @@ export default function Edit( {openPost} ) {
                         {post.tags.length > 0 
                             ? <>
                             <h4 className="lightest">tags</h4>
-                               { post.tags.map(tag => { 
+                               { post.tags.map((tag, i) => { 
                                    return ( 
-                                    <TagPreview tag={tag} key={tag._id}/> 
+                                    <TagPreview tag={tag} key={i}/> 
                                     ) 
                                 })}
                             </>
                             : <h4 className="lightest">no tags</h4>
-                            }
+                            } 
                         </div>
                         <div className="edit__metadata">
                             <CommentList postComments={data.postComments} deleteComment={deleteComment}/>

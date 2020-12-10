@@ -47,17 +47,13 @@ const getAllTagsFromPosts = () => {
     }).catch((err) => { console.log(err) })
 };
 
-//change tag view 
-    const [tagView, setTagView] = useState('gradient');
 
 //change tag color 
     const [eyedrop, colorChangeActive] = useState(false);
-    const [colorPicker, setOpenColorPicker] = useState([]);
 
     const handlePaintClick = () => {
         colorChangeActive(!eyedrop);
     }
-
 
 //last 3 tags
 const [lastThreeTags, setLastTags] = useState(null);
@@ -81,7 +77,6 @@ useEffect(() => {
         tagCount,
         allTags,
         getAllTagsFromPosts,
-        tagView,
         lastThreeTags,
         handlePaintClick,  
         eyedrop

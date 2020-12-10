@@ -3,9 +3,9 @@ import { Editor } from 'draft-js';
 import { LinkPreview } from './LinkPreview';
 import usePosts from '../../hooks/usePosts'; 
 import { VscEllipsis } from 'react-icons/vsc';
-import BasicSelectMenu from '../menus/BasicSelectMenu';
+import BasicSelectMenu from '../menus/BasicSelectMenu'; 
 
-export default function Post100({ post, openPost, toggleMenu, menu, index, toggleRef }) { 
+export default function Post100({ post, toggleMenu, menu, index, toggleRef }) { 
     const { displayNoteBody, 
             editorState, 
             setEditorState, 

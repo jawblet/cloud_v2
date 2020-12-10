@@ -112,8 +112,7 @@
         filter: blur(0.5rem);
     }
     &-enter-active {
-        transform: scale(0.95);
-        overflow: hidden;
+        transform: scale(2);
         transition: transform 0.25s ease;
         filter: blur(1rem);
     }

@@ -107,7 +107,6 @@ const rentHouse = (formValues) => {
 
     //login user 
     const loginUser = async (formValues) => {
- 
         const { username, password } = formValues.values;
             await axios.post('auth/login', {
                   username,

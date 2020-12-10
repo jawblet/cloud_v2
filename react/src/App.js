@@ -9,6 +9,7 @@ import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
 import Room from './pages/Room';
+import Edit from './sections/Edit';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
@@ -29,32 +30,31 @@ function App() {
   const [loading, setLoading] = useState(null);
   const { userStatus, houseTags, isLoading } = useFindUser();
  
-  useEffect(() => {
+  useEffect(() => { 
     if(userStatus) {
-     // console.log('call main useEffect');
       setUser(userStatus);
       setGlobalTags(houseTags);
-      setLoading(isLoading);
     }
   }, [userStatus, houseTags]); //need dependency array 
 
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser, globalTags, rooms, loading}}>
+       <UserContext.Provider value={{ user, setUser, globalTags, rooms, isLoading}}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute exact path="/home" component={Home}/>
-          <PrivateRoute path='/home/:room/:postId?' component={Room}/>
           <PrivateRoute path='/library' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/tags" component={Tags}/>
+          <PrivateRoute exact path="/home" component={Home}/>
+          <PrivateRoute path='/home/:room/' component={Room}/>
           <Route component={NotFound}/>
-        </Switch>
+          </Switch>
+            <PrivateRoute path='/home/:room/:postId' component={Edit}/>
       </UserContext.Provider>
    </Router>
   );

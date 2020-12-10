@@ -11,7 +11,8 @@ export default function PostList100(props) {
   
     return(
         <CSSTransition 
-        in={activeView === '100%'} timeout={250} 
+        in={activeView === '100%'} 
+        timeout={250} 
         nodeRef={nodeRef} classNames="zoomIn"
         unmountOnExit
         exit={false}>
@@ -24,7 +25,7 @@ export default function PostList100(props) {
                                     toggleRef={toggleRef}
                     /> )
                 })}
-            </div> 
+            </div>  
         </CSSTransition>
     )
 }

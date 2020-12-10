@@ -37,8 +37,6 @@ exports.getTagsFromPosts = catchAsync(async(req, res) => {
         default: sort = { createdOn: -1 };
     }
      
-    console.log(sort);
-
     const allTags = await Post.aggregate([
         {
             $match: match
@@ -93,7 +91,6 @@ exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
         } else {  match = { house: castId }; 
     } 
 
-    
     const allTagsFromPosts = await Post.aggregate([
         {
             $match: match
