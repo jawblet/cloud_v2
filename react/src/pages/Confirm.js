@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import CTA from '../components/btns/CTA';
 import UserForm from '../sections/UserForm';
 import FormInput from '../components/FormInput';
@@ -7,7 +7,7 @@ import Prompt from '../atoms/Prompt';
 import Error from '../atoms/Error'; 
 
 export default function Confirm() {
-    const {values, handleChange, handleCheckUser, error } = useConfirm({
+    const {values, handleChange, handleCheckHouse, error } = useConfirm({
         initialValues: {
             email: '',
             username: '',
@@ -21,8 +21,9 @@ export default function Confirm() {
 
     const sendSubmit = (e) => {
         e.preventDefault();
-        handleCheckUser({ values });
+        handleCheckHouse({ values });
     }
+
     return(
         <div className="page" style={{justifyContent:'center'}}>
             <div className="inlineForm">
@@ -41,6 +42,7 @@ export default function Confirm() {
                     <Prompt prompt={"Enter the house name in the email."} type="light"/>
                 </div>
                 <FormInput type={"text"} placeholder={"House"} name={"house"} value={values.house} 
+                fail={invalidFields.includes("house")}
                 handleChange={handleChange}/>
                     <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
                         <CTA name="register" type={"submit"}/>

@@ -29,19 +29,19 @@
         }
     }
 
-    //dropdown that autocompletes results 
+//dropdown that autocompletes results 
     .autocomplete {
         width: 100%;
         position: absolute;
         list-style: none;
         display: flex;
         flex-direction: column;
-        width: 100%;
         background-color: $off-white;
         border: 1px solid $sand3;
         border-radius: $border-small;
         box-shadow: $soft-shadow;
         z-index: 3;
+        transform: translateY(3rem);
         &__item{
             padding-left: 1rem;
             padding-top: 1rem;

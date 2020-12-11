@@ -64,12 +64,12 @@ export default function UploadContainer(props) {
                                     handleChange={props.handleChange} 
                                     addTags={props.addTags} 
                                     clearInput={props.clearInput}/>
+                            {openAutoComplete &&
+                                    <AutoComplete results={props.results} selectTag={props.selectTag}/>                       
+                                    }
                             <TagBank tags={values.tags} 
                                     handleDelete={props.removeTag}/> 
                             <div style={{alignSelf:'flex-start'}}>
-                            {openAutoComplete &&
-                                  <AutoComplete results={props.results} selectTag={props.selectTag}/>                       
-                                 }
                                 <RecentTags tags={lastThreeTags} selectTag={props.selectTag}/>
                             </div>
                         </div>                    

@@ -2,10 +2,9 @@ import FormInput from './../components/FormInput';
 import ConfirmPasswordInput from './../components/ConfirmPasswordInput';
 
 export default function userForm({values, invalidFields, handleChange}) {
-  console.log(invalidFields);
   const passwordFields = ['password', 'passwordConfirm'];
   let passwordFail = invalidFields.some(el => passwordFields.indexOf(el) !== -1);
-
+ 
     return( 
      <span className="formFields">
         <FormInput type={"text"} placeholder={"Email"} name={"email"} value={values.email} 

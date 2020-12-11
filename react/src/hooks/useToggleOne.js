@@ -4,10 +4,14 @@ export default function useToggleOne(props) {
     const toggleRef = useRef(null);
     const [menu, setMenu] = useState([]);
 
-    //set init state on an array of children 
-    useEffect(() => {
+    const revertAll = () => {
         const initState = props.map(obj => false);
         setMenu(initState); 
+    }
+
+    //set init state on an array of children 
+    useEffect(() => {
+        revertAll();
     }, [props]);
     
     const toggleMenu = (e) => {
@@ -18,6 +22,7 @@ export default function useToggleOne(props) {
     }
 
     return {
+        revertAll,
         toggleMenu,
         toggleRef, 
         menu

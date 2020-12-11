@@ -31,28 +31,3 @@ useEffect(() => {
 
 
 
-
-
-/*
-    useEffect(() =>{
-        try {
-            axios({
-                method: 'GET',
-                url: '/user'
-            }).then(res => {
-                const user = res.data.currentUser
-                setUserStatus(user);
-                setLoading(false);
-                if(user) {
-                    axios.get(`/tags/h/${user.house._id}`).then(res => {
-                    console.log(res.data.data.results);
-                    const tags = res.data.data.results;
-                    setHouseTags(tags);
-                    })
-                }
-            })
-        } catch(err) {
-            console.log(err);
-        }
-    }, []); 
- */

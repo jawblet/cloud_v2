@@ -7,7 +7,7 @@ export default function PostList100(props) {
     const { activeView, posts } = props;   
     const nodeRef = useRef(null);
 
-    const { toggleMenu, toggleRef, menu } = useToggleOne(posts);
+    const { toggleMenu, toggleRef, menu, revertAll } = useToggleOne(posts);
   
     return(
         <CSSTransition 
@@ -22,6 +22,7 @@ export default function PostList100(props) {
                                     openPost={props.openPost}
                                     toggleMenu={toggleMenu}
                                     menu={menu} index={index}
+                                    revertAll={revertAll}
                                     toggleRef={toggleRef}
                     /> )
                 })}

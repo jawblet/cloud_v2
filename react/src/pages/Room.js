@@ -41,6 +41,7 @@ export default function Room() {
        }
     }, [activeView]);
     
+
     return ( 
             <div className="page">
                 <Header nav={nav}/>

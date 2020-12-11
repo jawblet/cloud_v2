@@ -6,10 +6,11 @@
     display: inline-flex;
     align-items: center;
     position: relative;
-    padding: 7px;
+    padding: 5px;
     margin-right: 1rem; 
     line-height: $line-height;
     transition: all $short-fade;
+    break-inside: avoid;
     &--edit {
         padding-right: 1.7rem;
         border-radius: $border-small;
@@ -74,7 +75,7 @@
     }
 }
 
-/* TAG LAYOUT */
+/* TAG LAYOUT */ 
 //Panel that expands on add tags click in upload ==> tag search, recent tags, and tag bank 
 .addTags { // used in upload form 
     display: flex;
@@ -82,6 +83,7 @@
     align-items: flex-end;
     transform-origin: center 1rem; // roll out search from center(x) 1rem from top(y)
     width: 100%;
+    position: relative;
     &__recent {
         padding-top: 1rem;
         align-self: flex-start;
@@ -99,6 +101,7 @@
 
 //global tags by house
 .houseTags {
+    position: relative;
     column-count: 3;
     padding-bottom: 1.5rem;
     &__header {

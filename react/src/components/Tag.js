@@ -6,7 +6,7 @@ export default function Tag({ tag, activeFilter, eyedrop }) {
     console.log(tag);
 
     return(
-        <div className="flex alignCenter" style={{marginBottom:'1rem'}}>
+        <>
         <div className="tag"
             style={activeFilter.includes('color') ? {backgroundColor: tag.tagObject[0].color} : {}} >
             <h4>{tag.name}</h4>
@@ -18,7 +18,7 @@ export default function Tag({ tag, activeFilter, eyedrop }) {
                         {tag.countEach}
                     </h4> 
             </CSSTransition>
-        </div>
+        </>
     )
 }
 

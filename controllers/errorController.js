@@ -1,3 +1,17 @@
+//handle 404 error 
+const handle404Error = (err, res) => {
+    //handle 404 or CastError 
+    console.log('handle 404');
+    const code = 404;
+    res.status(code).send({messages: 'That house isn\'t on our map.', fields: []});
+}
+
+//handle authentication error 
+const handleAuthError = (err, res) => {
+    const code = 401;
+    res.status(code).send({messages: err.message, fields: []});
+}
+
 //handle email or usename duplicates
 const handleDuplicateKeyError = (err, res) => {
     const field = Object.keys(err.keyValue);
@@ -23,11 +37,13 @@ const handleValidationError = (err, res) => {
 //error controller function
 module.exports = (err, req, res, next) => {
     try {
-        console.log('congrats you hit the error middleware');
-        console.log(err);
         if(err.name === 'ValidationError') return err = handleValidationError(err, res); 
+        if(err.code && err.code == 401) return err = handleAuthError(err, res); 
         if(err.code && err.code == 11000) return err = handleDuplicateKeyError(err, res);
+        if(err.code && err.code == 404) return err = handle404Error(err, res);
+        if(err.name === 'CastError') return err = handle404Error(err, res); 
     } catch(err) {
         res.status(500).send('An unknown error occured.');
     }
 }
+

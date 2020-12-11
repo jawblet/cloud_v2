@@ -852,12 +852,12 @@ h6[data-block] {
   list-style: none;
   display: flex;
   flex-direction: column;
-  width: 100%;
   background-color: #fffdfa;
   border: 1px solid #f1e3d3;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff;
-  z-index: 3; }
+  z-index: 3;
+  transform: translateY(3rem); }
   .autocomplete__item {
     padding-left: 1rem;
     padding-top: 1rem;
@@ -1143,10 +1143,11 @@ h6[data-block] {
   display: inline-flex;
   align-items: center;
   position: relative;
-  padding: 7px;
+  padding: 5px;
   margin-right: 1rem;
   line-height: 150%;
-  transition: all 0.35s; }
+  transition: all 0.35s;
+  break-inside: avoid; }
   .tag--edit {
     padding-right: 1.7rem;
     border-radius: 0.5rem;
@@ -1205,7 +1206,8 @@ h6[data-block] {
   flex-direction: column;
   align-items: flex-end;
   transform-origin: center 1rem;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
   .addTags__recent {
     padding-top: 1rem;
     align-self: flex-start; }
@@ -1218,6 +1220,7 @@ h6[data-block] {
   justify-content: flex-start; }
 
 .houseTags {
+  position: relative;
   column-count: 3;
   padding-bottom: 1.5rem; }
   .houseTags__header {

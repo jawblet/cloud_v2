@@ -33,11 +33,11 @@ exports.getHouseByUser = catchAsync(async(req, res) => {
     })  
 }); 
 
-//get house by house name 
-exports.getHouseByHouseName = catchAsync(async(req, res) => {
+//get house by house name for user confirmation 
+exports.getHouseByHouseName = catchAsync(async(req, res, next) => {
     const results = await House.find({ house: req.params.houseName});
     if(!results.length) {
-        return res.status(404).send({messages: 'That isn\'t a house name.', fields: 'house'});
+        return next(new AppError('That house isn\'t on our map', 404));
       }
 
     res.status(200).json({

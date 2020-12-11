@@ -5,9 +5,10 @@ import { colors } from './colors';
   
 export default function useUpload({ initialValues }) {
     const colorArr = colors;
-    const { user } = useContext(UserContext); 
+    const { user, globalTags, setGlobalTags } = useContext(UserContext); 
     const [values, setValues] = useState(initialValues || {}); 
     const [results, setResults] = useState([]);
+    const tags = globalTags;
  
 //define ref for searchbar 
 const searchRef = React.createRef(); 
@@ -71,7 +72,8 @@ const searchRef = React.createRef();
                         error: null,
                         input: ''
                     }); 
-                })
+                    setGlobalTags([...tags, newTag]); //add new tag to global scope
+                });
             } catch(err) {
                 console.log(err);
             }

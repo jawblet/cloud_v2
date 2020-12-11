@@ -7,7 +7,7 @@ import useManyFilters from '../hooks/useManyFilters';
 import useOneFilter from '../hooks/useOneFilter';
 import useTags from '../hooks/useTags';
 import { UserContext } from '../hooks/UserContext';
-
+ 
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 
 
@@ -20,7 +20,8 @@ export default function Tags() {
     const { handleFilterClick, activeFilter } = useManyFilters(['color']);
 
     //get tags
-    const { tags, tagCount, handlePaintClick, eyedrop } = useTags(activeItem);
+    const { tags, tagCount, handlePaintClick, eyedrop, loading } = useTags(activeItem);
+    console.log(tags);
 
     return(
         <div className="page">
@@ -36,8 +37,14 @@ export default function Tags() {
                     <ListMenu title={'sort'} list={list} activeItem={activeItem} handleOneFilter={handleOneFilter}/>
                 </div>
                 <div className="room__body">
-                    <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} eyedrop={eyedrop}
-                    />
+                {loading && <div>loading...</div>}
+                {(!loading && tags.length === 0) && 
+                        <div className="emptyRoom">
+                            <h3 className="light">Empty room</h3>
+                        </div>
+                    }
+                {!loading && <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} eyedrop={eyedrop}
+                    />}
                 </div>
             </div>
         </div>

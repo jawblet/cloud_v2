@@ -4,8 +4,8 @@ import { LinkPreview } from './LinkPreview';
 import usePosts from '../../hooks/usePosts'; 
 import { VscEllipsis } from 'react-icons/vsc';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
-
-export default function Post100({ post, toggleMenu, menu, index, toggleRef }) { 
+ 
+export default function Post100({ post, toggleMenu, menu, index, revertAll }) { 
     const { displayNoteBody, 
             editorState, 
             setEditorState, 
@@ -39,7 +39,9 @@ export default function Post100({ post, toggleMenu, menu, index, toggleRef }) {
                             show={menu[index]}
                             items={options} 
                             selectItem ={selectItem} 
-                            childData={post._id}/>
+                            childData={post._id}
+                            revertAll={revertAll}
+                            />
                     </div>
                 </div> 
             </div>

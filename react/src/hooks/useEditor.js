@@ -10,10 +10,7 @@ export default function useEditor() {
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
       }
-
-
-//   How to add tags in the search bar + have them dynamically be addable in the note   // 
-
+    
 useEffect(() => {
     let tagNames = []; 
 
@@ -55,11 +52,11 @@ useEffect(() => {
             return setEditorState(newEditorState);
     }
 
-    //if no tags, return editor 
-    const contentState = editorState.getCurrentContent(); 
-    const newEditorState = EditorState.createWithContent(contentState);
-    setEditorState(newEditorState);
-    }, []); 
+        //if no tags, return editor w/o decorator 
+        const contentState = editorState.getCurrentContent(); 
+        const newEditorState = EditorState.createWithContent(contentState);
+        setEditorState(newEditorState);
+    }, [globalTags]); //update on new tag
 
     return {
         editorState, 

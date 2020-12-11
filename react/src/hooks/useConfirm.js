@@ -19,26 +19,46 @@ export default function useConfirm({ initialValues }) {
             }); 
         };
         
-        //check user
-        const handleCheckUser = ({ values }) => {
-            //check if house exists 
+        //check if house exists
+        const handleCheckHouse = ({ values }) => {
+            //check if fields are blank 
+            const blankValues = Object.entries(values).forEach(([k, v]) => 
+               { if(v === "") {
+                    return k } 
+            });
+           if(blankValues && blankValues.length !== 0) {
+                setError({
+                    messages: 'No field may be blank.',
+                    fields: blankValues
+                })
+                 return null;
+           };    
+
             const houseName = values.house; 
             axios.get(`/houses/h/${houseName}`)
                 .then(res => {
+                    console.log(res);
                     const house = res.data.data.results[0];
-                    //check if user email was added to house
-                    const isBoarder = house.boardersUnconfirmed.includes(values.email);
-                    isBoarder  
-                        ? registerUser(values, house)
-                        : (setError({
-                            messages: 'That email isn\'t associated with a boarder', 
-                            fields: 'email'}));
+                    handleCheckUser(values, house); //step #2        
             }).catch(err => {
                 console.log(err);
-                setError(err.response.data); // 404 // house doesn't exist 
+               // setError(err.response.data);
             });
-        }
- 
+        };
+
+        //if house exists, check if user is a part of house 
+        const handleCheckUser = (values, house) => {
+            const isBoarder = house.boardersUnconfirmed.includes(values.email);
+            if (isBoarder) {
+                registerUser(values, house)
+            } else {
+                (setError({
+                    messages: 'That email isn\'t associated with a boarder in this house.', 
+                    fields: ['email']})); 
+                    return null; 
+            }
+        };
+      
         //register user  
         const registerUser = (values, house) => {
             const { username, email, password, passwordConfirm } = values;
@@ -49,7 +69,8 @@ export default function useConfirm({ initialValues }) {
                       passwordConfirm,
                       house: house._id
                     }).then(res => {
-                        const user = res.data.data.user; // get new user
+                        console.log(res);
+                        const user = res.data.data.user;            // get new user
                         const newUnconfirmed = house.boardersUnconfirmed.filter(el => el !== values.email);
                         const newConfirmed = [...house.boarders, user._id];
                         return axios.put(`houses/${house._id}`, {
@@ -72,6 +93,9 @@ export default function useConfirm({ initialValues }) {
         values,
         handleChange,
         error,
-        handleCheckUser
+        handleCheckHouse
     }
 }
+
+
+          

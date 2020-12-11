@@ -54,23 +54,19 @@ exports.registerUser = async(req, res, next) => {
         } catch(err) {
             next(err);
     }
-};
-
+}; 
+ 
 //log in user 
 exports.loginUser = catchAsync(async(req, res, next) => {
     const { username, password } = req.body;
 
-    //check if email & password exist 
-    if (!username || !password) {
-        return next(new AppError('Please provide a username and password.', 400));
-      }
- 
     //check if user & password are correct  
     const user = await User.findOne({ username }).select('+password');
 
-    if (!user || !(await user.correctPassword(password, user.password))) {
-      return next(new AppError('Incorrect username or password.', 401));
+    if (!password || !(await user.correctPassword(password, user.password))) {
+        return next(new AppError('Incorrect username or password.', 401));
     }
+    
     createUserToken(user, 200, req, res);
 });
  
@@ -82,9 +78,9 @@ exports.checkUser = catchAsync(async(req, res, next) => {
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id).populate('house');
       } else {
-       currentUser = null;
-        // const id = '5fcaecf29f5729626a5f7afe';
-       // currentUser = await User.findById(id).populate('house');
+        currentUser = null;
+        //const id = '5fcaecf29f5729626a5f7afe';
+        //currentUser = await User.findById(id).populate('house');
       }    
       res.status(200).send({ currentUser });
 });
@@ -107,3 +103,5 @@ exports.logoutUser = catchAsync(async (req, res) => {
     });
     res.status(200).send('user is logged out');
   });
+
+

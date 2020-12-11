@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'; 
 import { UserContext } from './UserContext';  
-
+ 
 export default function useForm({ initialValues }) {
     let history = useHistory();
     const { user, setUser } = useContext(UserContext);
@@ -100,7 +100,7 @@ const rentHouse = (formValues) => {
                     history.push('/home');              // push user home
                 });  
         }).catch((err) => {
-            //setError(err.response.data);
+            setError(err.response.data);
             console.log(err);
     })
 };
@@ -118,7 +118,7 @@ const rentHouse = (formValues) => {
                     history.push('/home');              // push user home
                     });  
                 }).catch((err) => {
-                 console.log(err);
+                 console.log(err.response.data);
                  setError(err.response.data);
             })
       };

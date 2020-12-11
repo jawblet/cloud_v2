@@ -27,7 +27,7 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [globalTags, setGlobalTags] = useState(null);
-  const [loading, setLoading] = useState(null);
+  //const [loading, setLoading] = useState(null);
   const { userStatus, houseTags, isLoading } = useFindUser();
  
   useEffect(() => { 
@@ -39,7 +39,9 @@ function App() {
 
   return (
    <Router>
-       <UserContext.Provider value={{ user, setUser, globalTags, rooms, isLoading}}>
+       <UserContext.Provider value={{ user, setUser, 
+                                      globalTags, setGlobalTags, 
+                                      rooms, isLoading}}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>

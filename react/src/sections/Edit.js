@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import TagPreview from '../atoms/TagPreview';
 import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit } from 'react-icons/vsc';
@@ -15,7 +15,6 @@ export default function Edit({ openPost }) {
     const params = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
-   // const location = useLocation(); 
 
    // const post = location.state.post;
     const postId = params.postId;
