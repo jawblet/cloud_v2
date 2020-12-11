@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { VscClose, VscAdd } from 'react-icons/vsc';
 
-
 const Search = forwardRef((props, ref) => { 
     const { input } = props.values;
     

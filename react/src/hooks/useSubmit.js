@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'; 
 import { convertToRaw } from 'draft-js';
@@ -6,8 +6,8 @@ import { UserContext } from './UserContext';
 
 export default function useSubmit() {
     const { globalTags } = useContext(UserContext);
-
     let history = useHistory();
+    const [error, setError] = useState(null);
 
 //handle URL POST
     const handleLinkSubmit = async (formValues) => {
@@ -33,7 +33,12 @@ export default function useSubmit() {
                     //.then(res => console.log(res));
                 }
                 history.push(`home/${room}`); 
-            }).catch((err) => { console.log(err) })
+            }).catch((err) => { 
+                if(err.response.status === 400) {
+                    console.log(err.response.data);
+                    setError(err.response.data.messages); //not read at the moment 
+                }
+            })
         };
 
 //handle note POST 
@@ -80,6 +85,7 @@ export default function useSubmit() {
 
     return {
         handleLinkSubmit,
-        handleNoteSubmit
+        handleNoteSubmit,
+        error
     }
 }

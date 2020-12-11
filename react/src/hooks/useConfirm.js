@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { UserContext } from './UserContext';  
+import { UserContext } from './UserContext'; 
 
 export default function useConfirm({ initialValues }) {
     let history = useHistory();

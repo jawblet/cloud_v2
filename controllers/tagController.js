@@ -21,6 +21,7 @@ exports.createTag = catchAsync(async(req, res) => {
             message: 'tag already exists',
             data: { checkTag }
         })
+        return null; 
     } 
 
     const tag = await Tag.create(req.body); //create tag

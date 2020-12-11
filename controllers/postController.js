@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 const Post = require('../models/postModel'); 
 const catchAsync = require('../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');

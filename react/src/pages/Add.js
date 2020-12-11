@@ -26,7 +26,7 @@ import useSubmit from '../hooks/useSubmit';
     //handle page state 
     const { values, handleChange, selectItem, 
             searchRef, addTags, results,
-            selectTag, clearInput, removeTag } = useUpload({
+            selectTag, clearInput, removeTag, handleKeyDown } = useUpload({
             initialValues: {
             content: '',
             input: '',
@@ -39,7 +39,7 @@ import useSubmit from '../hooks/useSubmit';
         }
     });
 
-    const { handleLinkSubmit, handleNoteSubmit } = useSubmit();
+    const { handleLinkSubmit, handleNoteSubmit, error } = useSubmit();
 
     const sendSubmit = (e) => {
         e.preventDefault();
@@ -69,7 +69,9 @@ import useSubmit from '../hooks/useSubmit';
                                 addTags={addTags} 
                                 selectTag={selectTag}
                                 editorState={editorState} 
-                                onNoteChange={onNoteChange}     
+                                onNoteChange={onNoteChange}
+                                error={error}  
+                                handleKeyDown={handleKeyDown}   
                                 />
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                     <div className="flex alignCenter" style={{marginRight:'3rem'}}> 

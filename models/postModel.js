@@ -13,7 +13,7 @@ const postSchema = new Schema({
     type: String, 
     content : {
         type: String,
-        required: [true, 'Nothing to add.']
+        required: [true, 'Posts must have some content to be added to a room.']
     },
     house: {
             type: Schema.Types.ObjectId,
@@ -24,7 +24,7 @@ const postSchema = new Schema({
             ref: 'User'
     },
     tags: [
-        {
+        { 
             type: Schema.Types.ObjectId,
             ref: 'Tag' 
         }

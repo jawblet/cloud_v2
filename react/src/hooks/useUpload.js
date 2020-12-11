@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';  
+import React, { useState, useContext } from 'react';   
 import axios from 'axios'; 
 import { UserContext } from './UserContext';
 import { colors } from './colors';
@@ -22,7 +22,8 @@ const searchRef = React.createRef();
                 [name]: value
             }); 
 
-        if(searchRef.current) {
+        if(searchRef.current) { //search in tag input 
+            console.log(searchRef.current.value);
             try {
                 axios({
                     method: 'GET',
@@ -35,6 +36,17 @@ const searchRef = React.createRef();
         }
     };
 
+//handle key down events in tag upload
+const handleKeyDown = (e) => {
+    if(searchRef.current) {
+       //submit tags on comma or enter press
+        if(e.keyCode == 188 || e.keyCode == 13) {
+            e.preventDefault();
+            addTags();
+        }
+    }
+};
+
 //handle room selection 
     const selectItem = e => {
         setValues({
@@ -45,7 +57,7 @@ const searchRef = React.createRef();
 
 //add tags to state and post them 
     const addTags = async () => {
-        if(values.input) {
+        if(values.input) { //check if tag exists 
             const trimmedTag = values.input.trim(); //trim whitespace 
             const n = Math.floor(Math.random() * Math.floor(colorArr.length));
             let color = colorArr[n];
@@ -129,6 +141,7 @@ const searchRef = React.createRef();
             addTags,
             selectTag,
             clearInput,
-            removeTag
+            removeTag,
+            handleKeyDown
         }
 }

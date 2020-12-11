@@ -448,9 +448,12 @@ menu {
   display: flex;
   margin-top: 3px;
   height: auto; }
-  .upload__error {
+  .upload__error__msg {
     position: absolute;
     transform: translateY(-1.5rem); }
+  .upload__error__notif {
+    position: absolute;
+    transform: translateY(-3.5rem); }
   .upload__container {
     display: flex;
     margin-top: 15%; }

@@ -149,7 +149,7 @@ const rentHouse = (formValues) => {
       const updatePassword = async (formValues) => {
         const { password, passwordConfirm } = formValues.values;
         setSuccess(null);
-        setError(null);
+        setError(null); 
         try {
             await axios({
                 method: 'PUT',
@@ -170,13 +170,25 @@ const rentHouse = (formValues) => {
 // rent house + handle the email chips
     const searchRef = React.createRef(); //define searchRef
 
+//handle key down events in tag upload
+const handleKeyDown = (e) => {
+    if(searchRef.current) {
+       //submit tags on comma or enter press
+        if(e.keyCode == 188 || e.keyCode == 13) {
+            e.preventDefault();
+            addTags();
+        }
+    }
+};
+
  //handle add
     const addTags = () => { 
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.input)) {
             if(values.boardersUnconfirmed.length < 4) {
+                const trimmedTag = values.input.trim(); //trim whitespace 
                 setValues({
                     ...values,
-                    boardersUnconfirmed: [...values.boardersUnconfirmed, values.input]
+                    boardersUnconfirmed: [...values.boardersUnconfirmed, trimmedTag]
                 })
                 clearInput();
             }
@@ -208,6 +220,7 @@ const removeTag = (tag) => {
         searchRef,
         addTags,
         clearInput,
-        removeTag
+        removeTag,
+        handleKeyDown
     }
 }

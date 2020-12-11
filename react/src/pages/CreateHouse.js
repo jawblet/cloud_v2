@@ -12,7 +12,8 @@ export default function CreateHouse() {
     //eventually, house rooms will be configurable here too
     const [boarders, openBoarders] = useState(false);
     const { handleChange, handleSubmit, values, error,
-         searchRef, addTags, clearInput, removeTag } = useForm({
+         searchRef, addTags, clearInput, 
+         removeTag, handleKeyDown } = useForm({
         initialValues: {
             form: 'rent',
             house: '',
@@ -38,7 +39,7 @@ export default function CreateHouse() {
                                         <>
                                             <Search placeholder={"Enter up to 3 email addresses."} name={"input"} 
                                             values={values.input} handleChange={handleChange} addTags={addTags} 
-                                            clearInput={clearInput} ref={searchRef} />  
+                                            clearInput={clearInput} ref={searchRef} handleKeyDown={handleKeyDown}/>  
                                             <TagBank tags={values.boardersUnconfirmed} handleDelete={removeTag}/>
                                         </>
                                     :  <Prompt prompt="You won't be able to add boarders later." type="light"/>

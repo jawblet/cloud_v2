@@ -23,9 +23,9 @@ export default function CreateUser() {
             <div className="inlineForm">
             <h3>Register</h3>
                 <div className="inlineForm__notif">
-                {error && <Error error={error.messages}/>}
+                    {error && <Error error={error.messages}/>}
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}> 
                     <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}
                      invalidFields={invalidFields}/>
                 <div className="inlineForm__submit">

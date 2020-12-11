@@ -13,6 +13,7 @@ import { VscClose } from 'react-icons/vsc';
 import AutoComplete from '../../atoms/AutoComplete';
 import RecentTags from '../../atoms/RecentTags';
 import Prompt from '../../atoms/Prompt'; 
+import Error from '../../atoms/Error';
 import CommentInput from '../../components/CommentInput'; 
 import useTags from '../../hooks/useTags';
 import { CSSTransition } from 'react-transition-group';
@@ -20,7 +21,7 @@ import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 
-    const { type, room, switchType, values } = props;
+    const { type, room, switchType, values, error } = props;
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
@@ -46,24 +47,31 @@ export default function UploadContainer(props) {
             </div> 
             <div className="upload__form">
                 <CSSTransition in={values.error} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
-                    <div className="upload__error" ref={nodeRef}> <Prompt type="warning" prompt={values.error}/>
-                    </div>
+                    <div className="upload__error__msg" ref={nodeRef}> <Prompt type="warning" prompt={values.error}/>
+                </div>
+                </CSSTransition>
+                <CSSTransition in={error} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
+                    <div className="upload__error__notif" ref={nodeRef}> 
+                        <Error error={error}/>
+                </div>
                 </CSSTransition>
                 <div className="upload">
                     { type === 'link' && <LinkUpload {...props} /> }
                     { type === 'note' && <NoteUpload {...props} /> }
-                    { type === 'file' && <DragUpload/> }
+                    { type === 'file' && <DragUpload /> }
                 </div>
                     <div className="upload__extra"> 
                         <div className="upload__label"> <h4>Label</h4> </div> 
                         <div className="addTags">
-                            <Search values={values} 
+                            <Search values={values}
                                     results={props.results} 
                                     ref={props.searchRef} 
                                     selectTag={props.selectTag}
                                     handleChange={props.handleChange} 
                                     addTags={props.addTags} 
-                                    clearInput={props.clearInput}/>
+                                    clearInput={props.clearInput}
+                                    handleKeyDown={props.handleKeyDown}
+                                   />
                             {openAutoComplete &&
                                     <AutoComplete results={props.results} selectTag={props.selectTag}/>                       
                                     }
