@@ -10,7 +10,7 @@ useEffect(() => {
     async function findUser() {
           await axios.get('/user')
             .then(res => { 
-                console.log(res);
+               // console.log(res);
                 const user = res.data.currentUser;
                 setUserStatus(user);
         return axios.get(`/tags/h/${user.house._id}`);
@@ -21,7 +21,6 @@ useEffect(() => {
         }).catch(err => console.log(err));
     }
     findUser();
-
     }, []);
                     
     return {

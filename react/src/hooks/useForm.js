@@ -10,7 +10,7 @@ export default function useForm({ initialValues }) {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    console.log(user);
+    
     //track form values
     const handleChange = event => {
         const value = event.target.value; 
@@ -85,7 +85,7 @@ const rentHouse = (formValues) => {
               boardersUnconfirmed, // save new emails as unconfirmed users
               boarders: user._id //save creator as confirmed user
             }).then(res => {
-            console.log(boardersUnconfirmed);
+            //console.log(boardersUnconfirmed);
             if(boardersUnconfirmed.length !== 0) {
                 emailBoarders(house, boardersUnconfirmed); 
             }
@@ -96,7 +96,7 @@ const rentHouse = (formValues) => {
             }).then(() => { 
                 return axios.get('/user')
                 .then(res => {     // check user's jwt             
-                    console.log(res);         
+                    //console.log(res);         
                     setUser(res.data.currentUser);      // use jwt value to set current user
                     history.push('/home');              // push user home
                 });  
@@ -138,7 +138,7 @@ const rentHouse = (formValues) => {
                     email
                   }
               }).then(res => {
-                  console.log(res);
+                  //console.log(res);
                   setSuccess('Profile update complete.');
               })
           } catch(err) {
@@ -160,7 +160,7 @@ const rentHouse = (formValues) => {
                   passwordConfirm
                 }
             }).then(res => {
-                console.log(res);
+                //console.log(res);
                 setSuccess('Profile update complete.'); })
         } catch(err) {
             console.log(err);
@@ -175,7 +175,7 @@ const rentHouse = (formValues) => {
 const handleKeyDown = (e) => {
     if(searchRef.current) {
        //submit tags on comma or enter press
-        if(e.keyCode == 188 || e.keyCode == 13) {
+        if(e.keyCode === 188 || e.keyCode === 13) {
             e.preventDefault();
             addTags();
         }

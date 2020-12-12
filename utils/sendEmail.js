@@ -24,19 +24,19 @@ const sendEmail = async (req) => {
                 <p style="text-align:left;margin-left:5rem">See you at home,</p>
                 <p style="text-align:left;margin-left:5rem">Your loving Cloud</p>
                 </body>
-                `
-                ;
+                `;
 
     //create transporter (send email service) 
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
+        service: 'gmail',
+        //host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
             user: "cottagenotifications@gmail.com",
             pass: "Bellfamily5%"
         }    
-    })
+    });
  
     //define email 
     const mailOptions = {
@@ -49,8 +49,14 @@ const sendEmail = async (req) => {
     }
 
    //actually send email --> returns a promise
-   await transporter.sendMail(mailOptions); 
-
+   await transporter.sendMail(mailOptions, function(err, data) {
+       if(err) {
+           console.log(err)
+       } else {
+           comsole.log(`email sent: ${data}`)
+       }
+   }); 
+   
 };
 
 module.exports = sendEmail;

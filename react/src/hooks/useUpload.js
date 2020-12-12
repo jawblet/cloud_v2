@@ -40,7 +40,7 @@ const searchRef = React.createRef();
 const handleKeyDown = (e) => {
     if(searchRef.current) {
        //submit tags on comma or enter press
-        if(e.keyCode == 188 || e.keyCode == 13) {
+        if(e.keyCode === 188 || e.keyCode === 13) {
             e.preventDefault();
             addTags();
         }
