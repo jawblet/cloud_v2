@@ -37,7 +37,7 @@ export default function usePosts(room) {
                 return state;
         }
     };
-
+ 
     const [data, dispatch] = useReducer(reducer, state);
 
 //set posts by house id
@@ -153,6 +153,7 @@ const displayNoteBody = async (post) => {
         onNoteChange,
         selectItem,
         openPost,
+        deletePost,
         editNote,
         isReadOnly,
         saveUpdate

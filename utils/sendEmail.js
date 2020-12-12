@@ -29,11 +29,12 @@ const sendEmail = async (req) => {
 
     //create transporter (send email service) 
     const transporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-            user: "db8e2b3fa78bb8",
-            pass: "83dd8fabe0afd8"
+            user: "cottagenotifications@gmail.com",
+            pass: "Bellfamily5%"
         }    
     })
  
@@ -53,3 +54,15 @@ const sendEmail = async (req) => {
 };
 
 module.exports = sendEmail;
+
+/*
+     //create transporter (send email service) 
+    const transporter = nodemailer.createTransport({
+        host: "smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+            user: "db8e2b3fa78bb8",
+            pass: "83dd8fabe0afd8"
+        }    
+    })
+ */

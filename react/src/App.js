@@ -36,7 +36,7 @@ function App() {
       setGlobalTags(houseTags);
     }
   }, [userStatus, houseTags]); //need dependency array 
-
+ 
   return (
    <Router>
        <UserContext.Provider value={{ user, setUser, 

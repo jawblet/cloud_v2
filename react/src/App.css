@@ -317,8 +317,8 @@ menu {
 
 .zoomIn-enter-active {
   transform: scale(1.1);
-  transition: transform 0.25s ease;
-  filter: blur(1rem); }
+  filter: blur(1rem);
+  transition: transform 0.25s ease-in-out; }
 
 .zoomIn-enter-done {
   transform: scale(1); }
@@ -328,23 +328,26 @@ menu {
   filter: blur(0.5rem); }
 
 .zoom-enter-active {
-  transform: scale(2);
-  transition: transform 0.25s ease;
-  filter: blur(1rem); }
+  transform: scale(0.99);
+  filter: blur(1rem);
+  transition: all 0.25s ease; }
 
 .zoom-enter-done {
   transform: scale(1); }
 
 .zoomOut-enter {
+  opacity: .25;
   transform: scale(1);
   filter: blur(0.5rem); }
 
 .zoomOut-enter-active {
-  transform: scale(0.8);
-  transition: transform 0.25s ease;
-  filter: blur(1rem); }
+  opacity: .5;
+  transform: scale(0.9);
+  filter: blur(1rem);
+  transition: all 0.25s ease-in-out; }
 
 .zoomOut-enter-done {
+  opacity: 1;
   transform: scale(1); }
 
 @keyframes float {
@@ -740,7 +743,9 @@ d {
     .edit__body__edit {
       flex: 0 0 3%;
       display: flex;
-      justify-content: space-between; }
+      justify-content: flex-end; }
+      .edit__body__edit > * {
+        margin-left: 1.5rem; }
     .edit__body__noteDetail {
       width: 100%;
       flex: 1;

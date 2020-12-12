@@ -84,7 +84,7 @@ export default function UploadContainer(props) {
                     </div>
                     <div className="upload__extra"> 
                         <div className="upload__label active" onClick={() => setComments(!comments)}> 
-                            <h4>Say more</h4>
+                            <h4>Comment</h4>
                         </div>
                         <CommentInput show={comments} value={values.comment} handleChange={props.handleChange}  />
                     </div> 

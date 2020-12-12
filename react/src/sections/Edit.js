@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import TagPreview from '../atoms/TagPreview';
 import InlineButton from '../components/btns/InlineButton';
-import { VscClose, VscEdit } from 'react-icons/vsc';
+import { VscClose, VscEdit, VscTrash } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
 import { LinkDetail } from '../components/posts/LinkPreview';
 import usePosts from '../hooks/usePosts'; 
@@ -19,7 +19,7 @@ export default function Edit({ openPost }) {
    // const post = location.state.post;
     const postId = params.postId;
 
-    useEffect(() => {
+    useEffect(() => { //refactor this out mayb
         axios.get(`/posts/${postId}`).then(res => {
             setPost(res.data.data.doc);
             setLoading(false);
@@ -30,6 +30,7 @@ export default function Edit({ openPost }) {
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
+            deletePost,
             editNote, isReadOnly,
             saveUpdate  } = usePosts();
 
@@ -57,10 +58,11 @@ export default function Edit({ openPost }) {
 
     if(loading) {
         return (
-            <div>Loading/..//..//</div>
+            <div>Loading</div>
         )
     }
 
+console.log(post.tags);
     return(
         <div className="modal__background">
             <div className="edit">
@@ -103,7 +105,7 @@ export default function Edit({ openPost }) {
                     </div>
                     <div className="edit__body">
                         <div className="edit__body__edit">
-                            <h4 className="lightest">{post.type}:</h4> 
+                            <VscTrash className="icon icon__btn icon--warning" data-id={post._id} onClick={deletePost}/>
                             <VscEdit className={`icon icon__btn ${isReadOnly ? '' : 'icon--active'}`} onClick={editNote}/>
                         </div>
                         {post.type === 'note' 

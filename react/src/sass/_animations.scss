@@ -90,7 +90,6 @@
     }
 }
 
-
 .zoomIn {
     &-enter { 
         transform: scale(1);
@@ -98,8 +97,8 @@
     }
     &-enter-active {
         transform: scale(1.1);
-        transition: transform 0.25s ease;
         filter: blur(1rem);
+        transition: transform 0.25s ease-in-out;
     }
     &-enter-done { 
         transform: scale(1);
@@ -112,9 +111,9 @@
         filter: blur(0.5rem);
     }
     &-enter-active {
-        transform: scale(2);
-        transition: transform 0.25s ease;
+        transform: scale(.99);
         filter: blur(1rem);
+        transition: all 0.25s ease;
     }
     &-enter-done { 
         transform: scale(1);
@@ -123,15 +122,18 @@
 
 .zoomOut {
     &-enter { 
+        opacity: .25;
         transform: scale(1);
         filter: blur(0.5rem);
     }
     &-enter-active {
-        transform: scale(0.8);
-        transition: transform 0.25s ease;
+        opacity: .5;
+        transform: scale(0.9);
         filter: blur(1rem);
+        transition: all 0.25s ease-in-out;
     }
     &-enter-done { 
+        opacity: 1;
         transform: scale(1);
     }
 }

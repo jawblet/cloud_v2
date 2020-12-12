@@ -7,4 +7,4 @@ export default function TagPreview({ tag }) {
            <h4>{tag.tag}</h4> 
         </div>
     )
-}
+} 

@@ -44,7 +44,7 @@ export default function useForm({ initialValues }) {
             console.log('no form found');
         }
     };
- 
+  
     //register user  
     const registerUser = async (formValues) => {
         const { username, email, password, passwordConfirm } = formValues.values;
@@ -90,12 +90,13 @@ const rentHouse = (formValues) => {
                 emailBoarders(house, boardersUnconfirmed); 
             }
             const houseId = res.data.data.doc._id;
-            return axios.put(`users/${user._id}`, {
+            return axios.put(`users/${user._id}`, { // add house to user 
                 house: houseId
                 })
             }).then(() => { 
                 return axios.get('/user')
-                .then(res => {                          // check user's jwt 
+                .then(res => {     // check user's jwt             
+                    console.log(res);         
                     setUser(res.data.currentUser);      // use jwt value to set current user
                     history.push('/home');              // push user home
                 });  

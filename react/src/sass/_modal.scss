@@ -67,13 +67,15 @@
     &__body {
         flex: 0 0 75%;
         padding: 0 5rem;
-       // border: 1px solid blue;
         display: flex;
         flex-direction: column;
         &__edit {
             flex: 0 0 3%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
+            & > * {
+                margin-left: 1.5rem;
+            }
         }
         &__noteDetail {
             width: 100%;
