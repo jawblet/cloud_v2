@@ -7,7 +7,7 @@ const [houseTags, setHouseTags] = useState(null);
 const [isLoading, setLoading] = useState(true);
  
 useEffect(() => {
-    async function useFindUser() {
+    async function findUser() {
           await axios.get('/user')
             .then(res => { 
                 console.log(res);
@@ -20,7 +20,7 @@ useEffect(() => {
                 setLoading(false); 
         }).catch(err => console.log(err));
     }
-    useFindUser();
+    findUser();
 
     }, []);
                     
