@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Preview from '../components/Preview';
+import Preview from './../components/modals/Preview';
  
 export default function Gradient({ post }) {
     const [preview, showPreview] = useState(false);

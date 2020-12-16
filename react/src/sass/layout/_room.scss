@@ -11,11 +11,21 @@
             margin-bottom: 3rem;
         }
     }
-    &__body { // standardized room layout for all 3 views // ultimately change when making popup?
-        flex: 0 0 50%; 
+    &__body { // standardized room layout for all 3 views //
+        flex: 0 0 55%; 
         margin-top: 1rem;
-       // height: auto;
-       // overflow: hidden;
+       // border: 1px solid rgba(255, 0, 0, 0.075); 
+        position: relative;
+        padding-right: 1rem;
+    }
+    &__margin {
+        flex: 0 0 30%;
+       // border: 1px solid rgba(0, 0, 255, 0.123); 
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+        position: relative;
     }
 }
 

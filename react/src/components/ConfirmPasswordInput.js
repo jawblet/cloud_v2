@@ -7,9 +7,9 @@ export default function ConfirmPasswordInput(props) {
     const { newState, handleToggle } = useToggle(false); 
 
     return(
-        <div className="flex column">
+        <div className="flex column"> 
         <div className="input__pass">
-                <input type={newState ? "text" : "password"} name="input" 
+                <input type={newState ? "text" : "password"}  
                 className={`input ${fail ? "input--fail" : null} `}                
                 placeholder={props.placeholder}
                 name={props.name}
@@ -24,7 +24,7 @@ export default function ConfirmPasswordInput(props) {
                    : <RiEyeCloseLine className="icon" />}
             </span>
         </div>
-                <input type={newState ? "text" : "password"} name="input" 
+                <input type={newState ? "text" : "password"}  
                 className={`input ${fail ? "input--fail" : null} `}    
                 placeholder={props.placeholderConfirm}
                 name={props.nameConfirm}

@@ -27,13 +27,12 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [globalTags, setGlobalTags] = useState(null);
-  //const [loading, setLoading] = useState(null);
   const { userStatus, houseTags, isLoading } = useFindUser();
  
   useEffect(() => { 
     if(userStatus) {
       setUser(userStatus);
-      setGlobalTags(houseTags);
+      setGlobalTags(houseTags); 
     }
   }, [userStatus, houseTags]); //need dependency array 
  
@@ -51,7 +50,7 @@ function App() {
           <PrivateRoute path='/library' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
-          <PrivateRoute path="/tags" component={Tags}/>
+          <PrivateRoute path="/paths" component={Tags}/>
           <PrivateRoute exact path="/home" component={Home}/>
           <PrivateRoute path='/home/:room/' component={Room}/>
           <Route component={NotFound}/>

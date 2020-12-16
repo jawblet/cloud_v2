@@ -21,8 +21,10 @@
         justify-content: center;
       }
       &.B{
-        height: 10rem;
+        //height: 5rem;
+        height: auto;
         transform: scaleY(1);
+        overflow: visible;
       }
       & > * {
         margin-top: 1.5rem;
@@ -38,5 +40,11 @@
 
 .formFields > * {
   margin-bottom: 1.5rem;
+}
+
+//createHouse
+.addBoarders {
+  transform-origin: top center;
+  margin-bottom: 0;
 }
 

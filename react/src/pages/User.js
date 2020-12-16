@@ -3,11 +3,11 @@ import { UserContext } from '../hooks/UserContext';
 import UserForm from '../sections/UserForm';
 import Error from '../atoms/Error';
 import Notification from '../atoms/Notification';
-import useForm from './../hooks/useForm';
-import CTA from './../components/btns/CTA'; 
+import useForm from '../hooks/useForm';
+import CTA from '../components/btns/CTA'; 
 import Header from '../sections/Header';
 import Prompt from '../atoms/Prompt';
-import Modal from '../components/Modal';
+import Modal from '../components/modals/Modal';
 import useModal from '../hooks/useModal'; 
 import useDelete from '../hooks/useDelete';
 

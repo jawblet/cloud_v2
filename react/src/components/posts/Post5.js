@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Post5({ post }) {
-
+    console.log(post);
     return (
         <> 
         {post.tagObject 

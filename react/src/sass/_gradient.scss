@@ -20,31 +20,3 @@
         margin: 0.5rem;
     }
 }
-
-//post modal 
-.postPreview {
-    position: relative; 
-    display: flex; 
-    align-items: flex-end; //align bottoms of previews 
-    justify-content: center; //center previews against posts  
-&__content {
-    width: 15rem;
-    min-height: 5rem;
-    padding: 1rem;
-    background-color: $sand;
-    border: 1px solid $sand3;
-    display: flex;
-    flex-direction: column;
-    border-radius: $border-small;
-    box-shadow: $softer-shadow;
-    position: absolute;
-    z-index: 1;
-} 
-    &__header {
-        padding-bottom: 1rem;
-    }
-    &__tags {
-        padding-top: 1rem;
-       & > * { padding-bottom: 5px; }
-   }
-}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { VscClose } from 'react-icons/vsc';
-import CTA from './btns/CTA';
+import CTA from '../btns/CTA';
  
 const Modal = React.forwardRef((props, ref) => (
         <div className="modal__background" onClick={(e) => props.handleOutsideClick(e)}>

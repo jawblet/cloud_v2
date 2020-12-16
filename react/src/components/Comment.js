@@ -13,13 +13,13 @@ export default function Comment({ comment, deleteComment }) {
         } else {
             setAuthor(user.username);
         }
-    }, []);
+    }, [user, comment]);
 
     useEffect(() => { //check if comment author is current user --> if so, show delete btn
         if(user.username === commentAuthor) {
             return checkAuthor(true);
         }
-    }, [commentAuthor]);
+    }, [commentAuthor, user]);
 
     return (
         <div className="comment">

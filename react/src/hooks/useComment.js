@@ -3,7 +3,6 @@ import axios from 'axios';
 import { UserContext } from './UserContext';
 
 export default function useComment( post ) {
-
     const { user } = useContext(UserContext);
 
     const state = { 
@@ -34,11 +33,11 @@ export default function useComment( post ) {
            await axios.get(`/comments/${post}`)
                 .then(res =>{
                     const c = res.data.data.comments;
-                    dispatch({type: "getComments", c})
+                    dispatch({type: "getComments", c}) 
             }).catch(err => console.log(err));
         };
         getPostTags();
-    }, []);
+    }, [post]);
 
     //write comment
     const handleChange = (e) => {

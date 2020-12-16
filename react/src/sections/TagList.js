@@ -10,8 +10,8 @@ export default function TagList({ tags, tagCount, activeFilter, eyedrop }) {
         <div className="houseTags">
             {tags.map((tag, i) => {
                 return(
-                    <div style={{marginBottom:'1rem'}}>
-                        <Tag tag={tag} key={i} activeFilter={activeFilter} eyedrop={eyedrop}/>
+                    <div style={{marginBottom:'1rem'}} key={i}>
+                        <Tag tag={tag} activeFilter={activeFilter} eyedrop={eyedrop}/>
                     </div>
                 )
             })}

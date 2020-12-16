@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'); 
 const Post = require('../models/postModel'); 
+const Tag = require('../models/tagModel'); 
 const catchAsync = require('../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');
 
@@ -14,18 +15,16 @@ exports.deleteOnePost = functionHandler.deleteOne(Post);
 exports.deleteAllPosts = functionHandler.deleteAll(Post);  
 
 
-//get tags by house id and agg
-exports.getTagsFromPosts = catchAsync(async(req, res) => {
-    
+//get tags by house id and aggregate
+exports.countTagsFromPosts = catchAsync(async(req, res) => {
     let match;
+    let sort;
     const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
 
     if(req.params.room) { //check for room param  
         match = { house: castId, room: req.params.room }
         } else {  match = { house: castId }; 
     } 
-
-    let sort;
 
     switch(req.params.sort) { // get sort 
         case 'date': sort = { createdOn: -1 };
@@ -82,7 +81,6 @@ exports.getTagsFromPosts = catchAsync(async(req, res) => {
 
 //get tags and unwind
 exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
-    
     let match;
     const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
 
@@ -100,8 +98,7 @@ exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
         }, 
         {
             $lookup: 
-            {
-                from: "tags", // join with tag db  
+            { from: "tags", // join with tag db  
                 localField: "tags",
                 foreignField: "_id",
                 as: "tagObject"
@@ -124,4 +121,18 @@ exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
 });
 
 
+//get tags details 
+exports.getTagDetails = catchAsync(async(req, res) => {
+    //get all posts of tag used by house 
+    const posts = await Post.find({ house: req.params.houseId, tags: req.params.tagId });
+    const tag = await Tag.find({ _id: req.params.tagId })
 
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tag,
+            posts,
+            postCount: posts.length,
+        }
+    })  
+});

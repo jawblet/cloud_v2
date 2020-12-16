@@ -1,14 +1,15 @@
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (req) => {
-    console.log(req);
+    console.log('im the send email function');
+
     const text = `Hi there. 
     You were added as a boarder in a house located in an elaborate delusion.
     The house's name is ${req.house}. To confirm your room in the house,
     finish registering at https://floating-garden-93064.herokuapp.com/confirm.`
 
     const html = `<body style="font-family:sans-serif; text-align:center">
-                <h3 style="margin:3rem 0"> ✧ . ・・ﾟﾟ・Confirm your room in Cloud Cottage・ﾟﾟ・.・ﾟﾟ・｡ </h3>
+                <h3 style="margin:3rem 0"> Confirm your room in Cloud Cottage </h3>
                 <p>
                     You were added as a boarder in a house located inside an elaborate delusion. 
                     You still need to register to join the house.
@@ -56,7 +57,7 @@ const sendEmail = async (req) => {
            comsole.log(`email sent: ${data}`)
        }
    }); 
-   
+
 };
 
 module.exports = sendEmail;

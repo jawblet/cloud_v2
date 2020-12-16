@@ -24,6 +24,7 @@ export default function PostList100(props) {
                                     menu={menu} index={index}
                                     revertAll={revertAll}
                                     toggleRef={toggleRef}
+                                    {...props}
                     /> )
                 })}
             </div>  

@@ -11,7 +11,7 @@
     line-height: $line-height;
     transition: all $short-fade;
     break-inside: avoid;
-    &--edit {
+    &--edit { 
         padding-right: 1.7rem;
         border-radius: $border-small;
         background-color: $sand2;
@@ -30,6 +30,39 @@
     }
 }
 
+//visualize tag paths 
+.inlineTag__wrapper {
+    position: relative;
+}
+
+.tagPathX {
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    height: 5px; 
+    width: 10rem;
+    transform: translateY(-50%);
+    top: 50%;
+    margin-left: -1rem;
+}
+
+.tagPathY {
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    width: 5px;
+    bottom: 0;
+    top: 50%;
+    &::after {
+        content: '';
+        width: 10rem;
+        background-color: inherit;
+        height: 5px;
+        position: absolute;
+    }
+}
+
+
 //tag for preview modals/menus 
 .tagPreview {
     display: flex;
@@ -41,16 +74,6 @@
         border-radius: 50%;
         margin-right: 1rem; 
     }
-}
-
-//for color change
-.colorInput {
-    position: absolute;
-    top: 0;
-    left: 0%;
-    width: 100%; 
-    height: 100%; 
-    opacity: 0%;
 }
 
 //recent tag
@@ -75,6 +98,16 @@
     }
 }
 
+//for color change
+.colorInput {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%; 
+    height: 100%; 
+    opacity: 0%;
+}
+
 /* TAG LAYOUT */ 
 //Panel that expands on add tags click in upload ==> tag search, recent tags, and tag bank 
 .addTags { // used in upload form 
@@ -92,7 +125,8 @@
 
 // show created tags in reg/upload forms
 .tagBank { 
-    padding-top: 1.5rem;
+  //  padding-top: 1.5rem;
+    padding-top: 0.5rem;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -119,3 +153,4 @@
         margin-top: 3rem; 
     }
 }
+

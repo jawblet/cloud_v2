@@ -6,7 +6,7 @@ export default function FormInput(props) {
  
     return(
         <>
-            <input type={props.type} name="input" 
+            <input type={props.type}
             className={`input
                 ${white ? 'input--white' : ''} 
                 ${fail ? "input--fail" : ''} `}

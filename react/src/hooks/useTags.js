@@ -13,8 +13,8 @@ const [tagCount, setTagCount] = useState({
     unique: '',
     sum: ''
 })
- 
-useEffect(() => { 
+
+useEffect(() => {
     let sort;
     switch(activeItem) {
         case 'recent': sort = 'date';
@@ -36,7 +36,7 @@ axios.get(`/posts/tags/${user.house._id}/${sort}`)
         })
         isLoading(false);
     }).catch((err) => { console.log(err) })
-}, [activeItem]);
+}, [activeItem, user]); // added user 
 
 
 const getAllTagsFromPosts = () => {
@@ -68,7 +68,7 @@ useEffect(() => {
             } catch(err) {
                 console.log(err)
             }
-    }, [])
+    }, [user]) // added user 
    
     return {
         loading,

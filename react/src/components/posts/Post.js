@@ -15,7 +15,7 @@ export default function Post({ post, openPost }) {
         if(post.type === 'note') { 
             displayNoteBody(post); 
         } 
-    }, [post]) 
+    }, [post]); 
  
     return(
         <div className="post25__wrapper">

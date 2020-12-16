@@ -27,7 +27,7 @@ export default function Tags() {
         <div className="page">
             <Header/> 
             <div className="houseTags__header"> 
-                    <h3>{user.house.house} labels</h3> 
+                    <h3>{user.house.house} paths</h3> 
                     <Filter filters={filters} activeFilter={activeFilter} handleFilterClick={handleFilterClick} 
                             handlePaintClick={handlePaintClick} eyedrop={eyedrop}
                             /> 

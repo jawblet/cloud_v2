@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState, useReducer } from 'react'; 
 import { useHistory, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; 
 import { UserContext } from './UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
@@ -40,30 +40,33 @@ export default function usePosts(room) {
  
     const [data, dispatch] = useReducer(reducer, state);
 
+    async function getPostsByRoom() {
+        if(room !== undefined) {
+            await axios.get(`/posts/h/${user.house._id}/${room}`)
+            .then(res => {  
+                console.log('this was reset');
+                const p = res.data.data.results;
+                dispatch({type: "setPosts", p});
+                isLoading(false); 
+    }).catch(err => console.log(err)); 
+}
+    } 
+
 //set posts by house id
     useEffect(() => {
-        async function getPostsByRoom() {
-            if(room !== undefined) {
-                await axios.get(`/posts/h/${user.house._id}/${room}`)
-                .then(res => {  
-                    console.log('this was reset');
-                    const p = res.data.data.results;
-                    dispatch({type: "setPosts", p});
-                    isLoading(false); 
-        }).catch(err => console.log(err)); 
-    }
-        } 
         getPostsByRoom();
-    }, [room]); //user, room
-
+    }, [room, user]); // room
+ 
 //delete post 
-const deletePost = (e) => {
-        const postId = e.currentTarget.dataset.id;
-        axios.delete(`/posts/${postId}`)
+const deletePost = async (e) => {
+    const postId = e.currentTarget.dataset.id;
+    await axios.delete(`/posts/${postId}`)
             .then(res => {
                 console.log(res);
                 dispatch({type: "deletePost", postId})
     }).catch(err => console.log(err)); 
+
+    getPostsByRoom();
 }
 
 //select item from edit menu 
@@ -73,6 +76,7 @@ const selectItem = (e) => {
         case "delete": deletePost(e); 
         break;
         case "edit": openPost(e); // open post detail 
+        break;
         default: return null;
     }
 }

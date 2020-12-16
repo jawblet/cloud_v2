@@ -18,7 +18,7 @@ exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
 //get by user
 exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
     const results = await Model.find({ user: req.params.userId});
-    console.log(results);
+    console.log(results); 
     res.status(200).json({
         status: 'success',
         data: {

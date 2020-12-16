@@ -26,12 +26,11 @@
             margin-right: 3rem;
         }
     }
-    &__background {
+    &__background { 
         position: absolute;  
         height: 100vh;
         width: 100vw;
         background-color: rgba(255, 255, 255, 0.8);
-       // border: 1px solid blue; 
     }
 }
 
@@ -105,5 +104,46 @@
             }
         }
     }
-  
+}
+
+//popup for posts   
+.popup {
+    width: 15rem;
+    min-height: 5rem;
+    padding: 1rem;
+    background-color: $sand;
+    border: 1px solid $sand3;
+    display: flex;
+    flex-direction: column;
+    border-radius: $border-small;
+    box-shadow: $softer-shadow;
+    position: absolute;
+    z-index: 1;
+    &__wrapper {
+        position: relative; 
+        display: flex; 
+        align-items: flex-end; //align bottoms of previews 
+        justify-content: center; //center previews against posts  
+    }
+    &__header {
+        padding-bottom: 1rem;
+    }
+    &__tags {
+        padding-top: 1rem;
+       & > * { padding-bottom: 5px; }
+   }
+}
+
+.tagLegend {
+    min-height: 0;
+    height: auto;
+    margin-top: 1rem;
+    &__summary > *:first-child {
+        padding-top: 3rem;
+}
+    &__excerpt {
+        color: $body-light; 
+        font-style: italic;
+        padding-bottom: 1rem;
+    }
 }

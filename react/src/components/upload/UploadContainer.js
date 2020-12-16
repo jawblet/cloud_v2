@@ -61,7 +61,7 @@ export default function UploadContainer(props) {
                     { type === 'file' && <DragUpload /> }
                 </div>
                     <div className="upload__extra"> 
-                        <div className="upload__label"> <h4>Label</h4> </div> 
+                        <div className="upload__label"> <h4>Add path</h4> </div> 
                         <div className="addTags">
                             <Search values={values}
                                     results={props.results} 

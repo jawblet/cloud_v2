@@ -44,6 +44,16 @@ export default function useForm({ initialValues }) {
             console.log('no form found');
         }
     };
+
+    //email boarders
+    const emailBoarders = (house, users) => {
+        console.log('boarders r emailed');
+        axios.post('/houses/email', {
+            house,
+            users
+        }).then(res => console.log(res))
+        .catch(err => console.log(err));
+    };    
   
     //register user  
     const registerUser = async (formValues) => {
@@ -69,14 +79,6 @@ export default function useForm({ initialValues }) {
             }
       };
 
-const emailBoarders = (house, users) => {
-    axios.post('/houses/email', {
-        house,
-        users
-    }).then(res => console.log(res))
-    .catch(err => console.log(err));
-};
-
 //submit + rent house 
 const rentHouse = (formValues) => {
     const { house, boardersUnconfirmed } = formValues.values;
@@ -85,8 +87,8 @@ const rentHouse = (formValues) => {
               boardersUnconfirmed, // save new emails as unconfirmed users
               boarders: user._id //save creator as confirmed user
             }).then(res => {
-            //console.log(boardersUnconfirmed);
-            if(boardersUnconfirmed.length !== 0) {
+            console.log(boardersUnconfirmed);
+            if(boardersUnconfirmed.length !== 0) { 
                 emailBoarders(house, boardersUnconfirmed); 
             }
             const houseId = res.data.data.doc._id;
@@ -154,7 +156,7 @@ const rentHouse = (formValues) => {
         try {
             await axios({
                 method: 'PUT',
-                url: `auth/password/${user._id}`,
+                url: `/auth/password/${user._id}`,
                 data: {
                   password,
                   passwordConfirm
@@ -169,7 +171,7 @@ const rentHouse = (formValues) => {
     }
 
 // rent house + handle the email chips
-    const searchRef = React.createRef(); //define searchRef
+const searchRef = React.createRef(); //define searchRef
 
 //handle key down events in tag upload
 const handleKeyDown = (e) => {
@@ -186,15 +188,20 @@ const handleKeyDown = (e) => {
     const addTags = () => { 
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(values.input)) {
             if(values.boardersUnconfirmed.length < 4) {
+                    if(values.boardersUnconfirmed.includes(values.input)) { // don't add existing emails
+                        return setError({messages: 'That email address was already added.', fields: ['email']})
+                    }
+
                 const trimmedTag = values.input.trim(); //trim whitespace 
                 setValues({
                     ...values,
                     boardersUnconfirmed: [...values.boardersUnconfirmed, trimmedTag]
                 })
+                setError(null);
                 clearInput();
             }
         } else {
-           return console.log('not an email'); 
+           return setError({messages: 'Email address is not valid.', fields: ['email']});
         }
     };
 

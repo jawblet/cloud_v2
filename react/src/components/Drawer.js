@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 export default function Drawer({ items }) {
     const nodeRef = useRef(null);
-    const [menu, setMenu] = useState(false);
+    const [menu, setMenu] = useState(false); 
     return (
         <div className="drawer">
             <h4 className="drawer__tab" onClick={() => setMenu(!menu)}> 

@@ -35,7 +35,7 @@ export default function useSubmit() {
                 history.push(`home/${room}`); 
             }).catch((err) => { 
                 if(err.response.status === 400) {
-                    console.log(err.response.data);
+                   // console.log(err.response.data);
                     setError(err.response.data.messages); //not read at the moment 
                 }
             })
@@ -55,7 +55,7 @@ export default function useSubmit() {
     
                 while ((tag = TAGS_REGEX.exec(text)) !== null) {
                     let tagObj = globalTags.find(obj => obj.tag === tag[0]);
-                    console.log(tagObj);
+                   // console.log(tagObj);
                     tagArr.push(tagObj);
                 }
         }

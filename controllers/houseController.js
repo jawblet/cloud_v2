@@ -3,7 +3,7 @@ const functionHandler = require('./genericFunctionController');
 const catchAsync = require('./../utils/catchAsync');
 const sendEmail = require('../utils/sendEmail');
 const AppError = require('../utils/AppError'); 
-
+ 
 exports.getAllHouses = functionHandler.getAll(House);
 exports.updateHouse = functionHandler.updateOne(House);
 exports.getHouseById = functionHandler.getOne(House, 'boarders'); //return all boarders in house 

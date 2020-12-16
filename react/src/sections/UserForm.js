@@ -18,7 +18,7 @@ export default function userForm({values, invalidFields, handleChange}) {
                     placeholder={"Password"} placeholderConfirm={"Confirm password"}
                     name={"password"} nameConfirm={"passwordConfirm"} 
                     value={values.password} valueConfirm={values.passwordConfirm}
-                   handleChange={handleChange}
+                    handleChange={handleChange}
                     />
       </span>
     )
