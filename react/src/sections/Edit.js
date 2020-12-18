@@ -5,21 +5,20 @@ import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit, VscTrash } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
 import { LinkDetail } from '../components/posts/LinkPreview';
-import usePosts from '../hooks/usePosts'; 
 import InlineComment from '../components/InlineComment';
-import useComment from '../hooks/useComment';
 import CommentList from '../components/CommentList';
 import axios from 'axios';
+import usePosts from '../hooks/usePosts'; 
+import useComment from '../hooks/useComment';
+import useRoom from '../hooks/useRooms';
 
 export default function Edit({ openPost }) {
     const params = useParams();
+    const postId = params.postId;
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
 
-   // const post = location.state.post;
-    const postId = params.postId;
-
-    useEffect(() => { //refactor this out mayb
+    useEffect(() => { 
         axios.get(`/posts/${postId}`).then(res => {
             setPost(res.data.data.doc);
             setLoading(false);
@@ -30,16 +29,16 @@ export default function Edit({ openPost }) {
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
-            deletePost,
-            editNote, isReadOnly,
-            saveUpdate  } = usePosts();
+            deletePost, editNote, isReadOnly } = usePosts();
+
+    const { handleUpdatePost } = useRoom();
 
     const { data, handleKeyDown, handleChange, deleteComment } = useComment(postId);
 
     useEffect(() => {
         if(post) {
             if(post.type === 'note') { 
-                displayNoteBody(post);
+                displayNoteBody(post); 
             }
         } 
     }, [post])
@@ -50,10 +49,11 @@ export default function Edit({ openPost }) {
         }
     }, [isReadOnly]);
 
-    const updatePost = () => {
+    const updatePost =() => {
         const data = editorState.getCurrentContent();
         const newNote = JSON.stringify(convertToRaw(data));
-        saveUpdate(newNote, post._id);
+        handleUpdatePost(newNote, post._id, params.room);
+        editNote();
     };
 
     if(loading) {
@@ -61,8 +61,6 @@ export default function Edit({ openPost }) {
             <div>Loading</div>
         )
     }
-
-console.log(post.tags);
     return(
         <div className="modal__background">
             <div className="edit">

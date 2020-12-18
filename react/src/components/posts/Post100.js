@@ -7,18 +7,20 @@ import BasicSelectMenu from '../menus/BasicSelectMenu';
 import TagLegendPath from '../../atoms/TagLegendPath';
  
 export default function Post100({ post, toggleMenu, menu, index, revertAll, 
-                                setHover, hover, handleHover, coords }) { 
-    const postId = coords.index;
-    
+                                handleDeletePost, openPost, handleStopHover, tagpath, handleHover, coords }) { 
+
+    const postId = coords.postId;
+    const uniqueTags = Array.from(new Set(post.tags.map(el => el.tag)))
+                            .map(tag => { const uniqueTag = post.tags.find(el => el.tag === tag);
+                                return uniqueTag;
+                            });
+
     const { displayNoteBody, 
             editorState, 
             setEditorState, 
-            onNoteChange, 
-            selectItem } = usePosts();
+            onNoteChange } = usePosts();
 
     const editRef = useRef(null); 
-
-    const options=['edit', 'delete'];
 
     useEffect(() => {
         if(post.type === 'note') { 
@@ -27,6 +29,16 @@ export default function Post100({ post, toggleMenu, menu, index, revertAll,
         return null
     }, [post])
 
+    const selectItem = (e) => {
+        const action = e.currentTarget.dataset.label;
+        switch(action) {
+            case "delete": handleDeletePost(e);
+            break;
+            case "open": openPost(e);
+            break;
+            default: return null;
+        }
+    }
 
     return ( 
         <> 
@@ -37,10 +49,9 @@ export default function Post100({ post, toggleMenu, menu, index, revertAll,
                     <h4 className="lightest">{post.date}</h4>
                     <VscEllipsis className="icon icon__btn post100__editBtn" data-id={index} onClick={toggleMenu}/>
                      <div className="post100__header__editMenu">
-                        <BasicSelectMenu 
+                        <BasicSelectMenu items={['open', 'delete']} 
                             toggleMenu={toggleMenu}
                             show={menu[index]}
-                            items={options} 
                             selectItem ={selectItem} 
                             childData={post._id}
                             revertAll={revertAll}
@@ -65,22 +76,22 @@ export default function Post100({ post, toggleMenu, menu, index, revertAll,
                 </div> 
                     {post.tags.length !== 0 && 
                     <div className="post100__tags">
-                    <h4 className="tag" style={{paddingLeft: 0}}>paths:</h4>
-                        {post.tags.map((tag, i) => {
+                        <h4 className="tag" style={{paddingLeft: 0}}>paths:</h4>
+                        {uniqueTags.map((tag, i) => {
                             return (
-                            <div className="inlineTag__wrapper" key={i}>
-                                <h4 className="tag inlineTag" 
+                            <div className="post100__tag" key={i}>
+                                <h4 className="tag" 
                                     data-index={post._id}                                
                                     data-id={tag._id}
-                                    onMouseEnter={handleHover}
-                                    onMouseLeave={() => setHover(null)}
-                                    onMouseOut={() => setHover(null)}
-                                    style={(hover && hover === tag._id ) ? {backgroundColor: tag.color, color:'#31302C', cursor:'pointer'} : {}}>
+                                    onMouseEnter={handleHover} 
+                                    onMouseLeave={handleStopHover}
+                                    style={(tagpath && tagpath === tag._id ) ? {backgroundColor: tag.color, color:'#31302C', cursor:'pointer'} : {}}
+                                    >
                                     {tag.tag}
                                 </h4>
                                 <TagLegendPath coords={coords} 
                                                 tag={tag} 
-                                                enter={(hover && hover === tag._id && postId === post._id) ? true : false}/>
+                                                enter={(tagpath && tagpath === tag._id && postId === post._id) ? true : false}/>
                             </div>
                             )
                         })}

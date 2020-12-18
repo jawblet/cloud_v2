@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 export default function TagList({ tags, tagCount, activeFilter, eyedrop }) {
     const nodeRef = useRef(null); 
 
-    return(
+    return( 
         <>
         <div className="houseTags">
             {tags.map((tag, i) => {

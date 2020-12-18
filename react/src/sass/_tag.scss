@@ -30,37 +30,6 @@
     }
 }
 
-//visualize tag paths 
-.inlineTag__wrapper {
-    position: relative;
-}
-
-.tagPathX {
-    opacity: 0.5;
-    display: inline-block;
-    position: absolute;
-    height: 5px; 
-    width: 10rem;
-    transform: translateY(-50%);
-    top: 50%;
-    margin-left: -1rem;
-}
-
-.tagPathY {
-    opacity: 0.5;
-    display: inline-block;
-    position: absolute;
-    width: 5px;
-    bottom: 0;
-    top: 50%;
-    &::after {
-        content: '';
-        width: 10rem;
-        background-color: inherit;
-        height: 5px;
-        position: absolute;
-    }
-}
 
 
 //tag for preview modals/menus 
@@ -125,7 +94,6 @@
 
 // show created tags in reg/upload forms
 .tagBank { 
-  //  padding-top: 1.5rem;
     padding-top: 0.5rem;
     width: 100%;
     display: flex;

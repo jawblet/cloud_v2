@@ -10,7 +10,7 @@ export default function PostList25(props) {
     const numRows = [...Array(Math.ceil(postTotal / postMax))]; // # of rows on pg
     const postArrs = numRows.map((row, i) => props.posts.slice(i * postMax, i * postMax + postMax ));
         
-        return(
+    return(
         <CSSTransition  
             in={activeView === '25%'} 
             timeout={250} 

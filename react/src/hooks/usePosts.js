@@ -1,111 +1,23 @@
-import React, { useEffect, useContext, useState, useReducer } from 'react'; 
-import { useHistory, useLocation } from 'react-router-dom';
-import axios from 'axios'; 
+import React, { useContext, useState } from 'react';  
 import { UserContext } from './UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
-export default function usePosts(room) {
-    let history = useHistory();
-    let location = useLocation();
-    const { user, globalTags } = useContext(UserContext);
+export default function usePosts() {
+    const { globalTags } = useContext(UserContext);
     const tags = globalTags;
     let tagNames;
     if(tags && tags.length > 0) { tagNames = tags.map(el => el.tag); }
-     
-   // const [posts, setPosts] = useState([]);
-    const state = {
-        posts: []
-    }
-
-    const [loading, isLoading] = useState(true);
+  
     const [isReadOnly, setEditable] = useState(true);
-
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-    const onNoteChange = (editorState) => {
-            setEditorState(editorState);   
-        }
-
-    const reducer = (state, action) => {
-        switch(action.type) {
-            case "setPosts": 
-                return {...state, posts: action.p};
-            case "deletePost":
-                console.log(state.posts);
-                return {posts: state.posts.filter(el => el._id !== action.postId)};
-            default:
-                return state;
-        }
-    };
- 
-    const [data, dispatch] = useReducer(reducer, state);
-
-    async function getPostsByRoom() {
-        if(room !== undefined) {
-            await axios.get(`/posts/h/${user.house._id}/${room}`)
-            .then(res => {  
-                console.log('this was reset');
-                const p = res.data.data.results;
-                dispatch({type: "setPosts", p});
-                isLoading(false); 
-    }).catch(err => console.log(err)); 
-}
-    } 
-
-//set posts by house id
-    useEffect(() => {
-        getPostsByRoom();
-    }, [room, user]); // room
- 
-//delete post 
-const deletePost = async (e) => {
-    const postId = e.currentTarget.dataset.id;
-    await axios.delete(`/posts/${postId}`)
-            .then(res => {
-                console.log(res);
-                dispatch({type: "deletePost", postId})
-    }).catch(err => console.log(err)); 
-
-    getPostsByRoom();
-}
-
-//select item from edit menu 
-const selectItem = (e) => {
-    const action = e.currentTarget.dataset.label;
-    switch(action) {
-        case "delete": deletePost(e); 
-        break;
-        case "edit": openPost(e); // open post detail 
-        break;
-        default: return null;
-    }
-}
-
-//open post detail pg
-const openPost = (e) => {
-    const postId = e.currentTarget.dataset.id;
-    history.push(`${location.pathname}/${postId}`);
-}
-
-//enable editing for note detail  
-const editNote = () => {
-    setEditable(!isReadOnly);
-}
-
-//update note detail 
-const saveUpdate = async (newNote, id) => {
-    console.log(id);
-    await axios.put(`/posts/${id}`, {
-        content: newNote
-    }).then(() => {
-        setEditable(true);
-    });
-}
+    
+    const onNoteChange = (editorState) => { setEditorState(editorState); }
+    const editNote = () => { setEditable(!isReadOnly); }
 
 //display notes on tiles and detail pg 
 const displayNoteBody = async (post) => {
     const contentState = convertFromRaw(JSON.parse(post.content));
-    let newEditorState;
+    let newEditorState; 
 
     if (tagNames) { // decorate tags if tags exist/have been retrieved 
         const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi");
@@ -148,19 +60,13 @@ const displayNoteBody = async (post) => {
     }
 
     return {
-        data,
         tags,
-        loading,
         displayNoteBody,
         editorState,
         setEditorState,
         onNoteChange,
-        selectItem,
-        openPost,
-        deletePost,
         editNote,
-        isReadOnly,
-        saveUpdate
+        isReadOnly
     }
 }
 

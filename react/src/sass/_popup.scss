@@ -1,0 +1,70 @@
+//container for tag popup 
+.tagLegend {
+    //border: 1px solid black;
+    position: fixed;
+    right: 5%;
+    width: 20%;
+    height: 1rem;
+    margin-top: 1rem;
+    background-color: inherit;
+    &__summary > *:first-child {
+        padding-top: 3rem;
+}
+    &__excerpt {
+        color: $body-light; 
+        font-style: italic;
+        padding-bottom: 1rem;
+    }
+}
+
+//popup for posts, tags, and house 
+.popup {
+    width: 15rem;
+    min-height: 5rem;
+    padding: 1rem;
+    background-color: $sand; 
+    border: 1px solid $sand3;
+    display: flex; 
+    flex-direction: column;
+    border-radius: $border-small;
+    box-shadow: $softer-shadow;
+    position: absolute;
+    z-index: 1;
+    &__wrapper {
+        position: relative; 
+        display: flex; 
+        align-items: flex-end; //align bottoms of previews 
+        justify-content: center; //center previews against posts  
+    }
+    &__header {
+        padding-bottom: 1rem;
+    }
+    &__tags {
+        padding-top: 1rem;
+       & > * { padding-bottom: 5px; }
+   }
+   &__item:not(:last-child){
+       padding-bottom: 1rem;
+   }
+}
+
+//tag paths popup
+.tagPathX {
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    height: 5px; 
+    width: 10rem;
+    transform: translateY(-50%);
+    top: 50%;
+    margin-left: -1rem;
+}
+
+.tagPathY {
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    width: 5px;
+    bottom: 0;
+    top: 50%;
+}

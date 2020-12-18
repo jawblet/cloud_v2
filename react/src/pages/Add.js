@@ -35,7 +35,7 @@ import useSubmit from '../hooks/useSubmit';
             house: user.house,
             user: user._id,
             room: roomFrom,
-            error: null
+            error: null 
         }
     });
 
@@ -82,7 +82,7 @@ import useSubmit from '../hooks/useSubmit';
                     </div>
             </form>
             <span className="fixedTab">
-                <Drawer items={globalTags} />
+                <Drawer items={globalTags} tab={"house paths"} />
             </span>
         </div>
     )

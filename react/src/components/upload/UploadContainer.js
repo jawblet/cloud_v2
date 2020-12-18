@@ -1,23 +1,23 @@
 import React, { useState, useRef } from 'react'; 
 import { Link } from 'react-router-dom';
-import Button from '../btns/Button'
+import Button from '../btns/Button';
 import ButtonBar from '../btns/ButtonBar';
 import Tooltip from '../../atoms/Tooltip';
-import useTooltip from './../../hooks/useTooltip';
 import LinkUpload from './LinkUpload';
 import NoteUpload from './NoteUpload';
 import DragUpload from './DragUpload';
 import Search from '../Search'; 
 import TagBank from '../../sections/TagBank'; 
-import { VscClose } from 'react-icons/vsc';
+import { VscClose } from 'react-icons/vsc'; 
 import AutoComplete from '../../atoms/AutoComplete';
 import RecentTags from '../../atoms/RecentTags';
 import Prompt from '../../atoms/Prompt'; 
 import Error from '../../atoms/Error';
 import CommentInput from '../../components/CommentInput'; 
+import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
+import useTooltip from './../../hooks/useTooltip';
 import useTags from '../../hooks/useTags';
 import { CSSTransition } from 'react-transition-group';
-import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 

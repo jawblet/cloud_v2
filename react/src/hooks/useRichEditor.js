@@ -6,7 +6,12 @@ export default function useRichEditor() {
 
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
-      }
+      } 
+
+    // clear editor 
+    const clearEditor = () => {
+      setEditorState(EditorState.createEmpty());
+    }
 
     //handle keyboard shortcuts like cmd+b for bold 
     const handleKeyCommand = (command, editorState) => {
@@ -54,6 +59,7 @@ export default function useRichEditor() {
         mapKeyToEditorCommand,
         handleKeyCommand,
         toggleInlineStyle,
-        toggleBlockType
+        toggleBlockType,
+        clearEditor
     }
 }

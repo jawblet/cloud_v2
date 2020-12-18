@@ -43,6 +43,7 @@ export default function useSubmit() {
 
 //handle note POST 
     const handleNoteSubmit = async (formValues, data) => {
+        //stringify draft-js to save
         const note = JSON.stringify(convertToRaw(data));
         const tagArr = [];
         let tag;
@@ -55,7 +56,6 @@ export default function useSubmit() {
     
                 while ((tag = TAGS_REGEX.exec(text)) !== null) {
                     let tagObj = globalTags.find(obj => obj.tag === tag[0]);
-                   // console.log(tagObj);
                     tagArr.push(tagObj);
                 }
         }

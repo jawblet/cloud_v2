@@ -1,3 +1,14 @@
+.library {
+    &__body {
+        flex: 0 0 55%; 
+    }
+    &__sidebar {
+        flex: 0 0 45%;
+        padding: 1rem;
+    }
+}
+
+
 //STYLE BUTTONS
 .toolbar {
     display: flex;

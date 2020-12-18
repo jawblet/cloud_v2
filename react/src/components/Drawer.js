@@ -2,13 +2,13 @@ import React, { useState, useRef } from 'react';
 import TagPreview from '../atoms/TagPreview';
 import { CSSTransition } from 'react-transition-group';
 
-export default function Drawer({ items }) {
+export default function Drawer({ items, tab }) {
     const nodeRef = useRef(null);
     const [menu, setMenu] = useState(false); 
     return (
         <div className="drawer">
             <h4 className="drawer__tab" onClick={() => setMenu(!menu)}> 
-               house labels
+              {tab}
             </h4>
               <CSSTransition in={menu} timeout={350} nodeRef={nodeRef} classNames="openDrawer" unmountOnExit> 
                 <menu className="drawer__dropdown" ref={nodeRef}>
@@ -20,7 +20,7 @@ export default function Drawer({ items }) {
                                     </div>
                                     )
                                 })
-                        : <p>No tags yet</p>
+                        : <p>No paths yet</p>
                     }
                 </menu>
             </CSSTransition>

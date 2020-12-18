@@ -1,0 +1,22 @@
+//display previews of library posts
+.inbox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $sand3;
+    border-radius: $border-small;
+    background-color: $sand;
+    padding: 1rem;
+    &__preview {
+        border: 1px solid $shadow;
+        border-radius: $border-smallest;
+        background-color: $sand2;
+        padding: 0.5rem;
+        display: flex;
+        &__text {
+            flex: 0 0 95%;
+        }
+        &__X {
+            flex: 0 0 5%;
+        }
+    }
+}
