@@ -1,11 +1,13 @@
 /* post versions */
-//100% 
-.postList100 {
+
+//100%
+//100w row
+.postRow100 {
     display: flex;
     flex-direction: column;
     transform-origin: top right;
 }
-
+//100w post
 .post100 { 
     display: flex;
     flex-direction: column;
@@ -43,12 +45,10 @@
 
 
 //25% 
+//25w row
 .postRow25 {
     height: 25%;
-    width: 100%;
     display: flex;
-    align-items: stretch;
-   // margin-bottom: 5%;
     margin-bottom: 3rem;
     &__container {
         height: 100%;
@@ -61,6 +61,7 @@
     }
 }
 
+//25w post
 .post25 { 
     &__wrapper { // post wrapper 
         width: 23.5%;
@@ -112,7 +113,8 @@
     }
 }
 
-//5% 
+//5%
+//5w row 
 .postRow5 { 
         &__container { // container 
             border: 1px solid $sand3;
@@ -127,6 +129,7 @@
     }
 }
 
+//5w post
 .post5 { // post
     background-color: $sand3;
     height: auto;
@@ -137,6 +140,3 @@
         padding-top: 100%;
     }
 }
-
-
-

@@ -16,7 +16,7 @@ export default function PostList100(props) {
         nodeRef={nodeRef} classNames="zoomIn"
         unmountOnExit
         exit={false}>
-            <div className="postList100" ref={nodeRef}> 
+            <div className="postRow100" ref={nodeRef}> 
             {props.posts.map((post, index )=> {
                     return ( <Post100 post={post} key={post._id} 
                                     openPost={props.openPost}

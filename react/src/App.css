@@ -382,17 +382,11 @@ menu {
     .room__sidebar > * {
       margin-bottom: 3rem; }
   .room__body {
-    flex: 0 0 55%;
+    width: 55%;
     margin-top: 1rem;
+    border: 1px solid rgba(255, 0, 0, 0.075);
     position: relative;
-    padding-right: 1rem; }
-  .room__margin {
-    flex: 0 0 30%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: hidden;
-    position: relative; }
+    margin-right: 1rem; }
 
 .emptyRoom {
   height: 25vh;
@@ -1017,7 +1011,7 @@ h6[data-block] {
   flex-wrap: wrap; }
 
 /* post versions */
-.postList100 {
+.postRow100 {
   display: flex;
   flex-direction: column;
   transform-origin: top right; }
@@ -1051,9 +1045,7 @@ h6[data-block] {
 
 .postRow25 {
   height: 25%;
-  width: 100%;
   display: flex;
-  align-items: stretch;
   margin-bottom: 3rem; }
   .postRow25__container {
     height: 100%; }
