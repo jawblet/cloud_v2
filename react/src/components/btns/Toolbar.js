@@ -68,7 +68,8 @@ export default function Toolbar(props) {
                     )
                 })}
                <SelectMenu items={HEADINGS} active={(blockType.substring(0,6) === 'header') ? blockType : 'paragraph'} 
-               selectItem={props.toggleBlockType}/> 
+               selectItem={props.toggleBlockType}
+               /> 
         </div>
     )
 }

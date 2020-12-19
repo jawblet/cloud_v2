@@ -22,7 +22,7 @@ const NoteUpload = forwardRef((props, ref) => {
 
 
     return (
-        <>
+        <span style={{position:'relative'}}>
             <Toolbar editorState={editorState}
                         onToggleInline={toggleInlineStyle}
                         toggleBlockType={toggleBlockType}
@@ -42,7 +42,7 @@ const NoteUpload = forwardRef((props, ref) => {
                 </div>
                 </div>
             </CSSTransition>
-            </>
+            </span>
         )
     })
 
