@@ -27,7 +27,7 @@ export default function SelectMenu({ items, active, selectItem }) {
                         )
                     })}
                 </menu>
-            </CSSTransition>
+            </CSSTransition> 
         </div>
     )
 }

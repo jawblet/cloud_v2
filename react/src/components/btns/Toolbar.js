@@ -35,6 +35,11 @@ export default function Toolbar(props) {
   const blockType = props.editorState.getCurrentContent()
     .getBlockForKey(selection.getStartKey())
     .getType();
+
+  const setBlockType = (e) => {
+      e.preventDefault()
+      props.toggleBlockType(e);
+  }
  
     return (
         <div className="toolbar">
@@ -56,10 +61,7 @@ export default function Toolbar(props) {
             {BLOCK_TYPES.map((type) => {
                 return (
                   <div data-id={type.style} key={type.style}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            props.toggleBlockType(e);
-                          }}>
+                          onMouseDown={setBlockType}>
                     <Button icon={type.icon}
                             active={type.style === blockType}
                             dataId={type.style}
@@ -68,8 +70,7 @@ export default function Toolbar(props) {
                     )
                 })}
                <SelectMenu items={HEADINGS} active={(blockType.substring(0,6) === 'header') ? blockType : 'paragraph'} 
-               selectItem={props.toggleBlockType}
-               /> 
+               selectItem={setBlockType}/> 
         </div>
     )
 }
