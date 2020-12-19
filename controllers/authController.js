@@ -66,7 +66,6 @@ exports.loginUser = catchAsync(async(req, res, next) => {
     if (!password || !(await user.correctPassword(password, user.password))) {
         return next(new AppError('Incorrect username or password.', 401));
     }
-    
     createUserToken(user, 200, req, res);
 });
  

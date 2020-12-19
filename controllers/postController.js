@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); 
-const Post = require('../models/postModel'); 
+const Post = require('../models/postModel');  
 const Tag = require('../models/tagModel'); 
 const catchAsync = require('../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');
@@ -61,7 +61,7 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
     let sort;
     const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
 
-    if(req.params.room) { //check for room param  
+    if(req.params.room) { //check for room param
         match = { house: castId, room: req.params.room }
         } else {  match = { house: castId }; 
     } 
@@ -77,7 +77,7 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
     }
      
     const allTags = await Post.aggregate([
-        { $match: { match } }, 
+        { $match: match  }, 
         { //unwind post by tags
             $unwind: '$tags' 
         }, 

@@ -2,35 +2,32 @@ import React, { useRef } from 'react';
 import TagPreview from '../../atoms/TagPreview';
 import { CSSTransition } from 'react-transition-group';
 
-export default function Preview({ preview, post }) {
-    const nodeRef = useRef(null);
+export default function Preview({ preview, post, tags }) {
+    const nodeRef = useRef(null); 
     const max = 2; 
+    const tagNum = Object.keys(tags).length;
 
     const getTags = () => {
         if(post.tags.length === 0) {
             return(<p>without labels.</p>);
-        }
-
-        if(post.tags.length > max) {
-            const remainder = (post.tags.length - max);
+        };
+        if(tagNum > max) {
+            const remainder = (tagNum - max);
             return(
                 <div className="popup__tags">
-                    {post.tags.map((tag, i) => 
+                    {Object.entries(tags).map(([key, value], i) => 
                         { if(i < max) {
-                            return ( <TagPreview tag={tag} key={tag._id}/> )
+                            return ( <TagPreview tag={key} count={value.length} color={value[0].color} key={key}/> )
                         } 
-                            return null; // return from map
-                    }) }
-                    <p>and {remainder} more.</p>
+                        if(i = max) {
+                            return (<p>and {remainder} more.</p>)
+                        } //return from map
+                        return null; 
+                    })}
                 </div>
             )
-        } else {
-            return (
-                <div className="popup__tags">
-                    {post.tags.map(tag => { return ( <TagPreview tag={tag} key={tag._id}/> ) })}
-                </div>
-            )}
-    }
+        } 
+    };
         
     return(
             <CSSTransition in={preview} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>

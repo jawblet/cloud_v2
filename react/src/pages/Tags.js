@@ -21,7 +21,7 @@ export default function Tags() {
 
     //get tags
     const { tags, tagCount, handlePaintClick, eyedrop, loading } = useTags(activeItem);
-    console.log(tags);
+    console.log(tags); 
 
     return(
         <div className="page">

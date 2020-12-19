@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Preview from './../components/modals/Preview';
  
-export default function Gradient({ post }) {
+export default function Gradient({ post, tags }) {
     const [preview, showPreview] = useState(false);
     const [angle, setAngle] = useState(0);
     const [colors, setColors] = useState('');
@@ -19,7 +19,7 @@ export default function Gradient({ post }) {
   
     return (
         <>
-                <Preview preview={preview} post={post}/>
+                <Preview preview={preview} post={post} tags={tags}/>
             <div className="gradient__post">
                 <div className="gradient"                 
                         style={{background:`conic-gradient(${colors})`,

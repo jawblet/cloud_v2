@@ -1,12 +1,12 @@
 const catchAsync = require('../utils/catchAsync');
-const APIFeatures = require('../utils/apiFeatures');
+const APIFeatures = require('../utils/apiFeatures'); 
+const unwindAndCount = require('../utils/unwindAndCount');
 
 //get one by id
 exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
     let query = await Model.findOne({ _id: req.params.id });
-    if(populateOpts) query = query.populate(populateOpts).execPopulate();
+    if(populateOpts) query = query.populate(populateOpts).execPopulate(); 
     const doc = await query; 
-    console.log(populateOpts);
     res.status(200).json({
         status: 'success',
         data: {
@@ -31,16 +31,16 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
 exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {
     let filter;
     
-    if(req.params.room) { //if there is a room param, filter by houseId and room 
+    if(req.params.room) { //if there is a room param, filter by houseId + room 
         filter = { house: req.params.houseId, room: req.params.room }
-    } else { filter = { house: req.params.houseId }; //filter by houseId by default 
+    } else { filter = { house: req.params.houseId }; 
     } 
 
     //populate + filter 
     let docs = new APIFeatures(Model.find(filter).populate(populateOpts), req.query)
         .filter()
         .sort()
-        .limitFields()
+        .limitFields() 
         .paginate(); 
 
     const results = await docs.query;

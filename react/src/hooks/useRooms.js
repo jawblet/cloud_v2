@@ -30,7 +30,6 @@ const [room, setRoom] = useState(null);
     const getRoomPosts = async(roomId) => {
         await axios.get(`/posts/h/${house}/${roomId}`)
                     .then(res => {
-                    console.log(res);
                     const posts = res.data.data.results;
                     setPosts(posts);
                     setLoading(false);

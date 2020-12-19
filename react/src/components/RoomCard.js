@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';  
+import React, { useEffect } from 'react';  
 import { Link } from 'react-router-dom';  
 import useRooms from '../hooks/useRooms';
 import Gradient from '../atoms/Gradient'; 
+import groupBy from 'lodash/groupBy';
  
 export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
   const { posts, p_loading, getRoomPosts } = useRooms();
@@ -24,7 +25,7 @@ export default function Card({ room, squeeze, getPositionClass, handleCardClick 
                     {(!p_loading) && posts.map(post => {
                             return (
                                 <div key={post._id}>
-                                    <Gradient post={post}/>
+                                    <Gradient post={post} tags={groupBy(post.tags, 'tag')}/>
                                 </div>
                             )
                         })

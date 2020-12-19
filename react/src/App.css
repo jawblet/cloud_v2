@@ -408,8 +408,7 @@ menu {
   flex-direction: column;
   align-items: center;
   padding: 3rem;
-  padding-top: 0;
-  border: 1px solid blue; }
+  padding-top: 0; }
   .page__header {
     align-self: center;
     width: 100%;

@@ -11,28 +11,33 @@ import axios from 'axios';
 import usePosts from '../hooks/usePosts'; 
 import useComment from '../hooks/useComment';
 import useRoom from '../hooks/useRooms';
+import groupBy from 'lodash/groupBy';
+
 
 export default function Edit({ openPost }) {
     const params = useParams();
-    const postId = params.postId;
+    const postId = params.postId; 
     const [post, setPost] = useState(null);
+    const [tags, setTags] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => { 
         axios.get(`/posts/${postId}`).then(res => {
-            setPost(res.data.data.doc);
+            const post = res.data.data.doc
+            setPost(post);
+            setTags(groupBy(post.tags, 'tag'));
             setLoading(false);
         })
     }, [postId]);
  
     const editRef = useRef(null); 
+    console.log(tags);
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
             deletePost, editNote, isReadOnly } = usePosts();
 
     const { handleUpdatePost } = useRoom();
-
     const { data, handleKeyDown, handleChange, deleteComment } = useComment(postId);
 
     useEffect(() => {
@@ -87,9 +92,9 @@ export default function Edit({ openPost }) {
                         {post.tags.length > 0 
                             ? <>
                             <h4 className="lightest">tags</h4>
-                               { post.tags.map((tag, i) => { 
+                               { Object.entries(tags).map(([key, value]) => { 
                                    return ( 
-                                    <TagPreview tag={tag} key={i}/> 
+                                    <TagPreview tag={key} count={value.length} color={value[0].color} key={key}/> 
                                     ) 
                                 })}
                             </>
