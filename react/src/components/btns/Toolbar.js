@@ -4,7 +4,6 @@ import { VscBold, VscItalic, VscCode, VscQuote, VscSymbolNamespace, VscListUnord
 import SelectMenu from '../SelectMenu';
 
 export default function Toolbar(props) {
-  
 //define inline styles 
   const INLINE_STYLES = [
     {label: 'bold', style: 'BOLD', icon: <VscBold className="icon icon__btn"/>},
@@ -41,22 +40,31 @@ export default function Toolbar(props) {
         <div className="toolbar">
             {INLINE_STYLES.map((type) => {
                 return (
+                  <div  data-id={type.style} key={type.style}
+                        onMouseDown={(e) => { //this keeps the focus w/n the editor on inline style change
+                            e.preventDefault();
+                            props.onToggleInline(e);
+                          }}>
                 <Button key={type.label}  
                         icon={type.icon}
                         active={currentInlineStyle.has(type.style)}
                         dataId={type.style}
-                        handleClick={props.onToggleInline}
                         />
+                    </div>
                     )   
                 })}
             {BLOCK_TYPES.map((type) => {
                 return (
-                    <Button key={type.label}
-                            icon={type.icon}
+                  <div data-id={type.style} key={type.style}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            props.toggleBlockType(e);
+                          }}>
+                    <Button icon={type.icon}
                             active={type.style === blockType}
                             dataId={type.style}
-                            handleClick={props.toggleBlockType}
                             />
+                    </div>
                     )
                 })}
                <SelectMenu items={HEADINGS} active={(blockType.substring(0,6) === 'header') ? blockType : 'paragraph'} 

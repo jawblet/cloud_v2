@@ -3,13 +3,11 @@ import { Editor } from 'draft-js';
 import useRichEditor from '../../../hooks/useRichEditor';
 import Toolbar from '../../btns/Toolbar';
 
-export default function RichEditor(props) {
-    const { editorState, onNoteChange } = props;
+export default function RichEditor(props) { 
+    const { editorState, onNoteChange, mapKeyToEditorCommand,
+        handleKeyCommand, toggleInlineStyle, toggleBlockType } = props;
+    
     const editRef = useRef(null);
-
-    const {mapKeyToEditorCommand, 
-        handleKeyCommand, toggleInlineStyle, toggleBlockType} 
-        = useRichEditor();
 
         useEffect(() => { 
             editRef.current.focus();
@@ -33,3 +31,9 @@ export default function RichEditor(props) {
 
     )
 }
+
+/*
+   // const { mapKeyToEditorCommand, 
+    //  handleKeyCommand, toggleInlineStyle, toggleBlockType } 
+    // = useRichEditor();
+*/

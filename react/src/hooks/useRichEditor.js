@@ -10,7 +10,7 @@ export default function useRichEditor() {
 
     // clear editor 
     const clearEditor = () => {
-      setEditorState(EditorState.createEmpty());
+      setEditorState(EditorState.createEmpty()); 
     }
 
     //handle keyboard shortcuts like cmd+b for bold 
@@ -32,25 +32,25 @@ export default function useRichEditor() {
           );
           if (newEditorState !== editorState) {
             onNoteChange(newEditorState);
-          }
+          } 
           return;
         }
         return getDefaultKeyBinding(e);
       }
 
-       //style functions
-        const toggleInlineStyle = (e) => {
-            e.preventDefault();
-            let inlineStyle = e.currentTarget.dataset.id;
-            onNoteChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
-        }
+    //style functions
+    const toggleInlineStyle = (e) => {
+        e.preventDefault();
+        let inlineStyle = e.currentTarget.dataset.id;
+        onNoteChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+      }
 
-        const toggleBlockType = (e) => {
-            e.preventDefault();
-            console.log(e.currentTarget.dataset.id);
-            let blockType = e.currentTarget.dataset.id;
-            onNoteChange(RichUtils.toggleBlockType(editorState, blockType));
-        }
+    const toggleBlockType = (e) => {
+        e.preventDefault();
+        console.log(e.currentTarget.dataset.id);
+        let blockType = e.currentTarget.dataset.id;
+        onNoteChange(RichUtils.toggleBlockType(editorState, blockType));
+      }
 
     return {
         editorState,

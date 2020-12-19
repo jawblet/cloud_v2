@@ -3,11 +3,20 @@
     line-height: 1.5rem;
     border: 3px solid $sand2; 
     border-radius: $border-small;
-    padding:  1rem;
     width: 100%;
     display: flex;
-    margin-top: 3px;
     height: auto; 
+    &--link {
+        padding:  1rem;
+    }
+    &--note {
+        display: flex;
+        flex-direction: column;
+        transform-origin: center top;
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
     //upload submission errors 
     &__error {
         &__msg {
@@ -22,7 +31,7 @@
     //lay out upload form
     &__container {
         display: flex;
-        margin-top: 15%; //buffer at pg top 
+        margin-top: 10%; //buffer at pg top 
     }
     &__controller { // button bar
         display: flex;

@@ -8,6 +8,7 @@
         position: relative;
         cursor: pointer;
         display: flex;
+        z-index: 3;
     } 
     &__expand {
         margin-left: 0.5rem;
@@ -19,18 +20,16 @@
         min-width: 5rem;
         border-bottom-left-radius: $border-small;
         border-bottom-right-radius: $border-small;
+        box-shadow: $softest-shadow;
     }
     &__item {
         color: $body-light;
         cursor: pointer;
-        padding: 1rem 0.5rem;
+        line-height: 130%;
+        padding: 0.5rem;
         background-color: inherit;
         transition: all $short-fade;
         min-width: 7rem;
-        &:first-child {
-            border-top-left-radius: $border-smallest;
-            border-top-right-radius: $border-smallest;
-        }
         &:last-child {
             border-bottom-left-radius: $border-smallest;
             border-bottom-right-radius: $border-smallest;

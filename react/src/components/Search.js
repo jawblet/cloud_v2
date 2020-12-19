@@ -5,6 +5,7 @@ const Search = forwardRef((props, ref) => {
     const { input } = props.values;
     
     const [focus, setFocus] = useState(false);
+    
     const handleFocus = () => {  
         setFocus(true);  
     };

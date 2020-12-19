@@ -17,7 +17,7 @@ import CommentInput from '../../components/CommentInput';
 import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import useTooltip from './../../hooks/useTooltip';
 import useTags from '../../hooks/useTags';
-import { CSSTransition } from 'react-transition-group';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 
@@ -44,7 +44,7 @@ export default function UploadContainer(props) {
                 <Link to={`/home/${room}`}>
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>
                 </Link> 
-            </div> 
+            </div>
             <div className="upload__form">
                 <CSSTransition in={values.error} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
                     <div className="upload__error__msg" ref={nodeRef}> <Prompt type="warning" prompt={values.error}/>
@@ -55,11 +55,9 @@ export default function UploadContainer(props) {
                         <Error error={error}/>
                 </div>
                 </CSSTransition>
-                <div className="upload">
-                    { type === 'link' && <LinkUpload {...props} /> }
-                    { type === 'note' && <NoteUpload {...props} /> }
-                    { type === 'file' && <DragUpload /> }
-                </div>
+                        { type === 'link' && <LinkUpload {...props} /> }
+                        { type === 'note' && <NoteUpload ref={props.editRef} {...props} /> }
+                        { type === 'file' && <DragUpload /> }
                     <div className="upload__extra"> 
                         <div className="upload__label"> <h4>Add path</h4> </div> 
                         <div className="addTags">

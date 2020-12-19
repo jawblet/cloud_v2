@@ -1,12 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
-import { EditorState, CompositeDecorator } from 'draft-js';
+import React, { useState, useEffect, useContext } from 'react';
+import { EditorState, CompositeDecorator, RichUtils, getDefaultKeyBinding } from 'draft-js';
 import { UserContext } from './UserContext';
 
 export default function useEditor() {
     const { globalTags } = useContext(UserContext);
     const tags = globalTags;
+    const editRef = React.createRef();
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
     const onNoteChange = (editorState) => {
         setEditorState(editorState);  
       }
@@ -40,9 +42,9 @@ useEffect(() => {
                     {props.children}
                 </span>
                 )
-            }
+            }; 
     
-            const decorator = new CompositeDecorator([
+            const decorator = new CompositeDecorator([ 
                 { strategy: findTags,
                   component: highlightSpan }
             ]);
@@ -58,9 +60,59 @@ useEffect(() => {
         setEditorState(newEditorState);
     }, [globalTags]); //update on new tag
 
+//rich text fxns
+    //handle keyboard shortcuts like cmd+b for bold 
+    const handleKeyCommand = (command, editorState) => {
+        const newState = RichUtils.handleKeyCommand(editorState, command);
+        if(newState) {
+            onNoteChange(newState);
+            return 'handled';
+        }
+        return 'not-handled';
+    };
+
+    const mapKeyToEditorCommand = (e) => {
+        if (e.keyCode === 9 /* TAB */) {
+        const newEditorState = RichUtils.onTab(
+            e,
+            editorState,
+            4, /* maxDepth */
+        );
+        if (newEditorState !== editorState) {
+            onNoteChange(newEditorState);
+        }
+        return;
+        }
+        return getDefaultKeyBinding(e);
+    }
+
+    //style functions
+        const toggleInlineStyle = (e) => {
+            e.preventDefault();
+            let inlineStyle = e.currentTarget.dataset.id;
+            onNoteChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+        }
+
+        const toggleBlockType = (e) => {
+            e.preventDefault();
+            let blockType = e.currentTarget.dataset.id;
+            onNoteChange(RichUtils.toggleBlockType(editorState, blockType));
+        }
+
+        const setFocus = () => {
+            editRef.current.focus();
+        };
+
+
     return {
         editorState, 
         setEditorState,
-        onNoteChange
+        onNoteChange,
+        handleKeyCommand,
+        mapKeyToEditorCommand,
+        toggleInlineStyle,
+        toggleBlockType,
+        editRef,
+        setFocus
     }
 }

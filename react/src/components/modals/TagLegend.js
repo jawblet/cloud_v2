@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 //import { CSSTransition } from 'react-transition-group';
 
-
 const TagLegend = forwardRef((props, ref) => {
     const { tagDetails, loadModal, postExcerpts } = props;
     let { tag, date, postCount } = tagDetails;

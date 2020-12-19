@@ -21,7 +21,8 @@ import useSubmit from '../hooks/useSubmit';
     const switchType = (e) => { setType(e.currentTarget.dataset.id); }
 
     //handle editor state 
-    const { editorState, onNoteChange } = useEditor();
+    const { editorState, onNoteChange, mapKeyToEditorCommand, editRef, setFocus,
+        handleKeyCommand, toggleInlineStyle, toggleBlockType } = useEditor();
 
     //handle page state 
     const { values, handleChange, selectItem, 
@@ -29,7 +30,7 @@ import useSubmit from '../hooks/useSubmit';
             selectTag, clearInput, removeTag, handleKeyDown } = useUpload({
             initialValues: {
             content: '',
-            input: '',
+            input: '', 
             tags: [],
             comment: '',
             house: user.house,
@@ -54,7 +55,7 @@ import useSubmit from '../hooks/useSubmit';
         }
     }
 
-     return ( 
+     return (  
         <div className="page"> 
             <Header nav={nav}/>
             <form style={{width:'75%'}} onSubmit={sendSubmit}>
@@ -68,10 +69,16 @@ import useSubmit from '../hooks/useSubmit';
                                 removeTag={removeTag} 
                                 addTags={addTags} 
                                 selectTag={selectTag}
-                                editorState={editorState} 
-                                onNoteChange={onNoteChange}
                                 error={error}  
                                 handleKeyDown={handleKeyDown}   
+                                editorState={editorState} 
+                                onNoteChange={onNoteChange}
+                                mapKeyToEditorCommand={mapKeyToEditorCommand}
+                                handleKeyCommand = {handleKeyCommand}
+                                toggleInlineStyle = {toggleInlineStyle}
+                                toggleBlockType = {toggleBlockType}
+                                editRef={editRef}
+                                setFocus={setFocus}
                                 />
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                     <div className="flex alignCenter" style={{marginRight:'3rem'}}> 

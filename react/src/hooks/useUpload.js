@@ -55,7 +55,7 @@ const handleKeyDown = (e) => {
         }); 
     }
 
-//add tags to state and post them 
+//add tags to state and post them  
     const addTags = async () => {
         if(values.input) { //check if tag exists 
             const trimmedTag = values.input.trim(); //trim whitespace 
