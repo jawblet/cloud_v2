@@ -26,7 +26,7 @@ const postSchema = new Schema({
     tags: [
         { 
             type: Schema.Types.ObjectId,
-            ref: 'Tag' 
+            ref: 'Tag'
         }
     ],
     room: String, 

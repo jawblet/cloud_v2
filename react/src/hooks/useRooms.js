@@ -24,7 +24,7 @@ const [p_loading, setLoading] = useState(true);
     const getRoomPosts = async(room) => {
         await axios.get(`/posts/h/${house}/${room}`)
                     .then(res => {
-                    console.log(res);
+                    //console.log(res);
                     const posts = res.data.data.results;
                     setPosts(posts);
                     setLoading(false);
@@ -35,7 +35,7 @@ const [p_loading, setLoading] = useState(true);
     const deletePost = async (id) => {
         await axios.delete(`/posts/${id}`)
                 .then((res) => {
-                    console.log(res);
+                    //console.log(res);
                     const state = [...posts];
                     const newState = state.filter(el => el._id !== id);
                     setPosts(newState); 

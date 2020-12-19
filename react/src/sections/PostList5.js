@@ -6,13 +6,15 @@ export default function PostList5(props) {
 const nodeRef = useRef(null);
 const { activeView } = props; 
 
+const tags = props.tags;
+
 const postMax = 20;
 const rowMin = 5;
-const postTotal = props.tags.length;
+const postTotal = tags.length;
 const emptyArr = [...Array(postMax)];
 emptyArr.fill('empty', 0, 20);
 const numRows = [...Array(Math.ceil(postTotal / postMax))]; // # of rows on pg
-let postArrs = numRows.map((row, i) => props.tags.slice(i * postMax, i * postMax + postMax ));
+let postArrs = numRows.map((row, i) => tags.slice(i * postMax, i * postMax + postMax ));
 let newPostArrs;
 
 newPostArrs = postArrs.map(el => {
@@ -21,10 +23,11 @@ newPostArrs = postArrs.map(el => {
         emptyArr.fill('empty', 0, emptyArr.length);
         return [...el, ...emptyArr];
     }   
-    return null;
+    return el;
 });
 
-if(props.tags.length === 0 ) {
+
+if(tags.length === 0 ) {
     return null
 }
 

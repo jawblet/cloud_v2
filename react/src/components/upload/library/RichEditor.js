@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { Editor } from 'draft-js';
-import useRichEditor from '../../../hooks/useRichEditor';
 import Toolbar from '../../btns/Toolbar';
 
 export default function RichEditor(props) { 

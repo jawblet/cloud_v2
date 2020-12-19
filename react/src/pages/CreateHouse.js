@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import FormInput from '../components/FormInput'; 
 import CTA from '../components/btns/CTA'; 
 import Toggle from '../components/Toggle';

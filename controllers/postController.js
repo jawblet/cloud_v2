@@ -14,8 +14,48 @@ exports.getPostsByHouse = functionHandler.getAllByHouseId(Post, 'tags user');
 exports.deleteOnePost = functionHandler.deleteOne(Post);
 exports.deleteAllPosts = functionHandler.deleteAll(Post);  
 
+//get tags used in all posts and unwind
+exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
+    let match;
+    const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
 
-//get tags by house id and aggregate
+    if(req.params.room) { //check for room param  
+        match = { house: castId, room: req.params.room  }
+        } else {  match = { house: castId }; 
+    } 
+
+    const allTagsFromPosts = await Post.aggregate([
+        { $match: match }, 
+        { //unwind post by tags
+            $unwind: '$tags' 
+        }, 
+        { //sometimes tags are saved as null... for now, filter out null tag values 
+            $match: { tags: { $ne: null } }
+        },
+        {
+            $lookup: 
+            { from: "tags", // join with tag db  
+                localField: "tags",
+                foreignField: "_id",
+                as: "tagObject"
+            }
+        },
+        { //put tag name in main body for sorting/lookup ease 
+            $set: { name: "$tagObject.tag" } 
+        },
+        { $sort: { createdOn: -1 } }
+    ]);
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            length: allTagsFromPosts.length,
+            allTagsFromPosts
+        }
+    })  
+});
+
+//get tags used in all posts and unwind and then count ea. tag's total use
 exports.countTagsFromPosts = catchAsync(async(req, res) => {
     let match;
     let sort;
@@ -26,31 +66,29 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
         } else {  match = { house: castId }; 
     } 
 
-    switch(req.params.sort) { // get sort 
+    switch(req.params.sort) { // get sort
         case 'date': sort = { createdOn: -1 };
         break;
         case 'count': sort = { countEach: -1 };
-        break;
+        break; 
         case 'name': sort = { name: 1 };
         break;
         default: sort = { createdOn: -1 };
     }
      
     const allTags = await Post.aggregate([
-        {
-            $match: match
+        { $match: { match } }, 
+        { //unwind post by tags
+            $unwind: '$tags' 
         }, 
-        {
-            $unwind: '$tags' //unwind post by tags
-        }, 
-        {
+        { $match: { tags: { $ne: null } } },
+        { // count ea. instance of tag use 
             $group: {
                 _id: '$tags',
-                countEach: {$sum: 1} // count ea. instance of tag use 
+                countEach: {$sum: 1} 
             }
         },
-        {
-            $lookup: 
+        { $lookup: 
             {
                 from: "tags", // join with tag db  
                 localField: "_id",
@@ -58,12 +96,10 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
                 as: "tagObject"
             }
         },
-        {
-            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn" } //put tag name in main body for sorting/lookup ease 
+        {  //put tag name in main body for sorting/lookup ease 
+            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn" } 
         },
-        {
-            $sort: sort 
-        }
+        { $sort: sort }
     ]);
 
     const postTagsArr = allTags.map(el => el.countEach);
@@ -78,48 +114,6 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
         }
     })  
 });
-
-//get tags and unwind
-exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
-    let match;
-    const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
-
-    if(req.params.room) { //check for room param  
-        match = { house: castId, room: req.params.room }
-        } else {  match = { house: castId }; 
-    } 
-
-    const allTagsFromPosts = await Post.aggregate([
-        {
-            $match: match
-        }, 
-        {
-            $unwind: '$tags' //unwind post by tags
-        }, 
-        {
-            $lookup: 
-            { from: "tags", // join with tag db  
-                localField: "tags",
-                foreignField: "_id",
-                as: "tagObject"
-            }
-        },
-        {
-            $set: { name: "$tagObject.tag" } //put tag name in main body for sorting/lookup ease 
-        },
-        {
-            $sort: { createdOn: -1 }
-        }
-    ]);
-
-    res.status(200).json({
-        status: 'success',
-        data: {
-            allTagsFromPosts
-        }
-    })  
-});
-
 
 //get tags details 
 exports.getTagDetails = catchAsync(async(req, res) => {

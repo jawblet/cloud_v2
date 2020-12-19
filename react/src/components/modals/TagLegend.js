@@ -13,7 +13,7 @@ const TagLegend = forwardRef((props, ref) => {
                         <span className="tagPreview__color" style={{backgroundColor:tag.color}}></span>
                         <h4>{tag.tag}</h4> 
                     </div> 
-                        <p>This path has been used {postCount} {postCount === 1 ? 'time' : 'times' } 
+                        <p>This path has been used {postCount} {postCount === 1 ? 'time ' : 'times ' }
                         since it was created on {date}.</p>
                         <div className="tagLegend__summary">
                         {postExcerpts[0] !== null &&
