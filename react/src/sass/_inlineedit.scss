@@ -1,0 +1,19 @@
+.inlineEdit {
+    background-color: inherit; 
+    line-height: 1.5rem;
+    border: 3px solid transparent; 
+    border-radius: $border-small;
+    padding: 0.5rem;
+    width: auto !important;
+    transition: all $short-fade;
+    cursor: text;
+    //border: 1px solid red;
+    &:hover {
+        background-color: $sand; 
+        border: 3px solid $sand3; 
+    }
+    &:focus {
+        background-color: $sand; 
+        border: 3px solid $sand3; 
+    }
+}

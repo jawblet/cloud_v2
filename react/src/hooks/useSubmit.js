@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios'; 
 import { convertToRaw } from 'draft-js';
 import { UserContext } from './UserContext';
+import slugify from 'react-slugify';
 
 export default function useSubmit() {
     const { globalTags } = useContext(UserContext);
@@ -11,7 +12,8 @@ export default function useSubmit() {
 
 //handle URL POST
     const handleLinkSubmit = async (formValues) => {
-        const { content, user, house, room, tags, comment } = formValues.values;
+        const { content, user, house, room, roomName, tags, comment } = formValues.values;
+        const roomTo = slugify(roomName);
 
         await axios
                 .post('/posts', { // post note 
@@ -32,7 +34,7 @@ export default function useSubmit() {
                     })
                     //.then(res => console.log(res));
                 }
-                history.push(`home/${room}`); 
+                history.push(`home/${roomTo}`); 
             }).catch((err) => { 
                 if(err.response.status === 400) {
                    // console.log(err.response.data);
@@ -60,7 +62,9 @@ export default function useSubmit() {
                 }
         }
 
-        const { user, house, room, tags, comment } = formValues;
+        const { user, house, room, roomName, tags, comment } = formValues;
+        const roomTo = slugify(roomName);
+
         try {
             await axios({
                 method: 'POST',
@@ -76,7 +80,7 @@ export default function useSubmit() {
                 }
             }).then(res => {
                 //console.log(res);
-                history.push(`home/${room}`); 
+                history.push(`home/${roomTo}`); 
             })
             } catch(err) {
                 console.log(err)

@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 export default function SelectMenu({ items, active, selectItem }) { 
     const nodeRef = useRef(null);
-    const list = items.filter(item => item.id !== active); 
+    const list = items.filter(item => item.label !== active); 
     const [menu, setMenu] = useState(false);
 
     useEffect(() => {

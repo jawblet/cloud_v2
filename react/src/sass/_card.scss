@@ -9,20 +9,20 @@
     transition: all .2s ease-in-out;  
     position: relative;
     transition-property: border, width, margin;
-    &.kitchen{
+    &--0{
         width: 31rem;
         margin-top: 5rem;
     }
-    &.living_room{
+    &--1{
         width: 30rem;
         margin-top: 3rem;
     }
-    &.bedroom {
+    &--2 {
         width: 25rem;
         margin-left: 5rem;
         margin-top: -15rem;
     }
-    &.basement{
+    &--3{
         width: 40rem;
         height: 17rem;
         margin-left: -10rem;
@@ -55,16 +55,6 @@
 .card__label { 
     padding: 1rem;
     position: absolute;
-    &.living_room{
-        right: 0;
-    }
-    &.bedroom {
-        bottom: 0;
-    }
-    &.basement{
-       bottom: 0;
-       right: 0;
-    }
 }
 
 ///style cards w/ posts 

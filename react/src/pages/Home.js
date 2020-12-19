@@ -11,6 +11,7 @@ import HouseLegend from '../components/modals/HouseLegend';
 export default function Home() {
     const [squeeze, setSqueeze] = useState(true);
     const handleExpandClick = () => { setSqueeze(!squeeze); }
+    
     const buttons = [
         {name: 'paths', url: 'paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/>}, 
         {name: 'library', url: 'library', icon: <VscSave className="icon icon__btn" data-id="library"/>},

@@ -10,12 +10,13 @@ import useUpload from '../hooks/useUpload';
 import useSubmit from '../hooks/useSubmit';
 
  export default function Add(props) { 
-    const { user, rooms, globalTags } = useContext(UserContext);
+    const { user, globalTags } = useContext(UserContext);
+    const rooms = user.house.rooms;
 
-    //breadcrumbs
-    const roomFrom = props.location.state || 'kitchen';
-    const nav = [ {name: roomFrom, url: roomFrom } ];
- 
+    //set room from state, or default to first room in roomArr 
+    const roomFrom = props.location.state || rooms[0];
+    const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
+
     //set upload type 
     const [type, setType]= useState('link');
     const switchType = (e) => { setType(e.currentTarget.dataset.id); }
@@ -35,7 +36,8 @@ import useSubmit from '../hooks/useSubmit';
             comment: '',
             house: user.house,
             user: user._id,
-            room: roomFrom,
+            room: roomFrom.id,
+            roomName: roomFrom.label,
             error: null 
         }
     });
@@ -83,7 +85,7 @@ import useSubmit from '../hooks/useSubmit';
                 <div className="inlineForm__submit" style={{justifyContent:'flex-end', paddingTop:'3rem'}}>
                     <div className="flex alignCenter" style={{marginRight:'3rem'}}> 
                         <h4>Place in</h4> 
-                        <SelectMenu items={rooms} active={values.room} selectItem={selectItem}/> 
+                        <SelectMenu items={rooms} active={values.roomName} selectItem={selectItem}/> 
                     </div>  
                         <CTA name={"add"} type={"submit"}/> 
                     </div>

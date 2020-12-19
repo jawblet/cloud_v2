@@ -9,7 +9,6 @@ export default function useForm({ initialValues }) {
     const [values, setValues] = useState(initialValues || {});
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-
     
     //track form values
     const handleChange = event => {

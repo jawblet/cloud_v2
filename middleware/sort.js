@@ -4,7 +4,7 @@ exports.aliasAtoZ = (req, res, next) => {
     next();
 } 
 
-exports.lastThree = (req, res, next) => {
+exports.lastThree = (req, res, next) => { 
     req.query.limit = '3';
     next();
 }

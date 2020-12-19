@@ -1,17 +1,20 @@
-import React, { useState, useContext } from 'react'; 
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../hooks/UserContext';
 import RoomCard from './../components/RoomCard';
 /*eslint-disable*/
 
 export default function Cards( {squeeze } ) {
     const { rooms } = useContext(UserContext);
+
     const roomIdArr = rooms.map(room => room.id);
+
 
     //on click, remove clicked item from array and push to position 0 
     //0 (front), 1 (middle), 2 (middle/back), 3 (back)
     const [positionArray, changePosition] = useState(roomIdArr); 
 
     const getPositionClass = (room) => {
+        //the first three cards should have dedicated class, rest are back by default
         if(positionArray.length > 0) {
             let position;
             const index = positionArray.indexOf(room);
@@ -31,9 +34,12 @@ export default function Cards( {squeeze } ) {
     };
 
     const handleCardClick = (e) => {
-        const clickedRoom = e.currentTarget.dataset.id;
-        const roomArr = positionArray; 
-        const newArr = roomArr.filter(rm => rm !== clickedRoom); 
+        //1. get id of clicked room + make int 
+        const clickedRoom = parseInt(e.currentTarget.dataset.id);
+
+        //2. filter clicked room out from state
+        const indexArr = positionArray; 
+        const newArr = indexArr.filter(rm => rm !== clickedRoom); 
         newArr.unshift(clickedRoom);
         changePosition(newArr);
     };

@@ -51,6 +51,7 @@ const handleKeyDown = (e) => {
     const selectItem = e => {
         setValues({
             ...values,
+            roomName: e.currentTarget.textContent,
             room: e.currentTarget.dataset.id
         }); 
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from './../sections/Header'; 
+import InlineEdit from '../components/InlineEdit';
 import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
 import PostList100 from '../sections/PostList100';
@@ -12,52 +13,62 @@ import useOneFilter from '../hooks/useOneFilter';
 import useRooms from '../hooks/useRooms';
 import useTags from '../hooks/useTags';
 import useOneTag from '../hooks/useOneTag';
-
+import Loading from '../components/Loading';
 
 export default function Room() {
-    let params = useParams();
-    const nav = [ {name: params.room, url: params.room } ];
     //filters 
     const [activeView, setZoom] = useState('100%');
     const zoom = ['100%', '25%', '5%'];
     const sort = ['date', 'tag', 'boarder'];
     const { handleOneFilter, activeItem } = useOneFilter('date');
 
-
-    //GET POSTS BY ROOM 
-    const { posts, p_loading, getRoomPosts, handleDeletePost, openPost } = useRooms(params.room);
-        
-        //get posts on room load // view change within a room
-        useEffect(() => { 
-            getRoomPosts(params.room);
-        }, [params]);
-
-        const {tagpath, coords, tagRef, handleHover,
-            tagDetails, postExcerpts, loadModal, handleStopHover } = useOneTag();
+    const {tagpath, coords, tagRef, handleHover,
+        tagDetails, postExcerpts, loadModal, handleStopHover } = useOneTag();
 
 
-    //get tags by room 
+    //GET POSTS + TAGS BY ROOM 
+    let params = useParams();
+    const { getRoom, handleGetPosts,
+            room, r_loading, 
+            posts, p_loading,
+            handleDeletePost, openPost } = useRooms(params.room);
     const { t_loading, allTags, getAllTagsFromPosts } = useTags();
 
+        useEffect(() => {  //get room // view change within a room
+            getRoom(params.room);
+        }, [params]);
+       useEffect(() => {  //get posts on room load // 
+        if(room) { handleGetPosts(room.id); }
+       }, [room]);
+
+        useEffect(() => { 
+            if(activeView === '5%') {
+            getAllTagsFromPosts();
+        }
+        }, [activeView]);
+
+    //get change zoom 
     const setActiveView = (e) => { 
         const zoomValue = e.currentTarget.dataset.id;
         setZoom(zoomValue); 
     }
 
-    useEffect(() => { 
-        if(activeView === '5%') {
-           getAllTagsFromPosts();
-       }
-    }, [activeView]);
-    
-    return ( 
-            <div className="page" onScroll={handleStopHover}>
-                <Header nav={nav}/>
-                <h3 className="page__title">{params.room}</h3>
+    return ( (!r_loading && room)
+                ? <div className="page" onScroll={handleStopHover}>
+                <Header nav={[ {name: room.label, url: params.room } ]}/>
+                <div className="page__title">
+                    <InlineEdit name={room.label} id={room.id}/>
+                </div>
                 <div className="room"> 
                     <div className="room__sidebar">
-                        <ListMenu title={'zoom'} list={zoom} handleOneFilter={setActiveView} activeItem={activeView}/>
-                        <ListMenu title={'sort'} list={sort} handleOneFilter={handleOneFilter} activeItem={activeItem}/>
+                        <ListMenu title={'zoom'} 
+                                list={zoom} 
+                                handleOneFilter={setActiveView} 
+                                activeItem={activeView}/>
+                        <ListMenu title={'sort'} 
+                                list={sort} 
+                                handleOneFilter={handleOneFilter} 
+                                activeItem={activeItem}/>
                     </div>
                     <div className="room__body">
                         {p_loading && <div>Loading</div>} 
@@ -82,11 +93,18 @@ export default function Room() {
                                     tagpath={tagpath} tagDetails={tagDetails} 
                                     loadModal={loadModal} postExcerpts={postExcerpts}/>
                 <span className="fixedBtn">
-                    <Link to={{pathname: "/add", state: params.room}}>
+                    <Link to={{pathname: "/add", 
+                            state: {
+                                id: room.id, 
+                                label: room.label, 
+                                slug: room.slug}
+                }}>
                         <Button icon={<VscAdd className="icon icon__btn"/>}/>
                     </Link> 
                 </span>
             </div>
         </div>
+        : <Loading/>
+            
     )
 }

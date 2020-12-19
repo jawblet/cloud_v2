@@ -19,28 +19,25 @@ import useFindUser from './hooks/useFindUser';
 import Test from './pages/Test';
 
 function App() {
-
-  const rooms = [{label: 'kitchen', id: 'kitchen'}, 
-                {label: 'living room', id: 'living_room'}, 
-                {label: 'bedroom', id: 'bedroom'}, 
-                {label: 'basement', id:'basement'}];
-
   const [user, setUser] = useState(null);
   const [globalTags, setGlobalTags] = useState(null);
-  const { userStatus, houseTags, isLoading } = useFindUser();
+  const [rooms, setRooms] = useState(null);
+  const { userStatus, houseRooms, houseTags, isLoading } = useFindUser();
  
   useEffect(() => { 
     if(userStatus) {
       setUser(userStatus);
+      setRooms(houseRooms);
       setGlobalTags(houseTags); 
     }
-  }, [userStatus, houseTags]); //need dependency array 
+  }, [userStatus, houseRooms, houseTags]); //need dependency array 
  
   return (
    <Router>
        <UserContext.Provider value={{ user, setUser, 
+                                      rooms, setRooms,
                                       globalTags, setGlobalTags, 
-                                      rooms, isLoading}}>
+                                      isLoading }}>
        <Switch>
           <Route exact path="/" component={Landing}/>  
           <Route exact path="/register" component={Register}/>
@@ -62,3 +59,11 @@ function App() {
 }
 
 export default App;
+
+
+  /*
+  const rooms = [{label: 'kitchen', id: 'kitchen'}, 
+                {label: 'living room', id: 'living_room'}, 
+                {label: 'bedroom', id: 'bedroom'}, 
+                {label: 'basement', id:'basement'}];
+  */

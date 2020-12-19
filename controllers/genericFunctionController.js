@@ -45,7 +45,7 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
 
     const results = await docs.query;
 
-    res.status(200).json({
+    res.status(200).json({ 
         status: 'success',
         data: {
             results 
