@@ -1,43 +1,26 @@
-import { useState, useContext } from 'react'; 
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import slugify from 'react-slugify';
 import { UserContext } from './UserContext';
 
-export default function useRenameRoom() {
-    const { user, setRooms } = useContext(UserContext);
+export default function useAddRoom() {
+    const { user, rooms, setRooms } = useContext(UserContext);
     const house = user.house._id;
-    const rooms = user.house.rooms;
-    const roomSlugs = user.house.rooms.map(el => el.slug);
-    console.log(roomSlugs.length);
 
-    const [newRoom, setNewRoom] = useState('');
+    // set global context from rooms as init state 
+    const [roomInput, setNewRoom] = useState('');
     const [error, setError] = useState(null); 
     const [success, setSuccess] = useState(null); 
 
+    //HANDLE USER INPUT
     const handleChange = (e) => {
         setNewRoom(e.currentTarget.value);
     }
 
-    const addNewRoom = async (newSlug) => {
-        const newRooms = [...rooms];
-        const room = {
-            label: newRoom,
-            slug: newSlug,
-            id: rooms.length
-        };
-        newRooms.push(room);
-  
-        await axios.put(`/houses/${house}`, {
-            rooms: newRooms   
-          }).then(res => {
-              setRooms(newRooms);
-              setSuccess('Room was created.')
-          })
-          .catch(err => console.log(err));
-    }
-
-
-    const checkRoom = async (newRoom) => {
+    //CREATE ROOM 
+    const addNewRoom = async (newRoom) => {
+        //validate room
+        const roomSlugs = rooms.map(el => el.slug);
         const newSlug = slugify(newRoom);
         const doesRoomExist = roomSlugs.includes(newSlug);
         if(!newSlug || newSlug === '') {
@@ -50,24 +33,56 @@ export default function useRenameRoom() {
             fields: ['room']})
             return;
         }
-        addNewRoom(newSlug)
-    }
 
+        //create room 
+        const newRooms = [...rooms];
+        const room = {
+            label: newRoom,
+            slug: newSlug,
+            id: rooms[rooms.length - 1].id + 1
+        };
+        newRooms.push(room);
+        await axios.put(`/houses/${house}`, {
+            rooms: newRooms   
+          }).then( async (res) => {
+              console.log(res.data.data.doc.rooms);
+              setSuccess('Room was created.')
+              return await axios.get(`/houses/${house}`)
+            }).then(res => { //get rooms + set state 
+                  console.log(res.data.data.doc.rooms);
+                  const allRooms = res.data.data.doc.rooms;
+                  setRooms(allRooms);
+          }).catch(err => console.log(err));
+    }
 
     const handleAddRoom = (e) => {
         e.preventDefault(e);
         setError(null);
         setSuccess(null);
-        checkRoom(newRoom);
-        //get new rooms
-
+        addNewRoom(roomInput);
     }
 
     return {
         handleChange,
         handleAddRoom,
-        newRoom,
+        roomInput,
         error,
         success
     }
 }
+
+//pattern of chaining post + get was not working reliably... not sure why--! 
+
+
+ /*
+getAllRooms();
+
+    const getAllRooms = async () => {
+        await axios.get(`/houses/${house}`)
+        .then(res => {
+            console.log(res.data.data.doc.rooms);
+            const allRooms = res.data.data.doc.rooms;
+            setRooms(allRooms);
+        }).catch(err => console.log(err));
+    }
+    */

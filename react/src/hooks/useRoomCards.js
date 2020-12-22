@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '../hooks/UserContext';
 
 export default function useRoomCards() {

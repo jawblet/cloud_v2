@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext } from 'react'; 
 import axios from 'axios';
 import { convertToRaw } from 'draft-js';
 import { UserContext } from './UserContext';
@@ -20,15 +20,15 @@ export default function useLibrary() {
     //POST 
     const addLibraryBook = async (data) => {
         const content = JSON.stringify(convertToRaw(data));
-       await axios.post('/posts',{
-            type: 'library',
-            room: 'library',
-            content,
-            user,
-            house
-            }).then(res => {
-                //console.log(res);
-            }).catch(err => console.log(err));
+        await axios.post('/posts',{
+                type: 'library',
+                room: 'library',
+                content,
+                user,
+                house
+                }).then(res => {
+                    //console.log(res);
+                }).catch(err => console.log(err));
     }
 
     //DELETE 
@@ -54,8 +54,6 @@ export default function useLibrary() {
         addLibraryBook(data);
         getLibraryBooks();
     }    
-
-
 
     return {
         handleLibrarySubmit,

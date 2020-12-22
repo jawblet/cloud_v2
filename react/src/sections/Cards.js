@@ -1,17 +1,42 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../hooks/UserContext';
 import RoomCard from './../components/RoomCard';
 import useRoomCards from '../hooks/useRoomCards';
+import useGetRows from '../hooks/useGetRows';
 /*eslint-disable*/
 
 export default function Cards( { squeeze } ) {
     const { rooms } = useContext(UserContext);
+    console.log(rooms);
+
+    const { loading, postArrays } = useGetRows({postsPerRow: 3, allPosts: rooms});
 
     const { handleCardClick, getPositionClass } = useRoomCards();
+     
+    return(
+        <>        
+        {!loading && 
+                postArrays.map((floor, i) => {
+                    return(
+                    <div className="floor" key={i}>
+                        {floor.map((room, i) => {
+                            return (
+                            <RoomCard room={room} squeeze={squeeze} key={room.slug}
+                                handleCardClick={handleCardClick} 
+                                getPositionClass={() => getPositionClass(room.id)}
+                                />
+                            )
+                        })}
+                    </div>
+                    )
+                 })
+            }
+        </>
+    )
+}
 
-    const [postArrays, setPostArrays] = useState(null);
-    const [loading, setLoading] = useState(true);
 
+/*
     useEffect(() => {
         if(rooms) { 
             let postArrays;
@@ -27,36 +52,4 @@ export default function Cards( { squeeze } ) {
             setLoading(false);
         }
     }, [rooms]);
-    
-     
-    return(
-        <>        
-        {!loading && 
-                postArrays.map((floor, i) => {
-                    return(
-                    <div className="floor" key={i}>
-                        {floor.map((room, i) => {
-                            return (
-                                <RoomCard room={room} squeeze={squeeze} key={room.slug}
-                                    handleCardClick={handleCardClick} 
-                                    getPositionClass={() => getPositionClass(room.id)}
-                                    />
-                            )
-                        })}
-                    </div>
-                    )
-                 })
-            }
-        </>
-    )
-}
-
-
-/*
- <div className="floor__plan" key={room.slug}>
-                                    <RoomCard room={room} squeeze={squeeze}
-                                    handleCardClick={handleCardClick} 
-                                    getPositionClass={() => getPositionClass(room.id)}
-                                    />
-                                </div>
     */

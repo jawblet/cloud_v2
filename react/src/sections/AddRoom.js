@@ -10,7 +10,7 @@ export default function AddRoom(props) {
     const { setAdd } = props; 
 
     const { handleAddRoom, 
-            newRoom, 
+            roomInput, 
             handleChange,
             error,
             success } = useAddRoom();
@@ -29,7 +29,7 @@ export default function AddRoom(props) {
             <div className="upload__extra">
                 <h4 className="upload__label">Add room</h4>
                 <FormInput type={"text"} placeholder={"Room name"} name={"room"} 
-                            value={newRoom} 
+                            value={roomInput} 
                             handleChange={handleChange} 
                             /> 
             </div>
@@ -40,3 +40,4 @@ export default function AddRoom(props) {
     </div>
     )
 }
+ 
