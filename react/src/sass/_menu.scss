@@ -1,5 +1,7 @@
 //select menu 
 .selectmenu { 
+    position: relative;
+
     &__picked {
         padding: 1rem 0.5rem;
         display: flex;
@@ -8,16 +10,18 @@
         position: relative;
         cursor: pointer;
         display: flex;
-       
+       // border: 1px solid blue;
+        width: 100%;
     } 
     &__expand {
         margin-left: 0.5rem;
     }
     &__dropdown {
+        width: 90%;
         position: absolute;
         transform-origin: top;
         background-color: $off-white;
-        min-width: 5rem;
+        height: auto;
         border-bottom-left-radius: $border-small;
         border-bottom-right-radius: $border-small;
         box-shadow: $softest-shadow;
@@ -37,6 +41,14 @@
         }
         &:hover {
             background-color: $sand2;
+        }
+        &--new {
+            background-color: $sand;
+            text-align: center;
+            font-weight: bold;
+            padding: 1rem 0.5rem;
+            border-bottom-left-radius: $border-smallest;
+            border-bottom-right-radius: $border-smallest;
         }
     }
 }

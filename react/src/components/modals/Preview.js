@@ -19,10 +19,10 @@ export default function Preview({ preview, post, tags }) {
                         { if(i < max) {
                             return ( <TagPreview tag={key} count={value.length} color={value[0].color} key={key}/> )
                         } 
-                        if(i = max) {
+                        if(i === max) { //if i === map, show how many more paths 
                             return (<p>and {remainder} more.</p>)
-                        } //return from map
-                        return null; 
+                        } 
+                        return null; //otherwise return 
                     })}
                 </div>
             )

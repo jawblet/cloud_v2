@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import TagPreview from '../atoms/TagPreview';
 import { CSSTransition } from 'react-transition-group';
 
 export default function Drawer({ items, tab }) {
@@ -16,11 +15,16 @@ export default function Drawer({ items, tab }) {
                         ?   items.map(tag => {
                                 return (
                                     <div className="drawer__item" key={tag._id}>
-                                        <TagPreview tag={tag}/>
+                                       <div className="tagPreview"> 
+                                            <span className="tagPreview__color" style={{backgroundColor:tag.color}}></span>
+                                            <h4>{tag.tag}</h4> 
+                                        </div>
                                     </div>
                                     )
                                 })
-                        : <p>No paths yet</p>
+                        : <p className="fullWidth flex justifyCenter">
+                            No paths yet
+                            </p>
                     }
                 </menu>
             </CSSTransition>

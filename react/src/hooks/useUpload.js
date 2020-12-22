@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';   
 import axios from 'axios'; 
 import { UserContext } from './UserContext';
-import { colors } from './colors';
+import { colors } from '../data/colors';
   
 export default function useUpload({ initialValues }) {
     const colorArr = colors;

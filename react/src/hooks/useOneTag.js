@@ -13,19 +13,20 @@ export default function useOneTag() {
     const [tagDetails, setTagDetails] = useState({
         tag: '',  
         date: '',
+        tagCount: '',
         postCount: ''
     });
 
     const getTagDetails = async (id) => {
-        await axios.get(`/posts/details/${user.house._id}/${id}`)
+        await axios.get(`/posts/details/${user.house._id}/${id}`) 
             .then(res => {
-                //console.log(res);
-                const {tag, posts, postCount} = res.data.data;
+                const { tag, posts, postCount, tagCount } = res.data.data;
                 let date = new Date(tag[0].createdOn);
                 date = date.toDateString('en', { day: "numeric", month: "short", year: "numeric" });
                 setTagDetails({
                     tag: tag[0],
                     date,
+                    tagCount,
                     postCount
                 });
                 //find excerpts to display on tag legend 

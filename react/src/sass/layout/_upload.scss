@@ -31,7 +31,8 @@
     //lay out upload form
     &__container {
         display: flex;
-        margin-top: 10%; //buffer at pg top 
+       // margin-top: 10%; //buffer at pg top 
+       margin-top: 5rem;
     }
     &__controller { // button bar
         display: flex;
@@ -53,7 +54,7 @@
     }
     //labels for tags and comments 
     &__label {
-        padding-top: 1rem;
+        padding-top: 1rem; 
         flex: 0 0 15%;
         display: flex;
         justify-content: flex-start;
@@ -66,3 +67,12 @@
     }
 }
 
+.addRoom {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    & > *:first-child {
+        margin-right: 0.5rem;
+    }
+}

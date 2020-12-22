@@ -14,10 +14,10 @@ import RecentTags from '../../atoms/RecentTags';
 import Prompt from '../../atoms/Prompt'; 
 import Error from '../../atoms/Error';
 import CommentInput from '../../components/CommentInput'; 
-import { VscLink, VscSymbolParameter, VscArchive } from 'react-icons/vsc';
 import useTooltip from './../../hooks/useTooltip';
 import useTags from '../../hooks/useTags';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
+import { uploadBtns } from '../../data/buttons';
 
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 
@@ -25,20 +25,14 @@ export default function UploadContainer(props) {
     const [comments, setComments] = useState(false);
     const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
-    const buttons = [
-        {name: 'link', icon: <VscLink className="icon icon__btn"/>}, 
-        {name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>},
-        {name: 'file', icon: <VscArchive className="icon icon__btn"/>}
-    ];
-
     const { lastThreeTags } = useTags();
-
+    
     const openAutoComplete = ((props.results.length !== 0) && (props.values.input !== ''));
 
     return (  
         <div className="upload__container">  
             <div className="upload__controller">
-                <ButtonBar buttons={buttons} ref={textRef} handleClick={switchType} type={type}
+                <ButtonBar buttons={uploadBtns} ref={textRef} handleClick={switchType} type={type}
                         direction="column" getTooltip={getTooltip} hideTooltip={hideTooltip}/>
                         {tooltip && <Tooltip tooltip={tooltip} tooltipCoords={tooltipCoords}/>}
                 <Link to={`/home/${room}`}>

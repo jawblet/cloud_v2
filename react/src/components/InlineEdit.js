@@ -2,8 +2,8 @@ import React from 'react';
 import useRenameRoom from '../hooks/useRenameRoom';
 
 export default function InlineEdit(props) {
-
     const {name, id} = props; 
+
     const {style, 
             editValue, 
             size,

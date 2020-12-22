@@ -47,7 +47,7 @@ useEffect(() => {
             const decorator = new CompositeDecorator([ 
                 { strategy: findTags,
                   component: highlightSpan }
-            ]);
+            ]); 
     
             const contentState = editorState.getCurrentContent(); 
             const newEditorState = EditorState.createWithContent(contentState, decorator);
@@ -73,11 +73,8 @@ useEffect(() => {
 
     const mapKeyToEditorCommand = (e) => {
         if (e.keyCode === 9 /* TAB */) {
-        const newEditorState = RichUtils.onTab(
-            e,
-            editorState,
-            4, /* maxDepth */
-        );
+            e.preventDefault();
+            const newEditorState = RichUtils.onTab(e, editorState, 4);
         if (newEditorState !== editorState) {
             onNoteChange(newEditorState);
         }

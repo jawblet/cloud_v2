@@ -173,7 +173,7 @@ const rentHouse = (formValues) => {
 const searchRef = React.createRef(); //define searchRef
 
 //handle key down events in tag upload
-const handleKeyDown = (e) => {
+const handleKeyDown = (e) => { 
     if(searchRef.current) {
        //submit tags on comma or enter press
         if(e.keyCode === 188 || e.keyCode === 13) {

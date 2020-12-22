@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserContext } from './hooks/UserContext';
 import PrivateRoute from './pages/PrivateRoute';
 import Register from './pages/Register';
-import Login from './pages/Login';
+import Login from './pages/Login'; 
 import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
@@ -61,9 +61,3 @@ function App() {
 export default App;
 
 
-  /*
-  const rooms = [{label: 'kitchen', id: 'kitchen'}, 
-                {label: 'living room', id: 'living_room'}, 
-                {label: 'bedroom', id: 'bedroom'}, 
-                {label: 'basement', id:'basement'}];
-  */

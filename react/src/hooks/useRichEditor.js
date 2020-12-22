@@ -18,7 +18,7 @@ export default function useRichEditor() {
         const newState = RichUtils.handleKeyCommand(editorState, command);
         if(newState) {
             onNoteChange(newState);
-            return 'handled';
+            return 'handled';   
         }
         return 'not-handled';
     };

@@ -17,16 +17,16 @@ exports.deleteAllPosts = functionHandler.deleteAll(Post);
 //get tags used in all posts and unwind
 exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
     let match;
-    const castId = mongoose.Types.ObjectId(req.params.houseId); //cast houseId param to object id
+    const castId = mongoose.Types.ObjectId(req.params.houseId);
 
     if(req.params.room) { //check for room param  
         match = { house: castId, room: req.params.room  }
         } else {  match = { house: castId }; 
     } 
 
-    const allTagsFromPosts = await Post.aggregate([
+    const allTagsFromPosts = await Post.aggregate([ 
         { $match: match }, 
-        { //unwind post by tags
+        { 
             $unwind: '$tags' 
         }, 
         { //sometimes tags are saved as null... for now, filter out null tag values 
@@ -34,7 +34,7 @@ exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
         },
         {
             $lookup: 
-            { from: "tags", // join with tag db  
+            { from: "tags", 
                 localField: "tags",
                 foreignField: "_id",
                 as: "tagObject"
@@ -45,7 +45,7 @@ exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
         },
         { $sort: { createdOn: -1 } }
     ]);
-
+    
     res.status(200).json({
         status: 'success',
         data: {
@@ -77,13 +77,13 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
     }
      
     const allTags = await Post.aggregate([
-        { $match: match  }, 
-        { //unwind post by tags
+        { $match: match }, 
+        { 
             $unwind: '$tags' 
         }, 
         { $match: { tags: { $ne: null } } },
-        { // count ea. instance of tag use 
-            $group: {
+        { 
+            $group: { // count ea. instance of tag use 
                 _id: '$tags',
                 countEach: {$sum: 1} 
             }
@@ -101,11 +101,17 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
         },
         { $sort: sort }
     ]);
+    let postTagSum;
 
-    const postTagsArr = allTags.map(el => el.countEach);
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const postTagSum = postTagsArr.reduce(reducer); // get total tag use 
-
+    if(allTags.length !== 0) { // handle no tags
+        console.log('not all tags');
+        const postTagsArr = allTags.map(el => el.countEach);
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+       return postTagSum = postTagsArr.reduce(reducer); // get total tag use 
+        } else {
+            postTagSum = 0; 
+        }
+       
     res.status(200).json({
         status: 'success',
         data: {
@@ -117,16 +123,47 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
 
 //get tags details 
 exports.getTagDetails = catchAsync(async(req, res) => {
+    const castHouseId = mongoose.Types.ObjectId(req.params.houseId);
+    const castTagId =  mongoose.Types.ObjectId(req.params.tagId);
+
     //get all posts of tag used by house 
-    const posts = await Post.find({ house: req.params.houseId, tags: req.params.tagId });
-    const tag = await Tag.find({ _id: req.params.tagId })
+    const tag = await Tag.find({ _id: req.params.tagId }); //tag data
+    const posts = await Post.find({ house: req.params.houseId, tags: req.params.tagId }); // posts with tag (for excerpts)
+    const tagCount = await Post.aggregate([
+      { $match: { house: castHouseId, tags: castTagId } 
+        },
+        { $unwind: '$tags'
+        }, 
+        { $match: { tags: castTagId } },
+       { $group: { 
+            _id: null,
+            countEach: {$sum: 1} 
+        } }
+    ]);
+    //console.log(tagCount[0].countEach);
 
     res.status(200).json({
         status: 'success',
         data: {
             tag,
+            tagCount: tagCount[0].countEach,
             posts,
             postCount: posts.length,
         }
     })  
 });
+
+
+/*
+    { 
+        $unwind: '$tags' 
+      },
+     { 
+        $match: {$tags: tag[0].tag }
+      }, 
+      { 
+        $group: { _id: '$tags',
+            countEach: {$sum: 1} }
+    } 
+
+    */

@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { VscChevronDown } from 'react-icons/vsc';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group'; 
 
 export default function SelectMenu({ items, active, selectItem }) { 
     const nodeRef = useRef(null);
     const list = items.filter(item => item.label !== active); 
     const [menu, setMenu] = useState(false);
-
-    useEffect(() => {
-        setMenu(false); // close menu on selection 
-    }, [active]);
  
     return( 
         <div className="selectmenu">

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'; 
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import slugify from 'react-slugify';
@@ -53,6 +53,13 @@ const rooms = user.house.rooms;
         .catch(err => console.log(err));
     }
 
+//handle create rooms
+    const addRoom = (e) => {
+        e.preventDefault();
+        const val = e.currentTarget.value;
+        console.log(val);
+    }
+
     return {
         style,
         editInline,
@@ -61,5 +68,6 @@ const rooms = user.house.rooms;
         handleClickIn,
         handleClickOut,
         handleChange,
+        addRoom
     }
 }

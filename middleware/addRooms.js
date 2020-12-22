@@ -1,5 +1,5 @@
 const addRooms = (req, res, next) => {
-    const rooms = [
+    const rooms = [ 
         {label: 'Kitchen', slug: 'kitchen', id: 0}, 
         {label: 'Living room', slug: 'living-room', id: 1}, 
         {label: 'Bedroom', slug: 'bedroom', id: 2},

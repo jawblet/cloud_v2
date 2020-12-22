@@ -6,9 +6,9 @@ import { VscEllipsis } from 'react-icons/vsc';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
 import TagLegendPath from '../../atoms/TagLegendPath';
  
-export default function Post100({ post, toggleMenu, menu, index, revertAll, 
-                                handleDeletePost, openPost, handleStopHover, tagpath, handleHover, coords }) { 
-
+export default function Post100(props) { 
+    const { post, toggleMenu, menu, index, revertAll, handleDeletePost, openPost, handleStopHover, tagpath, handleHover, coords } = props;
+    const editRef = useRef(null); 
     const postId = coords.postId;
     const uniqueTags = Array.from(new Set(post.tags.map(el => el.tag)))
                             .map(tag => { const uniqueTag = post.tags.find(el => el.tag === tag);
@@ -19,8 +19,6 @@ export default function Post100({ post, toggleMenu, menu, index, revertAll,
             editorState, 
             setEditorState, 
             onNoteChange } = usePosts();
-
-    const editRef = useRef(null); 
 
     useEffect(() => {
         if(post.type === 'note') { 
@@ -91,15 +89,16 @@ export default function Post100({ post, toggleMenu, menu, index, revertAll,
                                 </h4>
                                 <TagLegendPath coords={coords} 
                                                 tag={tag} 
-                                                enter={(tagpath && tagpath === tag._id && postId === post._id) ? true : false}/>
+                                                enter={(tagpath && tagpath === tag._id && postId === post._id) 
+                                                        ? true 
+                                                        : false}/>
                             </div>
                             )
                         })}
                     </div>
-                    }
+                }
         </div>
-        </>
-         
+        </>   
     )
 }
 

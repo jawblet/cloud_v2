@@ -16,7 +16,8 @@ export default function Card({ room, squeeze, getPositionClass, handleCardClick 
                     ${squeeze ? `card--${room.id}` : ''} 
                     ${squeeze ? getPositionClass(room.id) : ''}`} 
                     key={room.id} data-id={room.id} 
-                    onClick={(e) => handleCardClick(e)}>
+                    onClick={(e) => handleCardClick(e)}
+                    >
                 <Link className={`card__label ${room.id}`} 
                         to={`/home/${room.slug}`}> 
                     <h4> {room.label} </h4>  

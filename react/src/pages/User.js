@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'; 
+import React, { useContext } from 'react';  
 import { UserContext } from '../hooks/UserContext';
 import UserForm from '../sections/UserForm';
 import Error from '../atoms/Error';
@@ -36,13 +36,13 @@ export default function User() {
         <div className="page" >
             <Header/> 
             <div className="inlineForm">
-                <h3>@{user.username}</h3>
+                <h3 style={{marginBottom:'1rem'}}>@{user.username}</h3>
                 <div className="inlineForm__notif">
                     {error && <Error error={error.messages}/>}
                     {notif && <Notification notif={success}/>}
                 </div>
-                <div className="flex justifyStart padBottomOne">
-                <Prompt prompt={"Edit your account information"}/>
+                <div className="flex justifyStart" style={{padding:'1rem 0'}}>
+                    <Prompt prompt={"Edit your account information"}/>
                 </div>
                 <form onSubmit={handleSubmit}>
                 <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}

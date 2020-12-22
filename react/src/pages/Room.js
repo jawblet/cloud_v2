@@ -25,7 +25,6 @@ export default function Room() {
     const {tagpath, coords, tagRef, handleHover,
         tagDetails, postExcerpts, loadModal, handleStopHover } = useOneTag();
 
-
     //GET POSTS + TAGS BY ROOM 
     let params = useParams();
     const { getRoom, handleGetPosts,
@@ -89,9 +88,6 @@ export default function Room() {
                         {(!p_loading) && <PostList25 posts={posts} activeView={activeView}/>}
                         {(!t_loading) && <PostList5 tags={allTags} activeView={activeView}/>}
                     </div>
-                    <TagLegend ref={tagRef}
-                                    tagpath={tagpath} tagDetails={tagDetails} 
-                                    loadModal={loadModal} postExcerpts={postExcerpts}/>
                 <span className="fixedBtn">
                     <Link to={{pathname: "/add", 
                             state: {
@@ -103,6 +99,9 @@ export default function Room() {
                     </Link> 
                 </span>
             </div>
+            <TagLegend ref={tagRef}
+                        tagpath={tagpath} tagDetails={tagDetails} 
+                        loadModal={loadModal} postExcerpts={postExcerpts}/>
         </div>
         : <Loading/>
             

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import TagPreview from '../atoms/TagPreview';
 import InlineButton from '../components/btns/InlineButton';
 import { VscClose, VscEdit, VscTrash } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
@@ -12,7 +11,7 @@ import usePosts from '../hooks/usePosts';
 import useComment from '../hooks/useComment';
 import useRoom from '../hooks/useRooms';
 import groupBy from 'lodash/groupBy';
-
+import EditSidebar from './EditSidebar';
 
 export default function Edit({ openPost }) {
     const params = useParams();
@@ -20,6 +19,7 @@ export default function Edit({ openPost }) {
     const [post, setPost] = useState(null);
     const [tags, setTags] = useState(null);
     const [loading, setLoading] = useState(true);
+    const editRef = useRef(null); 
 
     useEffect(() => { 
         axios.get(`/posts/${postId}`).then(res => {
@@ -30,8 +30,6 @@ export default function Edit({ openPost }) {
         })
     }, [postId]);
  
-    const editRef = useRef(null); 
-    console.log(tags);
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
@@ -66,7 +64,7 @@ export default function Edit({ openPost }) {
             <div>Loading</div>
         )
     }
-    return(
+    return (
         <div className="modal__background">
             <div className="edit">
                 <Link to={`/home/${params.room}`}>
@@ -76,31 +74,7 @@ export default function Edit({ openPost }) {
                 </Link>
                 <div className="edit__content">
                     <div className="edit__sidebar">
-                        <div className="edit__metadata">
-                            <h4 className="lightest">created by</h4>
-                            <h4 className="light">
-                                {post.user.username}
-                            </h4>
-                        </div>
-                        <div className="edit__metadata">
-                            <h4 className="lightest">created on</h4>
-                            <h4 className="light">
-                                {post.date}
-                            </h4>
-                        </div>
-                        <div className="edit__metadata">
-                        {post.tags.length > 0 
-                            ? <>
-                            <h4 className="lightest">tags</h4>
-                               { Object.entries(tags).map(([key, value]) => { 
-                                   return ( 
-                                    <TagPreview tag={key} count={value.length} color={value[0].color} key={key}/> 
-                                    ) 
-                                })}
-                            </>
-                            : <h4 className="lightest">no tags</h4>
-                            } 
-                        </div>
+                        <EditSidebar post={post} tags={tags}/>
                         <div className="edit__metadata">
                             <CommentList postComments={data.postComments} deleteComment={deleteComment}/>
                         </div>

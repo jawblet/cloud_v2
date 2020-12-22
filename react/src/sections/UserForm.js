@@ -12,7 +12,7 @@ export default function userForm({values, invalidFields, handleChange}) {
                    />
         <FormInput type={"text"} placeholder={"Username"} name={"username"} value={values.username} 
                    fail={invalidFields.includes("username")} handleChange={handleChange} 
-                    />
+                    /> 
         <ConfirmPasswordInput type={"password"} 
                     fail={passwordFail}
                     placeholder={"Password"} placeholderConfirm={"Confirm password"}

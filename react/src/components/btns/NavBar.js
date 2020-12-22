@@ -6,15 +6,16 @@ const NavBar = forwardRef((props, ref) => {
     return(
         <div className='btn__bar__wrapper' ref={ref}> 
             <nav className={`${props.direction}`} onMouseLeave={(e) => props.hideTooltip(e)}>
-                {props.buttons.map((button, i) => {
-                    if(i <= 2) {
-                        return ( <NavButton key={i} button={button} {...props} /> )
-                    } else {
+                {props.navButtons.map((button, i) => {
                         return ( 
-                        <TooltipButton key={i} button={button} {...props} handleClick={props.handleExpandClick}/> 
-                        )
-                    }
+                            <NavButton key={i} button={button} {...props} />
+                            )
                 })} 
+                {props.squeezeBtn.map((button, i) => {
+                    return ( 
+                        <TooltipButton key={i} button={button} {...props} handleClick={props.handleExpandClick}/>
+                        )
+                })}
             </nav>  
         </div>  
 )

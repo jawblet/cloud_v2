@@ -7,10 +7,11 @@ import useManyFilters from '../hooks/useManyFilters';
 import useOneFilter from '../hooks/useOneFilter';
 import useTags from '../hooks/useTags';
 import { UserContext } from '../hooks/UserContext';
+import Loading from '../components/Loading';
  
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 
-
+ 
     //set sort
     const list = ['recent', 'A - Z', 'count']; 
     const { handleOneFilter, activeItem } = useOneFilter('recent');
@@ -37,7 +38,7 @@ export default function Tags() {
                     <ListMenu title={'sort'} list={list} activeItem={activeItem} handleOneFilter={handleOneFilter}/>
                 </div>
                 <div className="room__body">
-                {loading && <div>loading...</div>}
+                { loading && <Loading/> }
                 {(!loading && tags.length === 0) && 
                         <div className="emptyRoom">
                             <h3 className="light">Empty room</h3>

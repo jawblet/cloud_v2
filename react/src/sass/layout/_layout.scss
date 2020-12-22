@@ -1,6 +1,6 @@
 //** general page settings + header **// 
 .page { 
-    background-color: $off-white;
+    background-color: $off-white; 
     height: 100vh;
     width: 100%;
     overflow: scroll;
@@ -40,44 +40,6 @@
   }
 }
  
-//layout homepage 
-.skylight {
-  display: flex;
-  width: 100%;
-  height: 100%;
- // border: 1px solid blue;
-  &__sidebar {
-    flex: 0 0 5%;
-    height: 100%;
-    display: flex;
-   // border: 1px solid blue;
-    &__key {
-      position: relative;
-      //transform: translate(-3.5rem, 3.5rem);
-      transform: translateX(-3.5rem);
-      z-index: 0;
-    }
-    &__nav {
-      align-self: flex-end;
-    }
-  }
-  &__layout {
-    flex: 0 0 95%;
-  }
-}
-
-.floor {
-  display: flex;
-  &__plan { // center the cards on page
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-}
-
 // custom style for nav bar at home
 .bottom {
     border-radius: 0;
