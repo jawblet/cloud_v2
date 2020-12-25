@@ -86,10 +86,6 @@
     transform-origin: center 1rem; // roll out search from center(x) 1rem from top(y)
     width: 100%;
     position: relative;
-    &__recent {
-        padding-top: 1rem;
-        align-self: flex-start;
-    }
 }
 
 // show created tags in reg/upload forms

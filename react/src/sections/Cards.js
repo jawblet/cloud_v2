@@ -5,9 +5,9 @@ import useRoomCards from '../hooks/useRoomCards';
 import useGetRows from '../hooks/useGetRows';
 /*eslint-disable*/
 
-export default function Cards( { squeeze } ) {
+export default function Cards( { squeeze } ) { 
     const { rooms } = useContext(UserContext);
-    console.log(rooms);
+    //console.log(rooms);
 
     const { loading, postArrays } = useGetRows({postsPerRow: 3, allPosts: rooms});
 

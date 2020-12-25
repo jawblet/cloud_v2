@@ -7,7 +7,7 @@ export default function userForm({values, invalidFields, handleChange}) {
  
     return( 
      <span className="formFields">
-        <FormInput type={"text"} placeholder={"Email"} name={"email"} value={values.email} 
+        <FormInput type={"text"} placeholder={"Email"} name={"email"} value={values.email}
                    fail={invalidFields.includes("email")} handleChange={handleChange} 
                    />
         <FormInput type={"text"} placeholder={"Username"} name={"username"} value={values.username} 

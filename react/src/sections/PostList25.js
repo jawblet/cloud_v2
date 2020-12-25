@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 export default function PostList25(props) { 
     const { activeView } = props; 
-    const nodeRef = useRef(null);
+    const nodeRef = useRef(null); 
     const postMax = 4; 
     const postTotal = props.posts.length;
     const numRows = [...Array(Math.ceil(postTotal / postMax))]; // # of rows on pg

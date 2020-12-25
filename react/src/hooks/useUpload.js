@@ -23,7 +23,7 @@ const searchRef = React.createRef();
             }); 
 
         if(searchRef.current) { //search in tag input 
-            console.log(searchRef.current.value);
+           // console.log(searchRef.current.value);
             try {
                 axios({
                     method: 'GET',
@@ -57,9 +57,8 @@ const handleKeyDown = (e) => {
     }
 
 //add tags to state and post them  
-    const addTags = async () => {
-        if(values.input) { //check if tag exists 
-            const trimmedTag = values.input.trim(); //trim whitespace 
+    const createTag = async (tag) => {
+            const trimmedTag = tag.trim(); //trim whitespace 
             const n = Math.floor(Math.random() * Math.floor(colorArr.length));
             let color = colorArr[n];
             try {
@@ -90,22 +89,17 @@ const handleKeyDown = (e) => {
             } catch(err) {
                 console.log(err);
             }
-        } else {
-            return console.log('not a tag');
-        }
     }; 
 
 //select existing tag from autocomplete or recents
     const selectTag = (e) => {
         const tagId = e.currentTarget.dataset.id;
         const tagArr = values.tags.map(el => el._id);
-        
         if(tagArr.includes(tagId)) {
              return setValues({ ...values,
                 error: 'Don\'t add duplicate tags'
             }); 
         }
-
         axios.get(`tags/${tagId}`).then(res => {
             const newTag = res.data.data.doc;
             setValues({ ...values,
@@ -132,7 +126,23 @@ const handleKeyDown = (e) => {
             tags: newTags
         });
      };
-    
+
+
+//add tag from note directly 
+    const addTagFromNote = (e) => {
+        const newTag = window.getSelection().toString();
+        if(newTag) {
+            createTag(newTag);
+        }
+    };
+
+//add tag from search 
+const addTags = () => {
+    if(values.input) {
+        createTag(values.input);
+    } 
+    return null; 
+}
         return {
             handleChange,
             selectItem,
@@ -143,6 +153,7 @@ const handleKeyDown = (e) => {
             selectTag,
             clearInput,
             removeTag,
-            handleKeyDown
+            handleKeyDown,
+            addTagFromNote
         }
 }

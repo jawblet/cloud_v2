@@ -13,7 +13,7 @@ export default function useEditor() {
         setEditorState(editorState);  
       }
     
-useEffect(() => {
+useEffect(() => { 
     let tagNames = []; 
 
     if(globalTags.length !== 0) { // check if tags exist  
@@ -100,7 +100,6 @@ useEffect(() => {
             editRef.current.focus();
         };
 
-
     return {
         editorState, 
         setEditorState,
@@ -110,6 +109,6 @@ useEffect(() => {
         toggleInlineStyle,
         toggleBlockType,
         editRef,
-        setFocus
+        setFocus,
     }
 }

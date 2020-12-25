@@ -91,6 +91,29 @@
     }
 }
 
+.quickFade {
+    &-enter { 
+        opacity: 0;
+    }
+    &-enter-active {
+        opacity: 1;
+        transition: opacity 0.15s ease-in;
+    }
+    &-enter-done { 
+        opacity: 1;
+    }
+    &-exit { 
+       opacity: 1;
+    }
+    &-exit-active{
+        opacity: 0;
+        transition: opacity 0.15s ease-in;
+    }
+    &-exit-done { 
+        opacity: 0;
+    }
+}
+
 .openDrawer {
     &-enter { 
         transform: translateY(150%);

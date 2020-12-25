@@ -77,24 +77,21 @@ h2[data-block] {
     font-weight: 600;
  }
 
-///custom note upload styling////
- .editorWrapper {
+//for lib + note upload 
+.editorWrapper {
     width: 100%;
     border-radius: $border-small;
-}
-
-.editorTag {
-    padding: 2px;
-    border-radius: 3px;
+    padding: 1.5rem;  
+    padding-top: 0;
 }
 
 .editorWrapper > .DraftEditor-root {
    min-height: 5rem;
-   padding: 1rem;
 }
 
+//for note upload ONLY
 .editorWrapper--note {
-   transform-origin: center top;   
+   transform-origin: center top; 
 }
 
 .editorWrapper--note > .DraftEditor-root {
@@ -102,4 +99,28 @@ h2[data-block] {
    padding: 1rem;
    border-top-left-radius: 0;
    border-top-right-radius: 0;
+}
+
+.editorTag {
+   padding: 2px;
+   border-radius: 3px;
+}
+
+//for lib ONLY
+.editorWrapper--lib {
+   border: 3px solid $sand2;
+   border-top: none;
+   border-bottom-left-radius: $border-small;
+   border-bottom-right-radius: $border-small;
+}
+
+.editor__title {
+   background-color: $off-white;  
+   border: none;
+   font-weight: bold;
+   padding: 1.5rem;
+   padding-bottom: 0;
+   &:focus {
+       border: none;
+   }
 }

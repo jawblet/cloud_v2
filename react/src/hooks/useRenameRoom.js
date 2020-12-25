@@ -1,12 +1,17 @@
-import { useState, useContext } from 'react'; 
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import slugify from 'react-slugify';
 import { UserContext } from './UserContext';
 
-export default function useRenameRoom(name, id) {
+export default function useRenameRoom(props) {
+const { label, id, description } = props.room;
+
+const initValues = { name: label, 
+                    description: description }
+
 let history = useHistory();
-const { user, setRooms } = useContext(UserContext);
+const { user, setRooms } = useContext(UserContext); 
 const house = user.house._id;
 const rooms = user.house.rooms;
 
@@ -20,26 +25,45 @@ const rooms = user.house.rooms;
     }
 }
     const [editInline, setEditInline] = useState(false); 
-    const [editValue, setEditValue] = useState(name);
-    const [size, setSize] = useState(name.length + 1);
+    const [values, setValue] = useState(initValues || {});
+    const [size, setSize] = useState(label.length + 1);
 
     const handleChange = (e) => {
-        console.log(e.target.value);
-        setEditValue(e.target.value);
-        setSize(e.target.value.length + 1);
-    }
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(e.target.name);
+        setValue({...values,
+            [name]: value});
+        if (name === 'name') {
+            setSize(value.length + 1);
+        }
+    };
 
     const handleClickIn = () => {
         setEditInline(true);
-    }
+    };
 
-    const handleClickOut = async () => {
+    const handleBlur = (e) => {
+        const name = e.target.name;
+        switch(name) {
+            case "name": blurName();
+            break;
+           // case "description": blurDescription();
+            break;
+            default: return; 
+        }
+    };
+
+    //validate to make sure room doesn't exist 
+    const blurName= async () => {
         setEditInline(false);
-        const label = editValue; 
-        const slug = slugify(editValue);
+        const label = values.name; 
+        const slug = slugify(values.name);
         const newRooms = rooms.map(el => {
             if(el.id === id) {
-                return {label, slug, id: el.id}
+                return { label, slug, 
+                        id: el.id, 
+                        description: el.description }
             } else {
                 return el;
             }
@@ -51,15 +75,38 @@ const rooms = user.house.rooms;
             history.push(`/home/${slug}`);
         })
         .catch(err => console.log(err));
-    }
+    };
+
+    const blurDescription = async () => {
+        console.log('blur :)');
+        setEditInline(false);
+        const description = values.description; 
+        const newRooms = rooms.map(el => {
+            if(el.id === id) {
+                return { label: el.label, 
+                        slug: el.slug, 
+                        id: el.id, 
+                        description: description }
+            } else {
+                return el;
+            }
+        })        
+        await axios.put(`/houses/${house}`, {
+          rooms: newRooms   
+        }).then(res => {
+            console.log(res);
+            setRooms(newRooms);
+        })
+        .catch(err => console.log(err));
+    };
 
     return {
         style,
         editInline,
-        editValue,
+        values,
         size,
         handleClickIn,
-        handleClickOut,
-        handleChange,
+        handleBlur,
+        handleChange
     }
 }

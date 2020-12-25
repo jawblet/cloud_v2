@@ -8,26 +8,41 @@ export default function useLibrary() {
     const house = user.house._id;
     const [threads, setThreads] = useState(null);
 
+    const [page, setPage] = useState({}); 
+    const limit = 2;
+
     //GET
     const getLibraryBooks = async () => {
        await axios.get(`/posts/h/${house}/library`)
             .then(res => {
                 const rawNotes = res.data.data.results;
-                setThreads(rawNotes);
+               console.log(rawNotes);
+                if(rawNotes.length > limit) {
+                    const totalPages = [...Array(Math.ceil(rawNotes.length / limit))];
+                    const postArrs = totalPages.map((row, i) => 
+                        rawNotes.slice(i * limit, i * limit + limit ));
+                    setPage({currentPage: 1, 
+                    totalPages: totalPages.length }); 
+                    setThreads(postArrs);
+                    return;
+                }
+                return setThreads([...Array(rawNotes)]); 
             })
     }
 
     //POST 
-    const addLibraryBook = async (data) => {
+    const addLibraryBook = async (data, title) => {
+        console.log(title);
         const content = JSON.stringify(convertToRaw(data));
         await axios.post('/posts',{
                 type: 'library',
                 room: 'library',
+                title,
                 content,
                 user,
                 house
                 }).then(res => {
-                    //console.log(res);
+                    console.log(res);
                 }).catch(err => console.log(err));
     }
 
@@ -50,8 +65,8 @@ export default function useLibrary() {
         getLibraryBooks();
     }
     
-    function handleLibrarySubmit(data) {
-        addLibraryBook(data);
+    function handleLibrarySubmit(data, title) {
+        addLibraryBook(data, title);
         getLibraryBooks();
     }    
 
@@ -59,6 +74,8 @@ export default function useLibrary() {
         handleLibrarySubmit,
         getLibraryBooks,
         handleLibraryBookDelete,
-        threads
+        threads,
+        page,
+        setPage 
     }
 }

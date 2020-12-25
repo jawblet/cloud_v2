@@ -1,0 +1,47 @@
+//large, generic tooltip
+.tooltip {
+    color: $off-white;
+    background-color: $body-medium;
+    padding: 1rem;
+    border-radius: $border-small;
+    z-index: 5;
+    width: 15rem;
+    height: auto; 
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translate(-110%, -50%);
+}
+
+.tooltipAnchor {
+    position: relative;
+}
+
+//for btns 
+.tltp {
+    padding: 5px;
+    color: $off-white;
+    background-color: $body-medium;
+    border-radius: $border-smallest;
+    position: absolute;
+    transform-origin: center left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+/**
+  &::after {
+        content: '';
+        background-color: $body-medium;
+        height: 1rem;
+        width: 3rem;
+        right: 0;
+        transform: translateX(1.5rem);
+        clip-path: polygon(100% 50%, 0 0, 0 100%);
+    }
+**/

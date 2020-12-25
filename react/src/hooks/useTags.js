@@ -3,7 +3,7 @@ import axios from 'axios';
 import { UserContext } from './UserContext';
 
 export default function useTags(activeItem) {
-const { user } = useContext(UserContext); 
+const { user, globalTags } = useContext(UserContext); 
 
 const [loading, isLoading] = useState(true);
 const [t_loading, is_t_Loading] = useState(true);
@@ -53,7 +53,7 @@ const getAllTagsFromPosts = () => {
     const [eyedrop, colorChangeActive] = useState(false);
 
     const handlePaintClick = () => {
-        colorChangeActive(!eyedrop);
+        colorChangeActive(!eyedrop); 
     }
 
 //last 3 tags
@@ -69,7 +69,7 @@ useEffect(() => {
             } catch(err) {
                 console.log(err)
             }
-    }, [user]) // added user 
+}, [globalTags]) // added user 
    
     return {
         loading,

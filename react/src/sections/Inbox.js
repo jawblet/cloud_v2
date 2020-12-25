@@ -1,17 +1,19 @@
 import React from 'react';
 import InboxPreview from '../components/posts/InboxPreview';
 import { convertFromRaw } from 'draft-js';
+import Paginate from '../atoms/Paginate';
 
 export default function Inbox(props) {
-    const { threads } = props;
-    console.log(threads);
+    const { threads, page } = props;
 
+    const pg = page.currentPage; 
+
+    //loop through the page OR the 0 position of array (no pg)
     return(
         <div className="inbox">
            {(threads && threads.length !== 0) 
                 ? <div>
-                   { threads.map((post, i)=> {
-                    //put into plaintext for now... 
+                   { threads[pg - 1 || 0].map((post, i)=> { 
                     const contentState = convertFromRaw(JSON.parse(post.content));
                     const plaintext = contentState.getPlainText();
                     return ( 
@@ -19,7 +21,8 @@ export default function Inbox(props) {
                                     handleLibraryBookDelete={props.handleLibraryBookDelete}
                         />
                     )
-                })}
+                    })}
+                    <Paginate {...props}/>
                 </div>
                 : <div>No threads</div>
             }

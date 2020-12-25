@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const Schema = mongoose.Schema; 
 
-const houseSchema = mongoose.Schema({
+const houseSchema = mongoose.Schema({ 
     house: {
         type: String,
         required: [true, 'Houses must be named.'],
@@ -27,6 +27,10 @@ const houseSchema = mongoose.Schema({
         ref: 'Tag'
     }],
     posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }],
+    documents: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
     }]

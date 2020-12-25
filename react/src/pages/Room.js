@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Header from './../sections/Header'; 
-import InlineEdit from '../components/InlineEdit';
+import Header from '../sections/Header'; 
+import RoomInfo from '../sections/RoomInfo';
 import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
 import PostList100 from '../sections/PostList100';
@@ -55,9 +55,7 @@ export default function Room() {
     return ( (!r_loading && room)
                 ? <div className="page" onScroll={handleStopHover}>
                 <Header nav={[ {name: room.label, url: params.room } ]}/>
-                <div className="page__title">
-                    <InlineEdit name={room.label} id={room.id}/>
-                </div>
+                <RoomInfo room={room}/>
                 <div className="room"> 
                     <div className="room__sidebar">
                         <ListMenu title={'zoom'} 

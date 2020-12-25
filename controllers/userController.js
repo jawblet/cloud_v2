@@ -1,6 +1,4 @@
 const User = require('./../models/userModel'); 
-const AppError = require('./../utils/AppError');
-const catchAsync = require('./../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');
 
 //function handled by generic handler 

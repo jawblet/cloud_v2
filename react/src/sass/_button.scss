@@ -1,27 +1,27 @@
+
+
 //buttons
 .btn {
-        min-height: 3rem;
-        min-width: 3rem;
-        border-radius: $border-small; 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: all $short-fade;
-        background-color: inherit;
-        &:active {
-          background-color: $sand2;
-        }
-        &--CTA {
-          width: 6rem;
-          background-color: $sand3;
-        }
-        &.warning{
-          background-color: $error;
-        }
-        &.active {
-          background-color: $sand3;
-        }
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: $border-small; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all $short-fade;
+  background-color: inherit;
+  &:active,
+  &.active {
+      background-color: $sand2;
+    }
+  &--CTA {
+      width: 6rem;
+      background-color: $sand3;
+  }
+  &.warning{
+      background-color: $error;
+    }
 }
 
 //inline buttons
@@ -63,3 +63,14 @@ d {
   transition: all .2s ease-in-out;
 }
 
+.navBtn--column {
+  background-color: $sand2;
+  &:first-child {
+    border-top-right-radius: $border-small;
+    border-top-left-radius: $border-small;
+  }
+  &:last-child {
+    border-bottom-right-radius: $border-small;
+    border-bottom-left-radius: $border-small;
+  }
+}

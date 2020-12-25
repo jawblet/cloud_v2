@@ -1,9 +1,10 @@
 .library {
     &__body {
-        flex: 0 0 55%; 
+        flex: 0 0 50%; 
     }
     &__sidebar {
-        flex: 0 0 45%;
+        flex: 0 0 25%;
         padding: 1rem;
     }
 }
+

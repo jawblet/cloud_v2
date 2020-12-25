@@ -1,0 +1,122 @@
+$blob: lightgreen;
+
+%lump {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: inherit;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+%circle {
+    border-radius: 50%;
+    position: relative;
+}
+
+.blobCanvas {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $shadow;
+    padding: 1rem; 
+    &__row {
+        display: flex;
+    }
+}
+
+.blobParent {
+    transform: translateX(3rem);
+    padding: 1rem; 
+}
+
+//base blob 
+.blob {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    background-color: $blob;
+    //border: $border; 
+    border-radius: 70% 30% 30% 62% / 53% 40% 60% 40%;
+};
+
+.flat {
+    border-radius: 21% 13% 50% 60% / 69% 34% 81% 41%; //flat bottom 
+}
+
+.squat {
+    height: 5rem;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.extrude {
+    @extend %circle;
+    &::after{
+        @extend %lump;
+        top: 0;
+        left: 0;
+        height: 4rem;
+        width: 3rem;
+        transform: rotate(-30deg);
+    }
+}
+
+.extrudeTwice {
+    @extend %circle;
+    &::before{
+        @extend %lump;
+        top: 0;
+        right: 50%;
+        height: 3rem;
+        width: 4rem;
+        transform: rotate(180deg) translate(-50%, 20%);
+    }
+    &::after{
+        @extend %lump;
+        top: 0;
+        left: 0;
+        height: 2rem;
+        width: 3rem;
+        transform: rotate(-30deg);
+    }
+}
+
+.splat {
+    border-radius: 100% 86% 83% 99% / 100% 100% 92% 75%; //near-perfect circle 
+    position: relative;
+    &::after {
+        @extend %lump;
+        right: 10%;
+        height: 1rem;
+        width: 1rem;
+        transform: translateY(-1rem);
+    }
+    &::before {
+        @extend %lump;
+        right: 0;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
+
+//style classes 
+#rotate {
+    transform:rotate(70deg) translateY(3rem);
+}
+
+#flatTop {
+    transform: scaleY(-1); 
+}
+
+
+figure {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; 
+}
+
+figcaption {
+    padding: 0.5rem 0;
+}

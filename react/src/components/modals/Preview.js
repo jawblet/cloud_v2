@@ -7,11 +7,11 @@ export default function Preview({ preview, post, tags }) {
     const max = 2; 
     const tagNum = Object.keys(tags).length;
 
-    const getTags = () => {
-        if(post.tags.length === 0) {
-            return(<p>without labels.</p>);
-        };
-        if(tagNum > max) {
+        const getTags = () => {
+            if(post.tags.length === 0) {
+                return(<p> without labels.</p>);
+            };
+
             const remainder = (tagNum - max);
             return(
                 <div className="popup__tags">
@@ -26,8 +26,7 @@ export default function Preview({ preview, post, tags }) {
                     })}
                 </div>
             )
-        } 
-    };
+        }; 
         
     return(
             <CSSTransition in={preview} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
@@ -37,12 +36,11 @@ export default function Preview({ preview, post, tags }) {
                             <h4 className="lightest">{post.user.username}</h4> 
                         </div>
                         <div className="popup__body">
-                        <p> 
+                        <p style={{display:'inline'}}> 
                             <span style={{textTransform:'capitalize'}}>
                                 {post.type}&nbsp;
                             </span> 
-                                posted on {post.date} </p> 
-                                {getTags(post.tags.length)} 
+                                posted on {post.date}</p>{getTags(post.tags.length)} 
                         </div>
                     </div>
                 </div>

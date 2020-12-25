@@ -17,7 +17,10 @@ import useUpload from '../hooks/useUpload';
     const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
          //set upload type 
          const [type, setType]= useState('link');
-         const switchType = (e) => { setType(e.currentTarget.dataset.id); }
+         const switchType = (e) => { 
+             console.log(e.currentTarget.dataset.label);
+             setType(e.currentTarget.dataset.label); 
+            }
      
          //handle editor state 
          const { editorState, 
@@ -27,7 +30,8 @@ import useUpload from '../hooks/useUpload';
             setFocus,
             handleKeyCommand,
             toggleInlineStyle,
-            toggleBlockType } = useEditor();
+            toggleBlockType,
+             } = useEditor();
     
            //handle page state 
            const { values, 
@@ -39,7 +43,8 @@ import useUpload from '../hooks/useUpload';
             selectTag, 
             clearInput, 
             removeTag, 
-            handleKeyDown } = useUpload({
+            handleKeyDown,
+            addTagFromNote } = useUpload({
                         initialValues: {
                         content: '',
                         input: '', 
@@ -80,6 +85,7 @@ import useUpload from '../hooks/useUpload';
                         toggleBlockType={toggleBlockType}
                         editRef={editRef}
                         setFocus={setFocus}
+                        addTagFromNote={addTagFromNote}
                         />
                 : <AddRoom setAdd={setAdd}/>
             }

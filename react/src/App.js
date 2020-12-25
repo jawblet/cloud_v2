@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
+//import NewHome from './pages/NewHome';
 import Room from './pages/Room';
 import Edit from './sections/Edit';
 import User from './pages/User';

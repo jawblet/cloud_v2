@@ -61,8 +61,7 @@ export default function useSubmit() {
                     tagArr.push(tagObj);
                 }
         }
-
-        const { user, house, room, roomName, tags, comment } = formValues;
+        const { user, house, room, roomName, comment } = formValues;
         const roomTo = slugify(roomName);
 
         try {
@@ -75,7 +74,7 @@ export default function useSubmit() {
                     user,
                     house, 
                     room,
-                    tags: [...tags, ...tagArr],
+                    tags: [...tagArr],
                     comment
                 }
             }).then(res => {

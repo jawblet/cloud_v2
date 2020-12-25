@@ -22,7 +22,7 @@ const sendSubmit = (e) => {
         break; 
         default: handleLinkSubmit({ values });
     }
-}
+} 
     return(
         <form style={{width:'75%', marginTop:'3rem'}} onSubmit={sendSubmit}>
                     <div className="addRoom" style={{justifyContent:'flex-end'}}

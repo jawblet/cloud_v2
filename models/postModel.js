@@ -11,6 +11,7 @@ const getCurrentDate = () => {
  
 const postSchema = new Schema({ 
     type: String, 
+    title: String, 
     content : {
         type: String,
         required: [true, 'Posts must have some content to be added to a room.']

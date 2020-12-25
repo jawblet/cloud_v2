@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import Header from '../sections/Header';
 import Cards from '../sections/Cards'; 
 import ExpandButton from '../atoms/ExpandButton';
-import useTooltip from '../hooks/useTooltip'; 
 import NavBar from '../components/btns/NavBar';
-import Tooltip from '../atoms/Tooltip';
 import HouseLegend from '../components/modals/HouseLegend';
 import { navButtons } from '../data/buttons';
 
@@ -13,12 +11,11 @@ export default function Home() {
     const handleExpandClick = () => { setSqueeze(!squeeze); }
     
     const squeezeBtn = [
-        {name: 'squeeze', 
+        {id: 4,
+        name: 'squeeze', 
         type: 'bottom', 
         icon: <ExpandButton className="icon icon__btn" squeeze={squeeze} data-id="squeeze"/> }
     ];
-
-    const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
 
     return (
         <div className="page">  
@@ -28,12 +25,11 @@ export default function Home() {
                     <Cards squeeze={squeeze}/>
             </div>
                 <div className="skylight__nav">
-                    <NavBar navButtons={navButtons} 
+                    <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
-                            ref={textRef} direction="column"
-                            getTooltip={getTooltip} hideTooltip={hideTooltip}
-                            handleExpandClick={handleExpandClick} squeeze={squeeze} />
-                    {tooltip && <Tooltip tooltip={tooltip} tooltipCoords={tooltipCoords}/>}
+                            direction="column"
+                            handleExpandClick={handleExpandClick} 
+                            squeeze={squeeze} />
                 </div>
         </div>
     )

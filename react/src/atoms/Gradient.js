@@ -15,7 +15,9 @@ export default function Gradient({ post, tags }) {
             }
         const colorString = colorArr.toString();
         setColors(colorString);
-    }, [post])
+    }, [post]);
+
+    //console.log(tags);
   
     return (
         <>

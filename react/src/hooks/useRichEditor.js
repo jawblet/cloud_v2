@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js';
+import { getCurrentDate } from '../data/utils';
 
 export default function useRichEditor() {
+    //TITLE
+    const [title, setTitle] = useState(getCurrentDate());
+    
+    const onTitleChange = (e) => {
+      setTitle(e.target.value);
+    }   
+
+    //CONTENT
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const onNoteChange = (editorState) => {
@@ -53,6 +62,8 @@ export default function useRichEditor() {
       }
 
     return {
+        title,
+        onTitleChange,
         editorState,
         setEditorState,
         onNoteChange,

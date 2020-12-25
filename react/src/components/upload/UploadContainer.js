@@ -1,40 +1,40 @@
 import React, { useState, useRef } from 'react'; 
 import { Link } from 'react-router-dom';
-import Button from '../btns/Button';
-import ButtonBar from '../btns/ButtonBar';
-import Tooltip from '../../atoms/Tooltip';
 import LinkUpload from './LinkUpload';
 import NoteUpload from './NoteUpload';
 import DragUpload from './DragUpload';
 import Search from '../Search'; 
 import TagBank from '../../sections/TagBank'; 
-import { VscClose } from 'react-icons/vsc'; 
+import CommentInput from '../../components/CommentInput'; 
+import Tooltip from '../../atoms/Tooltip';
 import AutoComplete from '../../atoms/AutoComplete';
 import RecentTags from '../../atoms/RecentTags';
 import Prompt from '../../atoms/Prompt'; 
 import Error from '../../atoms/Error';
-import CommentInput from '../../components/CommentInput'; 
-import useTooltip from './../../hooks/useTooltip';
+import Button from '../btns/Button';
+import TooltipBar from '../btns/TooltipBar';
 import useTags from '../../hooks/useTags';
+import { uploadBtns, NOTE_TOOLTIP } from '../../data/buttons';
+import { VscClose, VscQuestion } from 'react-icons/vsc'; 
 import { CSSTransition } from 'react-transition-group';
-import { uploadBtns } from '../../data/buttons';
+
 
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 
     const { type, room, switchType, values, error } = props;
     const [comments, setComments] = useState(false);
-    const { textRef, tooltip, tooltipCoords, getTooltip, hideTooltip } = useTooltip();
+    const [tooltip, setTooltip] = useState(false);
 
-    const { lastThreeTags } = useTags();
+    const { lastThreeTags } = useTags(); 
     
     const openAutoComplete = ((props.results.length !== 0) && (props.values.input !== ''));
 
-    return (  
+    return (   
         <div className="upload__container">  
             <div className="upload__controller">
-                <ButtonBar buttons={uploadBtns} ref={textRef} handleClick={switchType} type={type}
-                        direction="column" getTooltip={getTooltip} hideTooltip={hideTooltip}/>
-                        {tooltip && <Tooltip tooltip={tooltip} tooltipCoords={tooltipCoords}/>}
+            <TooltipBar handleClick={switchType} type={type}
+                        buttons={uploadBtns} 
+                        direction="column"/>
                 <Link to={`/home/${room}`}>
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>
                 </Link> 
@@ -52,10 +52,13 @@ export default function UploadContainer(props) {
                         { type === 'link' && <LinkUpload {...props} /> }
                         { type === 'note' && <NoteUpload ref={props.editRef} {...props} /> }
                         { type === 'file' && <DragUpload /> }
-                    <div className="upload__extra"> 
-                        <div className="upload__label"> <h4>Add path</h4> </div> 
+                    <div className="upload__extra" style={{flexDirection:'column'}}> 
+                        {(type === 'link' || type === 'file') && <>
+                        <div className="upload__label"> 
+                            <h4>Add path</h4> 
+                        </div> 
                         <div className="addTags">
-                            <Search values={values}
+                          <Search values={values}
                                     results={props.results} 
                                     ref={props.searchRef} 
                                     selectTag={props.selectTag}
@@ -63,16 +66,23 @@ export default function UploadContainer(props) {
                                     addTags={props.addTags} 
                                     clearInput={props.clearInput}
                                     handleKeyDown={props.handleKeyDown}
-                                   />
+                                   /> 
                             {openAutoComplete &&
-                                    <AutoComplete results={props.results} selectTag={props.selectTag}/>                       
-                                    }
+                                    <AutoComplete results={props.results} 
+                                                selectTag={props.selectTag}/>}
                             <TagBank tags={values.tags} 
                                     handleDelete={props.removeTag}/> 
-                            <div style={{alignSelf:'flex-start'}}>
-                                <RecentTags tags={lastThreeTags} selectTag={props.selectTag}/>
+                            </div> </>}
+                            {(type === 'note') && 
+                            <div className="tooltipAnchor flex alignCenter">
+                                <VscQuestion className="icon icon__btn"
+                                    onMouseEnter={() => setTooltip(true)}
+                                    onMouseLeave={() => setTooltip(false)}/>
+                                <h5 className="lightest"> &nbsp; Add path </h5> 
+                               <Tooltip show={tooltip} text={<NOTE_TOOLTIP/>}/>
                             </div>
-                        </div>                    
+                                }     
+                            <RecentTags tags={lastThreeTags} selectTag={props.selectTag}/>                 
                     </div>
                     <div className="upload__extra"> 
                         <div className="upload__label active" onClick={() => setComments(!comments)}> 

@@ -6,7 +6,7 @@ const commentRef = useRef(null);
 
     useEffect(() => {
         autosize(commentRef.current);
-    }, [])
+    }, []);
 
     return (
         <textarea className="input input--white inlineComment" name="comment" placeholder="Comment..."

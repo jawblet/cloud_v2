@@ -33,7 +33,6 @@ export default function useAddRoom() {
             fields: ['room']})
             return;
         }
-
         //create room 
         const newRooms = [...rooms];
         const room = {
@@ -45,11 +44,9 @@ export default function useAddRoom() {
         await axios.put(`/houses/${house}`, {
             rooms: newRooms   
           }).then( async (res) => {
-              console.log(res.data.data.doc.rooms);
               setSuccess('Room was created.')
               return await axios.get(`/houses/${house}`)
             }).then(res => { //get rooms + set state 
-                  console.log(res.data.data.doc.rooms);
                   const allRooms = res.data.data.doc.rooms;
                   setRooms(allRooms);
           }).catch(err => console.log(err));

@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 
 const NoteUpload = forwardRef((props, ref) => {
     const { editorState, onNoteChange, mapKeyToEditorCommand, setFocus, 
-        handleKeyCommand, toggleInlineStyle, toggleBlockType } = props;
+        handleKeyCommand, toggleInlineStyle, toggleBlockType, addTagFromNote } = props;
         
         const [note, setNote] = useState(false);
         const nodeRef = useRef(null);
@@ -14,19 +14,21 @@ const NoteUpload = forwardRef((props, ref) => {
             setNote(true);   
         }, [note]);
         
-        useEffect(() => { 
+        useEffect(() => {
             if(note) {
                 setFocus();
             }
         }, [note]);
-
+ 
 
     return (
         <span style={{position:'relative'}}>
             <Toolbar editorState={editorState}
                         onToggleInline={toggleInlineStyle}
                         toggleBlockType={toggleBlockType}
-                        setFocus={setFocus} /> 
+                        setFocus={setFocus}
+                        addTagFromNote={addTagFromNote}
+                        addTag={true} /> 
             <CSSTransition 
             in={note} timeout={350} 
             nodeRef={nodeRef} classNames="rollDown"
@@ -50,30 +52,3 @@ export default NoteUpload;
 
 
 
-
-
-
-
-/*
-const NoteUpload = (props) => {
-    const { editorState, onNoteChange } = props; 
-    const editRef = useRef(null);
-
-    useEffect(() => { 
-        editRef.current.focus(); 
-    }, []);
-    
-    return (
-        <div className="editorWrapper">
-            <Editor editorState={editorState} 
-                    ref={editRef}
-                    onChange={onNoteChange}
-                    spellCheck={true}
-                    />
-        </div>
-        )
-    }
-
-export default NoteUpload;
-
-*/
