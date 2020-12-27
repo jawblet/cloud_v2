@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Header from '../sections/Header';
+import Header from '../sections/Header'; 
 import TagList from '../sections/TagList';
 import ListMenu from '../components/ListMenu';
 import Filter from '../components/Filter';
@@ -22,7 +22,6 @@ export default function Tags() {
 
     //get tags
     const { tags, tagCount, handlePaintClick, eyedrop, loading } = useTags(activeItem);
-    console.log(tags); 
 
     return(
         <div className="page">

@@ -17,7 +17,6 @@ export default function Toolbar(props) {
       props.toggleBlockType(e);
   }
 
- 
     return (
         <div className="toolbar">
             {INLINE_STYLES.map((type) => {

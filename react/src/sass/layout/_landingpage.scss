@@ -1,0 +1,25 @@
+//header for landing page only
+.landing {
+    &__header {
+      width: 10rem;
+      align-self: flex-end;
+      display: flex;
+      justify-content: space-between;
+    }
+    &__body {
+        padding: 3rem;
+        border: 1px solid $sand3;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: $sand2;
+        border-radius: $border-small;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__pin {
+        @extend %pin;
+    }
+  }
+

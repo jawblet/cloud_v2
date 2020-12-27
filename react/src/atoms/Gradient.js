@@ -19,9 +19,9 @@ export default function Gradient({ post, tags }) {
 
     //console.log(tags);
   
-    return (
+    return ( 
         <>
-                <Preview preview={preview} post={post} tags={tags}/>
+            <Preview preview={preview} post={post} tags={tags}/>
             <div className="gradient__post">
                 <div className="gradient"                 
                         style={{background:`conic-gradient(${colors})`,

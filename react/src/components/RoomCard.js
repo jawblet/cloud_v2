@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';  
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import useRooms from '../hooks/useRooms';
-import Gradient from '../atoms/Gradient'; 
+import Gradient from '../atoms/Gradient';
 import groupBy from 'lodash/groupBy';
  
 export default function Card({ room, squeeze, getPositionClass, handleCardClick }) {
@@ -11,7 +11,7 @@ export default function Card({ room, squeeze, getPositionClass, handleCardClick 
     useEffect(() => { 
         getRoomPosts(room.id);
     }, []);
-
+ 
     return(
         <div className={`card 
                     ${squeeze ? `card--${room.id}` : ''} 

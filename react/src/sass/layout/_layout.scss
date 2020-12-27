@@ -33,19 +33,5 @@
     } 
 }
 
-//header for landing page only
-.landing {
-  &__header{
-    width: 10rem;
-    align-self: flex-end;
-    display: flex;
-    justify-content: space-between;
-  }
-}
+
  
-// custom style for nav bar at home
-.bottom {
-    border-radius: 0;
-    border-bottom-right-radius: $border-small;
-    border-bottom-left-radius: $border-small;
-}

@@ -14,6 +14,8 @@ const [tagCount, setTagCount] = useState({
     sum: ''
 })
 
+console.log(user.house._id);
+
 useEffect(() => {
     let sort;
     switch(activeItem) {
@@ -28,7 +30,7 @@ useEffect(() => {
 
 axios.get(`/posts/tags/${user.house._id}/${sort}`)
     .then(res => {
-        //console.log(res);
+        console.log(res);
         const tagData = res.data.data; 
         setTags(tagData.allTags);
         setTagCount({

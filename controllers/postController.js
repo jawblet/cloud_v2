@@ -78,9 +78,7 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
      
     const allTags = await Post.aggregate([
         { $match: match }, 
-        { 
-            $unwind: '$tags' 
-        }, 
+        { $unwind: '$tags' }, 
         { $match: { tags: { $ne: null } } },
         { 
             $group: { // count ea. instance of tag use 
@@ -101,17 +99,21 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
         },
         { $sort: sort }
     ]);
-    let postTagSum;
+    
 
+
+    let postTagSum;
     if(allTags.length !== 0) { // handle no tags
-        console.log('not all tags');
         const postTagsArr = allTags.map(el => el.countEach);
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
-       return postTagSum = postTagsArr.reduce(reducer); // get total tag use 
+            postTagSum = postTagsArr.reduce(reducer); // get total tag use 
         } else {
             postTagSum = 0; 
         }
-       
+    
+    console.log(allTags);
+    console.log(postTagSum);
+
     res.status(200).json({
         status: 'success',
         data: {

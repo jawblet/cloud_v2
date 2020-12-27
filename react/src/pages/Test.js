@@ -1,17 +1,17 @@
 import React from 'react';
 import { BlobChildA, BlobChildB, BlobChildC, BlobChildD, BlobChildE, BlobChildF,
-    Blob, BlobTwo, BlobThree }  from '../svg/Blob';
+    BlobChildSquare, BlobChildSemiCircle,
+    BlobOne, BlobTwo, BlobThree }  from '../svg/Blob';
 import SVGFilter from '../svg/SVGFilter';
-
 
 export default function Test() {
     const filter = 'goo';
     return (
-        <div className="blobCanvas">
+        <div className="blobGarden">
             <h3 style={{paddingBottom:'1.5rem'}}>Blob library</h3>
             <SVGFilter filter={filter}/>
         <h4 style={{paddingBottom:'1.5rem'}}>blob children</h4>
-        <div className="blobCanvas__row">
+        <div className="blobGarden__row">
             <figure>
                 <BlobChildA/>
                 <figcaption>Base blob</figcaption> 
@@ -37,9 +37,24 @@ export default function Test() {
                 <figcaption>Splat blob</figcaption> 
             </figure>
         </div>
+        <h4 style={{paddingBottom:'1.5rem'}}>blob template shapes</h4>
+        <div className="blobGarden__row">
+            <figure>
+                <BlobChildA/>
+                <figcaption>Circle</figcaption> 
+            </figure>
+            <figure>
+                <BlobChildSquare/>
+                <figcaption>Square</figcaption> 
+            </figure>
+            <figure>
+                <BlobChildSemiCircle/>
+                <figcaption>Semi-Circle</figcaption> 
+            </figure>
+        </div>
         <h4 style={{padding:'1.5rem 0'}}>test blobs</h4>
-        <div className="blobCanvas__row">
-            <Blob/>
+        <div className="blobGarden__row">
+            <BlobOne/>
             <BlobTwo/>
             <BlobThree/>
         </div>

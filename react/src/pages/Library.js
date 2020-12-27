@@ -44,7 +44,7 @@ const [showLib, setShowLib] = useState(true);
     return ( 
         <div className="page">
           <Header nav={nav}/>
-          <h3 className="page__title">Library</h3>
+          <h3 className="page__title">House</h3>
           <div className="room">
               {showLib &&  
               <div className="library__body">

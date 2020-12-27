@@ -76,6 +76,7 @@
     margin-left: -1rem;
 }
 
+
 .tagPathY {
     opacity: 0.5;
     display: inline-block;
@@ -83,3 +84,16 @@
     width: 5px;
     top: 45%;
 }
+
+
+/*
+    &::after {
+            content: '';
+            display: inline-block;
+            //position: absolute;
+            width: 5px; 
+            height: 3rem;
+            background-color: inherit;
+            right: 0;
+        }
+*/

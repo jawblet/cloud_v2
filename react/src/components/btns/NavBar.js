@@ -1,20 +1,24 @@
 import React from 'react'; 
 import { NavLink } from 'react-router-dom';
-//import NavButton from './NavButton';
+import Button from './Button';
+import { ZOOM_IN_BTN, ZOOM_OUT_BTN } from '../../data/buttons';
 import { TooltipBtn } from './TooltipBtn';
 import useTooltipButtons from '../../hooks/useToolTipButtons'; 
 
 const NavBar = (props) => { 
-    const { buttons, direction } = props;
+    const { buttons, direction, zoomIn, setZoom } = props;
     const { tooltips, getTooltip, hideTooltip } = useTooltipButtons(buttons);
 
     return(
+        <div className="nav__wrapper">
+          {zoomIn ? 
+            <Button icon={ZOOM_OUT_BTN.icon} dataId={ZOOM_OUT_BTN.dataId} handleClick={() => setZoom(!zoomIn)}/> 
+           : <Button icon={ZOOM_IN_BTN.icon} dataId={ZOOM_IN_BTN.dataId} handleClick={() => setZoom(!zoomIn)}/> }
         <nav className={`btnbarWrapper ${direction}`}>
             {buttons.map((btn, i) => {
                 return ( 
-                    <NavLink to={`/${btn.url}`} className={`navBtn--${direction}`}>  
+                    <NavLink to={`/${btn.url}`} className={`navBtn--${direction}`}  key={btn.id}>  
                         <TooltipBtn 
-                            key={btn.id}
                             button={btn} 
                             tooltips={tooltips}
                             getTooltip={getTooltip}
@@ -34,8 +38,9 @@ const NavBar = (props) => {
                             handleClick={props.handleExpandClick}
                             {...props} />
                         )
-    })}
+            })}
         </nav>  
+        </div>
     )
 }
 

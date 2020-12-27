@@ -45,7 +45,7 @@ function App() {
           <Route path="/login" component={Login}/>
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute path='/library' component={Library}/>
+          <PrivateRoute path='/house' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>

@@ -20,7 +20,7 @@ export default function Preview({ preview, post, tags }) {
                             return ( <TagPreview tag={key} count={value.length} color={value[0].color} key={key}/> )
                         } 
                         if(i === max) { //if i === map, show how many more paths 
-                            return (<p>and {remainder} more.</p>)
+                            return (<p key={key}>and {remainder} more.</p>)
                         } 
                         return null; //otherwise return 
                     })}

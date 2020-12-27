@@ -1,11 +1,12 @@
 import { VscAdd, VscSave, VscMilestone, 
-        VscLink, VscSymbolParameter, VscArchive,
+        VscLink, VscSymbolParameter, VscArchive, 
         VscBold, VscItalic, VscCode, VscQuote, 
-        VscSymbolNamespace, VscListUnordered, VscListOrdered } from 'react-icons/vsc';
+        VscSymbolNamespace, VscListUnordered, VscListOrdered,
+        VscZoomIn, VscZoomOut } from 'react-icons/vsc';
 
 export const navButtons = [
     {id: 0, name: 'paths', url: 'paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/>}, 
-    {id: 1, name: 'library', url: 'library', icon: <VscSave className="icon icon__btn" data-id="library"/>},
+    {id: 1, name: 'house', url: 'house', icon: <VscSave className="icon icon__btn" data-id="house"/>},
     {id: 2, name: 'add', url: 'add', icon: <VscAdd className="icon icon__btn" data-id="add"/>},
 ];
 
@@ -54,3 +55,7 @@ export const NOTE_TOOLTIP = () => {
    </div>
   )}
 ;
+
+export const ZOOM_IN_BTN = {dataId: 'zoomIn', icon: <VscZoomOut className="icon icon__btn" data-id="zoomIn"/>};
+
+export const ZOOM_OUT_BTN = {dataId: 'zoomOut', icon: <VscZoomIn className="icon icon__btn" data-id="zoomOut"/>};

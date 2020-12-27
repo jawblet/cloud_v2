@@ -1,44 +1,9 @@
-//layout homepage 
-.skylight {
-    align-self: flex-end;
-    display: flex;
-    width: 90%;
-    height: auto; 
-    flex-direction: column;
-    margin-top: 5%; 
-    position: relative; 
-    padding: 1rem;
-  // border: 1px solid black;
-    &__nav {
-      position: fixed;
-      left: 3rem;
-      bottom: 1rem;
-    }
-  }
-  
-//HOME PAGE 
-.floor {
-    width: 100%;
-    height: 40vh; //fixed height
-    display: flex;
-    justify-content: flex-end;
-    align-items:stretch;
-    margin-bottom: -5px;
-    & > *:nth-child(odd) {
-      margin-top: -0.5rem;
-    }
-    & > *:nth-child(2) {
-      margin-bottom: -0.5rem;
-    }
-  }
 
 .card {
-    //position: absolute;
-    //width: 105%;
-    width: 35%;
+    min-width: 35%;
+    max-width: 50%;
     height: 100%;
     display: flex; 
-    //margin: 5%;
     margin-top: 0;
     border: 1px solid $sand2; 
     border-radius: $border-small;
@@ -83,31 +48,3 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-/*
-  &__plan {
-        width: 33%;
-        //border: 1px solid orange; 
-        position: relative;
-    }
-
-        &--0 {
-       // width: 31rem;
-        //margin-top: 5rem;
-    }
-    &--1{
-       // width: 30rem;
-      //  margin-top: 3rem;
-    }
-    &--2 {
-       // width: 25rem;
-     //   margin-left: 5rem;
-      //  margin-top: -15rem;
-    }
-    &--3{
-       // width: 40rem;
-       // height: 17rem;
-     //  margin-left: -10rem;
-     //   margin-top: -10rem;
-    }
-*/

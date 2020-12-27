@@ -3,13 +3,15 @@ import Header from '../sections/Header';
 import ExpandButton from '../atoms/ExpandButton';
 import NavBar from '../components/btns/NavBar';
 import { navButtons } from '../data/buttons';
-import BlobCanvas from '../sections/BlobCanvas';
+import MapHome from '../sections/home/MapHome';
+import HomeIcon from '../atoms/HomeIcon';
+import HouseLegend from '../components/modals/HouseLegend';
 
-export default function Home() {
+export default function Home() { 
     const [squeeze, setSqueeze] = useState(true);
     const handleExpandClick = () => { setSqueeze(!squeeze); }
     
-    const squeezeBtn = [
+    const squeezeBtn = [ 
         {id: 4,
         name: 'squeeze', 
         type: 'bottom', 
@@ -20,15 +22,17 @@ export default function Home() {
         <div className="page">  
             <Header/> 
             <div className="skylight">
-                    <BlobCanvas/>
+                    <MapHome/>
+                    <HomeIcon/> 
             </div>
-                <div className="skylight__nav">
+            <HouseLegend/>
+            <div className="skylight__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
                             direction="column"
                             handleExpandClick={handleExpandClick} 
                             squeeze={squeeze} />
-                </div>
+            </div>
         </div>
     )
 }; 

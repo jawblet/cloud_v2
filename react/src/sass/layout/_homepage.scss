@@ -1,0 +1,83 @@
+//layout homepage 
+.skylight {
+    position: relative; 
+    align-self: flex-end;
+    width: 90%;
+    min-height: 70vh;
+    height:auto;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%; 
+    padding: 1rem; 
+    //border: 1px solid black;
+    &__nav {
+      position: fixed;
+      left: 3rem;
+      bottom: 1rem;
+    }
+  }
+
+//SKYLIGHT VIEW
+.floor {
+  width: 100%; 
+  min-height: 30vh; //fixed height
+  display: flex;
+  justify-content: flex-end;
+  align-items:stretch;
+  margin-bottom: -5px;
+  & > *:nth-child(odd) {
+    margin-top: -0.5rem;
+  }
+  & > *:nth-child(2) {
+    margin-bottom: -0.5rem;
+  }
+}
+
+//MAP VIEW
+  .mapCanvas {
+    margin-top: 10%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+  }
+  
+.homeIcon {
+  &__house {
+    display: flex;
+    border: 1.5px solid $body-medium;
+    border-radius: $border-smallest;
+    transform: rotate(45deg);
+    width: 3rem;
+    height: 1.5rem;
+  }
+  &__label {
+    transform: rotate(-45deg) translate(3rem, -1.5rem);
+    padding-left: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //border: $border; 
+  }
+  &__pin {
+    @extend %pin; 
+    display: inline-block;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.houseLegend {
+    position: fixed;
+    left: 3rem;
+    top: 10%;
+}
+
+.nav__wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

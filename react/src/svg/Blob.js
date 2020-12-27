@@ -1,58 +1,81 @@
 import React from 'react';
 
 const style = {
-    filter: `url(#goo)`
+    filter: `url(#goo)` 
 }
 
-// Blob library 
+
+// MASTER BLOB
+export function Blob(props) {
+    return (
+        <div className="blob">
+        </div>
+    )
+}
+
+// Blob garden 
 export function BlobChildA() {
     return(
-        <div className="blob">
+        <div className="blobTest">
         </div>
     )
 }
 
 export function BlobChildB() {
     return(
-        <div className="blob flat" id="flatTop">
+        <div className="blobTest flat" id="flatTop">
         </div>
     )
 }
 
 export function BlobChildC() {
     return(
-        <div className="blob circle">
+        <div className="blobTest circle">
         </div>
     )
 }
 
 export function BlobChildD() {
     return(
-        <div className="blob extrude">
+        <div className="blobTest extrude">
         </div>
     )
 }
 
 export function BlobChildE() {
     return(
-        <div className="blob extrudeTwice">
+        <div className="blobTest extrudeTwice">
         </div>
     )
 }
 
 export function BlobChildF() {
     return(
-        <div className="blob splat">
+        <div className="blobTest splat">
         </div>
     )
 }
 
-export function Blob() {
+export function BlobChildSquare() {
+    return(
+        <div className="blobTest square">
+        </div>
+    )
+}
+
+export function BlobChildSemiCircle() {
+    return(
+        <div className="blobTest semiCircle">
+        </div>
+    )
+}
+
+export function BlobOne() {
     return(
         <div className="blobParent" style={style}>
-            <div className="blob" id="rotate">
+            <div className="blobTest" id="rotate">
             </div>
-            <div className="blob">
+            <div className="blobTest">
             </div>
         </div>
     )
@@ -61,9 +84,9 @@ export function Blob() {
 export function BlobTwo() {
     return(
         <div className="blobParent" style={style}>
-            <div className="blob flat" id="flatTop">
+            <div className="blobTest flat" id="flatTop">
             </div>
-            <div className="blob flat">
+            <div className="blobTest flat">
             </div>
         </div>
     )
@@ -72,9 +95,9 @@ export function BlobTwo() {
 export function BlobThree() {
     return(
         <div className="blobParent" style={style}>
-            <div className="blob flat squat" id="flatTop">
+            <div className="blobTest flat squat" id="flatTop">
             </div>
-            <div className="blob flat squat">
+            <div className="blobTest flat squat">
             </div>
         </div>
     )

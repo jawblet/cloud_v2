@@ -6,10 +6,9 @@ import useGetRows from '../hooks/useGetRows';
 /*eslint-disable*/
 
 export default function Cards( { squeeze } ) { 
-    const { rooms } = useContext(UserContext);
-    //console.log(rooms);
+    const { rooms } = useContext(UserContext); 
 
-    const { loading, postArrays } = useGetRows({postsPerRow: 3, allPosts: rooms});
+    const { loading, postArrays } = useGetRows({postsPerRow: 2, allPosts: rooms});
 
     const { handleCardClick, getPositionClass } = useRoomCards();
      

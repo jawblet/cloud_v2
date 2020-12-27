@@ -1,6 +1,6 @@
-$blob: lightgreen;
+$blob: lightgreen; 
 
-%lump {
+%lump { 
     content: '';
     display: block;
     position: absolute;
@@ -11,33 +11,84 @@ $blob: lightgreen;
 
 %circle {
     border-radius: 50%;
-    position: relative;
+    position: relative; 
 }
 
+//layout homepage 
 .blobCanvas {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $shadow;
-    padding: 1rem; 
-    &__row {
-        display: flex;
+    display: flex; 
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+//4 quads of blob canvas
+.blobGrid {
+    width: 50%;
+    min-height: 25vh;
+    display: flex; //grid
+    border: 1px solid red; 
+    &--NW {
+        border: 1px solid red; 
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    &--NE{
+        border: 1px solid blue; 
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-left: -3rem;
+    }
+    &--SW{
+        border: 1px solid green; 
+        justify-content: flex-end;
+        align-items: flex-start;
+        margin-top: -3rem;
+        margin-right: 3rem;
+    }
+    &--SE{
+        margin-top: -2rem;
+        margin-left: -4rem;
+        border: 1px solid yellow; 
+        justify-content: flex-start;
+        align-items: flex-start;
+        
     }
 }
 
-.blobParent {
-    transform: translateX(3rem);
-    padding: 1rem; 
-}
 
-//base blob 
 .blob {
-    display: block;
-    width: 7rem;
-    height: 7rem;
-    background-color: $blob;
-    //border: $border; 
+    position: relative;
+   // width: auto;
+    min-width: 40%;
+    max-width: 50%;
+    padding: 1rem; 
+    min-height: 20vh;
+    background-color: $sand;
+    border: 1px solid $sand3; 
+    box-shadow: $softest-shadow;
     border-radius: 70% 30% 30% 62% / 53% 40% 60% 40%;
 };
+
+//inside blob
+.blob__label { 
+    padding: 1rem;
+    position: absolute;
+    &--NW {
+        bottom: 0;
+        right:0;
+    }
+  
+}
+
+///style blobs w/ posts 
+.blob__body {
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 .flat {
     border-radius: 21% 13% 50% 60% / 69% 34% 81% 41%; //flat bottom 
@@ -49,6 +100,31 @@ $blob: lightgreen;
 
 .circle {
     border-radius: 50%;
+}
+
+.square {
+    border-radius: 69% 100% 37% 86% / 76% 67% 42% 32%;
+}
+
+.squareTall {
+    border-radius: 69% 100% 37% 86% / 76% 67% 42% 32%;
+    height: 10rem;
+    position: relative;
+    &::after {
+        @extend %lump;
+        height: 4rem;
+        width: 4rem;
+        //background-color: red;
+        bottom: 0;
+        left: -5%;
+        z-index: 3;
+    }
+}
+
+//flat bottom
+//first + last 100% vals will control L and R corners 
+.semiCircle {
+    border-radius: 100% 100% 100% 100% / 100% 100% 0% 0%;
 }
 
 .extrude {
@@ -111,12 +187,49 @@ $blob: lightgreen;
 }
 
 
+//for testing
+// blob for tests
+.blobTest {
+    display: block;
+    width: 10rem;
+    height: 10rem;
+    background-color: $blob;
+    border-radius: 70% 30% 30% 62% / 53% 40% 60% 40%;
+};
+
+
+
+.blobGarden {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $shadow;
+    padding: 1rem; 
+    &__row {
+        display: flex;
+    }
+}
+
+.blobParent {
+    transform: translateX(3rem);
+    padding: 1rem; 
+}
+
 figure {
     display: flex;
     flex-direction: column;
     padding: 1rem; 
+    align-items: center;
 }
 
 figcaption {
     padding: 0.5rem 0;
 }
+
+.mapBlob {
+   transition: all $short-fade;
+   &:hover {
+    fill: $half-transparent; 
+    stroke: $sand-bright; 
+   }
+}
+
