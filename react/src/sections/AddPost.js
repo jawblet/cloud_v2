@@ -12,7 +12,7 @@ const { values, rooms, setAdd, editorState } = props;
 const { handleLinkSubmit, handleNoteSubmit, error } = useSubmit();
 
 const sendSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     switch(props.type) {
         case 'link': handleLinkSubmit({ values });
         break;
@@ -27,7 +27,7 @@ const sendSubmit = (e) => {
         <form style={{width:'75%', marginTop:'3rem'}} onSubmit={sendSubmit}>
                     <div className="addRoom" style={{justifyContent:'flex-end'}}
                         onClick={() => setAdd(false)}>
-                        <h5 className="light">Add room</h5> <VscArrowSmallRight className="icon icon__btn"/>
+                        <h5 className="light">Add layer</h5> <VscArrowSmallRight className="icon icon__btn"/>
                     </div>
                     <UploadContainer {...props}
                                     error={error}  
@@ -38,7 +38,7 @@ const sendSubmit = (e) => {
                             <RoomSelectMenu items={rooms} 
                             active={values.roomName} 
                             selectItem={props.selectItem}
-                            setAdd={setAdd}
+                            setAdd={setAdd} 
                             /> 
                         </div>  
                             <CTA name={"add"} type={"submit"}/> 

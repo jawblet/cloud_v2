@@ -16,6 +16,13 @@
       justify-content: space-between;
       align-items: center;
     }
+    &__info {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      //border: $border; 
+    }
     &__title {
       width: 100%;
       align-self: flex-start;

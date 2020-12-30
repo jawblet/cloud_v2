@@ -27,8 +27,8 @@ export default function AddRoom(props) {
                 {success && <Notification notif={success}/>}
             </div>
             <div className="upload__extra">
-                <h4 className="upload__label">Add room</h4>
-                <FormInput type={"text"} placeholder={"Room name"} name={"room"} 
+                <h4 className="upload__label">Add layer</h4>
+                <FormInput type={"text"} placeholder={"Layer name"} name={"room"} 
                             value={roomInput} 
                             handleChange={handleChange} 
                             /> 

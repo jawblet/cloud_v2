@@ -13,7 +13,7 @@ export default function Preview({ preview, post, tags }) {
             };
 
             const remainder = (tagNum - max);
-            return(
+            return (
                 <div className="popup__tags">
                     {Object.entries(tags).map(([key, value], i) => 
                         { if(i < max) {

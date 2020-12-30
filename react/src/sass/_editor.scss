@@ -117,7 +117,8 @@ h2[data-block] {
 .editor__title {
    background-color: $off-white;  
    border: none;
-   font-weight: bold;
+   //font-weight: 600;
+   color: $body-light; 
    padding: 1.5rem;
    padding-bottom: 0;
    &:focus {

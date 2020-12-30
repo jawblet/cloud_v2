@@ -1,7 +1,5 @@
 //large, generic tooltip
 .tooltip {
-    color: $off-white;
-    background-color: $body-medium;
     padding: 1rem;
     border-radius: $border-small;
     z-index: 5;
@@ -10,13 +8,36 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
-    top: 50%;
-    transform: translate(-110%, -50%);
+    align-items: center; 
+    &--black {
+        color: $off-white;
+        background-color: $body-medium;
+        border: 1px solid $body; 
+    }
+    &--white {
+        background-color: $sand;
+        color: $body-medium;
+        border: 1px solid $sand3;
+    }
+    &--left {
+        top: 50%;
+        transform: translate(-110%, -50%);
+    }
+    &--top {
+        top: 100%;
+        transform: translate(-50%, -110%);
+    }
+}
+
+.tooltip__float {
+    position: relative;
+    z-index: 5;
+    animation: floatSoftly 3s ease-in-out infinite;
 }
 
 .tooltipAnchor {
     position: relative;
+    //border: $border; 
 }
 
 //for btns 

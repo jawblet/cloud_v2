@@ -1,0 +1,16 @@
+//for landing pg 
+.mapBlob {
+    transition: all $short-fade;
+    &:hover {
+     fill: $half-transparent; 
+     stroke: $sand-bright; 
+     & > .mapBlob__text {
+         fill: $sand-bright;
+         stroke: none; 
+     }
+    }
+ }
+ 
+ .mapBlob__text {
+     stroke: none; 
+ }

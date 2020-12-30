@@ -107,6 +107,7 @@ input, textarea {
   font-family: 'Graphik', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
+  color: $body;
     &:focus{
       outline: none;
       border: none;
@@ -127,7 +128,7 @@ button {
     resize: none; //disable user resizing
   }
 
-  menu {
+  menu, ul {
     list-style: none;
   }
 

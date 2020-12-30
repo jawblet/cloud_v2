@@ -8,8 +8,7 @@ import useEditor from '../hooks/useEditor';
 import useUpload from '../hooks/useUpload';
 
  export default function Add(props) { 
-    const { user, globalTags } = useContext(UserContext);
-    const rooms = user.house.rooms;
+    const { user, rooms, globalTags } = useContext(UserContext);
     const [addPost, setAdd] = useState(true);
 
     //set room from state, or default to first room in roomArr 

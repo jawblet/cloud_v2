@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import InboxPreview from '../components/posts/InboxPreview';
 import { convertFromRaw } from 'draft-js';
 import Paginate from '../atoms/Paginate';

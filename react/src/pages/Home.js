@@ -25,14 +25,16 @@ export default function Home() {
         <div className="page">  
             <Header/> 
             <div className="skylight">
-                {zoomIn ? <Cards squeeze={squeeze}/>
+                <HouseLegend/> 
+                {zoomIn 
+                ? 
+                    <Cards squeeze={squeeze}/>
                 : <>
                     <MapHome/>
-                    <HomeIcon/> 
+                    <HomeIcon/>
                 </>
                 }     
             </div>
-            <HouseLegend/> 
                 <div className="skylight__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 

@@ -1,0 +1,8 @@
+.listItem { 
+    color: $body-light; 
+    cursor: pointer;
+    line-height: 130%;
+    padding: 0.5rem;
+    background-color: inherit;
+    transition: all $short-fade;
+}

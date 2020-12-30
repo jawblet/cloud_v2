@@ -49,8 +49,10 @@ export default function Room() {
     //get change zoom 
     const setActiveView = (e) => { 
         const zoomValue = e.currentTarget.dataset.id;
-        setZoom(zoomValue); 
+        setZoom(zoomValue);
     }
+
+    //room dlt modal 
 
     return ( (!r_loading && room)
                 ? <div className="page" onScroll={handleStopHover}>
@@ -71,7 +73,7 @@ export default function Room() {
                         {p_loading && <div>Loading</div>} 
                         {(!p_loading && posts.length === 0) && 
                             <div className="emptyRoom">
-                                <h3 className="light">Empty room</h3>
+                                <h3 className="light">Empty layer</h3>
                             </div>
                         }
                         {(!p_loading) && <PostList100 posts={posts} 

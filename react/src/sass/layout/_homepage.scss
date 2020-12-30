@@ -4,14 +4,14 @@
     align-self: flex-end;
     width: 90%;
     min-height: 70vh;
-    height:auto;
+    height: auto;
     display: flex; 
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 10%; 
-    padding: 1rem; 
-    //border: 1px solid black;
+  //  border: 1px solid black;
+    overflow: visible; 
     &__nav {
       position: fixed;
       left: 3rem;
@@ -25,7 +25,7 @@
   min-height: 30vh; //fixed height
   display: flex;
   justify-content: flex-end;
-  align-items:stretch;
+  align-items: stretch;
   margin-bottom: -5px;
   & > *:nth-child(odd) {
     margin-top: -0.5rem;
@@ -36,18 +36,45 @@
 }
 
 //MAP VIEW
-  .mapCanvas {
-    margin-top: 10%;
-    width: 100%;
-    height: 100%;
-    position: relative;
+  .map{
+    &__canvas {
+      width: 100%;
+      height: 100%;
+      position: relative;
+     // border: 1px solid red; 
+      display: flex;
+    }
+    &__SVG {
+      position: relative;
+    //  border: 1px solid blue; 
+    }
+}  
 
+.mapKey {
+  padding: 3rem; 
+  padding-top: 1.5rem;
+  align-self: center;
+  &__item{
+
+  } 
   }
-  
+
+//for map view 
+.contour {
+  transition: all $short-fade;
+  &:hover {
+      fill: $half-transparent; 
+      stroke: $sand-bright; 
+  }
+}
+
+
+
 .homeIcon {
   &__house {
     display: flex;
     border: 1.5px solid $body-medium;
+    //background-color: $body-medium;
     border-radius: $border-smallest;
     transform: rotate(45deg);
     width: 3rem;
@@ -68,12 +95,6 @@
     position: absolute;
     left: 0;
   }
-}
-
-.houseLegend {
-    position: fixed;
-    left: 3rem;
-    top: 10%;
 }
 
 .nav__wrapper{

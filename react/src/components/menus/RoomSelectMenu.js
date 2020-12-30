@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 export default function RoomSelectMenu({ items, active, selectItem, setAdd }) { 
     const nodeRef = useRef(null);
     const scrollRef = React.createRef();
-    const list = items.filter(item => item.label !== active); 
+    const list = items.filter(item => item.label !== active);
  
     const [menu, setMenu] = useState(false);
 
@@ -43,7 +43,7 @@ export default function RoomSelectMenu({ items, active, selectItem, setAdd }) {
                     })}
                      <li className="selectmenu__item selectmenu__item--new" onClick={() => setAdd(false)}>
                          <h4 className="lightest" style={{fontWeight:'bold'}}>
-                            + Add room
+                            + Add layer
                          </h4>     
                     </li> {/*spacer elem*/}
                     <div style={{height:'3rem', marginBottom:'-3rem', background:'transparent'}}

@@ -5,7 +5,7 @@ import Toolbar from '../../btns/Toolbar';
 export default function RichEditor(props) { 
     const { title, 
             onTitleChange, 
-            editorState, 
+            editorState,
             onNoteChange, 
             mapKeyToEditorCommand,
             handleKeyCommand, 

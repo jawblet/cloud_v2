@@ -1,12 +1,12 @@
-import { VscAdd, VscSave, VscMilestone, 
+import { VscAdd, VscHome, VscSave, VscMilestone, 
         VscLink, VscSymbolParameter, VscArchive, 
         VscBold, VscItalic, VscCode, VscQuote, 
         VscSymbolNamespace, VscListUnordered, VscListOrdered,
         VscZoomIn, VscZoomOut } from 'react-icons/vsc';
 
 export const navButtons = [
-    {id: 0, name: 'paths', url: 'paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/>}, 
-    {id: 1, name: 'house', url: 'house', icon: <VscSave className="icon icon__btn" data-id="house"/>},
+    {id: 0, name: 'house', url: 'house', icon: <VscHome className="icon icon__btn" data-id="house"/> }, 
+    {id: 1, name: 'paths', url: 'paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/> },
     {id: 2, name: 'add', url: 'add', icon: <VscAdd className="icon icon__btn" data-id="add"/>},
 ];
 
@@ -59,3 +59,8 @@ export const NOTE_TOOLTIP = () => {
 export const ZOOM_IN_BTN = {dataId: 'zoomIn', icon: <VscZoomOut className="icon icon__btn" data-id="zoomIn"/>};
 
 export const ZOOM_OUT_BTN = {dataId: 'zoomOut', icon: <VscZoomIn className="icon icon__btn" data-id="zoomOut"/>};
+
+export const LANDING_NOTES = [
+   "if ur wondering: '....what is this?'",
+   "'whAt kidn of sick twisted person Would make this...?'",
+   "this cheeky lil placeholder text" ];

@@ -65,7 +65,7 @@ export default function UploadContainer(props) {
                                     handleChange={props.handleChange} 
                                     addTags={props.addTags} 
                                     clearInput={props.clearInput}
-                                    handleKeyDown={props.handleKeyDown}
+                                    handleKeyDown={props.handleKeyDown} 
                                    /> 
                             {openAutoComplete &&
                                     <AutoComplete results={props.results} 
@@ -79,7 +79,7 @@ export default function UploadContainer(props) {
                                     onMouseEnter={() => setTooltip(true)}
                                     onMouseLeave={() => setTooltip(false)}/>
                                 <h5 className="lightest"> &nbsp; Add path </h5> 
-                               <Tooltip show={tooltip} text={<NOTE_TOOLTIP/>}/>
+                               <Tooltip show={tooltip} text={<NOTE_TOOLTIP/>} direction="left" style="black"/>
                             </div>
                                 }     
                             <RecentTags tags={lastThreeTags} selectTag={props.selectTag}/>                 

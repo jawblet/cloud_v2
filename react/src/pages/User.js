@@ -7,7 +7,7 @@ import useForm from '../hooks/useForm';
 import CTA from '../components/btns/CTA'; 
 import Header from '../sections/Header';
 import Prompt from '../atoms/Prompt';
-import Modal from '../components/modals/Modal';
+import UserModal from '../components/modals/UserModal';
 import useModal from '../hooks/useModal'; 
 import useDelete from '../hooks/useDelete';
 
@@ -56,7 +56,7 @@ export default function User() {
             </div>
             </div>
             {modal &&  
-            <Modal toggleModal={toggleModal} handleOutsideClick={handleOutsideClick} 
+            <UserModal toggleModal={toggleModal} handleOutsideClick={handleOutsideClick} 
                     ref={modalRef} deleteUser={deleteUser}/> }
         </div>
     )

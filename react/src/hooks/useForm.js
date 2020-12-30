@@ -39,8 +39,7 @@ export default function useForm({ initialValues }) {
             case 'rent':
             rentHouse({ values });
             break;
-            default: 
-            console.log('no form found');
+            default: return;
         }
     };
 
@@ -113,8 +112,8 @@ const rentHouse = (formValues) => {
             await axios.post('auth/login', {
                   username,
                   password
-            }).then(() => { 
-                return axios.get('/user')
+            }).then(async () => { 
+                return await axios.get('/user')
                 .then(res => {                          // check user's jwt 
                     setUser(res.data.currentUser);      // use jwt value to set current user
                     history.push('/home');              // push user home
@@ -148,7 +147,7 @@ const rentHouse = (formValues) => {
           }
       }
 
-      const updatePassword = async (formValues) => {
+    const updatePassword = async (formValues) => {
         const { password, passwordConfirm } = formValues.values;
         setSuccess(null);
         setError(null); 

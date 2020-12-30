@@ -85,6 +85,20 @@
     top: 45%;
 }
 
+//house legend popup
+.houseLegend {
+    display: block;
+    box-shadow: none;
+    position: absolute;
+    transform: translate(-50%, -100%);
+    top: 0;
+    left: 0;
+    &__wrapper {
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
+}
 
 /*
     &::after {

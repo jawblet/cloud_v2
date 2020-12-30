@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
 import { BlobS1, BlobS2, BlobS3, BlobM1, BlobM2, BlobL1, MountainModel } from '../svg/BlobGarden';
+import { Grid } from '../svg/Grid';
+import Tooltip from '../atoms/Tooltip';
+import { LANDING_NOTES } from '../data/buttons';
+import useToggleOne from '../hooks/useToggleOne';
 
 export default function Landing() {
-    const line = '#72716B';
-    const w = '30%';
+    //const line = '#72716B';
+   // const line = '#bb956a';
+    const line = '#b17954'
+    const w = '40%';
+    const tooltips = ['A', 'B', 'C'];
     
-    return( 
+    return ( 
         <div className="page">
         <header className="landing__header">
                 <Link to = "/login"> 
@@ -17,8 +24,21 @@ export default function Landing() {
                     <InlineButton name={"register"}/>
                 </Link>
             </header>
+         
            <section className="landing__body"> 
-                <svg width={w} viewBox="0 0 800 800" stroke-width="4" fill="transparent" stroke={line}>
+                <div className="landing__grid">
+                    <Grid/>
+                </div>
+                {tooltips.map((tooltip, i) => {
+                    return(
+                        <div className="tooltipAnchor" id={tooltip} key={i}>   
+                            <span className="landing__pin"></span>
+                                <Tooltip text={LANDING_NOTES[i]} direction="top" style="white" show={true} dataId={i}/>
+                            </div>
+                    )})
+                }
+                <svg width={w} viewBox="0 0 800 800" strokeWidth="4" fill="transparent" stroke={line} 
+                    className="landing__map">
                     <BlobL1/>
                     <BlobM2/>
                     <BlobM1/>
@@ -30,4 +50,12 @@ export default function Landing() {
     )
 }
 
-//<span className="landing__pin"></span>
+/*
+style={{position:'relative'}}
+
+ <div className="landing__grid">
+            <svg width="100%" viewBox="0 0 800 800" stroke-width="4" fill="transparent" stroke={line}>
+                <Grid/>
+            </svg>
+           </div>
+*/

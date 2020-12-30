@@ -77,9 +77,9 @@ export default function useConfirm({ initialValues }) {
                             boardersUnconfirmed: newUnconfirmed, // remove from boarders unconfirmed
                             boarders: newConfirmed              // add to boarders confirmed
                             })
-                        }).then(() => {
-                            return axios.get('/user').then(res => { // check user's jwt 
-                            console.log(res.data.currentUser);
+                        }).then( async () => {
+                            return await axios.get('/user')
+                            .then(res => {                          // check user's jwt 
                             setUser(res.data.currentUser);          // use jwt value to set current user
                             history.push('/home');                  // push user home
                         });

@@ -6,8 +6,8 @@ export default function InboxPreview({ post, plaintext, handleLibraryBookDelete 
     return(
         <div className="inbox__preview"> 
         <span className="inbox__preview__text">
-            <p style={{fontWeight:'bold'}}>{post.title}</p>
-            <p>{plaintext}</p>
+            <p className="inbox__preview__subject">{post.title}</p>
+            <p className="inbox__preview__body">{plaintext}</p>
         </span>
             <VscClose className="icon icon__btn inbox__preview__X" 
                 data-id={post._id}

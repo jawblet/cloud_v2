@@ -5,6 +5,7 @@ import CTA from '../components/btns/CTA';
 import Inbox from '../sections/Inbox';
 import useRichEditor from '../hooks/useRichEditor';
 import useLibrary from '../hooks/useLibrary';
+import Thread from '../sections/Thread';
 
 export default function Library() {
     const nav = [ {name: 'library', url: 'library'} ];
@@ -44,7 +45,9 @@ const [showLib, setShowLib] = useState(true);
     return ( 
         <div className="page">
           <Header nav={nav}/>
-          <h3 className="page__title">House</h3>
+            <h3 className="page__title" style={{marginLeft:0}}>
+              House
+            </h3>
           <div className="room">
               {showLib &&  
               <div className="library__body">
@@ -76,3 +79,5 @@ const [showLib, setShowLib] = useState(true);
         </div>
     )
 };
+
+//<Thread/>
