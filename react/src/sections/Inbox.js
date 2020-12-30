@@ -13,7 +13,7 @@ export default function Inbox(props) {
         <div className="inbox">
            {(threads && threads.length !== 0) 
                 ? <div>
-                   { threads[pg - 1 || 0].map((post, i)=> { 
+                   { threads[0].map((post, i)=> { 
                     const contentState = convertFromRaw(JSON.parse(post.content));
                     const plaintext = contentState.getPlainText();
                     return ( 
