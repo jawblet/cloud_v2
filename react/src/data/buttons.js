@@ -63,4 +63,4 @@ export const ZOOM_OUT_BTN = {dataId: 'zoomOut', icon: <VscZoomIn className="icon
 export const LANDING_NOTES = [
    "if ur wondering: '....what is this?'",
    "'whAt kidn of sick twisted person Would make this...?'",
-   "this cheeky lil placeholder text" ];
+   "sadly this is placeholder text + it has no answers" ];
