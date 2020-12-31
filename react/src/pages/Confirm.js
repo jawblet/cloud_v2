@@ -2,9 +2,9 @@ import React from 'react';
 import CTA from '../components/btns/CTA';
 import UserForm from '../sections/UserForm';
 import FormInput from '../components/FormInput';
-import useConfirm from '../hooks/useConfirm';
 import Prompt from '../atoms/Prompt';
 import Error from '../atoms/Error'; 
+import useConfirm from '../hooks/user/useConfirm';
 
 export default function Confirm() {
     const {values, handleChange, handleCheckHouse, error } = useConfirm({

@@ -9,10 +9,8 @@ export const Grid = () => {
         <div className="grid">
             {gridArr.map((el, i) => {
                 return(
-                    <>
                     <div className="grid__cell" key={i}>
                     </div>
-                    </>
                 )
             })}
         </div>

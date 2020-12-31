@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { Editor } from 'draft-js'; 
 import { LinkPreview } from './LinkPreview';
-import usePosts from '../../hooks/usePosts'; 
-import { VscEllipsis } from 'react-icons/vsc';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
 import TagLegendPath from '../../atoms/TagLegendPath';
+import useEditPost from '../../hooks/posts/useEditPost'; 
+import { VscEllipsis } from 'react-icons/vsc';
  
 export default function Post100(props) { 
     const { post, toggleMenu, menu, index, revertAll, handleDeletePost, openPost, handleStopHover, tagpath, handleHover, coords } = props;
@@ -18,7 +18,7 @@ export default function Post100(props) {
     const { displayNoteBody, 
             editorState, 
             setEditorState, 
-            onNoteChange } = usePosts();
+            onNoteChange } = useEditPost();
 
     useEffect(() => {
         if(post.type === 'note') { 

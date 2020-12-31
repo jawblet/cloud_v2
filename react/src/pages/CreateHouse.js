@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import TagBank from './../sections/TagBank';
 import FormInput from '../components/FormInput'; 
 import CTA from '../components/btns/CTA'; 
 import Toggle from '../components/Toggle';
 import Search from '../components/Search';
 import Prompt from '../atoms/Prompt';
-import TagBank from './../sections/TagBank';
-import useForm from '../hooks/useForm';
 import Error from '../atoms/Error';
+import useForm from '../hooks/upload/useForm';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
  
 export default function CreateHouse() {
@@ -41,7 +41,7 @@ export default function CreateHouse() {
                                 classNames="rollDownFadeOut" 
                                 addEndListener={(node, done) => {
                                         node.addEventListener("transitionend", done, false);
-                            }}>
+                            }}> 
                                  {!boarders 
                                     ? <Prompt prompt="You won't be able to add boarders later." type="light"/> 
                                     :

@@ -100,6 +100,19 @@ exports.deleteOne = (Model) => catchAsync(async(req, res) => {
     })
 });
 
+//delete many
+exports.deleteAllByHouse = (Model) => catchAsync(async(req, res) => {
+    if(req.params.room) { //if there is a room param, filter by houseId + room 
+        filter = { house: req.params.houseId, room: req.params.room }
+    } else { filter = { house: req.params.houseId }; 
+} 
+    await Model.deleteMany(filter); 
+    res.status(204).json({
+        status: 'deleted',
+        data: null
+    })
+});
+
 //delete all
 exports.deleteAll = (Model) => catchAsync(async(req, res) => {
     await Model.deleteMany(); 
@@ -108,4 +121,6 @@ exports.deleteAll = (Model) => catchAsync(async(req, res) => {
         data: null
     })
 });
+
+
 

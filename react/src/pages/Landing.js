@@ -1,11 +1,10 @@
-import React, { useState } from 'react'; 
+import React from 'react'; 
 import { Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
 import { BlobS1, BlobS2, BlobS3, BlobM1, BlobM2, BlobL1, MountainModel } from '../svg/BlobGarden';
 import { Grid } from '../svg/Grid';
 import Tooltip from '../atoms/Tooltip';
 import { LANDING_NOTES } from '../data/buttons';
-import useToggleOne from '../hooks/useToggleOne';
 
 export default function Landing() {
     //const line = '#72716B';

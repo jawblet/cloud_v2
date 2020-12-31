@@ -8,7 +8,7 @@ export default function TextareaEdit(props) {
         handleChange } = props;
 
     const descriptionRef = useRef(null);
-    const [placeholder, setPlaceholder] = useState(''); 
+    //const [placeholder, setPlaceholder] = useState(''); 
 
 
     useEffect(() => {
@@ -18,16 +18,16 @@ export default function TextareaEdit(props) {
     return(
             <textarea type="text" 
                 ref={descriptionRef} 
-                className="inlineEdit inlineText"
+                className="inlineEdit inlineText light"
                 name="description"
-                value = {values.description}
+                value={values.description}
                 onClick={handleClickIn}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 rows={1}
-                onMouseEnter={() => setPlaceholder('Optional description')}
-                onMouseLeave={() => setPlaceholder('')} 
-                placeholder={placeholder}
+                //onMouseEnter={() => setPlaceholder('Optional description')}
+                //onMouseLeave={() => setPlaceholder('')} 
+                //placeholder={placeholder}
             />
     )
 }

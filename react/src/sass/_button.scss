@@ -62,15 +62,3 @@ d {
   background-color: $body-lightest;
   transition: all .2s ease-in-out;
 }
-
-.navBtn--column {
-  background-color: $sand2;
-  &:first-child {
-    border-top-right-radius: $border-small;
-    border-top-left-radius: $border-small;
-  }
-  &:last-child {
-    border-bottom-right-radius: $border-small;
-    border-bottom-left-radius: $border-small;
-  }
-}

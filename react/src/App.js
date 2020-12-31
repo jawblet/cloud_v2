@@ -9,14 +9,14 @@ import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
 //import NewHome from './pages/NewHome';
-import Room from './pages/Room';
+import Layer from './pages/Layer';
 import Edit from './sections/Edit';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
 import Library from './pages/Library';
 import NotFound from './pages/NotFound';
-import useFindUser from './hooks/useFindUser';
+import useFindUser from './hooks/user/useFindUser';
 import Test from './pages/Test';
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>
           <PrivateRoute exact path="/home" component={Home}/>
-          <PrivateRoute path='/home/:room/' component={Room}/>
+          <PrivateRoute path='/home/:room/' component={Layer}/>
           <Route component={NotFound}/>
           </Switch>
             <PrivateRoute path='/home/:room/:postId' component={Edit}/>

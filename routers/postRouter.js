@@ -14,5 +14,6 @@ router.get('/details/:houseId/:tagId', postController.getTagDetails); // get tag
 router.put('/:id', postController.updatePost);
 router.delete('/', postController.deleteAllPosts);
 router.delete('/:id', postController.deleteOnePost);
+router.delete('/h/:houseId/:room?', postController.deletePostsByHouse); 
 
 module.exports = router; 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { VscClose } from 'react-icons/vsc';
+import { VscClose } from 'react-icons/vsc'; 
 import CTA from '../btns/CTA';
  
 const Modal = React.forwardRef((props, ref) => (

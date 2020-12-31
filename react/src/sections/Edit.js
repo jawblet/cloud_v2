@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
-import { VscClose, VscEdit, VscTrash } from 'react-icons/vsc';
 import { Editor, convertToRaw } from 'draft-js';
+import EditSidebar from './EditSidebar'; 
 import { LinkDetail } from '../components/posts/LinkPreview';
 import InlineComment from '../components/InlineComment';
 import CommentList from '../components/CommentList';
-import axios from 'axios';
-import usePosts from '../hooks/usePosts'; 
-import useComment from '../hooks/useComment';
-import useRoom from '../hooks/useRooms';
+import useEditPost from '../hooks/posts/useEditPost'; 
+import useComment from '../hooks/posts/useComment';
+import useLayerPosts from '../hooks/layers/useLayerPosts';
 import groupBy from 'lodash/groupBy';
-import EditSidebar from './EditSidebar';
+//import Toolbar from '../../components/btns/Toolbar';
+import { VscClose, VscEdit, VscTrash } from 'react-icons/vsc';
+import axios from 'axios';
+
 
 export default function Edit({ openPost }) {
     const params = useParams();
@@ -33,9 +35,10 @@ export default function Edit({ openPost }) {
 
     const { displayNoteBody, editorState, 
             setEditorState, onNoteChange, 
-            deletePost, editNote, isReadOnly } = usePosts();
+            deletePost, editNote, isReadOnly } = useEditPost();
 
-    const { handleUpdatePost } = useRoom();
+    const { handleUpdatePost } = useLayerPosts();
+
     const { data, handleKeyDown, handleChange, deleteComment } = useComment(postId);
 
     useEffect(() => {

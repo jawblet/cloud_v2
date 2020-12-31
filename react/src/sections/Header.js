@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
 import { BreadcrumbsNav } from '../components/Breadcrumbs';
 import { UserContext } from '../hooks/UserContext';
-import useLogout from '../hooks/useLogout';
+import useLogout from '../hooks/user/useLogout';
 
 export default function Header({ nav }) {
     const { user } = useContext(UserContext);

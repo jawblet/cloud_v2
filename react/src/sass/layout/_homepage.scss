@@ -2,7 +2,7 @@
 .skylight {
     position: relative; 
     align-self: flex-end;
-    width: 90%;
+    width: 90%; //**
     min-height: 70vh;
     height: 100%;
     display: flex; 
@@ -10,7 +10,6 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 10%; 
-  //  border: 1px solid black;
     overflow: visible; 
     &__nav {
       position: fixed;
@@ -28,6 +27,7 @@
   justify-content: flex-end;
   align-items: stretch;
   margin-bottom: -5px;
+  //border: 1px solid red; 
   & > *:nth-child(odd) {
     margin-top: -0.5rem;
   }
@@ -42,8 +42,9 @@
       width: 100%;
       height: 100%;
       position: relative;
-     // border: 1px solid red; 
       display: flex;
+      align-items: center;
+      //border: 1px solid red; 
     }
     &__SVG {
       position: relative;
@@ -54,10 +55,9 @@
 .mapKey {
   padding: 3rem; 
   padding-top: 1.5rem;
-  align-self: center;
+  //align-self: center;
   &__item{
-
-  } 
+    } 
   }
 
 //for map view 
@@ -69,18 +69,15 @@
   }
 }
 
-
-
 .homeIcon {
-  &__house {
-    display: flex;
-    border: 1.5px solid $body-medium;
-    //background-color: $body-medium;
-    border-radius: $border-smallest;
-    transform: rotate(45deg);
-    width: 3rem;
-    height: 1.5rem;
-  }
+  align-self: center;
+  display: flex;
+  border: 1.5px solid $body-medium;
+  //background-color: $body-medium;
+  border-radius: $border-smallest;
+  transform: rotate(45deg);
+  width: 3rem;
+  height: 1.5rem;
   &__label {
     transform: rotate(-45deg) translate(3rem, -1.5rem);
     padding-left: 1rem;
@@ -102,4 +99,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+//house legend popup
+.houseLegend {
+  display: block;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &__wrapper {
+      width: 100%;
+      display: flex;
+      position: relative;
+  }
 }

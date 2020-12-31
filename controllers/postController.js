@@ -12,6 +12,7 @@ exports.updatePost = functionHandler.updateOne(Post);
 exports.getPostsByUser = functionHandler.getAllByUserId(Post); 
 exports.getPostsByHouse = functionHandler.getAllByHouseId(Post, 'tags user'); 
 exports.deleteOnePost = functionHandler.deleteOne(Post);
+exports.deletePostsByHouse = functionHandler.deleteAllByHouse(Post);  
 exports.deleteAllPosts = functionHandler.deleteAll(Post);  
 
 //get tags used in all posts and unwind

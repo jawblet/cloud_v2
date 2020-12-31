@@ -3,19 +3,19 @@ import Header from '../sections/Header'
 import RichEditor from '../components/upload/library/RichEditor';
 import CTA from '../components/btns/CTA';
 import Inbox from '../sections/Inbox';
-import useRichEditor from '../hooks/useRichEditor';
+import useRichEditor from '../hooks/posts/useRichEditor';
 import useLibrary from '../hooks/useLibrary';
-import Thread from '../sections/Thread';
-
+ 
 export default function Library() {
     const nav = [ {name: 'library', url: 'library'} ];
+    const limit = 10;
 
     const { getLibraryBooks, 
         handleLibrarySubmit, 
         threads, 
         handleLibraryBookDelete,
         page,
-        setPage } = useLibrary();
+        setPage } = useLibrary(limit);
 
         useEffect(() => {
             getLibraryBooks();
@@ -40,7 +40,7 @@ export default function Library() {
        clearEditor(); // clear editor on submit 
    }
  
-const [showLib, setShowLib] = useState(true);
+const [showEdit, setEditor] = useState(false);
 
     return ( 
         <div className="page">
@@ -49,8 +49,8 @@ const [showLib, setShowLib] = useState(true);
               House
             </h3>
           <div className="room">
-              {showLib &&  
               <div className="library__body">
+              {showEdit &&  
                 <form onSubmit={sendSubmit}>
                     <RichEditor title={title}
                                 onTitleChange={onTitleChange}
@@ -66,10 +66,11 @@ const [showLib, setShowLib] = useState(true);
                                 type={"submit"}/> 
                     </div>
                 </form>
-              </div> }
+                }
+              </div> 
               <div className="library__sidebar">
                 <h4>threads</h4>
-                    <Inbox threads={threads} 
+                    <Inbox threads={threads} limit={limit}
                             handleLibraryBookDelete={handleLibraryBookDelete}
                             page={page}
                             setPage={setPage}

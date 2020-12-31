@@ -5,9 +5,9 @@ import ListMenu from '../components/ListMenu';
 import Filter from '../components/Filter';
 import useManyFilters from '../hooks/useManyFilters';
 import useOneFilter from '../hooks/useOneFilter';
-import useTags from '../hooks/useTags';
-import { UserContext } from '../hooks/UserContext';
+import useTags from '../hooks/paths/useTags';
 import Loading from '../components/Loading';
+import { UserContext } from '../hooks/UserContext';
  
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 

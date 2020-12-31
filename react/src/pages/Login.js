@@ -4,7 +4,7 @@ import FormInput from '../components/FormInput';
 import CTA from '../components/btns/CTA';
 import Prompt from '../atoms/Prompt';
 import Error from '../atoms/Error';
-import useForm from '../hooks/useForm';
+import useForm from '../hooks/upload/useForm';
 
 export default function Login() {
  

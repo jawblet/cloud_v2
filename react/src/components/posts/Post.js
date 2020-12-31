@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Editor } from 'draft-js'; 
 import { LinkCard } from './LinkPreview';
-import usePosts from '../../hooks/usePosts'; 
+import useEditPost from '../../hooks/posts/useEditPost'; 
 import { VscEllipsis } from 'react-icons/vsc';
   
 export default function Post({ post, openPost }) { 
     let location = useLocation();
     const editRef = useRef(null);  
      
-    const { displayNoteBody, editorState, setEditorState, onNoteChange } = usePosts();
+    const { displayNoteBody, editorState, setEditorState, onNoteChange } = useEditPost();
  
     useEffect(() => {
         if(post.type === 'note') { 

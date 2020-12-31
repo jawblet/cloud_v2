@@ -3,71 +3,66 @@ import axios from 'axios';
 import { convertToRaw } from 'draft-js';
 import { UserContext } from './UserContext';
 
-export default function useLibrary() { 
+export default function useLibrary(limit) { 
     const { user } = useContext(UserContext);
     const house = user.house._id;
+
     const [threads, setThreads] = useState(null);
-
     const [page, setPage] = useState({}); 
-    const limit = 2;
 
-    //GET
+    //GET 
     const getLibraryBooks = async () => {
-       await axios.get(`/posts/h/${house}/library`)
+       console.log('get');
+       return axios.get(`/posts/h/${house}/library`)
             .then(res => {
-                const rawNotes = res.data.data.results;
-               console.log(rawNotes);
-                if(rawNotes.length > limit) {
-                    const totalPages = [...Array(Math.ceil(rawNotes.length / limit))];
-                    const postArrs = totalPages.map((row, i) => 
-                        rawNotes.slice(i * limit, i * limit + limit ));
-                    setPage({currentPage: 1, 
-                    totalPages: totalPages.length }); 
-                    setThreads(postArrs);
-                    return;
-                }
-                return setThreads([...Array(rawNotes)]); 
-            })
+              const rawNotes = res.data.data.results;
+        if(rawNotes.length > limit) {
+                const totalPages = [...Array(Math.ceil(rawNotes.length / limit))];
+                const postArrs = totalPages.map((row, i) => 
+                    rawNotes.slice(i * limit, i * limit + limit ));
+                setPage({currentPage: 1, 
+                totalPages: totalPages.length }); 
+                return setThreads(postArrs);
+            }
+            // if no pgs 
+        return setThreads([...Array(rawNotes)]); 
+               //return setThreads(rawNotes);
+            }).catch(err => console.log(err));
     }
 
     //POST 
     const addLibraryBook = async (data, title) => {
-        console.log(title);
         const content = JSON.stringify(convertToRaw(data));
-        await axios.post('/posts',{
+        return axios.post('/posts',{
                 type: 'library',
                 room: 'library',
                 title,
                 content,
                 user,
                 house
-                }).then(res => {
-                    console.log(res);
                 }).catch(err => console.log(err));
-    }
+            }
+
 
     //DELETE 
     const deleteLibraryBook = async (id) => {
-        await axios.delete(`/posts/${id}`)
-            .then(() => {
-                //set new state without deleted post 
-                const posts = [...threads];
-                const newPosts = posts.filter(el => el._id !== id);
-                setThreads(newPosts); 
-            })
-            .catch(res => console.log(res));
+        return axios.delete(`/posts/${id}`)
+            .then(async (res) => {
+                console.log(res);
+                return await axios.get(`/posts/h/${house}/library`)
+            }).catch(err => console.log(err));
     }
 
     //functions
-    function handleLibraryBookDelete(e) {
+    async function handleLibraryBookDelete(e) {
         const id = e.currentTarget.dataset.id;
-        deleteLibraryBook(id);
-        getLibraryBooks();
+        await deleteLibraryBook(id);
+        await getLibraryBooks();
     }
     
-    function handleLibrarySubmit(data, title) {
-        addLibraryBook(data, title);
-        getLibraryBooks();
+    async function handleLibrarySubmit(data, title) {
+       await addLibraryBook(data, title);
+       await getLibraryBooks();
     }    
 
     return {
@@ -79,3 +74,7 @@ export default function useLibrary() {
         setPage 
     }
 }
+
+/*
+    complex paginate logic 
+*/

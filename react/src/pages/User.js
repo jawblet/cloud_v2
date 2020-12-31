@@ -3,13 +3,13 @@ import { UserContext } from '../hooks/UserContext';
 import UserForm from '../sections/UserForm';
 import Error from '../atoms/Error';
 import Notification from '../atoms/Notification';
-import useForm from '../hooks/useForm';
 import CTA from '../components/btns/CTA'; 
 import Header from '../sections/Header';
 import Prompt from '../atoms/Prompt';
 import UserModal from '../components/modals/UserModal';
 import useModal from '../hooks/useModal'; 
-import useDelete from '../hooks/useDelete';
+import useForm from '../hooks/upload/useForm';
+import useDelete from '../hooks/user/useDelete'; 
 
 export default function User() {
     const { user } = useContext(UserContext);

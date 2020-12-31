@@ -13,7 +13,7 @@ import Prompt from '../../atoms/Prompt';
 import Error from '../../atoms/Error';
 import Button from '../btns/Button';
 import TooltipBar from '../btns/TooltipBar';
-import useTags from '../../hooks/useTags';
+import useTags from '../../hooks/paths/useTags';
 import { uploadBtns, NOTE_TOOLTIP } from '../../data/buttons';
 import { VscClose, VscQuestion } from 'react-icons/vsc'; 
 import { CSSTransition } from 'react-transition-group';

@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'; 
+import React, { useContext, useState } from 'react'; 
 import Header from '../sections/Header';
-import { UserContext } from '../hooks/UserContext';
 import Drawer from '../components/Drawer';
 import AddPost from '../sections/AddPost';
-import AddRoom from '../sections/AddRoom';
-import useEditor from '../hooks/useEditor';
-import useUpload from '../hooks/useUpload';
+import AddLayer from '../sections/AddLayer';
+import { UserContext } from '../hooks/UserContext';
+import useEditor from '../hooks/posts/useEditor';
+import useUpload from '../hooks/upload/useUpload';
 
  export default function Add(props) { 
     const { user, rooms, globalTags } = useContext(UserContext);
@@ -14,12 +14,9 @@ import useUpload from '../hooks/useUpload';
     //set room from state, or default to first room in roomArr 
     const roomFrom = props.location.state || rooms[0];
     const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
-         //set upload type 
-         const [type, setType]= useState('link');
-         const switchType = (e) => { 
-             console.log(e.currentTarget.dataset.label);
-             setType(e.currentTarget.dataset.label); 
-            }
+    
+    const [type, setType]= useState('link'); //set upload type 
+    const switchType = (e) => { setType(e.currentTarget.dataset.label); }
      
          //handle editor state 
          const { editorState, 
@@ -86,7 +83,7 @@ import useUpload from '../hooks/useUpload';
                         setFocus={setFocus}
                         addTagFromNote={addTagFromNote}
                         />
-                : <AddRoom setAdd={setAdd}/>
+                : <AddLayer setAdd={setAdd}/>
             }
             <span className="fixedTab">
                 <Drawer items={globalTags} tab={"house paths"} />

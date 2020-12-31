@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../sections/Header';
-import Cards from '../sections/Cards'; 
-import ExpandButton from '../atoms/ExpandButton';
+import CardCanvas from '../sections/home/CardCanvas'; 
+import MapCanvas from '../sections/home/MapCanvas';
 import NavBar from '../components/btns/NavBar';
 import HouseLegend from '../components/modals/HouseLegend';
-import MapHome from '../sections/home/MapHome';
-import HomeIcon from '../atoms/HomeIcon';
+import ExpandButton from '../atoms/ExpandButton';
 import { navButtons } from '../data/buttons';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 export default function Home() {
     const [squeeze, setSqueeze] = useState(true);
@@ -24,17 +24,22 @@ export default function Home() {
     return ( 
         <div className="page">  
             <Header/> 
-            <div className="skylight">
-                <HouseLegend/> 
-                {zoomIn 
-                ? 
-                    <Cards squeeze={squeeze}/>
-                : <>
-                    <MapHome/>
-                    <HomeIcon/>
-                </>
-                }     
-            </div>
+            <HouseLegend/> 
+            <SwitchTransition mode="out-in">
+                <CSSTransition key={zoomIn} 
+                        timeout={350} 
+                        classNames="fade" 
+                        addEndListener={(node, done) => {
+                                        node.addEventListener("transitionend", done, false);
+                        }}> 
+                <div className="skylight">
+                        {zoomIn 
+                            ? <CardCanvas squeeze={squeeze}/>
+                            : <MapCanvas/>
+                        }     
+                </div>
+            </CSSTransition>
+            </SwitchTransition>
                 <div className="skylight__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 

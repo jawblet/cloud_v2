@@ -1,8 +1,8 @@
 import React from 'react';
-import useHouse from '../../hooks/useHouse';
+import useHouseLegend from '../../hooks/house/useHouseLegend';
 
 export default function HouseLegend(){
-    const { house, boarders } = useHouse(); 
+    const { house, boarders } = useHouseLegend(); 
     
     return (
         <div className="houseLegend__wrapper">

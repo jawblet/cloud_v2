@@ -128,7 +128,9 @@ button {
     resize: none; //disable user resizing
   }
 
-  menu, ul {
+  
+// do not set ul and ol because of draft-js
+  menu {
     list-style: none;
   }
 
