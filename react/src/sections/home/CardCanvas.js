@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../hooks/UserContext';
 import Card from './../../components/Card';
 import useCardPosition from '../../hooks/layers/useCardPosition';
-import useGetRows from '../../hooks/posts/useGetRows';
+import useGetRows from '../../hooks/posts/useGetRows'; 
+import Loading from '../../components/Loading';
 //import { CSSTransition } from 'react-transition-group';
 /*eslint-disable*/
 
@@ -13,25 +14,31 @@ export default function Cards( { squeeze } ) {
 
     const { handleCardClick, getPositionClass } = useCardPosition();
      
+    if(loading) {
+        return(<div className="layer__empty">No layers yet.</div>)
+    }
+     
     return(
-        <>        
-        {!loading && 
+        <>
+        {(postArrays[0].length > 0)
+            ?
                 postArrays.map((floor, i) => {
-                    return(
-                    <div className="floor" key={i}>
-                        {floor.map((room, i) => {
-                            return (
-                            <Card room={room} squeeze={squeeze} key={room.slug}
-                                handleCardClick={handleCardClick} 
-                                getPositionClass={() => getPositionClass(room.id)}
-                                />
-                            )
-                        })}
-                    </div>
-                    )
-                 })
-            }
-        </>
+                        return(
+                        <div className="floor" key={i}>
+                            {floor.map((room, i) => {
+                                return (
+                                <Card room={room} squeeze={squeeze} key={room.slug}
+                                    handleCardClick={handleCardClick} 
+                                    getPositionClass={() => getPositionClass(room.id)}
+                                    />
+                                )
+                            })}
+                        </div>
+                        )
+                     })
+        : (<div>No layers</div>)
+        }
+    </>
     )
 }
 

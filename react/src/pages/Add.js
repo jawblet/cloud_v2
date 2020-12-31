@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'; 
+import React, { useContext, useEffect, useState } from 'react'; 
 import Header from '../sections/Header';
 import Drawer from '../components/Drawer';
 import AddPost from '../sections/AddPost';
@@ -9,10 +9,20 @@ import useUpload from '../hooks/upload/useUpload';
 
  export default function Add(props) { 
     const { user, rooms, globalTags } = useContext(UserContext);
+
     const [addPost, setAdd] = useState(true);
 
+    let firstRoom = '';
+
+    useEffect(() => {
+        if(rooms[0]) {
+            return firstRoom = rooms[0];
+        } 
+        return setAdd(false);
+    }, [rooms])
+
     //set room from state, or default to first room in roomArr 
-    const roomFrom = props.location.state || rooms[0];
+    const roomFrom = props.location.state || firstRoom;
     const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
     
     const [type, setType]= useState('link'); //set upload type 

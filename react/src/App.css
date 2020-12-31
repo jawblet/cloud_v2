@@ -422,7 +422,7 @@ menu {
     position: relative;
     margin-right: 1rem; }
   .layer__empty {
-    height: 25vh;
+    height: 90%;
     width: 100%;
     display: flex;
     justify-content: center;

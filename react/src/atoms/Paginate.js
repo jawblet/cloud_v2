@@ -7,7 +7,7 @@ export default function Paginate(props) {
    const currentPg = page.currentPage; 
    const totalPgs = page.totalPages; 
 
-   if(!currentPg){
+   if(!currentPg) {
     return(<></>);
    }
 

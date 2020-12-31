@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
+//import NewHome from './pages/NewHome';
 import Layer from './pages/Layer';
 import Edit from './sections/Edit';
 import User from './pages/User';
@@ -19,26 +20,27 @@ import useFindUser from './hooks/user/useFindUser';
 import Test from './pages/Test';
 
 function App() {
-
-  const { user,
-    rooms,
-    globalTags,
-    setUser,
-    setRooms,
-    setGlobalTags,
-    isLoading } = useFindUser();
+  const [user, setUser] = useState(null);
+  const [globalTags, setGlobalTags] = useState(null);
+  const [rooms, setRooms] = useState(null);
+  const { userStatus, houseRooms, houseTags, isLoading } = useFindUser();
+ 
+  useEffect(() => { 
+    if(userStatus) {
+      setUser(userStatus);
+      setRooms(houseRooms);
+      setGlobalTags(houseTags); 
+    }
+  }, [userStatus, houseRooms, houseTags]); //need dependency array 
  
   console.log(user);
 
   return (
    <Router>
-       <UserContext.Provider value={{  user,
-                                        rooms,
-                                        globalTags,
-                                        setUser,
-                                        setRooms,
-                                        setGlobalTags,
-                                        isLoading }}>
+       <UserContext.Provider value={{ user, setUser, 
+                                      rooms, setRooms,
+                                      globalTags, setGlobalTags, 
+                                      isLoading }}>
        <Switch>
           <Route exact path="/" component={Landing}/>
           <Route exact path="/register" component={Register}/>

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import slugify from 'react-slugify';
 import { UserContext } from '../UserContext';
@@ -6,7 +6,15 @@ import { UserContext } from '../UserContext';
 export default function useAddLayer() {
     const { user, rooms, setRooms } = useContext(UserContext);
     const house = user.house._id;
-    
+    let newId; 
+
+    useEffect(() => {
+        if(rooms && rooms.length) {
+           return newId = rooms[rooms.length - 1].id + 1
+        }
+        return newId = 0; 
+    }, [rooms])
+
     // set global context from rooms as init state 
     const [roomInput, setNewRoom] = useState('');
     const [error, setError] = useState(null); 
@@ -49,7 +57,7 @@ export default function useAddLayer() {
             label: layer,
             slug: newSlug,
             description: '//',
-            id: rooms[rooms.length - 1].id + 1
+            id: newId
         };
         newLayers.push(newLayer);
         addNewLayer(newLayers);

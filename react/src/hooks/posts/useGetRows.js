@@ -6,8 +6,8 @@ export default function useGetRows({postsPerRow, allPosts}) {
     const [loading, setLoading] = useState(true);
     
 useEffect(() => {
+    //only runs if there are posts
     if(allPosts && allPosts.length > 0) { 
-        
         async function splicePosts() { 
             const postTotal = allPosts.length; 
             const numRows = [...Array(Math.ceil(postTotal / postsPerRow))];
