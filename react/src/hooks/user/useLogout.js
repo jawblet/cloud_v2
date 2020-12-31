@@ -10,8 +10,7 @@ export default function useLogout() {
                 method: 'GET',
                 url: `/auth/logout`,
             }).then(res => { 
-                console.log(res); 
-                history.push('/');
+                history.push('/'); //home 
             })
         } catch(err) {
             console.log(err);
