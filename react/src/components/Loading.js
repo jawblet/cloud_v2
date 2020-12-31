@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Loading() {
+export function Loading() { 
     return(
         <div className="loading">
-            Loading... 
+            Loading... ?
         </div>
     )
 }

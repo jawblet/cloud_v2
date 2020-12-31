@@ -28,7 +28,8 @@ useEffect(() => {
 
 axios.get(`/posts/tags/${user.house._id}/${sort}`)
     .then(res => {
-        //console.log(res);
+        console.log(res);
+        console.log('yea')
         const tagData = res.data.data; 
         setTags(tagData.allTags);
         setTagCount({
@@ -37,7 +38,7 @@ axios.get(`/posts/tags/${user.house._id}/${sort}`)
         })
         isLoading(false);
     }).catch((err) => { console.log(err) })
-}, [activeItem, user]); // added user 
+}, [activeItem]); // added user 
 
 
 const getAllTagsFromPosts = () => {

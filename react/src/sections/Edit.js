@@ -70,7 +70,7 @@ export default function Edit({ openPost }) {
     return (
         <div className="modal__background">
             <div className="edit">
-                <Link to={`/home/${params.room}`}>
+                <Link to={`/${params.room}`}>
                     <div className="modal__X" onClick={openPost}> 
                         <VscClose className="icon icon__btn"/>
                     </div>

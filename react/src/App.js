@@ -44,14 +44,14 @@ function App() {
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
           <PrivateRoute exact path="/" component={Home}/>
-          <PrivateRoute path='/:room/' component={Layer}/>
           <PrivateRoute path='/house' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>
+          <PrivateRoute path='/:room/' component={Layer}/>
           <Route component={NotFound}/>
           </Switch>
-            <PrivateRoute path='/home/:room/:postId' component={Edit}/>
+            <PrivateRoute path='/:room/:postId' component={Edit}/>
       </UserContext.Provider>
    </Router>
   );

@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { LoadingPage } from './../components/Loading';
 import { UserContext } from './../hooks/UserContext';
-import Landing from './Landing'; 
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
-    console.log(user, isLoading); 
+    //console.log(user, isLoading); 
 
     const { component: Component,
         ...rest } = props;
@@ -18,9 +17,9 @@ export default function PrivateRoute(props) {
 
         if(user){
             return ( <Route {...rest} render={(props) => (<Component {...props}/>)}/>)
-        } else {
-            return <Redirect to='/home'/>
-        }
+        } 
+        
+        //return <Redirect to='/home'/>
 }
 
 
