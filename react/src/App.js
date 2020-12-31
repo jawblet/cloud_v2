@@ -16,6 +16,7 @@ import Library from './pages/Library';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
 import Test from './pages/Test';
+import { LoadingPage } from './components/Loading';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
                                         isLoading }} >
        <Switch>
           <Route exact path="/">
+              {isLoading && <LoadingPage/>}
               {(!isLoading && !user) ? <Landing/> : <PrivateRoute component={Home}/>}
           </Route>
           <Route exact path="/register" component={Register}/>
