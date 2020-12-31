@@ -1,23 +1,31 @@
 import React, { useContext } from 'react'; 
 import { Route, Redirect } from 'react-router-dom';
+import { LoadingPage } from './../components/Loading';
 import { UserContext } from './../hooks/UserContext';
+import Landing from './Landing'; 
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
+    console.log(user, isLoading); 
 
     const { component: Component,
         ...rest } = props;
 
-      if(isLoading) {
-          return null;
+        //return loading component 
+        if(isLoading) {
+        console.log('yip!');
+          return <LoadingPage/>;
+        } else {
+            if(user){
+                    return ( <Route {...rest} render={(props) => (<Component {...props}/>)}/>)
+                } else {
+                   //send unknown user to homepg  
+
+                return <Redirect to='/'/>
+                }
         }
 
-      if(user){
-          return ( <Route {...rest} render={(props) => (<Component {...props}/>)}
-            />)
-        } else {
-            return <Redirect to={{pathname: '/'}} /> 
-    };
+       
 }
 
 

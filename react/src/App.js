@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'; 
 import './App.css'; 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 import { UserContext } from './hooks/UserContext';
@@ -28,29 +27,28 @@ function App() {
     setGlobalTags,
     isLoading } = useFindUser();
  
-  console.log(user);
-
   return (
    <Router>
-       <UserContext.Provider value={{  user,
+       <UserContext.Provider value={{   user,
                                         rooms,
                                         globalTags,
                                         setUser,
                                         setRooms,
                                         setGlobalTags,
-                                        isLoading }}>
+                                        isLoading }} >
        <Switch>
-          <Route exact path="/" component={Landing}/>
+          <Route exact path="/">
+              {(!isLoading && !user) ? <Landing/> : <PrivateRoute component={Home}/>}
+          </Route>
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
-          <PrivateRoute exact path="/home" component={Home}/>
           <PrivateRoute path='/house' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>
-          <PrivateRoute path='/home/:room/' component={Layer}/>
+          <PrivateRoute path='/:room/' component={Layer}/>
           <Route component={NotFound}/>
           </Switch>
             <PrivateRoute path='/home/:room/:postId' component={Edit}/>
@@ -61,4 +59,8 @@ function App() {
 
 export default App;
 
+/*
+<PrivateRoute exact path="/home" component={Home}/>
+<PrivateRoute path='/home/:room/' component={Layer}/>
 
+*/

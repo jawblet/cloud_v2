@@ -34,7 +34,7 @@ export default function useSubmit() {
                     })
                     //.then(res => console.log(res));
                 }
-                history.push(`home/${roomTo}`); 
+                history.push(`/${roomTo}`); 
             }).catch((err) => { 
                 if(err.response.status === 400) {
                    // console.log(err.response.data);
@@ -79,7 +79,7 @@ export default function useSubmit() {
                 }
             }).then(res => {
                 //console.log(res);
-                history.push(`home/${roomTo}`); 
+                history.push(`/${roomTo}`); 
             })
             } catch(err) {
                 console.log(err)

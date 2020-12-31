@@ -852,6 +852,17 @@ d {
   width: 100%;
   height: 100%; }
 
+.loadingPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fffdfa;
+  color: #f1e3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .loadingPage__text {
+    color: red; }
+
 .prompt.light {
   color: #72716B; }
 

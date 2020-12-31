@@ -7,14 +7,14 @@ import PostList25 from '../sections/posts/PostList25';
 import PostList5 from '../sections/posts/PostList5'; 
 import PathLegend from '../components/modals/PathLegend';
 import LayerModal from '../components/modals/LayerModal';
-import Loading from '../components/Loading';
 import Button from '../components/btns/Button';
 import ListMenu from '../components/ListMenu';
 import useOneFilter from '../hooks/useOneFilter'; 
 import useLayerPosts from '../hooks/layers/useLayerPosts';
 import useTags from '../hooks/paths/useTags';
 import useTagLegend from '../hooks/paths/useTagLegend';
-import useModal from '../hooks/useModal'; 
+import useModal from '../hooks/useModal';
+import { Loading } from '../components/Loading';
 import { VscAdd } from 'react-icons/vsc';
 
 export default function Layer() {

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const BreadcrumbsNav = ({ nav } ) => {
     return(
         <div className="breadcrumbsNav">
-             <NavLink to='/home'>
+             <NavLink to='/'>
                 <h4> skylight </h4> 
             </NavLink>
             {nav &&
@@ -12,7 +12,7 @@ const BreadcrumbsNav = ({ nav } ) => {
                     return ( 
                         <h4 key={index}>
                             <span className="crumb__break">/</span>
-                            <NavLink to={`/home/${crumb.url}`} className="crumb" activeClassName="crumb--active">
+                            <NavLink to={`/${crumb.url}`} className="crumb" activeClassName="crumb--active">
                                 {crumb.name}
                             </NavLink>
                         </h4> 

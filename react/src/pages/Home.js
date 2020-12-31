@@ -35,7 +35,7 @@ export default function Home() {
                 <div className="skylight">
                         {zoomIn 
                             ? <CardCanvas squeeze={squeeze}/>
-                            : <MapCanvas/>
+                            : <MapCanvas/> 
                         }     
                 </div>
             </CSSTransition>

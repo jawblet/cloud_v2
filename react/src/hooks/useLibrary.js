@@ -49,7 +49,7 @@ export default function useLibrary(limit) {
         return axios.delete(`/posts/${id}`)
             .then(async (res) => {
                 console.log(res);
-                return await axios.get(`/posts/h/${house}/library`)
+                return await axios.get(`/posts/h/${house}/library`) // ?? why 
             }).catch(err => console.log(err));
     }
 

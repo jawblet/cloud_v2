@@ -20,7 +20,7 @@ export default function Card({ room, squeeze, getPositionClass, handleCardClick 
                     onClick={(e) => handleCardClick(e)}
                     >
                 <Link className={`card__label ${room.id}`} 
-                        to={`/home/${room.slug}`}> 
+                        to={`/${room.slug}`}> 
                     <h4> {room.label} </h4>  
                 </Link>
                 <div className="card__body">

@@ -6,7 +6,7 @@ import Filter from '../components/Filter';
 import useManyFilters from '../hooks/useManyFilters';
 import useOneFilter from '../hooks/useOneFilter';
 import useTags from '../hooks/paths/useTags';
-import Loading from '../components/Loading';
+import { Loading } from '../components/Loading';
 import { UserContext } from '../hooks/UserContext';
  
 export default function Tags() {

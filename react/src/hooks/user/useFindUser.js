@@ -20,7 +20,11 @@ useEffect(() => {
                 const tags = res.data.data.results
                 setGlobalTags(tags);
                 setLoading(false); 
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            console.log(err);
+            // even if no user --> set to not loading  
+            setLoading(false); 
+        });
     }
     findUser();
     }, []);
