@@ -72,7 +72,7 @@ const rooms = user.house.rooms;
           rooms: newRooms   
         }).then(res => {
             setRooms(newRooms);
-            history.push(`/home/${slug}`);
+            history.push(`/${slug}`);
         })
         .catch(err => console.log(err));
     };

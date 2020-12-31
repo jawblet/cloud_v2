@@ -9,14 +9,14 @@ export default function useDeleteLayer(id) {
     const house = user.house._id;
 
     const pushUser = async () => {
-        history.push('/home');
+        history.push('/');
     }
 
     //GET ROOMS
     const getAllRooms = async () => {
             return axios.get(`/houses/${house}`)
             .then(res => {
-                console.log(res.data.data.doc.rooms);
+                //console.log(res.data.data.doc.rooms);
                 const allRooms = res.data.data.doc.rooms;
                 setRooms(allRooms);
             }).catch(err => console.log(err));
