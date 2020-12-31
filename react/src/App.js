@@ -39,7 +39,8 @@ function App() {
                                         isLoading }} >
        <Switch>
           <Route exact path="/">
-              {(!isLoading && !user) ? <Landing/> : <PrivateRoute component={Home}/>}
+              {isLoading && <LoadingPage/>}
+              {(!user) ? <Landing/> : <PrivateRoute component={Home}/>}
           </Route>
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
