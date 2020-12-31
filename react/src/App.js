@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'; 
 import './App.css'; 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 import { UserContext } from './hooks/UserContext';
@@ -16,7 +17,6 @@ import Library from './pages/Library';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
 import Test from './pages/Test';
-import { LoadingPage } from './components/Loading';
 
 function App() {
 
@@ -38,19 +38,17 @@ function App() {
                                         setGlobalTags,
                                         isLoading }} >
        <Switch>
-          <Route exact path="/">
-              {isLoading && <LoadingPage/>}
-              {(!user) ? <Landing/> : <PrivateRoute component={Home}/>}
-          </Route>
+          <Route path="/home" component={Landing}/>
           <Route exact path="/register" component={Register}/>
           <Route path="/login" component={Login}/>
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
+          <PrivateRoute exact path="/" component={Home}/>
+          <PrivateRoute path='/:room/' component={Layer}/>
           <PrivateRoute path='/house' component={Library}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>
-          <PrivateRoute path='/:room/' component={Layer}/>
           <Route component={NotFound}/>
           </Switch>
             <PrivateRoute path='/home/:room/:postId' component={Edit}/>
@@ -61,7 +59,4 @@ function App() {
 
 export default App;
 
-/*
-{isLoading && <LoadingPage/>}
-<Route path="/home" component={Landing}/>
-*/
+

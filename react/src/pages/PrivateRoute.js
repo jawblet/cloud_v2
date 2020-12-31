@@ -13,13 +13,12 @@ export default function PrivateRoute(props) {
 
         //return loading component 
         if(isLoading) {
-        console.log('yip!');
           return <LoadingPage/>;
         } else {
             if(user){
                     return ( <Route {...rest} render={(props) => (<Component {...props}/>)}/>)
                 } else {
-                    return <Redirect to='/'/>
+                    return <Redirect to='/home'/>
                 }
         }
 
