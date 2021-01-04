@@ -17,9 +17,9 @@ export default function PrivateRoute(props) {
 
         if(user){
             return ( <Route {...rest} render={(props) => (<Component {...props}/>)}/>)
-        } 
-        
-        //return <Redirect to='/home'/>
+        } else {
+            return <Redirect to='/home'/>
+        }
 }
 
 
