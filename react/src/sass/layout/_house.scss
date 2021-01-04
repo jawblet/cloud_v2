@@ -1,0 +1,11 @@
+$thread-width: 70%;
+
+.house {
+    display: flex;
+    flex-direction: column;
+    width: $thread-width;
+    &__compose{
+        align-self: flex-end;
+        padding-bottom: 1rem;
+     }
+}

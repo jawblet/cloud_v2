@@ -1,0 +1,87 @@
+//edit content modal 
+.edit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 40rem;
+    width: 90vw;
+    height: 85vh;
+    border-radius: $border-small;
+    background-color: $off-white;
+    display: flex;
+    box-shadow: $soft-shadow;
+    padding: 3rem; 
+    padding-bottom: 1rem;
+    line-height: 150%;
+    overflow: scroll;
+    &__content {
+        width: 100%;
+        display: flex;
+       // border: 1px solid orange;
+    }
+    &__sidebar {
+        flex: 0 0 25%;
+        padding-left: 1rem;
+        position: relative;
+    }
+    &__metadata {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.editPost {
+    flex: 0 0 75%;
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    &__header {
+        flex: 0 0 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+    &__pen {
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+    &__trash {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+    }
+    &__noteDetail {
+        width: 100%;
+        flex: 1; //expand 
+        border: 3px solid $sand; 
+        padding: 1rem;
+        border-radius: $border-small;
+        transition: all $short-fade;
+        &.active {
+            border: 3px solid $sand3;
+        }
+    }
+    &__linkDetail {
+        flex: 1;
+    }
+    &__save {
+        flex: 0 0 7%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: $body-lightest;
+        transition: all $short-fade;
+        &.active {
+            color: $body; 
+        }
+    }
+}
+ 
+/*
+    & > * {
+        //margin-left: 1.5rem;
+    }
+*/

@@ -1,5 +1,5 @@
 .upload { 
-    background-color: $sand;
+    background-color: $sand; 
     line-height: 1.5rem;
     border: 3px solid $sand2; 
     border-radius: $border-small;
@@ -8,14 +8,6 @@
     height: auto; 
     &--link {
         padding:  1rem;
-    }
-    &--note {
-        display: flex;
-        flex-direction: column;
-        transform-origin: center top;
-        border-top: none;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
     }
     //upload submission errors 
     &__error {

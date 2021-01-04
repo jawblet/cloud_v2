@@ -22,19 +22,22 @@
       width: 100%;
       height: auto; 
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       //border: $border; 
     }
     &__title {
-      width: 100%;
+      width: 90%;
       align-self: flex-start;
       margin-left: -1rem; // align with sidebar
-      //margin-top: 1.5rem;
       margin-bottom: 1rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+    }
+    &__delete {
+      padding-right: 3rem;
+      padding-top: 0.5rem;
     }
     &__links {
       display: flex

@@ -1,0 +1,44 @@
+.thread {
+    width: $thread-width;
+    display: flex;
+    flex-direction: column;
+    &__header {
+        width: $thread-width;
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        margin:1.5rem 0;
+        &__L {
+            display: flex;
+            align-items: center;
+        }
+        &__R {
+            display: flex;
+            & > * {
+                margin-left: 1rem;
+            }
+        }
+    }
+    &__title {
+        padding-bottom: 1rem;
+    }
+    &__metadata {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1.5rem;
+    }
+    &__date {
+        color: $body-lightest;
+    }
+    &__comments {
+        width: 95%;
+        //border: $border;
+        align-self: flex-end;
+        margin-top: 1.5rem;
+    }
+}
+
+.threadComment {
+    //background-color: $sand;
+    margin-bottom: 3rem;
+}

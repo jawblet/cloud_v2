@@ -12,6 +12,7 @@
 @import "./layout/homepage";
 @import "./layout/landingpage";
 @import "./layout/map"; 
+@import "./layout/house";
 
 //components 
 @import "forminput"; 
@@ -22,6 +23,7 @@
 @import "loading";
 @import "prompt"; 
 @import "modal";
+@import "editPost";
 @import "editor";
 @import "search";
 @import "dragDrop";
@@ -44,3 +46,4 @@
 @import "tooltip";
 @import "blob";
 @import "listitem";
+@import "thread";

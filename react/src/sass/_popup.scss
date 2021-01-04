@@ -35,6 +35,7 @@
     max-height: 75vh;
     position: relative;
     &__container {
+    visibility: hidden; // hide
     position: fixed;
     right: 0%;
     top: 7%;
@@ -67,7 +68,7 @@
        bottom: 1rem;
        width: 100%;
        height: 3rem;
-       background:linear-gradient(to bottom, transparent, $sand) ;
+       background:linear-gradient(to bottom, transparent, $sand);
     }
 }
 

@@ -51,15 +51,17 @@ h1 {
 
 h2 {
   font-family: 'Work Sans', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
-h3 {
-  font-family: 'Work Sans', sans-serif;
   font-size: 1.5rem;
   letter-spacing: 1.5px;
   font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+h3 {
+  font-family: 'Graphik', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  font-weight: 400;
   letter-spacing: 0.5px;
 }
 
@@ -69,6 +71,9 @@ h4, button, li, .search__bar {
     font-size: 0.8rem;
     letter-spacing: 1px;
     font-weight: 400;
+    &.heavy {
+      font-weight: bold;
+    }
   }
 
 h5, label, figcaption {
@@ -133,6 +138,14 @@ button {
   menu {
     list-style: none;
   }
+
+hr {
+    background-color: $shadow;
+    opacity: .5;
+    height: 1px; 
+    width: 100%; 
+    margin: 1rem auto; //center and give space on top/bottom
+}
 
 %pin {
   height: 6px;

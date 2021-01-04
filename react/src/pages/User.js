@@ -11,7 +11,7 @@ import useModal from '../hooks/useModal';
 import useForm from '../hooks/upload/useForm';
 import useDelete from '../hooks/user/useDelete'; 
 
-export default function User() {
+export default function User() { 
     const { user } = useContext(UserContext);
     const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
     const { deleteUser } = useDelete(user._id);

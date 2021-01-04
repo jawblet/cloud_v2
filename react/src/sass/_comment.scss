@@ -1,3 +1,4 @@
+//PLAINTEXT COMMENT
 .comment {
     background-color: $sand;
     padding: 1rem 0.5rem 0 0.5rem;
@@ -25,14 +26,13 @@
 }
 
 //comment container for posts 
-.commentList{
+.commentList {
     & > *:not(:first-child) {
         margin-bottom: 1rem;
     }
 }
 
-//comment box
-//h5
+//comment box // h5
 .inlineComment { 
     font-size: 0.8rem;
     letter-spacing: 0.5px;
@@ -41,6 +41,18 @@
     resize: none; 
     &::placeholder {
     color: $body-lightest;
+    }
+}
+
+//RICH COMMENT
+
+.commentDraft {
+    padding-top: 1.5rem;
+    &__submit {
+        width: 100%;
+        display: flex; 
+        justify-content: flex-end;
+        padding-top: 1rem;
     }
 }
 

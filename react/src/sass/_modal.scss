@@ -13,6 +13,7 @@
     box-shadow: $softer-shadow;
     padding: 3rem; 
     line-height: 150%;
+    z-index: 4;
     &__X {
         position: absolute;
         right: 1rem;
@@ -31,78 +32,6 @@
         height: 100vh;
         width: 100vw;
         background-color: rgba(255, 255, 255, 0.8);
+        z-index: 3;
     }
 }
-
-//edit content modal 
-.edit {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 40rem;
-    width: 90vw;
-    height: 85vh;
-    border-radius: $border-small;
-    background-color: $off-white;
-    display: flex;
-    box-shadow: $soft-shadow;
-    padding: 3rem; 
-    padding-bottom: 1rem;
-    line-height: 150%;
-    overflow: scroll;
-    &__content {
-        width: 100%;
-        display: flex;
-       // border: 1px solid orange;
-    }
-    &__sidebar {
-        flex: 0 0 25%;
-        padding-left: 1rem;
-    }
-    &__metadata {
-        margin-bottom: 1.5rem;
-    }
-    &__body {
-        flex: 0 0 75%;
-        padding: 0 5rem;
-        display: flex;
-        flex-direction: column;
-        &__edit {
-            flex: 0 0 3%;
-            display: flex;
-            justify-content: flex-end;
-            & > * {
-                margin-left: 1.5rem;
-            }
-        }
-        &__noteDetail {
-            width: 100%;
-            flex: 1; //expand 
-            border: 3px solid $sand;
-            padding: 1rem;
-            border-radius: $border-small;
-            transition: all $short-fade;
-            &.active {
-                border: 3px solid $sand2;
-            }
-        }
-        &__linkDetail {
-            //border: 1px solid blue; 
-           // padding: 1rem; 
-            flex: 1;
-        }
-        &__save {
-            flex: 0 0 7%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            color: $body-lightest;
-            transition: all $short-fade;
-            &.active {
-                color: $body; 
-            }
-        }
-    }
-}
- 
