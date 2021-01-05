@@ -1,7 +1,13 @@
-//select menu 
+%menuItem {
+    cursor: pointer;
+    background-color: inherit;
+    transition: all $short-fade;
+    padding: 0.5rem;
+}
+
+//dropdown select menu w/ active item
 .selectmenu { 
     position: relative;
-
     &__picked {
         padding: 1rem 0.5rem;
         display: flex;
@@ -87,7 +93,6 @@
         transform-origin: bottom center;
     }
 }
-
 .fixedTab {
     position: absolute;
     bottom: 0;
@@ -151,3 +156,57 @@
         &--active { background-color: $sand3;}
     }
 }
+
+//accordion menu 
+.accordion {
+    border-radius: $border-large;
+    width: 100%;
+    &__panel {
+    overflow: hidden;
+        &__input { display: none; }
+        &__label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding: 0.5rem;
+              &::after {
+                  content: "◢";
+                  color: $body-light;
+                  position: relative;
+                  top: 50%;
+                  transform: rotate(45deg) scale(0.5) translateY(-50%);
+                  transition: all $short-fade;
+              }
+          }
+        }
+      &__list {
+          list-style: none;
+          max-height: 0rem;
+          transition: all $short-fade;
+      }
+      &__item {
+          color: $body-light;
+          position: relative;
+          cursor: pointer;
+          padding: 0.75rem;
+          border: 1px solid transparent;
+          border-radius: $border-small;
+          padding-left: 1.5rem;
+          &:hover {
+              border: 1px solid $sand-bright; 
+          }
+      }
+    }
+    input:checked + .accordion__panel__label::after {
+        content: "◢";
+        color: $body-light;
+        position: relative;
+        //top: 25%;
+        top: 50%;
+        transform: rotate(135deg) scale(0.5) translateY(30%);
+        }
+    input:checked ~ .accordion__list {
+        max-height: 100vh;
+      }

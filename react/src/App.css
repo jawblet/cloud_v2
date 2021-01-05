@@ -604,7 +604,15 @@ hr {
   .floor > *:nth-child(2) {
     margin-bottom: -0.5rem; }
 
+.map__container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center; }
+
 .map__canvas {
+  flex: 0 0 75%;
   width: 100%;
   height: 100%;
   position: relative;
@@ -614,15 +622,9 @@ hr {
 .map__SVG {
   position: relative; }
 
-.mapKey {
-  padding: 3rem;
-  padding-top: 1.5rem; }
-
-.contour {
-  transition: all 0.35s; }
-  .contour:hover {
-    fill: #fffdfa86;
-    stroke: #EBC57A; }
+.map__key {
+  flex: 0 0 25%;
+  height: 100%; }
 
 .homeIcon {
   align-self: center;
@@ -730,6 +732,12 @@ hr {
   .house__compose {
     align-self: flex-end;
     padding-bottom: 1rem; }
+
+.contour {
+  transition: all 0.35s; }
+  .contour:hover {
+    fill: #fffdfa86;
+    stroke: #EBC57A; }
 
 .input {
   background-color: #fcf7f3;
@@ -1611,6 +1619,52 @@ h6[data-block] {
     border-radius: 5px; }
     .filter__paint--active {
       background-color: #f1e3d3; }
+
+.accordion {
+  border-radius: 1rem;
+  width: 100%; }
+  .accordion__panel {
+    overflow: hidden; }
+    .accordion__panel__input {
+      display: none; }
+    .accordion__panel__label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      padding: 0.5rem; }
+      .accordion__panel__label::after {
+        content: "◢";
+        color: #72716B;
+        position: relative;
+        top: 50%;
+        transform: rotate(45deg) scale(0.5) translateY(-50%);
+        transition: all 0.35s; }
+  .accordion__list {
+    list-style: none;
+    max-height: 0rem;
+    transition: all 0.35s; }
+  .accordion__item {
+    color: #72716B;
+    position: relative;
+    cursor: pointer;
+    padding: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding-left: 1.5rem; }
+    .accordion__item:hover {
+      border: 1px solid #EBC57A; }
+
+input:checked + .accordion__panel__label::after {
+  content: "◢";
+  color: #72716B;
+  position: relative;
+  top: 50%;
+  transform: rotate(135deg) scale(0.5) translateY(30%); }
+
+input:checked ~ .accordion__list {
+  max-height: 100vh; }
 
 /* link preview */
 .linkCard > .react_tinylink_card {

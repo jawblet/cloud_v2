@@ -79,7 +79,6 @@ exports.checkUser = catchAsync(async(req, res, next) => {
       } else {
         currentUser = null;
         //const id = '5fde1c0bfb7a4755e5003695'; // lil old me
-        //const id = '5fda8983868a110017078a13'; //jawblia000
         //currentUser = await User.findById(id).populate('house');
       }    
       res.status(200).send({ currentUser });
@@ -104,3 +103,4 @@ exports.logoutUser = catchAsync(async (req, res) => {
   });
 
 
+        //const id = '5fda8983868a110017078a13'; //jawblia000

@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../hooks/UserContext';
 import { Link } from 'react-router-dom';
 import HomeIcon from '../../atoms/HomeIcon';
 import {ContourS1,ContourS2,ContourM1,ContourM2,ContourL1,ContourL2 } from '../../svg/BlobGarden';
-import MapKey from '../../sections/home/MapKey';
+//import MapKey from '../../sections/home/MapKey';
+import AccordionMenu from '../../components/menus/AccordionMenu';
 
 export default function MapCanvas() {
     const { rooms } = useContext(UserContext);
@@ -11,30 +12,14 @@ export default function MapCanvas() {
     const w = '40%';
     const arr = rooms.length;
 
-    const newRooms = [...rooms]; // copy array 
+    const newRooms = [...rooms]; 
     newRooms.sort((a, b) => { //reverse room order for map cartography 
         return b.id - a.id 
     }); 
 
-    //for hover -- abandoned
-    const initState = newRooms.map(el => false);
-    const [hoverLayers, setHover]= useState(initState);
-    const handleHover = (e) => {
-        // all layers are hover === false // get hovered layer
-        const i = e.target.dataset.id;
-        //set state that that layer is hovered 
-        const newArr = [...initState];
-        newArr[i] = !newArr[i];
-        setHover(newArr);
-    };
-
-    const handleHoverOut = () => {
-
-    };
-
     return (
+        <div className="map__container">
         <div className="map__canvas">
-            <MapKey items={rooms} handleHover={handleHover}/>
             <svg width={w} viewBox="0 0 800 800" strokeWidth="3" fill="transparent" stroke={line}
                 className="map__SVG">
                 {newRooms.map((room, i) => {
@@ -69,9 +54,29 @@ export default function MapCanvas() {
             </svg>
             <HomeIcon/>
         </div>
+        <div className="map__key">
+                <AccordionMenu/>
+        </div>
+    </div>
     )
 } 
 
-/*
+  /*
+    <MapKey items={rooms}/>
 
-*/
+    //for hover -- abandoned
+    const initState = newRooms.map(el => false);
+    const [hoverLayers, setHover]= useState(initState);
+    const handleHover = (e) => {
+        // all layers are hover === false // get hovered layer
+        const i = e.target.dataset.id;
+        //set state that that layer is hovered 
+        const newArr = [...initState];
+        newArr[i] = !newArr[i];
+        setHover(newArr);
+    };
+
+    const handleHoverOut = () => {
+
+    }; 
+    */

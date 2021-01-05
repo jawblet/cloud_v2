@@ -32,14 +32,14 @@ export default function Tags() {
                             handlePaintClick={handlePaintClick} eyedrop={eyedrop}
                             /> 
             </div>
-            <div className="room">
-                <div className="room__sidebar">
+            <div className="layer">
+                <div className="layer__sidebar">
                     <ListMenu title={'sort'} list={list} activeItem={activeItem} handleOneFilter={handleOneFilter}/>
                 </div>
-                <div className="room__body">
+                <div className="layer__body">
                 { loading && <Loading/> }
                 {(!loading && tags.length === 0) && 
-                        <div className="emptyRoom">
+                        <div className="layer__empty">
                             <h3 className="light">Empty room</h3>
                         </div>
                     }

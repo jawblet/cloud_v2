@@ -17,6 +17,6 @@ export default function MapKey({items, handleHover}) {
                 })
                 }
             </ol> 
-        </div>
+        </div> 
     )
 }
