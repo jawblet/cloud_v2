@@ -29,7 +29,7 @@ const Thread = () => {
                     <Editor readOnly={true} 
                             editorState={editorState}/> 
                 </div> 
-                    <ThreadComments id={id} setEditor={setEditor} showEdit={showEdit}/>
+                    <ThreadComments id={id} setEditor={setEditor} showEdit={showEdit} thread={metadata.title}/>
             </div>}
         </div>
     );

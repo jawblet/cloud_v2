@@ -18,7 +18,6 @@ import { uploadBtns, NOTE_TOOLTIP } from '../../data/buttons';
 import { VscClose, VscQuestion } from 'react-icons/vsc'; 
 import { CSSTransition } from 'react-transition-group';
 
-
 export default function UploadContainer(props) { 
     const nodeRef = useRef(null); 
     const { type, room, switchType, values, error } = props;

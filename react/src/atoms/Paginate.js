@@ -2,29 +2,36 @@ import React from 'react';
 import { VscArrowLeft, VscArrowRight } from 'react-icons/vsc'; 
 
 export default function Paginate(props) {
-   const {page, setPage} = props;
-
-   const currentPg = page.currentPage; 
-   const totalPgs = page.totalPages; 
-
-   if(!currentPg) {
-    return(<></>);
-   }
+   const { pageState, handlePageCounter } = props; 
+   const { page, totalPages, prevPage, nextPage } = pageState;
 
     return (
         <div className="paginate" style={{paddingTop:'1rem'}}>
-           {(currentPg !== 1) && 
+           {prevPage && 
            <VscArrowLeft className="icon icon__btn paginate__L" 
-                        onClick={() => setPage({...page, currentPage: page.currentPage - 1}
-                            )}/>
+                        onClick={() => handlePageCounter(page - 1)}/>
                     }
-                <h4 className="paginate__pg">
-                    {page.currentPage} of {page.totalPages}
-                </h4> 
-               {(currentPg !== totalPgs) &&
-                <VscArrowRight className="icon icon__btn paginate__R" 
-                         onClick={() => setPage({...page, 
-                            currentPage: page.currentPage + 1})}/>}
+            <h4 className="paginate__pg">
+                {page} of {totalPages}
+            </h4>
+            {nextPage &&
+            <VscArrowRight className="icon icon__btn paginate__R" 
+                         onClick={() => handlePageCounter(page + 1)}/>
+                    }
         </div>
     )
 }
+
+/*
+{(totalPages > 1) &&
+            <h4 className="paginate__pg">
+                {page} of {totalPages}
+            </h4> }
+
+
+   if(totalPages === 1) {
+        return null; 
+   }
+
+
+*/

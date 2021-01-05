@@ -597,7 +597,8 @@ hr {
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
-  margin-bottom: -5px; }
+  margin-bottom: -5px;
+  position: relative; }
   .floor > *:nth-child(odd) {
     margin-top: -0.5rem; }
   .floor > *:nth-child(2) {
@@ -1182,14 +1183,22 @@ h6[data-block] {
   min-height: 10vh;
   max-height: 80vh;
   display: flex;
-  margin-top: 0;
   border: 1px solid #f5eee5;
   border-radius: 0.5rem;
   background-color: #fffdfa;
   transition: all .2s ease-in-out;
   transition-property: border, width, margin;
   cursor: pointer;
-  overflow: scroll; }
+  overflow: visible; }
+  .card__label {
+    padding: 1rem;
+    position: absolute; }
+  .card__body {
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; }
   .card.front {
     z-index: 3;
     border-color: #fcf7f3;
@@ -1208,17 +1217,6 @@ h6[data-block] {
     z-index: 0;
     background-color: #faf7f5;
     box-shadow: 4px 4px 16px #DCD8D1, -4px -4px 16px #fff; }
-
-.card__label {
-  padding: 1rem;
-  position: absolute; }
-
-.card__body {
-  padding: 1.5rem;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap; }
 
 /* post versions */
 .postRow100 {
@@ -1705,14 +1703,6 @@ h6[data-block] {
   .inlineComment::placeholder {
     color: #C3C2BD; }
 
-.commentDraft {
-  padding-top: 1.5rem; }
-  .commentDraft__submit {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 1rem; }
-
 .inbox {
   width: 100%;
   display: flex;
@@ -1755,7 +1745,7 @@ h6[data-block] {
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2; }
+    z-index: 3; }
 
 .paginate {
   width: 100%;
@@ -2153,3 +2143,12 @@ figcaption {
 
 .threadComment {
   margin-bottom: 3rem; }
+
+.threadDraft {
+  padding-top: 0.5rem;
+  transform-origin: top; }
+  .threadDraft__submit {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem; }

@@ -7,7 +7,7 @@ import { CSSTransition } from 'react-transition-group';
 
 const ThreadComments = (props) => {
     const nodeRef = useRef(null);
-    const { id, showEdit, setEditor } = props; 
+    const { id, showEdit, setEditor, thread } = props; 
     
     const { 
         editorState, 
@@ -16,7 +16,7 @@ const ThreadComments = (props) => {
         mapKeyToEditorCommand, 
         handleKeyCommand, 
         toggleInlineStyle, 
-        toggleBlockType 
+        toggleBlockType,
     } = useRichEditor();
 
     const { comments, loading, handleAddComment } = useThreadComments(id);
@@ -26,6 +26,7 @@ const ThreadComments = (props) => {
         const raw = editorState.getCurrentContent();
         const comment = JSON.stringify(convertToRaw(raw));
         handleAddComment(comment); 
+        clearEditor();
     }
 
     return (
@@ -38,8 +39,8 @@ const ThreadComments = (props) => {
                return (
                 <div className="threadComment" key={el._id}>
                     <div className="thread__metadata" style={{paddingBottom:'0.5rem'}}>
-                    <h4 className="thread__author">{el.user.username}</h4>
-                        <h4 className="thread__date">{el.createdOn}</h4>
+                    <h4 className="thread__author"> {el.user.username} </h4>
+                        <h4 className="thread__date"> {el.createdOn} </h4>
                     </div>
                     <Editor editorState={editorState} 
                             readOnly={true} /> 
@@ -49,12 +50,12 @@ const ThreadComments = (props) => {
             <CSSTransition 
                 in={showEdit} timeout={250} 
                 nodeRef={nodeRef} classNames="rollDownFadeOut" unmountOnExit>
-                <div style={{transformOrigin:'top'}} ref={nodeRef}>
-                 <RichComment setEditor={setEditor}
+                <div className="threadDraft" ref={nodeRef}>
+                 <h4 className="heavy">reply to {thread} </h4>
+                 <RichComment   setEditor={setEditor}
                                 handleSubmit={handleSubmit}
                                 editorState={editorState} 
                                 onNoteChange={onNoteChange} 
-                                clearEditor={clearEditor}
                                 mapKeyToEditorCommand={mapKeyToEditorCommand} 
                                 handleKeyCommand={handleKeyCommand} 
                                 toggleInlineStyle={toggleInlineStyle} 

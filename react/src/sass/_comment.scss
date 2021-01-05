@@ -22,7 +22,6 @@
         align-self: flex-end;
         color: $body-lightest;
     }
-   
 }
 
 //comment container for posts 
@@ -43,16 +42,3 @@
     color: $body-lightest;
     }
 }
-
-//RICH COMMENT
-
-.commentDraft {
-    padding-top: 1.5rem;
-    &__submit {
-        width: 100%;
-        display: flex; 
-        justify-content: flex-end;
-        padding-top: 1rem;
-    }
-}
-

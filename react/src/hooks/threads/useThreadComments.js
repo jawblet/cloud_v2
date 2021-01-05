@@ -1,7 +1,6 @@
 import { useState,  useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext'; 
-import { EditorState, convertFromRaw } from 'draft-js';
 
 export default function useThread(id) {
     const { user } = useContext(UserContext);

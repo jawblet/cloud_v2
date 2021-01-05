@@ -10,7 +10,7 @@
     border-radius: $border-small;
     box-shadow: $softer-shadow;
     position: absolute;
-    z-index: 1;
+    z-index: 1; // must be on top 
     &__wrapper {
         position: relative; 
         display: flex; 

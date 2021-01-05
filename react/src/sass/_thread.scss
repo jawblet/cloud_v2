@@ -39,6 +39,17 @@
 }
 
 .threadComment {
-    //background-color: $sand;
     margin-bottom: 3rem;
+}
+
+//RICH COMMENT
+.threadDraft {
+    padding-top: 0.5rem;
+    transform-origin: top;
+    &__submit {
+        width: 100%;
+        display: flex; 
+        justify-content: flex-end;
+        padding-top: 1rem;
+    }
 }

@@ -21,13 +21,12 @@
 //SKYLIGHT VIEW
 .floor {
   width: 100%; 
-  height: 100%;
-  //min-height: 15vh;
+  height: 100%; //min-height: 15vh;
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
   margin-bottom: -5px;
-  //border: 1px solid red; 
+  position: relative;
   & > *:nth-child(odd) {
     margin-top: -0.5rem;
   }
@@ -73,7 +72,6 @@
   align-self: center;
   display: flex;
   border: 1.5px solid $body-medium;
-  //background-color: $body-medium;
   border-radius: $border-smallest;
   transform: rotate(45deg);
   width: 3rem;
@@ -85,7 +83,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    //border: $border; 
   }
   &__pin {
     @extend %pin; 

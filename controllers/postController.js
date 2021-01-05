@@ -11,6 +11,7 @@ exports.createPost = functionHandler.create(Post);
 exports.updatePost = functionHandler.updateOne(Post);
 exports.getPostsByUser = functionHandler.getAllByUserId(Post); 
 exports.getPostsByHouse = functionHandler.getAllByHouseId(Post, 'tags user'); 
+exports.getPaginatedPosts = functionHandler.paginate(Post);
 exports.deleteOnePost = functionHandler.deleteOne(Post);
 exports.deletePostsByHouse = functionHandler.deleteAllByHouse(Post);  
 exports.deleteAllPosts = functionHandler.deleteAll(Post);  

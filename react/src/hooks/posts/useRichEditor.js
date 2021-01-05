@@ -19,7 +19,7 @@ export default function useRichEditor() {
 
     // clear editor 
     const clearEditor = () => {
-      setEditorState(EditorState.createEmpty()); 
+      setEditorState(EditorState.createEmpty());
     }
 
     //handle keyboard shortcuts like cmd+b for bold 

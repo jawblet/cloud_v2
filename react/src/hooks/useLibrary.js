@@ -7,28 +7,40 @@ export default function useLibrary(limit) {
     const { user } = useContext(UserContext);
     const house = user.house._id;
 
-    const [threads, setThreads] = useState(null);
-    const [page, setPage] = useState({}); 
+   const initPageState = {
+        page: 1,
+        totalPages: null,
+        prevPage: null,
+        nextPage: null
+    }
+
+    const [threads, setThreads] = useState(null); 
+    const [pageState, setPage] = useState(initPageState); 
 
     //GET 
-    const getLibraryBooks = async () => {
-       console.log('get');
-       return axios.get(`/posts/h/${house}/library`)
+    const getLibraryBooks = async (page, add) => {
+        const offset = (page - 1) * limit; 
+        return axios.get(`/posts/paginate/${house}/library?offset=${offset}&limit=${limit}`)
             .then(res => {
-              const rawNotes = res.data.data.results;
-        if(rawNotes.length > limit) {
-                const totalPages = [...Array(Math.ceil(rawNotes.length / limit))];
-                const postArrs = totalPages.map((row, i) => 
-                    rawNotes.slice(i * limit, i * limit + limit ));
-                setPage({currentPage: 1, 
-                totalPages: totalPages.length }); 
-                return setThreads(postArrs);
-            }
-            // if no pgs 
-        return setThreads([...Array(rawNotes)]); 
-               //return setThreads(rawNotes);
-            }).catch(err => console.log(err));
-    }
+              let {docs, page, totalPages, prevPage, nextPage} = res.data.data.docs; 
+              console.log(res.data.data.docs);
+
+              setThreads(docs);
+              if(page > totalPages) {
+                  getLibraryBooks(totalPages);
+              }
+              if(add && nextPage) {
+                getLibraryBooks(totalPages);
+              }   
+
+              setPage({
+                page,
+                totalPages,
+                prevPage,
+                nextPage
+            })
+        }).catch(err => console.log(err));
+}
 
     //POST 
     const addLibraryBook = async (data, title) => {
@@ -40,9 +52,8 @@ export default function useLibrary(limit) {
                 content,
                 user,
                 house
-                }).catch(err => console.log(err));
-            }
-
+            }).catch(err => console.log(err));
+        }
 
     //DELETE 
     const deleteLibraryBook = async (id) => {
@@ -56,25 +67,26 @@ export default function useLibrary(limit) {
     //functions
     async function handleLibraryBookDelete(e) {
         const id = e.currentTarget.dataset.id;
+        console.log(e.currentTarget);
         await deleteLibraryBook(id);
-        await getLibraryBooks();
+        await getLibraryBooks(pageState.page);
     }
     
     async function handleLibrarySubmit(data, title) {
        await addLibraryBook(data, title);
-       await getLibraryBooks();
+       await getLibraryBooks(pageState.page, true);
     }    
+
+    async function handlePageCounter(page) {
+        getLibraryBooks(page);
+    }
 
     return {
         handleLibrarySubmit,
         getLibraryBooks,
         handleLibraryBookDelete,
         threads,
-        page,
-        setPage 
+        pageState,
+        handlePageCounter
     }
 }
-
-/*
-    complex paginate logic 
-*/

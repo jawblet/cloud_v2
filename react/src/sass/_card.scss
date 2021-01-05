@@ -7,14 +7,25 @@
     min-height: 10vh;
     max-height: 80vh;
     display: flex; 
-    margin-top: 0;
     border: 1px solid $sand2; 
     border-radius: $border-small;
     background-color: $off-white;
     transition: all .2s ease-in-out; 
     transition-property: border, width, margin;
     cursor: pointer; 
-    overflow: scroll;
+    overflow: visible;
+    &__label { 
+        padding: 1rem;
+        position: absolute;
+    }
+    &__body {
+        padding: 1.5rem;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+       // overflow: scroll; // height problem?
+    }
     &.front {  
         z-index: 3;
         border-color: $sand;
@@ -38,17 +49,4 @@
         box-shadow: $soft-shadow; 
     }
 }
-
-.card__label { 
-    padding: 1rem;
-    position: absolute;
-}
-
-///style cards w/ posts 
-.card__body {
-    padding: 1.5rem;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
+ 

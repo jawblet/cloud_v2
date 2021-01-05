@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const getCurrentDate = () => {
     let date = new Date().toLocaleDateString('en', 
@@ -40,6 +41,8 @@ const postSchema = new Schema({
         default: Date.now
     }
 });
+
+postSchema.plugin(mongoosePaginate);
 
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post; 

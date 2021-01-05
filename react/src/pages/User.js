@@ -49,7 +49,7 @@ export default function User() {
                         user={user} invalidFields={invalidFields}/>
                     <div className="inlineForm__submit padBottomThree" style={{justifyContent:'flex-end'}}>
                         <CTA name={"save"} type={"submit"}/> 
-                    </div>
+                    </div> 
                 </form>
                 <div className="flex justifyEnd pointer">
                 <Prompt prompt="Delete account" type="light" handleClick={() => toggleModal()}/>

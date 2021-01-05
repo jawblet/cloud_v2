@@ -12,17 +12,18 @@ import { CSSTransition } from 'react-transition-group';
 export default function House() {
     const nodeRef = useRef(null);
     const nav = [ {name: 'house', url: 'house'} ];
-    const limit = 10;
+    const limit = 6; 
 
     const { getLibraryBooks, 
         handleLibrarySubmit, 
         threads, 
         handleLibraryBookDelete,
-        page,
-        setPage } = useLibrary(limit);
+        pageState,
+        handlePageCounter
+    } = useLibrary(limit);
 
         useEffect(() => {
-            getLibraryBooks();
+            getLibraryBooks(1); 
         }, []); 
 
     const { showEdit, setEditor } = useShowEditor();
@@ -81,11 +82,14 @@ export default function House() {
                             </div>
                         </form>
                     </CSSTransition> 
-                    <h4 className="heavy" style={{paddingBottom:'0.5rem'}}>threads</h4>
-                    <Inbox threads={threads} limit={limit}
+                        <h4 className="heavy" style={{paddingBottom:'0.5rem', cursor:'pointer'}} 
+                            onClick={() => handlePageCounter(1)}>
+                            threads
+                        </h4>
+                    <Inbox threads={threads} 
                             handleLibraryBookDelete={handleLibraryBookDelete}
-                            page={page}
-                            setPage={setPage}
+                            pageState={pageState}
+                            handlePageCounter={handlePageCounter}
                     />
             </div>
         </div>

@@ -1,6 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/apiFeatures'); 
-const unwindAndCount = require('../utils/unwindAndCount');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 //get one by id
 exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
@@ -118,9 +118,16 @@ exports.deleteAll = (Model) => catchAsync(async(req, res) => {
     await Model.deleteMany(); 
     res.status(204).json({
         status: 'deleted',
-        data: null
+        data: null 
     })
 });
 
-
-
+//paginate
+exports.paginate = (Model) => catchAsync(async(req, res) => {
+    const docs = await Model.paginate({ house: req.params.houseId, room: req.params.room }, 
+                                    { offset: req.query.offset, limit: req.query.limit });
+    res.status(200).json({
+        status: 'success',
+        data: { docs }
+    });
+});

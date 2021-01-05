@@ -88,7 +88,6 @@ exports.checkUser = catchAsync(async(req, res, next) => {
 //update password 
 exports.changePassword = catchAsync(async (req, res, next) => {
     const user = await User.findById(req.params.id);
-    
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;
     await user.save();

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const commentSchema = new Schema({
     comment: String, 
@@ -16,6 +17,8 @@ const commentSchema = new Schema({
         default: Date.now
     }
 });
+
+commentSchema.plugin(mongoosePaginate);
 
 const Comment = mongoose.model('Comment', commentSchema);
 module.exports = Comment; 
