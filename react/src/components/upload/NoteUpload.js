@@ -12,7 +12,7 @@ const NoteUpload = forwardRef((props, ref) => {
 
         useEffect(() => { 
             setNote(true);   
-        }, [note]);
+        }, [note]); 
         
         useEffect(() => {
             if(note) {
@@ -20,7 +20,6 @@ const NoteUpload = forwardRef((props, ref) => {
             }
         }, [note]);
  
-
     return (
         <span style={{position:'relative'}}>
             <Toolbar editorState={editorState}
@@ -28,21 +27,20 @@ const NoteUpload = forwardRef((props, ref) => {
                         toggleBlockType={toggleBlockType}
                         setFocus={setFocus}
                         addTagFromNote={addTagFromNote}
-                        addTag={true} /> 
+                        addTag={true}
+                        styled={true} /> 
             <CSSTransition 
             in={note} timeout={350} 
             nodeRef={nodeRef} classNames="rollDown"
             unmountOnExit>
-                <div className="upload upload--note" ref={nodeRef}>
-                <div className="editorWrapper editorWrapper--note" onClick={setFocus}> 
+                <div className="editorWrapper editorWrapper--block" ref={nodeRef} onClick={setFocus}> 
                     <Editor editorState={editorState} 
                         ref={ref} spellCheck={true}
                         onChange={onNoteChange}
                         handleKeyCommand={handleKeyCommand}
                         mapKeyToEditorCommand={mapKeyToEditorCommand}
                     />
-                </div>
-                </div>
+                </div> 
             </CSSTransition>
             </span>
         )

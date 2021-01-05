@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import Button from './Button';
 import SelectMenu from '../menus/SelectMenu'; 
 import { HEADINGS, INLINE_STYLES, BLOCK_TYPES, ADD_PATH } from '../../data/buttons';
@@ -6,19 +6,18 @@ import TooltipBar  from './TooltipBar';
 
 export default function Toolbar(props) {
   const currentInlineStyle = props.editorState.getCurrentInlineStyle();
- 
   const selection = props.editorState.getSelection();
   const blockType = props.editorState.getCurrentContent()
     .getBlockForKey(selection.getStartKey())
     .getType();
 
-  const setBlockType = (e) => {
+  const setBlockType = (e) => { 
       e.preventDefault()
       props.toggleBlockType(e);
   }
-
+ 
     return (
-        <div className="toolbar">
+        <div className={`toolbar ${props.styled ? `toolbar--styled` : ''}`}>
             {INLINE_STYLES.map((type) => {
                 return (
                   //this keeps the focus w/n the editor on inline style change

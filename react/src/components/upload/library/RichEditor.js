@@ -18,22 +18,28 @@ export default function RichEditor(props) {
            editRef.current.focus();
         }, []);
 
-    
     return(
       <>
-            <Toolbar editorState={editorState}
-                    onToggleInline={toggleInlineStyle}
-                    toggleBlockType={toggleBlockType}
+        <Toolbar editorState={editorState}
+                onToggleInline={toggleInlineStyle}
+                toggleBlockType={toggleBlockType}
+                addTag={false}
+                styled={true} 
                 /> 
-            <div className="editorWrapper--lib">
+            <div className="editorWrapper--block">
                 <input type="text" 
-                                className="input editor__title"
-                                disabled={false}
-                                name="title"
-                                value={title}
-                                onChange={onTitleChange}
+                            className="input editor__title"
+                            disabled={false}
+                            name="title"
+                            value={title}
+                            onChange={onTitleChange}
+                            onKeyDown={(e) => {
+                                if(e.keyCode === 13) {
+                                    e.preventDefault();
+                                }
+                            }}
                             />
-                <div className="editorWrapper"  onClick={() => editRef.current.focus()}> 
+                <div className="editorWrapper" onClick={() => editRef.current.focus()}> 
                     <Editor editorState={editorState} 
                     ref={editRef} spellCheck={true}
                     onChange={onNoteChange}

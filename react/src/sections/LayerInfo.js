@@ -29,7 +29,9 @@ export default function LayerInfo(props) {
                             handleChange={handleChange}
                             />
             </div>
-            <VscTrash className="icon icon__btn icon--warning" onClick={props.toggleModal}/>
+            <div className="page__delete">
+                <VscTrash className="icon icon__btn icon--warning" onClick={props.toggleModal}/>
+            </div>
         </div>
     )
 }
