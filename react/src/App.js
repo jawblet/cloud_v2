@@ -13,7 +13,7 @@ import Edit from './sections/Edit';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
-import Library from './pages/Library';
+import House from './pages/House';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
 import Test from './pages/Test';
@@ -44,7 +44,7 @@ function App() {
           <Route path="/confirm" component={Confirm}/>
           <Route path="/test" component={Test}/>
           <PrivateRoute exact path="/" component={Home}/>
-          <PrivateRoute path='/house' component={Library}/>
+          <PrivateRoute path='/house' component={House}/>
           <PrivateRoute path="/user" component={User}/>
           <PrivateRoute path="/add" component={Add}/>
           <PrivateRoute path="/paths" component={Tags}/>

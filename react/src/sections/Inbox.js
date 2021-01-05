@@ -9,7 +9,7 @@ export default function Inbox(props) {
     const pg = page.currentPage; 
     console.log(threads);
     //loop through the page OR the 0 position of array (no pg)
-    return(
+    return ( 
         <div className="inbox">
            {(threads && threads.length > 0)
                 ? <div>
