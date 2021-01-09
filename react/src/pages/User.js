@@ -48,7 +48,7 @@ export default function User() {
                 <UserForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}
                         user={user} invalidFields={invalidFields}/>
                     <div className="inlineForm__submit padBottomThree" style={{justifyContent:'flex-end'}}>
-                        <CTA name={"save"} type={"submit"}/> 
+                        <CTA name={"save"} kind="primary" type={"submit"}/> 
                     </div> 
                 </form>
                 <div className="flex justifyEnd pointer">

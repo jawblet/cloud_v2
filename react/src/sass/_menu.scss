@@ -16,7 +16,6 @@
         position: relative;
         cursor: pointer;
         display: flex;
-       // border: 1px solid blue;
         width: 100%;
     } 
     &__expand {
@@ -159,7 +158,9 @@
 
 //accordion menu 
 .accordion {
-    border-radius: $border-large;
+    background-color: $sand; 
+    border: 1px solid $sand3;
+    border-radius: $border-small;
     width: 100%;
     &__panel {
     overflow: hidden;
@@ -170,14 +171,13 @@
             align-items: center;
             width: 100%;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 1rem;
               &::after {
-                  content: "◢";
-                  color: $body-light;
-                  position: relative;
-                  top: 50%;
-                  transform: rotate(45deg) scale(0.5) translateY(-50%);
-                  transition: all $short-fade;
+                content: "◢";
+                color: $body-light;
+                position: relative;
+                top: 50%;
+                transform: rotate(135deg) scale(0.5) translateY(30%);
               }
           }
         }
@@ -192,10 +192,10 @@
           cursor: pointer;
           padding: 0.75rem;
           border: 1px solid transparent;
-          border-radius: $border-small;
+          //border-radius: $border-smallest;
           padding-left: 1.5rem;
           &:hover {
-              border: 1px solid $sand-bright; 
+              border: 1px solid $blue; 
           }
       }
     }
@@ -203,10 +203,21 @@
         content: "◢";
         color: $body-light;
         position: relative;
-        //top: 25%;
         top: 50%;
-        transform: rotate(135deg) scale(0.5) translateY(30%);
-        }
+        transform: rotate(45deg) scale(0.5) translateY(-50%);
+        transition: all $short-fade;
+    }
     input:checked ~ .accordion__list {
         max-height: 100vh;
-      }
+    }
+
+    .dnd {
+        background-color: inherit;
+        color: inherit;
+        transition: all $shortest-fade;
+        &__drop {
+            background-color: $off-white;
+            color: $off-white;
+            border: 1px solid $sand3; 
+        }
+    }

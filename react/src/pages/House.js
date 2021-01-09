@@ -58,7 +58,7 @@ export default function House() {
               <div className="house__compose">
                   {showEdit 
                         ? <InlineButton name="close" handleClick={() => setEditor(!showEdit)}/>
-                        : <CTA name="new thread" handleClick={() => setEditor(!showEdit)}/> 
+                        : <CTA name="new thread" kind="primary" handleClick={() => setEditor(!showEdit)}/> 
                     }
               </div>
                     <CSSTransition 
@@ -77,8 +77,7 @@ export default function House() {
                                         toggleBlockType={toggleBlockType}
                                         />
                             <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
-                                    <CTA name="finish" 
-                                        type="submit"/> 
+                                    <CTA name="finish" type="kind" type="submit"/> 
                             </div>
                         </form>
                     </CSSTransition> 

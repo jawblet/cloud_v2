@@ -45,7 +45,7 @@ export default function Confirm() {
                 fail={invalidFields.includes("house")}
                 handleChange={handleChange}/>
                     <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
-                        <CTA name="register" type={"submit"}/>
+                        <CTA name="register" kind="primary" type={"submit"}/>
                     </div>
                 </form>
             </div>

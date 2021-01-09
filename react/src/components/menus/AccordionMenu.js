@@ -1,26 +1,31 @@
 import React from 'react';
 
 const AccordionMenu = (props) => {
-    const tools = ['spackle', 'sandpaper', 'screwdriver'];
+    const { items } = props;
 
     return ( 
-    <div className="accordion">
-        <div className="accordion__panel">
-            <input type="checkbox" className="accordion__panel__input" id="panel"/>
-            <label className="accordion__panel__label" htmlFor="panel">
-                <h4>group 1</h4>
-            </label>
-            <div className="accordion__list">
-                <menu>
-                    {tools.map(el => {
-                    return( <li className="accordion__item">{el}</li>
-                            )
-                        })}
-                </menu>
-            </div>
-        </div>
+        <div className="accordion">
+        {items && Object.entries(items).map(([key, values], col) => {
+            return ( 
+            <div className="accordion__panel" key={key}>
+                <input type="checkbox" className="accordion__panel__input" id={`panel-${key}`} defaultChecked/>
+                <label className="accordion__panel__label" htmlFor={`panel-${key}`}>
+                    <h4> {values.group} </h4> 
+                </label>
+                <div className="accordion__list">
+                    <menu>
+                        {values.layers.map((el, i) => {
+                            return( <li key={el.id} 
+                                    className={'accordion__item'}>
+                                    {el.label}
+                                </li> )
+                            })}
+                        </menu>
+                </div>
+            </div> );
+        })}
     </div>
-    );
-}
+    )
+} 
  
 export default AccordionMenu;

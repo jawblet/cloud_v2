@@ -40,7 +40,9 @@ export default function Tags() {
                 { loading && <Loading/> }
                 {(!loading && tags.length === 0) && 
                         <div className="layer__empty">
-                            <h3 className="light">Empty room</h3>
+                            <h3 className="light">
+                                Empty room
+                            </h3>
                         </div>
                     }
                 {!loading && <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} eyedrop={eyedrop}

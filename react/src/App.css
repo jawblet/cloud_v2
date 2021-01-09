@@ -119,7 +119,7 @@ hr {
   width: 100%;
   margin: 1rem auto; }
 
-.homeIcon__pin, .landing__pin {
+.homeIcon__pin, .landing__pin, d {
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -782,32 +782,26 @@ hr {
   cursor: pointer;
   transition: all 0.35s;
   background-color: inherit; }
-  .btn:active, .btn.active {
-    background-color: #f5eee5; }
-  .btn--CTA {
-    min-width: 6rem;
-    padding: 0 0.5rem;
-    background-color: #f1e3d3; }
-  .btn.warning {
-    background-color: #f39c81d9; }
 
-.inlineBtn {
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn:active, .btn.active {
+  background-color: #f5eee5; }
+
+.btn.warning {
+  background-color: #f39c81d9; }
+
+.CTA {
+  min-width: 6rem;
   padding: 0 0.5rem;
-  cursor: pointer;
-  border: 3px solid transparent;
-  background-color: inherit;
-  transition: all 0.35s; }
-  .inlineBtn:hover {
-    font-style: italic; }
-  .inlineBtn.outline {
-    border-radius: 0.5rem;
+  border: 3px solid transparent; }
+  .CTA.primary {
+    background-color: #f1e3d3; }
+  .CTA.secondary {
+    background-color: #44433e;
+    color: #fffdfa; }
+  .CTA.outline {
     border: 3px solid #f5eee5; }
-    .inlineBtn.outline:hover {
-      background-color: #fcf7f3; }
+  .CTA.inline:hover {
+    font-style: italic; }
 
 .icon {
   font-size: 1.2rem;
@@ -815,8 +809,6 @@ hr {
   transition: all 0.35s; }
   .icon__btn {
     cursor: pointer; }
-    .icon__btn--active {
-      background-color: red; }
     .icon__btn:hover {
       color: #72716B; }
   .icon--active {
@@ -828,9 +820,6 @@ hr {
 
 d {
   display: inline-block;
-  height: 6px;
-  width: 6px;
-  border-radius: 50%;
   background-color: #C3C2BD;
   transition: all .2s ease-in-out; }
 
@@ -1621,7 +1610,9 @@ h6[data-block] {
       background-color: #f1e3d3; }
 
 .accordion {
-  border-radius: 1rem;
+  background-color: #fcf7f3;
+  border: 1px solid #f1e3d3;
+  border-radius: 0.5rem;
   width: 100%; }
   .accordion__panel {
     overflow: hidden; }
@@ -1633,14 +1624,13 @@ h6[data-block] {
       align-items: center;
       width: 100%;
       cursor: pointer;
-      padding: 0.5rem; }
+      padding: 1rem; }
       .accordion__panel__label::after {
         content: "◢";
         color: #72716B;
         position: relative;
         top: 50%;
-        transform: rotate(45deg) scale(0.5) translateY(-50%);
-        transition: all 0.35s; }
+        transform: rotate(135deg) scale(0.5) translateY(30%); }
   .accordion__list {
     list-style: none;
     max-height: 0rem;
@@ -1651,20 +1641,29 @@ h6[data-block] {
     cursor: pointer;
     padding: 0.75rem;
     border: 1px solid transparent;
-    border-radius: 0.5rem;
     padding-left: 1.5rem; }
     .accordion__item:hover {
-      border: 1px solid #EBC57A; }
+      border: 1px solid #00f7ff; }
 
 input:checked + .accordion__panel__label::after {
   content: "◢";
   color: #72716B;
   position: relative;
   top: 50%;
-  transform: rotate(135deg) scale(0.5) translateY(30%); }
+  transform: rotate(45deg) scale(0.5) translateY(-50%);
+  transition: all 0.35s; }
 
 input:checked ~ .accordion__list {
   max-height: 100vh; }
+
+.dnd {
+  background-color: inherit;
+  color: inherit;
+  transition: all 0.15s; }
+  .dnd__drop {
+    background-color: #fffdfa;
+    color: #fffdfa;
+    border: 1px solid #f1e3d3; }
 
 /* link preview */
 .linkCard > .react_tinylink_card {
@@ -1815,14 +1814,14 @@ input:checked ~ .accordion__list {
     right: 0; }
 
 .popup {
+  background-color: #fcf7f3;
+  border: 1px solid #f1e3d3;
+  border-radius: 0.5rem;
   width: 15rem;
   min-height: 5rem;
   padding: 1rem;
-  background-color: #fcf7f3;
-  border: 1px solid #f1e3d3;
   display: flex;
   flex-direction: column;
-  border-radius: 0.5rem;
   box-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), -4px -4px 16px #fff;
   position: absolute;
   z-index: 1; }
@@ -1994,7 +1993,7 @@ input:checked ~ .accordion__list {
         clip-path: polygon(100% 50%, 0 0, 0 100%);
     }
 **/
-.squareTall::after, .extrude::after, .extrudeTwice::before, .extrudeTwice::after, .splat::after, .splat::before {
+#c1a::after, .squareTall::after, .extrude::after, .extrudeTwice::before, .extrudeTwice::after, .splat::after, .splat::before {
   content: '';
   display: block;
   position: absolute;
@@ -2006,62 +2005,43 @@ input:checked ~ .accordion__list {
   border-radius: 50%;
   position: relative; }
 
-.blobCanvas {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%; }
-
-.blobGrid {
-  width: 50%;
-  min-height: 25vh;
-  display: flex;
-  border: 1px solid red; }
-  .blobGrid--NW {
-    border: 1px solid red;
-    justify-content: flex-end;
-    align-items: flex-end; }
-  .blobGrid--NE {
-    border: 1px solid blue;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-left: -3rem; }
-  .blobGrid--SW {
-    border: 1px solid green;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-top: -3rem;
-    margin-right: 3rem; }
-  .blobGrid--SE {
-    margin-top: -2rem;
-    margin-left: -4rem;
-    border: 1px solid yellow;
-    justify-content: flex-start;
-    align-items: flex-start; }
-
-.blob {
-  position: relative;
-  min-width: 40%;
-  max-width: 50%;
-  padding: 1rem;
-  min-height: 20vh;
-  background-color: #fcf7f3;
-  border: 1px solid #f1e3d3;
-  box-shadow: 4px 4px 24px rgba(216, 215, 211, 0.5), -4px -4px 16px #fff;
+.blobTest {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  background-color: lightgreen;
   border-radius: 70% 30% 30% 62% / 53% 40% 60% 40%; }
 
-.blob__label {
-  padding: 1rem;
-  position: absolute; }
-  .blob__label--NW {
-    bottom: 0;
-    right: 0; }
+.contour1 {
+  position: relative;
+  width: 10rem;
+  height: 20rem;
+  display: flex; }
 
-.blob__body {
-  padding: 1.5rem;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap; }
+.circle {
+  display: inline-block;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  position: absolute;
+  background-color: lightgreen; }
+
+#c1a {
+  top: 0;
+  right: 0; }
+  #c1a::after {
+    height: 95.5%;
+    width: 87%;
+    bottom: 0;
+    transform: translateY(50%); }
+
+#c1b {
+  height: 95.5%;
+  width: 87%;
+  bottom: 0; }
+
+#c2 {
+  border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
 
 .flat {
   border-radius: 21% 13% 50% 60% / 69% 34% 81% 41%; }
@@ -2129,17 +2109,11 @@ input:checked ~ .accordion__list {
 #flatTop {
   transform: scaleY(-1); }
 
-.blobTest {
-  display: block;
-  width: 10rem;
-  height: 10rem;
-  background-color: lightgreen;
-  border-radius: 70% 30% 30% 62% / 53% 40% 60% 40%; }
-
 .blobGarden {
   display: flex;
   flex-direction: column;
   border: 1px solid #DCD8D1;
+  width: 100vw;
   padding: 1rem; }
   .blobGarden__row {
     display: flex; }
@@ -2157,6 +2131,22 @@ figure {
 figcaption {
   padding: 0.5rem 0; }
 
+/*
+// border-radius: 93% 71% 87% 79% / 76% 72% 91% 91%;
+    //border-radius: 93% 71% 87% 79% / 76% 72% 91% 91%;
+
+
+
+    &::after{
+        @extend %lump;
+        width: 2rem;
+        height: 1rem;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-90%, 30%);
+        //background-color: red;
+    }
+*/
 .listItem {
   color: #72716B;
   cursor: pointer;

@@ -5,15 +5,16 @@ export default function Paginate(props) {
    const { pageState, handlePageCounter } = props; 
    const { page, totalPages, prevPage, nextPage } = pageState;
 
-    return (
+   return (
         <div className="paginate" style={{paddingTop:'1rem'}}>
            {prevPage && 
            <VscArrowLeft className="icon icon__btn paginate__L" 
                         onClick={() => handlePageCounter(page - 1)}/>
                     }
+           {(totalPages && totalPages > 1) &&
             <h4 className="paginate__pg">
                 {page} of {totalPages}
-            </h4>
+            </h4> }
             {nextPage &&
             <VscArrowRight className="icon icon__btn paginate__R" 
                          onClick={() => handlePageCounter(page + 1)}/>
@@ -21,17 +22,3 @@ export default function Paginate(props) {
         </div>
     )
 }
-
-/*
-{(totalPages > 1) &&
-            <h4 className="paginate__pg">
-                {page} of {totalPages}
-            </h4> }
-
-
-   if(totalPages === 1) {
-        return null; 
-   }
-
-
-*/

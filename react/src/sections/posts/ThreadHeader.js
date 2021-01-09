@@ -15,7 +15,7 @@ const ThreadHeader = ({ setEditor, showEdit }) => {
             <Link to="/house#new">  
                 <InlineButton name="new thread"/>
             </Link>
-            <CTA name={showEdit ? "close" : "reply"} handleClick={() => setEditor(!showEdit)}/> 
+            <CTA name={showEdit ? "close" : "reply"} kind="primary" handleClick={() => setEditor(!showEdit)}/> 
         </div>
     </div>
     );

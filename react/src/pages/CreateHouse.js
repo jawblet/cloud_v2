@@ -54,7 +54,7 @@ export default function CreateHouse() {
                             </CSSTransition>
                         </SwitchTransition>
                     <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
-                        <CTA name={"finish"} type={"submit"}
+                        <CTA name="finish" kind="primary" type="submit"
                         /> 
                     </div>
                 </form>

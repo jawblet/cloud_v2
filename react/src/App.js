@@ -16,7 +16,7 @@ import House from './pages/House';
 import Thread from './pages/Thread';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
-import Test from './pages/Test';
+import TestTwo from './pages/TestTwo';
 
 function App() {
 
@@ -44,7 +44,7 @@ function App() {
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
             <Route path="/confirm" component={Confirm}/>
-            <Route path="/test" component={Test}/>
+            <Route path="/blob" component={TestTwo}/>
             <PrivateRoute exact path="/" component={Home}/>
             <PrivateRoute exact path='/house' component={House}/>
             <PrivateRoute path='/house/:threadId' component={Thread}/>

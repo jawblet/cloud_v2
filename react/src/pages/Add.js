@@ -12,17 +12,8 @@ import useUpload from '../hooks/upload/useUpload';
 
     const [addPost, setAdd] = useState(true);
 
-    let firstRoom = '';
-
-    useEffect(() => {
-        if(rooms[0]) {
-            return firstRoom = rooms[0];
-        } 
-        return setAdd(false);
-    }, [rooms])
-
     //set room from state, or default to first room in roomArr 
-    const roomFrom = props.location.state || firstRoom;
+    const roomFrom = props.location.state || rooms[0];
     const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
     
     const [type, setType]= useState('link'); //set upload type 

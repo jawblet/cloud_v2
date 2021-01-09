@@ -39,7 +39,7 @@ export default function Login() {
                         <Link to='/register'>
                             <Prompt prompt={"No account? Create one."}/>
                         </Link>
-                        <CTA name={"login"} type={"submit"} 
+                        <CTA name="login" kind="primary" type="submit"
                             /> 
                     </div>
                 </form>

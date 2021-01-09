@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import InlineButton from '../../components/btns/InlineButton'; 
+import CTA from '../../components/btns/CTA'; 
 import { Editor } from 'draft-js';
 import Toolbar from '../../components/btns/Toolbar';
 import useScrollToBottom from '../../hooks/useScrollToBottom';
-import { animateScroll } from 'react-scroll';
 
 //write a rich comment w/ draft js
 const RichComment = (props) => {
@@ -42,11 +42,11 @@ const RichComment = (props) => {
                         />
             </div>
             <div className="threadDraft__submit"> 
-                <InlineButton name="discard" type="button"/>
-                <InlineButton name="finish" type="submit" outline={true} handleClick={handleSubmit}/>
+                <CTA name="discard" type="button"/>
+                <CTA name="finish" type="submit" kind="secondary" handleClick={handleSubmit}/>
             </div>
         </div>
     );
 }
  
-export default RichComment;
+export default RichComment; 

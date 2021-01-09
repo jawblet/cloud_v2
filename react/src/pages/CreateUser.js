@@ -33,7 +33,7 @@ export default function CreateUser() {
                     <Link to='/login'>
                         <Prompt prompt={"Existing account? Log in."}/>
                     </Link>
-                    <CTA name={"register"} type={"submit"}
+                    <CTA name="register" kind="primary" type="submit"
                     /> 
                 </div>
                 </form>

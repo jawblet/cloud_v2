@@ -4,7 +4,6 @@ const style = {
     filter: `url(#goo)` 
 }
 
-
 // MASTER BLOB
 export function Blob(props) {
     return (
@@ -37,7 +36,7 @@ export function BlobChildC() {
 
 export function BlobChildD() {
     return(
-        <div className="blobTest extrude">
+        <div className="blobTest extrude" style={style}>
         </div>
     )
 }
@@ -65,7 +64,7 @@ export function BlobChildSquare() {
 
 export function BlobChildSemiCircle() {
     return(
-        <div className="blobTest semiCircle">
+        <div className="blobTest semiCircle" >
         </div>
     )
 }

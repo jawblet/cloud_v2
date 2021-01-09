@@ -12,7 +12,7 @@ const LayerModal = React.forwardRef((props, ref) => (
                         Confirm you'd like to delete this layer and all associated posts. <b>This action can't be undone.</b> 
                         </p> 
                         <div className="modal__actions">
-                        <CTA name={"cancel"} handleClick={props.toggleModal}/> 
+                        <CTA name={"cancel"} kind="secondary" handleClick={props.toggleModal}/> 
                         <CTA name={"delete"} color="warning" handleClick={props.deleteUser}/>
                     </div>
                 </div>

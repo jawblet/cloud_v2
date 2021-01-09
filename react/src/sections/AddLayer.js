@@ -38,7 +38,7 @@ export default function AddLayer(props) {
                             /> 
             </div>
             <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>  
-                <CTA name={<VscAdd/>} type={"submit"}/> 
+                <CTA name={<VscAdd/>} kind="primary" type={"submit"}/> 
             </div>
         </form>
     </div>

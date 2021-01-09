@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { VscChevronDown } from 'react-icons/vsc';
-import { CSSTransition } from 'react-transition-group'; 
+import { CSSTransition } from 'react-transition-group';
+import useScrollToBottom from '../../hooks/useScrollToBottom';
 
 export default function LayerSelectMenu({ items, active, selectItem, setAdd }) { 
+    const { scrollToBottom, scrollRef } = useScrollToBottom(); 
     const nodeRef = useRef(null);
-    const scrollRef = React.createRef();
     const list = items.filter(item => item.label !== active);
  
     const [menu, setMenu] = useState(false);
@@ -15,15 +16,7 @@ export default function LayerSelectMenu({ items, active, selectItem, setAdd }) {
     
     const handleMenuToggle = () => {
         setMenu(!menu);
-    }
-
-    useEffect(() =>{
-        if(menu) {
-            // need to set entire menu in view on open 
-            nodeRef.current.focus();
-        }
-    },[menu])
-
+    } 
 
     return( 
         <div className="selectmenu">
@@ -47,7 +40,7 @@ export default function LayerSelectMenu({ items, active, selectItem, setAdd }) {
                          </h4>     
                     </li> {/*spacer elem*/}
                     <div style={{height:'3rem', marginBottom:'-3rem', background:'transparent'}}
-                        ref={scrollRef}>
+                       ref={scrollRef}>
                     </div>
                 </menu>
             </CSSTransition> 
@@ -55,11 +48,3 @@ export default function LayerSelectMenu({ items, active, selectItem, setAdd }) {
     )
 }
 
-
-  /*
-    const scrollToBottom = () => {
-            scrollRef.current.scrollIntoView({
-            behavior: "smooth",
-        });
-    }; 
-    */

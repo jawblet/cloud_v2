@@ -1,13 +1,13 @@
 //popup for posts, tags, and house 
 .popup {
-    width: 15rem;
-    min-height: 5rem;
-    padding: 1rem;
     background-color: $sand; 
     border: 1px solid $sand3;
-    display: flex; 
-    flex-direction: column;
     border-radius: $border-small;
+    width: 15rem;
+    min-height: 5rem; 
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
     box-shadow: $softer-shadow;
     position: absolute;
     z-index: 1; // must be on top 

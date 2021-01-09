@@ -16,7 +16,7 @@ const LayerModal = React.forwardRef((props, ref) => {
                         Confirm you'd like to delete this layer. Any posts in this layer will also be deleted.
                         </p> 
                         <div className="modal__actions">
-                        <CTA name={"cancel"} handleClick={props.toggleModal}/> 
+                        <CTA name={"cancel"} kind="secondary" handleClick={props.toggleModal}/> 
                         <CTA name={"delete"} data-id={props.id} color="warning" handleClick={handleDeleteLayer}/>
                     </div>
                 </div>

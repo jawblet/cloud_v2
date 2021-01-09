@@ -8,17 +8,17 @@ $line-height: 150%; //for padded text
 
 //palette 
 $off-white: #fffdfa; 
-$half-transparent: #fffdfa86; 
 $sand: #fcf7f3;
 $sand2: #f5eee5; 
 $sand3: #f1e3d3; 
 
+//other
+$half-transparent: #fffdfa86; 
 $error: #f39c81d9;
 $error-light: #f39c8199;
-
-//$accent-red: #bb956a;
 $accent-red: #b17954;
 $sand-bright: #EBC57A;
+$blue: #00f7ff; 
 
 //borders 
 $border-large: 1rem;
@@ -40,13 +40,3 @@ $softest-shadow: 4px 4px 24px rgba(216, 215, 211, 0.5),
 $shortest-fade: .15s;
 $short-fade: .35s;
 $long-fade: .7s;
-
-//blob
-$radius-1: 70%;
-$radius-2: 30%;
-$radius-3: 30%;
-$radius-4: 70%;
-$radius-5: 60%;
-$radius-6: 40%;
-$radius-7: 60%;
-$radius-8: 40%;

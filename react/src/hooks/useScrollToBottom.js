@@ -4,11 +4,12 @@ export default function useScrollToBottom() {
     const scrollRef = useRef(null)
 
     const scrollToBottom = () => {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" })
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      console.log(scrollRef.current);
     }
   
     return {
-        scrollRef, 
+        scrollRef,
         scrollToBottom
     }
 }
