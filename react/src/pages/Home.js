@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '../sections/Header';
 import CardCanvas from '../sections/home/CardCanvas'; 
 import MapCanvas from '../sections/home/MapCanvas';
@@ -9,6 +9,7 @@ import { navButtons } from '../data/buttons';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 export default function Home() {
+    const node = useRef(null);
     const [squeeze, setSqueeze] = useState(true);
     const handleExpandClick = () => { setSqueeze(!squeeze); }
     
@@ -19,7 +20,7 @@ export default function Home() {
         icon: <ExpandButton className="icon icon__btn" squeeze={squeeze} data-id="squeeze"/> }
     ];
 
-    const [zoomIn, setZoom] = useState(true); 
+    const [zoomIn, setZoom] = useState(false); 
 
     return ( 
         <div className="page">  
@@ -28,11 +29,11 @@ export default function Home() {
             <SwitchTransition mode="out-in">
                 <CSSTransition key={zoomIn} 
                         timeout={350} 
-                        classNames="fade" 
+                        classNames="fade"
                         addEndListener={(node, done) => {
                                         node.addEventListener("transitionend", done, false);
                         }}> 
-                <div className="skylight">
+                <div className="skylight" ref={node}>
                         {zoomIn 
                             ? <CardCanvas squeeze={squeeze}/>
                             : <MapCanvas/> 

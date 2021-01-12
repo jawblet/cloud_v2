@@ -5,6 +5,7 @@ export default function useFindUser() {
 const [user, setUser] = useState(null);
 const [globalTags, setGlobalTags] = useState(null);
 const [rooms, setRooms] = useState(null);
+const [groups, setGroups] = useState(null);
 const [isLoading, setLoading] = useState(true); 
 
 useEffect(() => {
@@ -13,8 +14,8 @@ useEffect(() => {
             .then(res => { 
                 const user = res.data.currentUser;
                 setUser(user);
-                const rooms = res.data.currentUser.house.rooms
-                setRooms(rooms);
+                setRooms(res.data.currentUser.house.rooms);
+                setGroups(res.data.currentUser.house.groups);
         return axios.get(`/tags/h/${user.house._id}`);
         }).then(res => {
                 const tags = res.data.data.results
@@ -32,9 +33,11 @@ useEffect(() => {
     return {
         user,
         rooms,
+        groups,
         globalTags,
         setUser,
         setRooms,
+        setGroups,
         setGlobalTags,
         isLoading
     }

@@ -4,8 +4,8 @@ import useDeleteLayer from '../../hooks/layers/useDeleteLayer';
 import { VscClose } from 'react-icons/vsc';
  
 const LayerModal = React.forwardRef((props, ref) => {
-    const { handleDeleteLayer } = useDeleteLayer(props.id);
- 
+    const { handleDeleteLayer } = useDeleteLayer(props.id); 
+     
       return (  
       <div className="modal__background" onClick={(e) => props.handleOutsideClick(e)}>
             <div className="modal" ref={ref}> 

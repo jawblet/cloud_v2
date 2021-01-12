@@ -1,3 +1,31 @@
+//!
+.grow {
+    &-enter {  
+        max-height: 0;
+        overflow: hidden;
+    }
+    &-enter-active {
+        max-height: 100vh;
+        overflow: hidden;
+        transition: max-height .35s ease-in-out;
+    }
+    &-enter-done { 
+        max-height: 100vh;
+    }
+    &-exit { 
+        max-height: 100vh;
+    }
+    &-exit-active {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .35s ease-in-out; 
+    }
+    &-exit-done { 
+        max-height: 0;
+        overflow: hidden
+    }
+}
+
 .rollDown {
     &-enter {  
         transform: scaleY(0.0);
@@ -45,6 +73,30 @@
     }
 }
 
+//flies off screen
+.rollOutX {
+    &-enter { 
+        transform: translateX(100%);
+    }
+    &-enter-active {
+        transform: translateX(0);
+        transition: transform 0.2s;
+    }
+    &-enter-done { 
+        transform: translateX(0);
+    }
+    &-exit { 
+        transform: translateX(0);
+    }
+    &-exit-active{
+        transform: translateX(100%);
+        transition: transform 0.2s cubic-bezier(0.12, 0, 0.39, 0); 
+    }
+    &-exit-done { 
+        transform: translateX(100%);
+    }
+}
+
 //rollDown + fade out
 .rollDownFadeOut {
     &-enter {  
@@ -78,7 +130,7 @@
         transition: opacity $short-fade ease-in;
     }
     &-enter-done { 
-        opacity: 1;
+        opacity: 1; 
     }
     &-exit { 
        opacity: 1;
@@ -198,3 +250,31 @@
     }
     
 }
+
+/*
+//!
+.grow {
+    &-enter {  
+        max-height: 0;
+        overflow: hidden
+    }
+    &-enter-active {
+        max-height: 100vh;
+        transition: max-height .35s ease-in-out;
+    }
+    &-enter-done { 
+        max-height: 100vh;
+    }
+    &-exit { 
+        max-height: 100vh;
+    }
+    &-exit-active{
+        max-height: 0;
+        transition: max-height .35s ease-in-out; 
+    }
+    &-exit-done { 
+        max-height: 0;
+        overflow: hidden
+    }
+}
+*/

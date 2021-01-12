@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState, useContext } from 'react'; 
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import slugify from 'react-slugify';
 import { UserContext } from '../UserContext';
 
-export default function useRenameLayer(props) {
-const { label, id, description } = props.room;
+export default function useRenameLayer(props) { 
+const { label, id, description } = props.page;
 
 const initValues = { name: label, 
                     description: description }
@@ -13,17 +13,9 @@ const initValues = { name: label,
 let history = useHistory();
 const { user, setRooms } = useContext(UserContext); 
 const house = user.house._id;
-const rooms = user.house.rooms;
+const rooms = user.house.rooms; // ??? bitch tf? 
 
 //handle rename rooms
-    const style = { 
-        textStyle: {
-            fontFamily: 'Work Sans, sans-serif',
-            fontSize: '1.5rem',
-            fontWeight: 300,
-            letterSpacing: '0.5px'
-    }
-}
     const [editInline, setEditInline] = useState(false); 
     const [values, setValue] = useState(initValues || {});
     const [size, setSize] = useState(label.length + 1);
@@ -31,7 +23,6 @@ const rooms = user.house.rooms;
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        console.log(e.target.name);
         setValue({...values,
             [name]: value});
         if (name === 'name') {
@@ -78,7 +69,6 @@ const rooms = user.house.rooms;
     };
 
     const blurDescription = async () => {
-        console.log('blur :)');
         setEditInline(false);
         const description = values.description; 
         const newRooms = rooms.map(el => {
@@ -100,7 +90,6 @@ const rooms = user.house.rooms;
     };
 
     return {
-        style,
         editInline,
         values,
         size,

@@ -8,7 +8,7 @@ export default function PrivateRoute(props) {
     //console.log(user, isLoading); 
 
     const { component: Component,
-        ...rest } = props;
+        ...rest } = props; 
 
         //return loading component 
         if(isLoading) {

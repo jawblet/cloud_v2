@@ -25,7 +25,7 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
             results
         }
     })  
-}); 
+});
 
 //get by house
 exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {

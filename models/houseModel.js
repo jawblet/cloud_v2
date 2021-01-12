@@ -13,6 +13,10 @@ const houseSchema = mongoose.Schema({
         maxlength: [12, 'House can\'t be more than 12 characters long']
     },
     boardersUnconfirmed: Array,
+    groups: {
+        type: Array,
+        default: []
+    },
     rooms: {
         type: Array,
         default: []

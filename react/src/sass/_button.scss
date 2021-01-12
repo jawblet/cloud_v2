@@ -41,6 +41,10 @@
     &:hover{
       font-style: italic;
     }
+  } 
+  &.ghost{
+    color: $body-lightest;
+    background-color: $sand2;
   }
 }
 

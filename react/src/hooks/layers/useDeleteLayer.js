@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function useDeleteLayer(id) {
     let history = useHistory();
-    const { rooms, setRooms, user } = useContext(UserContext);
+    const { rooms, setRooms, groups, setGroups, user } = useContext(UserContext);
     const house = user.house._id;
 
     const pushUser = async () => {
@@ -16,7 +16,6 @@ export default function useDeleteLayer(id) {
     const getAllRooms = async () => {
             return axios.get(`/houses/${house}`)
             .then(res => {
-                //console.log(res.data.data.doc.rooms);
                 const allRooms = res.data.data.doc.rooms;
                 setRooms(allRooms);
             }).catch(err => console.log(err));
@@ -24,25 +23,49 @@ export default function useDeleteLayer(id) {
 
     //DELETER LAYER 
     const deleteLayer = async (id) => {
+        //remove layer from layer array 
         const layersCopy = [...rooms];
         const newLayers = layersCopy.filter(el => el.id !== id);
+        
+        //remove layer from its group array 
+        let targetGroup;
+        let groupCopy = [...groups];
+
+        //get group that contains deleted layer 
+            groups.forEach(group => {
+                group.layers.forEach(layer => { 
+                    if(layer.id === id) {
+                        targetGroup = group;
+                    } 
+                });
+        });
+
+        const newGroupLayers = targetGroup.layers.filter(layer => layer.id !== id);
+        const newGroups = groupCopy.map(el => {
+            if(el.id === targetGroup.id) {
+                return {
+                    ...el,
+                    layers: newGroupLayers
+                }
+            } return el;
+        });
+        
         return axios.put(`/houses/${house}`, {
-            rooms: newLayers   
-          }).then( async (res) => {
+            rooms: newLayers, 
+            groups: newGroups  
+          }).then( async(res) => {
              console.log(res);
+             setGroups(newGroups);
           }).catch(err => console.log(err));
     }
 
     //DELETER LAYER 
     const deletePosts = async (id) => {
         return await axios.delete(`/posts/h/${house}/${id}`)
-        .then(res => {
-            console.log(res);
-        }).catch(err => console.log(err)); 
+        .catch(err => console.log(err)); 
     }
 
     const handleDeleteLayer = async() => {
-        console.log(id);
         await deleteLayer(id);
         await deletePosts(id);
         await getAllRooms();

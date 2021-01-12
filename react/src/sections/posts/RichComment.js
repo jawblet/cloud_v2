@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import InlineButton from '../../components/btns/InlineButton'; 
 import CTA from '../../components/btns/CTA'; 
 import { Editor } from 'draft-js';
 import Toolbar from '../../components/btns/Toolbar';

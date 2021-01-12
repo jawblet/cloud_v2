@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'; 
 import autosize from 'autosize';
 
-export default function TextareaEdit(props) { 
-    const { values,  
-        handleClickIn, 
-        handleBlur, 
-        handleChange } = props;
+export default function TextareaEdit(
+    { value,  
+    handleClickIn, 
+    handleBlur, 
+    handleChange }) { 
 
     const descriptionRef = useRef(null);
     //const [placeholder, setPlaceholder] = useState(''); 
@@ -20,7 +20,7 @@ export default function TextareaEdit(props) {
                 ref={descriptionRef} 
                 className="inlineEdit inlineText light"
                 name="description"
-                value={values.description}
+                value={value}
                 onClick={handleClickIn}
                 onBlur={handleBlur}
                 onChange={handleChange}

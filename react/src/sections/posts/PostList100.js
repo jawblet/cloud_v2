@@ -10,7 +10,7 @@ export default function PostList100(props) {
     const { toggleMenu, toggleRef, menu, revertAll } = useToggleOneOfMany(posts);
   
     return(
-        <CSSTransition 
+        <CSSTransition
         in={activeView === '100%'} 
         timeout={250} 
         nodeRef={nodeRef} classNames="zoomIn"

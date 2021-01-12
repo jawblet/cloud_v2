@@ -52,7 +52,6 @@ h1 {
 h2 {
   font-family: 'Work Sans', sans-serif;
   font-size: 1.5rem;
-  letter-spacing: 1.5px;
   font-weight: 300;
   letter-spacing: 0.5px;
 }
@@ -73,6 +72,7 @@ h4, button, li, .search__bar {
     font-weight: 400;
     &.heavy {
       font-weight: bold;
+      line-height: 130%;
     }
   }
 

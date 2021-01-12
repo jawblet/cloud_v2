@@ -40,7 +40,7 @@ const sendSubmit = (e) => {
                             setAdd={setAdd} 
                             /> 
                         </div>  
-                            <CTA name={"add"} type={"submit"}/> 
+                            <CTA name="add" kind="primary" type="submit"/> 
                         </div>
                 </form>
     )

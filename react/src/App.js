@@ -13,6 +13,7 @@ import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
 import House from './pages/House';
+import Group from './pages/layer/Group';
 import Thread from './pages/Thread';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
@@ -23,9 +24,11 @@ function App() {
   const { 
     user,
     rooms,
+    groups,
     globalTags,
     setUser,
     setRooms,
+    setGroups,
     setGlobalTags,
     isLoading } = useFindUser();
  
@@ -33,9 +36,11 @@ function App() {
    <Router>
        <UserContext.Provider value={{   user,
                                         rooms,
+                                        groups,
                                         globalTags,
                                         setUser,
                                         setRooms,
+                                        setGroups,
                                         setGlobalTags,
                                         isLoading }} >
 
@@ -51,8 +56,9 @@ function App() {
             <PrivateRoute path="/user" component={User}/>
             <PrivateRoute path="/add" component={Add}/>
             <PrivateRoute path="/paths" component={Tags}/>
+            <PrivateRoute path='/group/:group' component={Group}/>
             <PrivateRoute path='/:room' component={LayerRoute}/>
-            <Route component={NotFound}/>
+            <Route component={NotFound}/> 
         </Switch>
       </UserContext.Provider>
    </Router>

@@ -1,0 +1,124 @@
+%padding {
+    padding: 0.5rem;
+} 
+
+//dnd multi-list menu 
+.dnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem; 
+    &__header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 0 1.5rem;
+        justify-content: space-between;
+    }
+    &__list {
+        margin-bottom: 0.5rem;
+        transition: all $short-fade;
+    }
+    &__item {
+        @extend %padding;
+        border: 1px solid transparent;
+        transition: all 0.15s;
+        &--nested {
+            padding-left: 1.5rem;
+        }
+        &:hover {
+            border-color: rgb(2, 226, 255);
+        }
+    }
+}
+
+.dndHeader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: inherit;
+    border-radius: $border-small;
+    transition: all .35s;
+    &__chevron {
+        display: flex;
+        color: $body-light;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: rotate(135deg) scale(0.5) translateY(150%);
+        transition: all $short-fade;
+        z-index:1;
+        &--open {
+            transform: rotate(45deg) scale(0.5) translateX(-200%);
+        }
+    }
+    &__label {
+        @extend %padding;
+        width: 100%;
+        background-color: inherit;
+        border: 1px solid transparent;
+        transition: all $short-fade;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        &:last-child {
+            padding-left: 0.5rem;
+        }
+        &:hover{
+            background-color: rgba(0, 255, 255, 0.25);
+            border: 1px solid aqua;
+            & > .dndHeader__edit {
+                color: $body-light;
+            }
+        }
+        &--edit{
+            border: 1px solid aqua !important;
+            background-color: $off-white !important;
+            box-shadow: 0 0 5px aqua;
+        }
+        &--ungrouped {
+            color: $body-lightest;
+            font-weight: normal;
+        }
+    }
+    &__edit {
+        color: transparent;
+        position: absolute;
+        right: 15%;
+        transition: all $short-fade;
+    }
+}
+
+.group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    &__add {
+        display: flex;
+        background-color: $sand;
+        color: $body-lightest;
+        padding: 1rem; 
+        width: 90%;
+    }
+    &__delete {
+        cursor: pointer;
+        margin-top: 0.5rem;
+        flex: 0 0 10%;
+    }
+    &__body {
+        flex: 0 0 90%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/*
+//maybe style differently? 
+.expandX {
+    
+}
+*/ 

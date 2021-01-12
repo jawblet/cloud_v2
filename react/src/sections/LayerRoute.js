@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Edit from './Edit';
-import Layer from '../pages/Layer';
+import Layer from '../pages/layer/Layer';
 
 const LayerRoute = () => {
     return (
@@ -15,3 +15,5 @@ const LayerRoute = () => {
 }
  
 export default LayerRoute;
+
+

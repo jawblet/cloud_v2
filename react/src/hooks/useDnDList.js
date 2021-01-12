@@ -23,7 +23,7 @@ const [list, setList] = useState(items);
             originalOrder: list
         });
 
-        // Note: this is only for Firefox. Without it, the DnD won't work.
+        // Note: this is only for Firefox. Without it, the DnD won't work. 
         e.dataTransfer.setData("text/html", '');
     };
     

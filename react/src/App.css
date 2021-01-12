@@ -43,7 +43,6 @@ h1 {
 h2 {
   font-family: 'Work Sans', sans-serif;
   font-size: 1.5rem;
-  letter-spacing: 1.5px;
   font-weight: 300;
   letter-spacing: 0.5px; }
 
@@ -61,7 +60,8 @@ h4, button, li, .search__bar {
   letter-spacing: 1px;
   font-weight: 400; }
   h4.heavy, button.heavy, li.heavy, .search__bar.heavy {
-    font-weight: bold; }
+    font-weight: bold;
+    line-height: 130%; }
 
 h5, label, figcaption {
   font-size: 0.8rem;
@@ -253,6 +253,30 @@ hr {
 .highlight {
   color: #EBC57A; }
 
+.grow-enter {
+  max-height: 0;
+  overflow: hidden; }
+
+.grow-enter-active {
+  max-height: 100vh;
+  overflow: hidden;
+  transition: max-height .35s ease-in-out; }
+
+.grow-enter-done {
+  max-height: 100vh; }
+
+.grow-exit {
+  max-height: 100vh; }
+
+.grow-exit-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease-in-out; }
+
+.grow-exit-done {
+  max-height: 0;
+  overflow: hidden; }
+
 .rollDown-enter {
   transform: scaleY(0); }
 
@@ -292,6 +316,26 @@ hr {
 
 .rollOut-exit-done {
   transform: translateY(-100%); }
+
+.rollOutX-enter {
+  transform: translateX(100%); }
+
+.rollOutX-enter-active {
+  transform: translateX(0);
+  transition: transform 0.2s; }
+
+.rollOutX-enter-done {
+  transform: translateX(0); }
+
+.rollOutX-exit {
+  transform: translateX(0); }
+
+.rollOutX-exit-active {
+  transform: translateX(100%);
+  transition: transform 0.2s cubic-bezier(0.12, 0, 0.39, 0); }
+
+.rollOutX-exit-done {
+  transform: translateX(100%); }
 
 .rollDownFadeOut-enter {
   transform: scaleY(0); }
@@ -420,6 +464,33 @@ hr {
   100% {
     transform: translateY(0px); } }
 
+/*
+//!
+.grow {
+    &-enter {  
+        max-height: 0;
+        overflow: hidden
+    }
+    &-enter-active {
+        max-height: 100vh;
+        transition: max-height .35s ease-in-out;
+    }
+    &-enter-done { 
+        max-height: 100vh;
+    }
+    &-exit { 
+        max-height: 100vh;
+    }
+    &-exit-active{
+        max-height: 0;
+        transition: max-height .35s ease-in-out; 
+    }
+    &-exit-done { 
+        max-height: 0;
+        overflow: hidden
+    }
+}
+*/
 .layer {
   display: flex;
   height: 100%;
@@ -619,12 +690,12 @@ hr {
   display: flex;
   align-items: center; }
 
-.map__SVG {
-  position: relative; }
-
 .map__key {
   flex: 0 0 25%;
-  height: 100%; }
+  height: 100%;
+  margin-top: -15%;
+  display: flex;
+  justify-content: flex-end; }
 
 .homeIcon {
   align-self: center;
@@ -802,6 +873,9 @@ hr {
     border: 3px solid #f5eee5; }
   .CTA.inline:hover {
     font-style: italic; }
+  .CTA.ghost {
+    color: #C3C2BD;
+    background-color: #f5eee5; }
 
 .icon {
   font-size: 1.2rem;
@@ -2196,3 +2270,103 @@ figcaption {
     display: flex;
     justify-content: flex-end;
     padding-top: 1rem; }
+
+.dnd__item, .dndHeader__label {
+  padding: 0.5rem; }
+
+.dnd {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem; }
+  .dnd__header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 0 1.5rem;
+    justify-content: space-between; }
+  .dnd__list {
+    margin-bottom: 0.5rem;
+    transition: all 0.35s; }
+  .dnd__item {
+    border: 1px solid transparent;
+    transition: all 0.15s; }
+    .dnd__item--nested {
+      padding-left: 1.5rem; }
+    .dnd__item:hover {
+      border-color: #02e2ff; }
+
+.dndHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: inherit;
+  border-radius: 0.5rem;
+  transition: all .35s; }
+  .dndHeader__chevron {
+    display: flex;
+    color: #72716B;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: rotate(135deg) scale(0.5) translateY(150%);
+    transition: all 0.35s;
+    z-index: 1; }
+    .dndHeader__chevron--open {
+      transform: rotate(45deg) scale(0.5) translateX(-200%); }
+  .dndHeader__label {
+    width: 100%;
+    background-color: inherit;
+    border: 1px solid transparent;
+    transition: all 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; }
+    .dndHeader__label:last-child {
+      padding-left: 0.5rem; }
+    .dndHeader__label:hover {
+      background-color: rgba(0, 255, 255, 0.25);
+      border: 1px solid aqua; }
+      .dndHeader__label:hover > .dndHeader__edit {
+        color: #72716B; }
+    .dndHeader__label--edit {
+      border: 1px solid aqua !important;
+      background-color: #fffdfa !important;
+      box-shadow: 0 0 5px aqua; }
+    .dndHeader__label--ungrouped {
+      color: #C3C2BD;
+      font-weight: normal; }
+  .dndHeader__edit {
+    color: transparent;
+    position: absolute;
+    right: 15%;
+    transition: all 0.35s; }
+
+.group {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; }
+  .group__add {
+    display: flex;
+    background-color: #fcf7f3;
+    color: #C3C2BD;
+    padding: 1rem;
+    width: 90%; }
+  .group__delete {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    flex: 0 0 10%; }
+  .group__body {
+    flex: 0 0 90%;
+    display: flex;
+    flex-direction: column; }
+
+/*
+//maybe style differently? 
+.expandX {
+    
+}
+*/

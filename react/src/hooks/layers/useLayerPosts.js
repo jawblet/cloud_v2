@@ -5,7 +5,7 @@ import { UserContext } from '../UserContext';
 
 export default function useLayerPosts(currentRoom) {
 const { user } = useContext(UserContext); 
-const house = user.house._id;
+const house = user.house._id; 
 let history = useHistory();
 let location = useLocation();
  
@@ -15,7 +15,7 @@ const [p_loading, setLoading] = useState(true);
 const [r_loading, setRoomLoading] = useState(true);
 const [room, setRoom] = useState(null);
 
-//GET ROOM
+    //GET ROOM
     const getRoom = async(room) => {
         await axios.get(`/houses/${house}`)
                 .then(res => {

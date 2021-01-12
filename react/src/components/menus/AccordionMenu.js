@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AccordionMenu = (props) => {
-    const { items } = props;
+    const { items } = props; 
 
     return ( 
         <div className="accordion">
