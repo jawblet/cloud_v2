@@ -11,12 +11,12 @@ const initValues = { name: label,
                     description: description }
 
 let history = useHistory();
-const { user, setRooms } = useContext(UserContext); 
+const { user, setRooms, groups, setGroups } = useContext(UserContext); 
 const house = user.house._id;
 const rooms = user.house.rooms; // ??? bitch tf? 
 
-//handle rename rooms
-    const [editInline, setEditInline] = useState(false); 
+
+const [editInline, setEditInline] = useState(false); 
     const [values, setValue] = useState(initValues || {});
     const [size, setSize] = useState(label.length + 1);
 
@@ -31,42 +31,81 @@ const rooms = user.house.rooms; // ??? bitch tf?
     };
 
     const handleClickIn = () => {
+        console.log(id);
         setEditInline(true);
     };
 
-    const handleBlur = (e) => {
+    const handleBlur = async (e) => {
         const name = e.target.name;
         switch(name) {
-            case "name": blurName();
+            case "name": { 
+                await blurName(pushUser) 
+            };
             break;
-            case "description": blurDescription();
+            case "description": {
+               await blurDescription();
+            };
             break;
             default: return; 
         }
     };
 
+    const pushUser = (slug) => {
+        history.push(`/${slug}`, {from: slug});
+    };
+
     //validate to make sure room doesn't exist 
-    const blurName= async () => {
+    const blurName= async (callback) => {
         setEditInline(false);
         const label = values.name; 
         const slug = slugify(values.name);
-        const newRooms = rooms.map(el => {
+
+        //create new room obj 
+        let updatedLayer = rooms.find(el => el.id === id);
+        updatedLayer = { label, slug, id: updatedLayer.id, description: updatedLayer.description };
+
+        //replace renamed layer in layer array 
+        const newLayerArray = rooms.map(el => {
             if(el.id === id) {
-                return { label, slug, 
-                        id: el.id, 
-                        description: el.description }
+                return updatedLayer;
             } else {
                 return el;
             }
-        })        
+        });
+
+        //replace renamed layer in groups array
+          let targetGroup;
+          let groupCopy = [...groups];
+        
+          groups.forEach(group => {
+            group.layers.forEach(layer => { 
+                if(layer.id === id) { targetGroup = group; } 
+              });
+          });
+          const newGroupLayers = targetGroup.layers.map(layer => {
+              if(layer.id === id) {
+                  return updatedLayer;
+              } return layer; 
+          })
+          const newGroupArray = groupCopy.map(el => {
+              if(el.id === targetGroup.id) {
+                  return { ...el,
+                      layers: newGroupLayers }
+              } return el;
+          });
+        
         await axios.put(`/houses/${house}`, {
-          rooms: newRooms   
+          rooms: newLayerArray,
+          groups: newGroupArray   
         }).then(res => {
-            setRooms(newRooms);
-            history.push(`/${slug}`);
+            setGroups(newGroupArray);
+            setRooms(newLayerArray);
+            callback(slug);
         })
         .catch(err => console.log(err));
     };
+
+
 
     const blurDescription = async () => {
         setEditInline(false);
@@ -83,7 +122,7 @@ const rooms = user.house.rooms; // ??? bitch tf?
         await axios.put(`/houses/${house}`, {
           rooms: newRooms   
         }).then(res => {
-            console.log(res);
+            //console.log(res);
             setRooms(newRooms);
         })
         .catch(err => console.log(err));

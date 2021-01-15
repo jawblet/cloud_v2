@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function useDetectClickOut(initState) {
-    const [disable, setDisable] = useState(initState);
+    const [disable, setDisable] = useState(initState); 
     const nodeRef = useRef(null);
 
     const handleClickOutside = event => {
@@ -17,7 +17,6 @@ export default function useDetectClickOut(initState) {
         };
       });
     
-
     return {
         nodeRef,
         disable,

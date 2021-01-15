@@ -1,19 +1,18 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Edit from './Edit'; 
-import Layer from '../pages/layer/Layer';
+import Group from '../pages/layer/Group';
 
-const LayerRoute = () => {
+const GroupRoute = () => {
     return (
         <>
         <Switch>
-            <Route path='/:room/:postId' component={Edit}/>
+            <Route path='/group/:group/:postId' component={Edit}/>
         </Switch>
-            <Layer/>
+            <Group/>
         </>
       );
 }
  
-export default LayerRoute;
-
+export default GroupRoute;
 

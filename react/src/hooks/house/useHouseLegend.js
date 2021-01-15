@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
-import axios from 'axios';
+import axios from 'axios'; 
 
 export default function useHouse() {
     const { user } = useContext(UserContext);
@@ -16,7 +16,7 @@ export default function useHouse() {
         const usernames = user.house.boarders.map(boarderId => {
             return axios.get(`/users/${boarderId}`).then(res => {
                 const username = res.data.data.doc.username;
-                return username;
+                return username; 
             }).catch(err => console.log(err)); 
         });
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { LABEL_STYLE } from './dnd';
 import { Link } from 'react-router-dom';
 //import GroupIcon from '../../../svg/GroupIcon';
@@ -10,7 +10,7 @@ const GroupLabel = (props) => {
         disable, handleBlur, 
         newName,
         handleChange, 
-        nodeRef } = props;
+        nodeRef } = props; 
 
     return (
         <>

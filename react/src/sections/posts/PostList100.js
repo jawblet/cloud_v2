@@ -3,11 +3,11 @@ import Post100 from '../../components/posts/Post100';
 import useToggleOneOfMany from '../../hooks/useToggleOneOfMany';
 import { CSSTransition } from 'react-transition-group';
  
-export default function PostList100(props) {  
+export default function PostList100(props) {   
     const { activeView, posts } = props;   
     const nodeRef = useRef(null);
 
-    const { toggleMenu, toggleRef, menu, revertAll } = useToggleOneOfMany(posts);
+    const { toggleMenu, toggleRef, menu, revertAll } = useToggleOneOfMany(posts); 
   
     return(
         <CSSTransition

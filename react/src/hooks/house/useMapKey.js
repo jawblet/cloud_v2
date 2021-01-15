@@ -3,13 +3,13 @@ import axios from 'axios';
 import { UserContext } from '../UserContext';
 
 export default function useMapKey(groups) {
-    const { user, setGroups } = useContext(UserContext);
+    const { user, rooms, setGroups } = useContext(UserContext);
     const house = user.house._id;
     const [rows, setRows] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => { 
         setRows(groups);
-    }, [groups])
+    }, [rooms, groups]); 
 
     const updateHouseModel = (newRows) => {
         axios.put(`/houses/${house}`, {
@@ -36,7 +36,6 @@ export default function useMapKey(groups) {
         if (source.droppableId === destination.droppableId) {
             const reordered = reorderList(dragRow.layers, source.index, destination.index); 
             newRows = rows.map(x => (x.id === dropRow.id ? {...x, layers: reordered } : x));
-            console.log(newRows);
             return updateHouseModel(newRows);
         }
     

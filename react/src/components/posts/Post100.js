@@ -2,18 +2,16 @@ import React, { useRef, useEffect } from 'react';
 import { Editor } from 'draft-js'; 
 import { LinkPreview } from './LinkPreview';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
-import TagLegendPath from '../../atoms/TagLegendPath';
+//import TagLegendPath from '../../atoms/TagLegendPath';
 import useEditPost from '../../hooks/posts/useEditPost'; 
 import { VscEllipsis } from 'react-icons/vsc';
+import { getUniqueTags } from '../../pages/layer/layer_data';
  
 export default function Post100(props) { 
-    const { post, toggleMenu, menu, index, revertAll, handleDeletePost, openPost, handleStopHover, tagpath, handleHover, coords } = props;
+    const { post, toggleMenu, menu, index, toggleRef, revertAll, handleDeletePost, openPost, handleStopHover, tagpath, handleHover } = props;
     const editRef = useRef(null); 
-    const postId = coords.postId;
-    const uniqueTags = Array.from(new Set(post.tags.map(el => el.tag)))
-                            .map(tag => { const uniqueTag = post.tags.find(el => el.tag === tag);
-                                return uniqueTag;
-                            });
+
+    const uniqueTags = getUniqueTags(post.tags); 
 
     const { displayNoteBody, 
             editorState, 
@@ -53,6 +51,8 @@ export default function Post100(props) {
                             selectItem ={selectItem} 
                             childData={post._id}
                             revertAll={revertAll}
+                            roundTop={true}
+                            ref={toggleRef}
                             />
                     </div>
                 </div> 
@@ -87,11 +87,6 @@ export default function Post100(props) {
                                     >
                                     {tag.tag}
                                 </h4>
-                                <TagLegendPath coords={coords} 
-                                                tag={tag} 
-                                                enter={(tagpath && tagpath === tag._id && postId === post._id) 
-                                                        ? true 
-                                                        : false}/>
                             </div>
                             )
                         })}
@@ -102,3 +97,12 @@ export default function Post100(props) {
     )
 }
 
+/*
+    const postId = coords.postId;
+
+  <TagLegendPath coords={props.coords} 
+                                tag={tag} 
+                                enter={(tagpath && tagpath === tag._id && postId === post._id) 
+                                ? true 
+                                : false}/>
+*/

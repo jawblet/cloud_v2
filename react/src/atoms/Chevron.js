@@ -2,10 +2,10 @@ import React from 'react';
 
 const Chevron = ({ expand, setExpand }) => {
     return (
-        <div className={`dndHeader__chevron ${expand && "dndHeader__chevron--open"}`}
+        <div className={`chevron ${expand && "chevron--open"}`}
              onClick={() => setExpand(!expand)}>
             ◢
-        </div>
+        </div> 
     );
 }
  

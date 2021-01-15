@@ -1,5 +1,5 @@
 import React from 'react';
-import Chevron from '../../../atoms/Chevron';
+import Chevron from '../../../atoms/Chevron'; 
 import GroupLabel from './GroupLabel';
 import LayerLabel from './LayerLabel';
 import useRenameGroup from '../../../hooks/layers/useRenameGroup';
@@ -28,8 +28,8 @@ const GroupHeader = ({ row, expand, setExpand }) => {
                     />
             : <LayerLabel row={row}/>
             }
-        <Chevron expand={expand} 
-                setExpand={setExpand}/>
+        <Chevron expand={expand} setExpand={setExpand}
+            />
         </div>      
     );
 }

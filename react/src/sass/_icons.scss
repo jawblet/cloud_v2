@@ -1,0 +1,40 @@
+//react icons
+.icon {
+    font-size: 1.2rem; 
+    color: $body-lightest;
+    transition: all $short-fade;
+    &__btn {
+      cursor: pointer;
+      &:hover { color: $body-light; }
+    }
+    &--active { color: $body-light }
+    &--small { font-size: 0.8rem; } 
+    &--warning {
+      &:hover { color: $accent-red }
+    }
+  }
+  
+  //dot  
+  d {
+    @extend %pin;
+    display: inline-block;
+    background-color: $body-lightest;
+    transition: all .2s ease-in-out;
+  }
+  
+  //chevron
+  .chevron {
+    padding: 0.5rem; //make clickarea larger 
+    display: flex;
+    color: $body-light;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    cursor: pointer;
+    transform: rotate(135deg) scale(0.5) translateY(150%);
+    transition: all $short-fade;
+    z-index:1;
+    &--open {
+        transform: rotate(45deg) scale(0.5) translateX(-200%);
+    }
+  }

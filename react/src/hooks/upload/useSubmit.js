@@ -34,7 +34,7 @@ export default function useSubmit() {
                     })
                     //.then(res => console.log(res));
                 }
-                history.push(`/${roomTo}`); 
+                history.push(`/${roomTo}`);
             }).catch((err) => { 
                 if(err.response.status === 400) {
                    // console.log(err.response.data);
@@ -50,6 +50,7 @@ export default function useSubmit() {
         const tagArr = [];
         let tag;
         
+        console.log(globalTags);
         // get tags from note to save to post 
         if(globalTags.length !== 0) { // check if tags exist  
             const text = data.getPlainText(); 
@@ -57,13 +58,15 @@ export default function useSubmit() {
             const TAGS_REGEX = new RegExp(tagNames.join("|"), "gi"); // create regex to search for names 
     
                 while ((tag = TAGS_REGEX.exec(text)) !== null) {
-                    let tagObj = globalTags.find(obj => obj.tag === tag[0]);
+                    const foundTag = tag[0].toLowerCase(); //convert tag to lc 
+                    let tagObj = globalTags.find(obj => obj.tag === foundTag);
                     tagArr.push(tagObj);
                 }
         }
+
         const { user, house, room, roomName, comment } = formValues;
         const roomTo = slugify(roomName);
-
+    
         try {
             await axios({
                 method: 'POST',

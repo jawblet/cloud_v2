@@ -14,7 +14,7 @@ export default function useForm({ initialValues }) {
     const handleChange = event => {
         const value = event.target.value; 
         const name = event.target.name;
-        setValues({
+        setValues({ 
             ...values, 
             [name]: value
         }); 
@@ -67,6 +67,7 @@ export default function useForm({ initialValues }) {
                   passwordConfirm
                 }
             }).then(res => {
+                    console.log(res);
                     const user = res.data.data.user;
                     setUser(user); //set user in context w/o jwt 
                     history.push('/register#rent'); 

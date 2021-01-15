@@ -2,6 +2,7 @@ import React from 'react';
 import Comment from './Comment';
 
 export default function CommentList({ postComments, deleteComment }) {
+    
     return(
         <>
         {postComments && postComments.length !== 0 

@@ -13,6 +13,7 @@ export default function useToggleOne(props) {
     useEffect(() => {
         revertAll();
     }, [props]);
+
     
     const toggleMenu = (e) => {
         const i = e.currentTarget.dataset.id;
@@ -20,6 +21,19 @@ export default function useToggleOne(props) {
         newArr[i] = !newArr[i]; 
         setMenu(newArr);
     }
+
+    const handleClickOutside = event => {
+        if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+          revertAll();
+        }
+      };
+    
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, true);
+        return () => {
+          document.removeEventListener("click", handleClickOutside, true);
+        };
+      });
 
     return {
         revertAll,

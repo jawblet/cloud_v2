@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'; 
+import React, { useRef, useEffect } from 'react'; 
 import autosize from 'autosize';
 
 export default function TextareaEdit(

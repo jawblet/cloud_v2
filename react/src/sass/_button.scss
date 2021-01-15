@@ -47,27 +47,3 @@
     background-color: $sand2;
   }
 }
-
-//react icons
-.icon {
-  font-size: 1.2rem; 
-  color: $body-lightest;
-  transition: all $short-fade;
-  &__btn {
-    cursor: pointer;
-    &:hover { color: $body-light; }
-  }
-  &--active { color: $body-light }
-  &--small { font-size: 0.8rem; } 
-  &--warning {
-    &:hover { color: $accent-red }
-  }
-}
-
-//dot  
-d {
-  @extend %pin;
-  display: inline-block;
-  background-color: $body-lightest;
-  transition: all .2s ease-in-out;
-}

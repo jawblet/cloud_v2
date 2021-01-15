@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import { DragDropContext } from "react-beautiful-dnd";
 import Group from './Group'; 
 import AddGroup from './AddGroup';
@@ -16,6 +16,7 @@ const DnDMenu = (props) => {
 
     const [hide, hideMenu] = useState(false);
     
+    //console.log(groups);
     return ( 
     <>
      <SwitchTransition mode="out-in">

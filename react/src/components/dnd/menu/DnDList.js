@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const DnDList = (props) => {
-    const { listType, listId, row } = props; 
+    const { listType, listId, row } = props;
 
     return (
     <Droppable style={{ transform: "none" }}

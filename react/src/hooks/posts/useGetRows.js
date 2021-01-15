@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 //need posts per row + all posts to calc rows 
-export default function useGetRows({postsPerRow, allPosts}) { 
+export default function useGetRows({postsPerRow, allPosts}) {  
     const [postArrays, setPostArrays] = useState(null);
     const [loading, setLoading] = useState(true);
     

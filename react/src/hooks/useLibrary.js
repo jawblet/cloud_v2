@@ -9,7 +9,7 @@ export default function useLibrary(limit) {
 
    const initPageState = {
         page: 1,
-        totalPages: null,
+        totalPages: null, 
         prevPage: null,
         nextPage: null
     }
@@ -26,6 +26,8 @@ export default function useLibrary(limit) {
               console.log(res.data.data.docs);
 
               setThreads(docs);
+              
+              //combine
               if(page > totalPages) {
                   getLibraryBooks(totalPages);
               }

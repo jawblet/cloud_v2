@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react';  
+import React, { useContext, useState, useEffect } from 'react';  
 import { UserContext } from '../UserContext';
 import { EditorState, convertFromRaw, CompositeDecorator, RichUtils, getDefaultKeyBinding } from 'draft-js';
-
 
 export default function useEditPost() {
     const { globalTags } = useContext(UserContext);
     const tags = globalTags;
     let tagNames;
     if(tags && tags.length > 0) { tagNames = tags.map(el => el.tag); }
-
+ 
     const editRef = React.createRef();
 
     const [isReadOnly, setEditable] = useState(true);
@@ -16,6 +15,12 @@ export default function useEditPost() {
     
     const onNoteChange = (editorState) => { setEditorState(editorState); }
     const editNote = () => { setEditable(!isReadOnly); }
+
+    useEffect(() => {
+        if(!isReadOnly) { //set note in focus if it's being edited 
+        editRef.current.focus();
+        }
+    }, [isReadOnly]);
 
         //display notes on tiles and detail pg 
         const displayNoteBody = async (post) => { 
@@ -85,7 +90,7 @@ export default function useEditPost() {
         return getDefaultKeyBinding(e);
     }
 
-    //style functions
+    //style functions 
         const toggleInlineStyle = (e) => {
             e.preventDefault();
             let inlineStyle = e.currentTarget.dataset.id;

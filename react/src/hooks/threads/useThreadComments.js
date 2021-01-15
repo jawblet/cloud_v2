@@ -20,7 +20,7 @@ export default function useThread(id) {
     }
 
     //POST COMMENTS
-    const addComment = async (comment) => {
+    const addComment = async (comment) => { 
         return axios.post('/comments', {
             post: id,
             user,

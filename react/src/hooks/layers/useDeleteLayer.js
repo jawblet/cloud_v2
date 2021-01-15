@@ -32,12 +32,12 @@ export default function useDeleteLayer(id) {
         let groupCopy = [...groups];
 
         //get group that contains deleted layer 
-            groups.forEach(group => {
+        groups.forEach(group => {
                 group.layers.forEach(layer => { 
                     if(layer.id === id) {
                         targetGroup = group;
                     } 
-                });
+            });
         });
 
         const newGroupLayers = targetGroup.layers.filter(layer => layer.id !== id);

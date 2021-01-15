@@ -8,12 +8,11 @@ import Confirm from './pages/Confirm';
 import Landing from './pages/Landing'; 
 import Home from './pages/Home';
 import LayerRoute from './sections/LayerRoute';
-//import HouseRoute from './sections/HouseRoute';
+import GroupRoute from './sections/GroupRoute';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
 import House from './pages/House';
-import Group from './pages/layer/Group';
 import Thread from './pages/Thread';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
@@ -56,7 +55,7 @@ function App() {
             <PrivateRoute path="/user" component={User}/>
             <PrivateRoute path="/add" component={Add}/>
             <PrivateRoute path="/paths" component={Tags}/>
-            <PrivateRoute path='/group/:group' component={Group}/>
+            <PrivateRoute path='/group/:group' component={GroupRoute}/>
             <PrivateRoute path='/:room' component={LayerRoute}/>
             <Route component={NotFound}/> 
         </Switch>

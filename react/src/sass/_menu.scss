@@ -23,7 +23,7 @@
     }
     &__dropdown {
         width: 90%;
-        position: absolute;
+        position: absolute; 
         transform-origin: top;
         background-color: $off-white;
         height: auto;
@@ -46,6 +46,12 @@
         }
         &:hover {
             background-color: $sand2;
+        }
+        &--top {
+            &:first-child {
+                border-top-left-radius: $border-smallest;
+                border-top-right-radius: $border-smallest;
+            }
         }
         &--new {
             background-color: $sand;

@@ -41,19 +41,6 @@
     background-color: inherit;
     border-radius: $border-small;
     transition: all .35s;
-    &__chevron {
-        display: flex;
-        color: $body-light;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: rotate(135deg) scale(0.5) translateY(150%);
-        transition: all $short-fade;
-        z-index:1;
-        &--open {
-            transform: rotate(45deg) scale(0.5) translateX(-200%);
-        }
-    }
     &__label {
         @extend %padding;
         width: 100%;
@@ -87,7 +74,7 @@
     &__edit {
         color: transparent;
         position: absolute;
-        right: 15%;
+        right: -15%;
         transition: all $short-fade;
     }
 }

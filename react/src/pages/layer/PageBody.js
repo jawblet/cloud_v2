@@ -1,29 +1,59 @@
-import React from 'react';
-import PostList100 from '../../sections/posts/PostList100';
-import PostList25 from '../../sections/posts/PostList25';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
-import EmptyPage from './EmptyPage';
+import { EmptyPage, EmptySubpage } from './EmptyPage';
+import useLayerPosts from '../../hooks/layers/useLayerPosts';
+import useManagePosts from '../../hooks/posts/useManagePosts';
+import SwitchViews from './SwitchViews';
 
-const PageBody = (props) => {
-    const { posts, 
-        p_loading } = props;
+const PageBody = (props) => { 
+    const params = useParams();
 
-    if(p_loading) {
+    const {  
+        posts, 
+        loading, 
+        getLayerPosts
+         } = useLayerPosts(props.layer.id);
+
+   const { openPost, deletePost } = useManagePosts();
+
+    useEffect(() => {  //get room and posts 
+        getLayerPosts();
+    }, [params]);
+
+    async function handleDeletePost(e) {
+       await deletePost(e.target.dataset.id);
+       await getLayerPosts();
+    }
+
+    if(loading) {
         return <Loading/>
     }
     
-    if(!posts.length) {
-        return <EmptyPage kind="layer"/>
+    if(!posts.length) { 
+        return( <> 
+            {props.subpage 
+                ? <EmptySubpage type="layer"/>
+                : <EmptyPage type="layer"/>
+            } 
+        </> )
     }
 
     return(
-            <>
-            <PostList100 {...props} />
-            <PostList25 {...props}/>
-            </>
+            <SwitchViews 
+                handleDeletePost={handleDeletePost} 
+                openPost={openPost} 
+                posts={posts}
+                {...props}
+                />
         )
 }
  
 export default PageBody;
+
+
+
+
+
 
 //can we do a switch transition here? 
