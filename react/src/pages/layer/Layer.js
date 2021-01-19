@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import { useParams } from 'react-router-dom'; 
 import Header from '../../sections/Header'; 
 import LayerInfo from '../../sections/LayerInfo';
-import PathLegend from '../../components/modals/PathLegend';
-import LayerModal from '../../components/modals/LayerModal';
 import useOneFilter from '../../hooks/useOneFilter'; 
-import useModal from '../../hooks/useModal';
 import { LoadingPage } from '../../components/Loading';
 import AddButton from '../../atoms/page/AddButton';
 import Sidebar from './Sidebar';
 import PageBody from './PageBody';
-import useTagLegend from '../../hooks/paths/useTagLegend';
 import useGetLayer from '../../hooks/layers/useGetLayer';
+import useTagLegend from '../../hooks/paths/useTagLegend';
 
 export default function Layer() { 
     let params = useParams();
     const { handleOneFilter, activeItem } = useOneFilter('date');
     const [activeView, setZoom] = useState('100%'); 
-    
-    const {tagpath, 
-        coords, 
-        handleHover,
-        handleStopHover,
-        tagRef, 
-        tagDetails, 
-        postExcerpts, 
-        loadModal } = useTagLegend();
 
     const { layer, loading, getLayer } = useGetLayer(params);
     
@@ -33,9 +21,8 @@ export default function Layer() {
         getLayer(params.room);
     }, [params]);
 
-    //room dlt modal
-    const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
- 
+    const { handleStopHover } = useTagLegend();
+
     if(loading){
         return <LoadingPage/>
     } 
@@ -45,7 +32,7 @@ export default function Layer() {
         {layer &&
             <div className="page" onScroll={handleStopHover}>
                 <Header nav={[ {name: layer.label, url: params.room }]}/>
-                <LayerInfo page={layer} toggleModal={toggleModal}
+                <LayerInfo page={layer} layer={true}
                     />
                 <div className="layer">
                     <Sidebar setZoomFilter={(e) => setZoom(e.currentTarget.dataset.id)}
@@ -54,22 +41,12 @@ export default function Layer() {
                     <div className="layer__body">
                         <PageBody activeView={activeView} 
                                 layer={layer} 
-                                handleHover={handleHover} 
-                                handleStopHover={handleStopHover}
-                                coords={coords} tagpath={tagpath}
                                 />
                         </div>
                         <AddButton room={layer}/>
-                    </div>
-                <PathLegend ref={tagRef}
-                            tagpath={tagpath} tagDetails={tagDetails} 
-                            loadModal={loadModal} postExcerpts={postExcerpts}/>
-
-                {modal &&  
-                <LayerModal toggleModal={toggleModal} handleOutsideClick={handleOutsideClick} 
-                        ref={modalRef} id={layer.id}/>}
+                    </div>            
             </div> 
-        }
+        } 
     </>
     )
 }
@@ -85,9 +62,9 @@ export default function Layer() {
 
 /*
 posts={posts} 
-                                p_loading={p_loading} 
-                                openPost={openPost}
-                                handleDeletePost={handleDeletePost} 
+p_loading={p_loading} 
+penPost={openPost}
+handleDeletePost={handleDeletePost} 
 
     const {  handleGetPosts,
             room, 

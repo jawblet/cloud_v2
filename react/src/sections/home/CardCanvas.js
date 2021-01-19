@@ -3,7 +3,6 @@ import { UserContext } from '../../hooks/UserContext';
 import Card from './../../components/Card';
 import useCardPosition from '../../hooks/layers/useCardPosition';
 import useGetRows from '../../hooks/posts/useGetRows'; 
-import Loading from '../../components/Loading';
 //import { CSSTransition } from 'react-transition-group';
 /*eslint-disable*/
 

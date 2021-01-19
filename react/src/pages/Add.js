@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'; 
+import React, { useContext, useState } from 'react'; 
 import Header from '../sections/Header';
 import Drawer from '../components/Drawer';
 import AddPost from '../sections/AddPost';
@@ -8,7 +8,7 @@ import useEditor from '../hooks/posts/useEditor';
 import useUpload from '../hooks/upload/useUpload';
 
  export default function Add(props) { 
-    const { user, rooms, globalTags } = useContext(UserContext);
+    const { user, rooms, globalTags } = useContext(UserContext);  
 
     const [addPost, setAdd] = useState(true);
 

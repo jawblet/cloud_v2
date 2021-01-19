@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import PageBody from './PageBody';
 import Chevron from '../../atoms/Chevron';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group'; 
+import { CSSTransition } from 'react-transition-group';  
 
 const Sublayer = ({ layer, activeView }) => {
     const nodeRef = useRef(null);

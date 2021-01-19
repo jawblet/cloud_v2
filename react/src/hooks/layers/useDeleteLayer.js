@@ -5,28 +5,24 @@ import axios from 'axios';
 
 export default function useDeleteLayer(id) {
     let history = useHistory();
-    const { rooms, setRooms, groups, setGroups, user } = useContext(UserContext);
+    const { setGroups, groups, user } = useContext(UserContext);
     const house = user.house._id;
 
     const pushUser = async () => {
         history.push('/');
     }
 
-    //GET ROOMS
+    //GET GROUPS
     const getAllRooms = async () => {
             return axios.get(`/houses/${house}`)
             .then(res => {
-                const allRooms = res.data.data.doc.rooms;
-                setRooms(allRooms);
-            }).catch(err => console.log(err));
+                const allGroups = res.data.data.doc.groups;
+                setGroups(allGroups);
+            }).catch(err => console.log(err)); 
     }
 
-    //DELETER LAYER 
-    const deleteLayer = async (id) => {
-        //remove layer from layer array 
-        const layersCopy = [...rooms];
-        const newLayers = layersCopy.filter(el => el.id !== id);
-        
+    //DELETE LAYER 
+    const deleteLayer = async (id) => {         
         //remove layer from its group array 
         let targetGroup;
         let groupCopy = [...groups];
@@ -45,21 +41,17 @@ export default function useDeleteLayer(id) {
             if(el.id === targetGroup.id) {
                 return {
                     ...el,
-                    layers: newGroupLayers
+                    layers: newGroupLayers 
                 }
             } return el;
         });
         
         return axios.put(`/houses/${house}`, {
-            rooms: newLayers, 
             groups: newGroups  
-          }).then( async(res) => {
-             console.log(res);
-             setGroups(newGroups);
           }).catch(err => console.log(err));
     }
 
-    //DELETER LAYER 
+    //DELETER LAYER'S POSTS 
     const deletePosts = async (id) => {
         return await axios.delete(`/posts/h/${house}/${id}`)
         .catch(err => console.log(err)); 
@@ -71,6 +63,7 @@ export default function useDeleteLayer(id) {
         await getAllRooms();
         await pushUser();
     }
+
 
     return {
         handleDeleteLayer

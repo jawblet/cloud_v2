@@ -1,15 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Header from '../sections/Header';
-import CardCanvas from '../sections/home/CardCanvas'; 
+//import CardCanvas from '../sections/home/CardCanvas'; 
 import MapCanvas from '../sections/home/MapCanvas';
 import NavBar from '../components/btns/NavBar';
 import HouseLegend from '../components/modals/HouseLegend';
 import ExpandButton from '../atoms/ExpandButton';
 import { navButtons } from '../data/buttons';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import useRefreshLayers from '../hooks/layers/useRefreshLayers';
 
 export default function Home() {
-    const node = useRef(null);
+    useRefreshLayers();
+
     const [squeeze, setSqueeze] = useState(true);
     const handleExpandClick = () => { setSqueeze(!squeeze); }
     
@@ -33,10 +35,12 @@ export default function Home() {
                         addEndListener={(node, done) => {
                                         node.addEventListener("transitionend", done, false);
                         }}> 
-                <div className="skylight" ref={node}>
+                <div className="skylight">
                         {zoomIn 
-                            ? <CardCanvas squeeze={squeeze}/>
-                            : <MapCanvas/> 
+                            ? <div> The cards are gone temporarily.</div>
+
+                            :
+                                <MapCanvas/>
                         }     
                 </div>
             </CSSTransition>
@@ -53,3 +57,5 @@ export default function Home() {
         </div>
     )
 }; 
+
+//<CardCanvas squeeze={squeeze}/>

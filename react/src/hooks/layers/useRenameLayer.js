@@ -4,17 +4,15 @@ import axios from 'axios';
 import slugify from 'react-slugify';
 import { UserContext } from '../UserContext';
 
-export default function useRenameLayer(props) { 
+export default function useRenameLayer(props) {
 const { label, id, description } = props.page;
 
 const initValues = { name: label, 
                     description: description }
 
 let history = useHistory();
-const { user, setRooms, groups, setGroups } = useContext(UserContext); 
+const { user, groups, setGroups } = useContext(UserContext); 
 const house = user.house._id;
-const rooms = user.house.rooms; // ??? bitch tf? 
-
 
 const [editInline, setEditInline] = useState(false); 
     const [values, setValue] = useState(initValues || {});
@@ -31,47 +29,33 @@ const [editInline, setEditInline] = useState(false);
     };
 
     const handleClickIn = () => {
-        console.log(id);
         setEditInline(true);
     };
 
     const handleBlur = async (e) => {
         const name = e.target.name;
-        switch(name) {
-            case "name": { 
-                await blurName(pushUser) 
-            };
-            break;
-            case "description": {
-               await blurDescription();
-            };
-            break;
-            default: return; 
-        }
+        await blur(name, pushUser); 
     };
 
     const pushUser = (slug) => {
         history.push(`/${slug}`, {from: slug});
     };
 
-    //validate to make sure room doesn't exist 
-    const blurName= async (callback) => {
+    const blur = async (name, callback) => {
         setEditInline(false);
         const label = values.name; 
+        const description = values.description;
         const slug = slugify(values.name);
 
         //create new room obj 
-        let updatedLayer = rooms.find(el => el.id === id);
-        updatedLayer = { label, slug, id: updatedLayer.id, description: updatedLayer.description };
+        let updatedLayer;
 
-        //replace renamed layer in layer array 
-        const newLayerArray = rooms.map(el => {
-            if(el.id === id) {
-                return updatedLayer;
-            } else {
-                return el;
-            }
-        });
+        groups.forEach(group => {
+            group.layers.forEach(layer => { if(layer.id === id) { updatedLayer = layer; } 
+              });
+          });
+
+        updatedLayer = { label, slug, description, id: updatedLayer.id };
 
         //replace renamed layer in groups array
           let targetGroup;
@@ -82,6 +66,7 @@ const [editInline, setEditInline] = useState(false);
                 if(layer.id === id) { targetGroup = group; } 
               });
           });
+
           const newGroupLayers = targetGroup.layers.map(layer => {
               if(layer.id === id) {
                   return updatedLayer;
@@ -95,19 +80,28 @@ const [editInline, setEditInline] = useState(false);
           });
         
         await axios.put(`/houses/${house}`, {
-          rooms: newLayerArray,
           groups: newGroupArray   
         }).then(res => {
             setGroups(newGroupArray);
-            setRooms(newLayerArray);
-            callback(slug);
+            if(name === 'name') {
+                return callback(slug);
+            } return;
         })
         .catch(err => console.log(err));
     };
 
+    return {
+        editInline,
+        values,
+        size,
+        handleClickIn,
+        handleBlur,
+        handleChange
+    }
+}
 
-
-    const blurDescription = async () => {
+/*
+const blurDescription = async () => {
         setEditInline(false);
         const description = values.description; 
         const newRooms = rooms.map(el => {
@@ -128,12 +122,15 @@ const [editInline, setEditInline] = useState(false);
         .catch(err => console.log(err));
     };
 
-    return {
-        editInline,
-        values,
-        size,
-        handleClickIn,
-        handleBlur,
-        handleChange
-    }
-}
+
+    //replace renamed layer in layer array 
+        const newLayerArray = rooms.map(el => {
+            if(el.id === id) {
+                return updatedLayer;
+            } else {
+                return el;
+            }
+        });
+
+
+*/

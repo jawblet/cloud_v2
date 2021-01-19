@@ -2,84 +2,83 @@ import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 
-export default function useMapKey(groups) {
-    const { user, rooms, setGroups } = useContext(UserContext);
+export default function useMapKey(groupArray) {
+    const { user, setGroups } = useContext(UserContext);
     const house = user.house._id;
-    const [rows, setRows] = useState(null);
+    const [groups, setGroupState] = useState(null);
 
     useEffect(() => { 
-        setRows(groups);
-    }, [rooms, groups]); 
+        setGroupState(groupArray);
+    }, [groupArray]); 
 
-    const updateHouseModel = (newRows) => {
-        axios.put(`/houses/${house}`, {
+    const updateHouseModel = async (newRows) => {
+        return axios.put(`/houses/${house}`, {
             groups: newRows   
         }).then(res => { 
-            setRows(newRows);
+            console.log(res);
             setGroups(newRows);
-        }).catch(err => console.log(err));
+        }).catch(err => console.log(err));    
     }
 
     const reorderList = (list, startIndex, endIndex) => {
         const [item] = list.splice(startIndex, 1);
         list.splice(endIndex, 0, item);
-        return list;
+        return list; 
     }
     
-    const reorderRows = (rows, source, destination) => {
-        const dragRow = rows.find(x => x.id === source.droppableId);
-        const dropRow = rows.find(x => x.id === destination.droppableId);
-        const target = dragRow.layers[source.index];
-        let newRows;
-    
+//droppableId = col id 
+//index = item position 
+
+    const reorderRows = (groups, source, destination) => {
+        console.log(groups, source, destination);
+        const dragGroup = groups.find(x => x.id === source.droppableId);
+        const dropGroup = groups.find(x => x.id === destination.droppableId);
+        let newGroups;
+  
         // moving to same list
         if (source.droppableId === destination.droppableId) {
-            const reordered = reorderList(dragRow.layers, source.index, destination.index); 
-            newRows = rows.map(x => (x.id === dropRow.id ? {...x, layers: reordered } : x));
-            return updateHouseModel(newRows);
+            const reordered = reorderList(dragGroup.layers, source.index, destination.index); 
+            newGroups = groups.map(x => (x.id === dropGroup.id ? {...x, layers: reordered } : x));
+            return updateHouseModel(newGroups);
         }
-    
-        // moving to different lists
-            dragRow.layers.splice(source.index, 1); //remove item from drag row
-            dropRow.layers.splice(destination.index, 0, target); // add item to drop row
-            newRows = rows.map(x => {
-                if(dragRow.id === x.id) {
-                    return {
-                        ...x, 
-                        layers: dragRow.layers
-                    }
-                } else if (dropRow.id === x.id) {
-                    return {
-                        ...x,
-                        layers: dropRow.layers
-                    };
+       
+        // moving to different lists -- merge object? 
+            const target = dragGroup.layers[source.index];
+            dragGroup.layers.splice(source.index, 1); //remove item from drag row
+            dropGroup.layers.splice(destination.index, 0, target); // add item to drop row
+            newGroups = groups.map(group => {
+                if(source.droppableId === group.id) {
+                    return dragGroup;
+                } else if (destination.droppableId  === group.id) {
+                    return dropGroup;
                 }
-                return x;
+                return group;
             })
-            console.log(newRows);
-            updateHouseModel(newRows);
+            updateHouseModel(newGroups);
     };
     
+
     const addRow = (rows) => {
-        const ungrouped = rows[rows.length - 1];
-        rows.splice((rows.length - 1), 1);
+        const ungrouped = groups[groups.length - 1]; //ungrouped object 
+        groups.splice((groups.length - 1), 1);
         const newGroup = {
-                        id: `${rows.length}`,
-                        label: `Group ${rows.length + 1}`,
-                        slug: `group-${rows.length + 1}`,
+                        id: `${groups.length}`,
+                        label: `Group ${groups.length + 1}`,
+                        slug: `group-${groups.length + 1}`,
+                        zone: "clay",
                         layers: []
                 }
-        const newRows = [...rows, newGroup, ungrouped];
-        updateHouseModel(newRows);
+        const newGroups = [...groups, newGroup, ungrouped];
+        updateHouseModel(newGroups);
     };
     
-    const deleteRow = (row) => {
-        let newRows;
-        let rowsRemaining = rows.filter(x => x.id !== row.id);
-        if(row.layers.length) { //redistribute layers if they exist
-            const ungrouped = rows[rows.length - 1].layers;  //get ungrouped layers 
-            const newUngrouped = [...ungrouped, ...row.layers]; //move row's layers to ungrouped layers     
-                newRows = rowsRemaining.map(x => {
+    const deleteRow = async (group) => {
+        let newGroups; 
+        let groupsRemaining = groups.filter(el => el.id !== group.id);
+        if(group.layers.length) { //redistribute layers if they exist
+            const ungrouped = groups[groups.length - 1].layers;  //get ungrouped layers 
+            const newUngrouped = [...ungrouped, ...group.layers]; //move row's layers to ungrouped layers     
+                newGroups = groupsRemaining.map(x => {
                     if(x.id === "ungrouped") {
                         return {
                             ...x,
@@ -87,15 +86,15 @@ export default function useMapKey(groups) {
                         }
                     } return x
                 });
+                console.log(newGroups);
             } else {
-                 newRows = rowsRemaining;
+                 newGroups = groupsRemaining;
             }
-        updateHouseModel(newRows);
+       await updateHouseModel(newGroups);
     }
 
     return {
-        rows,
-        setRows,
+        groups,
         reorderRows,
         addRow,
         deleteRow

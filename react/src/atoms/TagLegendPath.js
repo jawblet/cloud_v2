@@ -5,11 +5,10 @@ export default function TagLegendPath( {coords, tag, enter} ) {
     const nodeRef = useRef(null); 
 
     return(
-        <CSSTransition 
-        in={eval(enter)} timeout={350} 
-        nodeRef={nodeRef} classNames="fade"
-        exit={false}
-        unmountOnExit>
+        <CSSTransition in={enter} timeout={350} 
+            nodeRef={nodeRef} classNames="fade"
+            exit={false}
+            unmountOnExit>
             <span ref={nodeRef}>
                 <div className="tagPathX" 
                     style={{ backgroundColor:tag.color, 
@@ -26,8 +25,3 @@ export default function TagLegendPath( {coords, tag, enter} ) {
         </CSSTransition>
     )
 }
-
- /*
-        
-                
-                */

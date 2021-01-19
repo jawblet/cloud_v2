@@ -64,7 +64,7 @@ h3 {
   letter-spacing: 0.5px;
 }
 
-h4, button, li, .search__bar {
+h4, button, li, .search__bar, th {
     font-family: 'Graphik', sans-serif;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -134,16 +134,18 @@ button {
   }
 
   
-// do not set ul and ol because of draft-js
-  menu {
+//do not set ul and ol because of draft-js
+menu {
     list-style: none;
-  }
+}
 
 hr {
-    background-color: $shadow;
+    clear:both;
+    display:block;
+    background: $shadow;
     opacity: .5;
     height: 1px; 
-    width: 100%; 
+    width: 99%; 
     margin: 1rem auto; //center and give space on top/bottom
 }
 
@@ -154,3 +156,4 @@ hr {
   background-color: $body-light; 
   cursor: pointer;
 }
+

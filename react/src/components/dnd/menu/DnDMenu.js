@@ -7,16 +7,17 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useMapKey from '../../../hooks/house/useMapKey';
 
 const DnDMenu = (props) => {
-    const { groups } = props; 
+    const { groupArray } = props; 
 
-    const {rows,
+    const {
+        groups, 
+        rows,
         reorderRows,
-        addRow,
-        deleteRow } = useMapKey(groups); 
+        addRow, 
+        deleteRow } = useMapKey(groupArray); 
 
     const [hide, hideMenu] = useState(false);
-    
-    //console.log(groups);
+
     return ( 
     <>
      <SwitchTransition mode="out-in">
@@ -33,7 +34,7 @@ const DnDMenu = (props) => {
                     if (!destination) { // // dropped outside the list
                         return;
                         }
-                    reorderRows(rows, source, destination);
+                    reorderRows(groups, source, destination);
                     }}
                 >
                     <div className="flex column fullWidth"> 
@@ -42,16 +43,18 @@ const DnDMenu = (props) => {
                             <VscArrowSmallRight className="icon icon__btn" onClick={() => hideMenu(true)}/>
                         </div>
                         <div className="dnd">
-                            {rows && rows.map((row) => (
+                            {groups && groups.map((group) => {
+                                return(
                                 <Group 
                                     internalScroll
-                                    key={row.id}
-                                    listId={row.id}
+                                    key={group.id}
+                                    listId={group.id}
                                     listType="CARD"
-                                    row={row} 
+                                    group={group} 
+                                    layers={group.layers}
                                     deleteRow={deleteRow}
                                     />    
-                                )
+                                )}
                             )}
                         </div>
                     </div>

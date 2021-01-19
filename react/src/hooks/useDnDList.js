@@ -16,7 +16,7 @@ const [list, setList] = useState(items);
  //default DnD API evts 
     const handleDragStart = e => {
         const pos = Number(e.currentTarget.dataset.position);
-        setDragAndDrop({
+        setDragAndDrop({ 
             ...dragAndDrop,
             draggedFrom: pos,
             isDragging: true,

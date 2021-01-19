@@ -12,9 +12,10 @@ export default function MapCanvas() {
             <HomeIcon/>
         </div>
         <div className="map__key">
-            <DnDMenu groups={groups}/>
+            <DnDMenu groupArray={groups} 
+                />
         </div>
-    </div>
+    </div> 
     )
 } 
 

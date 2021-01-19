@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import DragItem from './DragItem';
 
 const DnDList = (props) => {
-    const { listType, listId, row } = props;
+    const { listType, listId, group, layers } = props;
 
     return (
     <Droppable style={{ transform: "none" }}
@@ -18,7 +18,7 @@ const DnDList = (props) => {
             {...dropProvided.droppableProps}
             ref={dropProvided.innerRef}
                 > 
-                {row.layers.map((layer, index) => (
+                {layers.map((layer, index) => (
                 <Draggable  draggableId={layer.id} 
                             key={layer.id} 
                             index={index}>
@@ -28,14 +28,7 @@ const DnDList = (props) => {
                             {...dragProvided.draggableProps}
                             ref={dragProvided.innerRef} 
                         >
-                            <Link to={`/${layer.slug}`}>
-                                <p className={`dnd__item 
-                                 ${row.id !== 'ungrouped' ? 'dnd__item--nested' : ''}
-                                `}
-                                > 
-                                    {layer.label}
-                                </p>
-                            </Link>
+                           <DragItem layer={layer} group={group}/>
                         </div>
                     )}
                 </Draggable>

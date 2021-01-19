@@ -31,7 +31,7 @@ const ThreadComments = (props) => {
 
     return (
         <>
-        <hr/>
+        <hr/> 
         <div className="thread__comments">
            {!loading && comments.map(el => {
                const contentState = convertFromRaw(JSON.parse(el.comment));

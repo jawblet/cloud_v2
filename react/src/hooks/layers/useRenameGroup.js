@@ -14,7 +14,7 @@ const handleChange = (e) => {
 };
 
 const rename = async (groups) => {
-   return axios.put(`/houses/${house}`, {
+   return axios.put(`/houses/${house}`, { 
         groups
     }).then(res => {
         setGroups(groups);

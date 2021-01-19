@@ -5,28 +5,24 @@ import LayerLabel from './LayerLabel';
 import useRenameGroup from '../../../hooks/layers/useRenameGroup';
 import useDetectClickOut from '../../../hooks/useDetectClickOut';
 
-const GroupHeader = ({ row, expand, setExpand }) => {
+const GroupHeader = ({ group, expand, setExpand }) => {
    
-    const {  handleBlur, newName, handleChange } = useRenameGroup(row);
+    const {  handleBlur, newName, handleChange } = useRenameGroup(group);
     const { disable, setDisable, nodeRef } = useDetectClickOut(true);
     
     return (
         <div className="dndHeader">
-        {row.id !== "ungrouped" 
+        {group.id !== "ungrouped" 
             ?
-            <GroupLabel row={row} 
-                    disable={disable}
-                    handleClick={(e) => { e.preventDefault(); 
-                        setDisable(false)}}
-                    handleBlur={(e) => {
-                        handleBlur(e);
-                       setDisable(true);
-                    }}
+            <GroupLabel group={group} 
+                    disable={disable} 
+                    handleClick={(e) => { e.preventDefault(); setDisable(false)}}
+                    handleBlur={(e) => { handleBlur(e); setDisable(true); }}
                     newName={newName}
                     handleChange={handleChange}
                     nodeRef={nodeRef}
                     />
-            : <LayerLabel row={row}/>
+            : <LayerLabel group={group}/>
             }
         <Chevron expand={expand} setExpand={setExpand}
             />

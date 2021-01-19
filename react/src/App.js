@@ -28,7 +28,7 @@ function App() {
     setUser,
     setRooms,
     setGroups,
-    setGlobalTags,
+    setGlobalTags, 
     isLoading } = useFindUser();
  
   return (
@@ -65,6 +65,3 @@ function App() {
 }
 
 export default App;
-
-
-// <PrivateRoute path='/house/:threadId' component={Thread}/>

@@ -12,7 +12,6 @@
     "cors": "^2.8.5",
     "draft-js": "^0.11.7",
     "lodash": "^4.17.20",
-    "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^17.0.1",
@@ -22,14 +21,15 @@
     "react-slugify": "^2.0.3",
     "react-tiny-link": "^3.6.0",
     "react-transition-group": "^4.4.1",
-    "sass": "^1.29.0",
+    "react-uuid": "^1.0.2",
+    "sass": "^1.32.4",
     "styled-components": "^5.2.1",
     "typescript": "^4.1.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "sass": "node-sass src/sass/main.scss src/App.css -w",
+    "sass": "sass src/sass/main.scss src/App.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

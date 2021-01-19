@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import { useParams } from 'react-router-dom'; 
 import Header from '../../sections/Header'; 
 import LayerInfo from '../../sections/LayerInfo';
@@ -28,17 +28,17 @@ const Group = () => {
         {group &&
             <div className="page">
             <Header/>
-            <LayerInfo page={group}/>
+            <LayerInfo page={group} layer={false}/>
             <AddButton room={group.layers[0]}/>
             <div className="layer">
                 <Sidebar group={group}/>
                 <div className="layer__body">
                     {group.layers && group.layers.map((layer, i) => { 
                         return (
-                            <Sublayer layer={layer} activeView={activeView}/>
+                            <Sublayer key={i} layer={layer} activeView={activeView}/>
                         )}
                         )
-                    }
+                    } 
                 </div>
             </div>
         </div>}

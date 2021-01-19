@@ -5,7 +5,7 @@ export default function useDragDrop() {
         inDropZone: false,
         uploadComplete: false,
         file: '',
-        message: '',
+        message: '', 
       };
 
       const reducer = (state, action) => {

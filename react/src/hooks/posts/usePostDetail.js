@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
 import groupBy from 'lodash/groupBy';
 
 export default function usePostDetail(postId) {

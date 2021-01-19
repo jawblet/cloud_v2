@@ -6,15 +6,14 @@ import { CSSTransition } from 'react-transition-group';
 
 const Group = (props) => {
     const nodeRef = useRef(null);
-    const { row } = props; 
-    const [expand, setExpand] = useState(true);
-      
+    const { group } = props; 
+    const [expand, setExpand] = useState(true); 
     return (
         <div className="group">
          <DeleteGroup {...props} 
             />
             <div className="group__body">
-                <GroupHeader row={row} 
+                <GroupHeader group={group} 
                         expand={expand} 
                         setExpand={setExpand} 
                         />

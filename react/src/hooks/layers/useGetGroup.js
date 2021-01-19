@@ -9,7 +9,6 @@ export default function useGetGroup() {
     const [loading, setLayerLoading] = useState(true); 
     const [layer, setLayer] = useState(null);
 
-
     async function getLayer(room) {
             return axios.get(`/houses/${house}`)
                 .then(res => {
@@ -18,7 +17,6 @@ export default function useGetGroup() {
                 console.log(newRoom);
                 setLayer(newRoom);
                 setLayerLoading(false);
-                //return newRoom;
             }).catch(err => console.log(err));        
         };
 

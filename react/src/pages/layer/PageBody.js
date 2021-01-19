@@ -2,18 +2,29 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import { EmptyPage, EmptySubpage } from './EmptyPage';
+import SwitchViews from './SwitchViews';
+import PathLegend from '../../components/modals/PathLegend';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import useManagePosts from '../../hooks/posts/useManagePosts';
-import SwitchViews from './SwitchViews';
+import useTagLegend from '../../hooks/paths/useTagLegend';
 
-const PageBody = (props) => { 
+const PageBody = (props) => {  
     const params = useParams();
-
-    const {  
+    const { 
         posts, 
         loading, 
         getLayerPosts
          } = useLayerPosts(props.layer.id);
+
+    
+    const {tagpath, 
+            coords, 
+            handleHover,
+            handleStopHover,
+            tagRef, 
+            tagDetails, 
+            postExcerpts, 
+            loadModal } = useTagLegend();
 
    const { openPost, deletePost } = useManagePosts();
 
@@ -29,7 +40,7 @@ const PageBody = (props) => {
     if(loading) {
         return <Loading/>
     }
-    
+
     if(!posts.length) { 
         return( <> 
             {props.subpage 
@@ -40,12 +51,24 @@ const PageBody = (props) => {
     }
 
     return(
+        <>
             <SwitchViews 
                 handleDeletePost={handleDeletePost} 
                 openPost={openPost} 
                 posts={posts}
-                {...props}
+                handleHover={handleHover} 
+                handleStopHover={handleStopHover}
+                coords={coords} tagpath={tagpath}
+                {...props} 
                 />
+            
+                <PathLegend ref={tagRef}
+                tagpath={tagpath} 
+                tagDetails={tagDetails} 
+                loadModal={loadModal} 
+                postExcerpts={postExcerpts}
+                />
+        </>
         )
 }
  

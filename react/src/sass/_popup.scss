@@ -35,14 +35,14 @@
     max-height: 75vh;
     position: relative;
     &__container {
-    visibility: hidden; // hide
-    position: fixed;
-    right: 0%;
-    top: 7%;
-    width: 25%;
-    height: 1rem;
-    margin-top: 1rem;
-    background-color: inherit;
+        //visibility: hidden; // hide
+        position: fixed;
+        right: 0%;
+        top: 15%;
+        width: 25%;
+        height: 1rem;
+        margin-top: 1rem;
+        background-color: inherit;
     }
     &__body {
         overflow: hidden;

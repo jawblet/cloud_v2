@@ -6,15 +6,28 @@ import BasicSelectMenu from '../menus/BasicSelectMenu';
 import useEditPost from '../../hooks/posts/useEditPost'; 
 import { VscEllipsis } from 'react-icons/vsc';
 import { getUniqueTags } from '../../pages/layer/layer_data';
+import Post100Tag from './Post100Tag';
+import TagLegendPath from '../../atoms/TagLegendPath';
  
 export default function Post100(props) { 
-    const { post, toggleMenu, menu, index, toggleRef, revertAll, handleDeletePost, openPost, handleStopHover, tagpath, handleHover } = props;
+    const { post, 
+        toggleMenu, 
+        menu, 
+        i, 
+        toggleRef, 
+        revertAll, 
+        handleDeletePost, 
+        openPost, 
+        tagpath 
+            } = props;
+
+    const postId = props.coords.postId;
     const editRef = useRef(null); 
 
     const uniqueTags = getUniqueTags(post.tags); 
 
     const { displayNoteBody, 
-            editorState, 
+            editorState,  
             setEditorState, 
             onNoteChange } = useEditPost();
 
@@ -43,11 +56,12 @@ export default function Post100(props) {
                 <h4 className="lightest">{post.user.username}</h4>  
                 <div className="post100__header__edit">
                     <h4 className="lightest">{post.date}</h4>
-                    <VscEllipsis className="icon icon__btn post100__editBtn" data-id={index} onClick={toggleMenu}/>
+                    <VscEllipsis className="icon icon__btn post100__editBtn" 
+                                            data-id={i} onClick={toggleMenu}/>
                      <div className="post100__header__editMenu">
                         <BasicSelectMenu items={['open', 'delete']} 
                             toggleMenu={toggleMenu}
-                            show={menu[index]}
+                            show={menu[i]}
                             selectItem ={selectItem} 
                             childData={post._id}
                             revertAll={revertAll}
@@ -74,35 +88,31 @@ export default function Post100(props) {
                 </div> 
                     {post.tags.length !== 0 && 
                     <div className="post100__tags">
-                        <h4 className="tag" style={{paddingLeft: 0}}>paths:</h4>
+                        <h4 className="tag" style={{paddingLeft: 0}}>
+                            paths:
+                        </h4>
                         {uniqueTags.map((tag, i) => {
                             return (
-                            <div className="post100__tag" key={i}>
-                                <h4 className="tag" 
-                                    data-index={post._id}                                
-                                    data-id={tag._id}
-                                    onMouseEnter={handleHover} 
-                                    onMouseLeave={handleStopHover}
-                                    style={(tagpath && tagpath === tag._id ) ? {backgroundColor: tag.color, color:'#31302C', cursor:'pointer'} : {}}
-                                    >
-                                    {tag.tag}
-                                </h4>
-                            </div>
+                                <>
+                                <Post100Tag tag={tag} key={i}
+                                    {...props} />
+                                
+                                </>
                             )
                         })}
                     </div>
                 }
+               
         </div>
         </>   
     )
 }
 
 /*
-    const postId = coords.postId;
-
-  <TagLegendPath coords={props.coords} 
-                                tag={tag} 
-                                enter={(tagpath && tagpath === tag._id && postId === post._id) 
-                                ? true 
-                                : false}/>
+<TagLegendPath coords={props.coords} 
+                                    tag={tag} 
+                                    enter={(tagpath && 
+                                            tagpath === tag._id && 
+                                            postId === post._id)}
+                                            />
 */

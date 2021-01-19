@@ -1,4 +1,4 @@
-import { VscAdd, VscHome, VscSave, VscMilestone, 
+import { VscAdd, VscHome, VscMilestone, 
         VscLink, VscSymbolParameter, VscArchive, 
         VscBold, VscItalic, VscCode, VscQuote, 
         VscSymbolNamespace, VscListUnordered, VscListOrdered,
@@ -45,7 +45,7 @@ export const BLOCK_TYPES = [
 
 export const NOTE_TOOLTIP = () => {
   return (
-   <div>
+   <div> 
        <h5> Highlight the path text and click the 
            <span className="highlight"> add path </span>  
            button in the toolbar: </h5>

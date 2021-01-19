@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import Header from '../sections/Header'
 import RichEditor from '../components/upload/library/RichEditor';
 import CTA from '../components/btns/CTA';
@@ -8,11 +8,14 @@ import useRichEditor from '../hooks/posts/useRichEditor';
 import useLibrary from '../hooks/useLibrary';
 import useShowEditor from '../hooks/threads/useShowEditor';
 import { CSSTransition } from 'react-transition-group';
- 
+import ColorTheory from '../sections/color/ColorTheory';
+import SymbolKey from '../sections/color/SymbolKey';
+import { UserContext } from '../hooks/UserContext';
+
 export default function House() {
+    const { groups } = useContext(UserContext);
     const nodeRef = useRef(null);
-    const nav = [ {name: 'house', url: 'house'} ];
-    const limit = 6; 
+    const limit = 6;  
 
     const { getLibraryBooks, 
         handleLibrarySubmit, 
@@ -50,11 +53,13 @@ export default function House() {
  
     return (
         <div className="page">
-          <Header nav={nav}/>
+          <Header nav={[ {name: 'house', url: 'house'} ]}/>
             <h2 className="page__title" style={{marginLeft:0}}>
               House
             </h2>
           <div className="layer house">
+              <ColorTheory groups={groups}/>
+              <SymbolKey/>
               <div className="house__compose">
                   {showEdit 
                         ? <InlineButton name="close" handleClick={() => setEditor(!showEdit)}/>

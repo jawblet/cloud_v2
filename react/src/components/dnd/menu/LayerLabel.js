@@ -1,10 +1,10 @@
 import React from 'react';
 
-const LayerLabel = ({row}) => {
+const LayerLabel = ({group}) => {
     return (  
         <div className="dndHeader__label dndHeader__label--ungrouped">
             <h4>
-                {row.label}
+                {group.label}
             </h4>
         </div>
     );
