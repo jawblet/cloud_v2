@@ -16,7 +16,7 @@ const PathLegend = forwardRef((props, ref) => {
                         </div> 
                             <h5 className="light">
                                 This path has been used {tagCount} 
-                                {tagCount === 1 ? 'time ' : 'times ' }
+                                {tagCount === 1 ? ' time ' : ' times ' }
                                 since it was created on {date}.
                             </h5>
                             <div>

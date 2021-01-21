@@ -1,5 +1,5 @@
 import React from 'react';
-import { COLOR_KEY, COLOR_HEADINGS } from './key';
+import { COLOR_KEY } from './key';
 import ColorSwatch from './ColorSwatch';
 import ColorKeyHeader from './ColorKeyHeader';
 

@@ -1,5 +1,5 @@
 import GroupIcon from '../../svg/GroupIcon';
-import { Layer1 } from '../../svg/LayerIcons';
+import { LayerIcon } from '../../svg/LayerIcons';
 
 export const COLOR_HEADINGS = ['color', 'zone', 'description', 'layer ex.'];  
 
@@ -7,7 +7,7 @@ const l = "1.5rem";
 
 export const SYMBOL_KEY = [
       { symbol: <GroupIcon l={l}/>, label: "A group, which may contain layers"},
-      { symbol: <Layer1 l={l}/>, label: "A layer" }
+      { symbol: <LayerIcon l={l} id="L1"/>, label: "A layer" }
 ];
 
 export const COLOR_KEY = [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layer1 } from '../../../svg/LayerIcons';
+import { LayerIcon } from '../../../svg/LayerIcons';
 
 const DragItem = ({layer, group}) => {
     return (
@@ -9,7 +9,7 @@ const DragItem = ({layer, group}) => {
          ${group.id !== 'ungrouped' ? 'dnd__item--nested' : ''}
         `}
         > 
-            <Layer1 l="0.8rem"/>
+        <LayerIcon l="0.8rem" id={`L${layer.id}`}/>
             {layer.label}
         </p>
     </Link>
@@ -17,3 +17,6 @@ const DragItem = ({layer, group}) => {
 }
  
 export default DragItem;
+
+//id={Number.parseInt(layer.id)
+//id={`L${layer.id}`}
