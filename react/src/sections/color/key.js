@@ -1,4 +1,4 @@
-import GroupIcon from '../../svg/GroupIcon';
+import GroupIcon from '../../svg/GroupIcon'; 
 import { LayerIcon } from '../../svg/LayerIcons';
 
 export const COLOR_HEADINGS = ['color', 'zone', 'description', 'layer ex.'];  
@@ -15,7 +15,7 @@ export const COLOR_KEY = [
         label: 'Water', 
         zone: 'water',
         description: 'Fluid, self-directed, Bluets by Maggie Nelson', 
-        layers: ['#393C69', '#666F92', '#7A8FAF']
+        layers: ['#6A87B6', '#829FCB', '#9CACC3']
     },
     {
         label: 'Sand', 
@@ -33,7 +33,7 @@ export const COLOR_KEY = [
         label: 'Fungus', 
         zone: 'fungus',
         description: 'Enigmatic, creepy', 
-        layers: ['#EFD39A', '#6C2321', '#D9C373']
+        layers: ['#F2FFD0', '#EFD39A', '#DAFCC8']
     },
     { 
         label: 'Buried treasure', 
@@ -45,13 +45,15 @@ export const COLOR_KEY = [
         label: 'Clay deposit', 
         zone: 'clay',
         description: 'Slippery when wet', 
-        layers: ['#8FA2A5', '#B16444', '#B7C1B4']
+        layers: ['#DA5A36', '#DC7828', '#C56933']
+    },
+    { 
+        label: 'Default grass', 
+        zone: 'grass',
+        description: 'wild gra$$', 
+        layers: ['#5D923A', '#77B591', '#9DC771']
     }
 ];
-
-//water, sand, stoneface, fungus, buried treasure 
-
-//buried treasure 
 
 //flowing water 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { VscClose } from 'react-icons/vsc';
 
 export default function InboxPreview({ post, plaintext, props }) {
-    const { handleLibraryBookDelete } = props;
+    const { handleLibraryBookDelete } = props; 
     
     return(
             <div className="inboxPreview"> 

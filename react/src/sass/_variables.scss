@@ -24,6 +24,9 @@ $blue: #00e3eb;
 $border-large: 1rem;
 $border-small: 0.5rem; 
 $border-smallest: 5px;
+$border-body: 1px solid $body; 
+$border-trans: 1px solid transparent; 
+$border-hover: 1px solid $blue;
 $border: 1px solid black; //for testing 
 
 //shadow
@@ -42,9 +45,10 @@ $short-fade: .35s;
 $long-fade: .7s;
 
 //map colors 
-$water: #5469AA;
+$water: #427093;
 $sandy: #CBC9BA;
 $stone: #616266;
-$fungus: #CA8450;
+$clay: #B04022;
 $treasure: #EACB86; 
-$clay: #A57F42;
+$fungus: #D7F08E;
+$grass: #2E6233;

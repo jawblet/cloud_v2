@@ -867,7 +867,10 @@ d {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.map__row {
+  width: 100%;
+  display: flex;
 }
 .map__key {
   flex: 0 0 25%;
@@ -877,11 +880,24 @@ d {
   justify-content: flex-end;
 }
 
+.map {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 40%;
+  margin-right: 10%;
+  margin-bottom: 3rem;
+}
+.map__title {
+  margin-bottom: 1rem;
+}
+
 .homeIcon {
-  align-self: center;
+  position: absolute;
+  left: 40%;
+  bottom: 0;
   display: flex;
   border: 1.5px solid #44433e;
-  border-radius: 5px;
   transform: rotate(45deg);
   width: 3rem;
   height: 1.5rem;
@@ -994,11 +1010,25 @@ d {
 }
 
 .house {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.house__menu {
+  width: 15%;
+  position: absolute;
+  right: 10%;
+  top: 20%;
+}
+
+.inmail {
   display: flex;
   flex-direction: column;
   width: 70%;
 }
-.house__compose {
+.inmail__compose {
   align-self: flex-end;
   padding-bottom: 1rem;
 }
@@ -1038,6 +1068,7 @@ d {
   align-items: center;
   border: 1px solid inherit;
   transition: all 0.35s;
+  position: relative;
 }
 .key__color--active {
   opacity: 0.5;
@@ -1047,18 +1078,10 @@ d {
   border: 1px dashed #DCD8D1;
 }
 
-.symbolKey {
-  width: 75%;
-}
-
-.colorKey__layers {
-  display: flex;
-}
-.colorKey__ex {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  margin-right: -1rem;
+.removeZone {
+  position: absolute;
+  top: 0;
+  left: -1rem;
 }
 
 .key__cell {
@@ -1075,14 +1098,19 @@ d {
 
 .assignColor {
   display: flex;
+  flex-direction: column;
+}
+.assignColor__zones {
+  display: flex;
 }
 .assignColor__group {
   display: flex;
   flex-direction: column;
+  padding: 1.5rem;
 }
 
 #water {
-  background-color: #5469AA;
+  background-color: #427093;
 }
 
 #sand {
@@ -1094,7 +1122,7 @@ d {
 }
 
 #fungus {
-  background-color: #CA8450;
+  background-color: #D7F08E;
 }
 
 #buriedTreasure {
@@ -1102,7 +1130,190 @@ d {
 }
 
 #clay {
-  background-color: #A57F42;
+  background-color: #B04022;
+}
+
+#grass {
+  background-color: #2E6233;
+}
+
+.houseTitle {
+  padding-bottom: 1.5rem;
+}
+
+.symbolKey {
+  width: 50%;
+}
+
+.colorKey {
+  width: 50%;
+}
+.colorKey__layers {
+  display: flex;
+}
+.colorKey__ex {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: -1rem;
+}
+
+.tagKey {
+  width: 50%;
+}
+
+.hoverB2B::after,
+.hoverB3::after, .hoverB2A::after, .hoverA2::before, .B3:hover::after, .B2B:hover::after, .B2A:hover::after, .A2:hover::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background: #00e3eb;
+  height: 100%;
+  left: -1px;
+  top: 0;
+  z-index: 4;
+}
+
+.hoverB2B::before,
+.hoverB3::before, .hoverB2A::before, .hoverB1::before, .B3:hover::before, .B2B:hover::before, .B2A:hover::before, .B1:hover::before, .houseNav__C:hover::before {
+  content: "";
+  position: absolute;
+  background: #00e3eb;
+  height: 1px;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+.B3, .B2B, .B2A, .B1, .A2, .A1, .houseNav__C {
+  border: 1px solid #31302C;
+  padding: 0.5rem;
+  position: relative;
+  transition: all 0.35s;
+}
+
+.houseNav {
+  height: 50vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  top: 20%;
+  position: relative;
+}
+.houseNav > * {
+  width: 100%;
+}
+.houseNav__A {
+  height: 25%;
+  display: flex;
+}
+.houseNav__B {
+  height: 30%;
+  display: flex;
+}
+.houseNav__C {
+  height: 45%;
+  border-top: none;
+}
+.houseNav__C:hover {
+  border: 1px solid #00e3eb;
+  border-top: none;
+}
+.houseNav__A > *, .houseNav__B > * {
+  height: 100%;
+}
+
+.A1 {
+  width: 70%;
+}
+.A1:hover {
+  border: 1px solid #00e3eb;
+}
+.A2 {
+  width: 30%;
+  border-left: none;
+}
+.A2:hover {
+  border: 1px solid #00e3eb;
+  border-left: inherit;
+}
+.B1 {
+  width: 25%;
+  border-top: none;
+}
+.B1:hover {
+  border: 1px solid #00e3eb;
+  border-top: none;
+}
+.B2 {
+  width: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  border: none;
+}
+.B2A {
+  height: 50%;
+  width: 100%;
+  border-left: none;
+  border-top: none;
+}
+.B2A:hover {
+  border: 1px solid #00e3eb;
+  border-top: none;
+  border-left: none;
+}
+.B2B {
+  width: 50%;
+  height: 50%;
+  border-left: none;
+  border-top: none;
+}
+.B2B:hover {
+  border: 1px solid #00e3eb;
+  border-top: none;
+  border-left: none;
+}
+.B3 {
+  width: 50%;
+  border-top: none;
+  border-left: none;
+}
+.B3:hover {
+  border: 1px solid #00e3eb;
+  border-top: none;
+  border-left: none;
+}
+.hoverRoom {
+  border: 1px solid #00e3eb;
+}
+
+.hoverA2 {
+  border: 1px solid #00e3eb;
+  border-left: none;
+  position: relative;
+}
+.hoverB1 {
+  border: 1px solid #00e3eb;
+  border-top: none;
+  position: relative;
+}
+.hoverB2A {
+  border: 1px solid #00e3eb;
+  border-top: none;
+  border-left: none;
+  position: relative;
+}
+.hoverB2B,
+.hoverB3 {
+  border: 1px solid #00e3eb;
+  border-left: none;
+  border-top: none;
+  position: relative;
+}
+.groupGrid {
+  display: flex;
+  border: 1px solid green;
 }
 
 .input {
@@ -1779,12 +1990,12 @@ h6[data-block] {
   border: 1.5px solid #fcf7f3;
 }
 
-.post5 {
+.cell {
   background-color: #f1e3d3;
   height: auto;
   flex: 1 0 auto;
 }
-.post5::before {
+.cell::before {
   content: "";
   display: block;
   padding-top: 100%;

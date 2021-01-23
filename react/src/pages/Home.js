@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Header from '../sections/Header';
-//import CardCanvas from '../sections/home/CardCanvas'; 
 import MapCanvas from '../sections/home/MapCanvas';
+import MapGrid from '../sections/home/MapGrid';
 import NavBar from '../components/btns/NavBar';
 import HouseLegend from '../components/modals/HouseLegend';
 import ExpandButton from '../atoms/ExpandButton';
 import { navButtons } from '../data/buttons';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useRefreshLayers from '../hooks/layers/useRefreshLayers';
+import { UserContext } from '../hooks/UserContext';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+
 
 export default function Home() {
+    const { groups } = useContext(UserContext);
     useRefreshLayers();
 
     const [squeeze, setSqueeze] = useState(true);
@@ -37,10 +40,10 @@ export default function Home() {
                         }}> 
                 <div className="skylight">
                         {zoomIn 
-                            ? <div> The cards are gone temporarily.</div>
+                            ?   <MapGrid groups={groups}/>
 
                             :
-                                <MapCanvas/>
+                                <MapCanvas groups={groups}/>
                         }     
                 </div>
             </CSSTransition>

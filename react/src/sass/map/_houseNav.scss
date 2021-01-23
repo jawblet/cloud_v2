@@ -1,0 +1,213 @@
+%border-vertical {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background: $blue;
+    height: 100%;
+    left: -1px;
+    top: 0;
+    z-index: 4;
+}
+
+%border-horizontal {
+    content: '';
+    position: absolute;
+    background: $blue;
+    height: 1px;
+    top: -1px;
+    left: 0;
+    width: 100%; 
+    z-index: 4;
+}
+
+%room {
+    border: $border-body;
+    padding: 0.5rem;
+    position: relative;
+    transition: all $short-fade;
+}
+
+.houseNav {
+    height: 50vh; 
+    width: 20%; 
+    display: flex;
+    flex-direction: column;
+    top: 20%;
+    position: relative;
+    & > * {
+        width: 100%;
+    }
+    &__A {
+        height: 25%;
+        display: flex; 
+    }
+    &__B {
+        height: 30%;
+        display: flex; 
+    }
+    &__C {
+        @extend %room; 
+        height: 45%;
+        border-top: none;
+        &:hover {
+            border: $border-hover;
+            border-top: none; 
+            &::before {
+                @extend %border-horizontal;
+            }
+        }
+    }
+    &__A > *,
+    &__B > * {
+        height: 100%;
+        //border: $border-body;
+        //transition: all $short-fade; 
+    }
+}
+
+.A {
+    &1 {
+        @extend %room;
+        width: 70%; 
+        &:hover {
+            border: $border-hover;
+        }
+    }
+    &2 {
+        @extend %room;
+        width: 30%; 
+        border-left: none; 
+        &:hover {
+            border: $border-hover;
+            border-left: inherit;
+            &::before {
+                @extend %border-vertical;
+            }
+        }
+
+    }
+}
+
+.B {
+    &1 {
+        @extend %room;
+       width: 25%; 
+       border-top: none;
+       &:hover {
+           border: $border-hover;
+           border-top: none;
+           &::before {
+            @extend %border-horizontal; 
+        }
+       }
+    }
+    &2 {
+        width: 25%; 
+        display: flex;
+        flex-wrap: wrap;
+        border: none;
+        &A {
+            @extend %room;
+            height: 50%;
+            width: 100%;
+            border-left: none; 
+            border-top: none; 
+            &:hover {
+                border: $border-hover;
+                border-top: none;
+                border-left: none;
+                &::before {
+                    @extend %border-horizontal;
+                }
+                &::after {
+                    @extend %border-vertical;
+                }
+            }
+        }
+        &B {
+            @extend %room;
+            width: 50%;
+            height: 50%; 
+            border-left: none; 
+            border-top: none;
+            &:hover {
+                border: $border-hover;
+                border-top: none;
+                border-left: none;
+                &::before {
+                    @extend %border-horizontal;
+                }
+                &::after {
+                    @extend %border-vertical;
+                }
+            }
+        }
+    }
+    &3 {
+        @extend %room;
+        width: 50%;
+        border-top: none;
+        border-left: none;
+        &:hover{
+            border: $border-hover;
+                border-top: none;
+                border-left: none;
+                &::before {
+                    @extend %border-horizontal;
+                }
+                &::after {
+                    @extend %border-vertical;
+                }
+            }
+        }
+    }
+
+//programmatic hover selectors 
+.hoverRoom {
+    border: $border-hover;
+}
+
+.hoverA2 {
+    border: $border-hover;
+    border-left: none;
+    position: relative;
+    &::before {
+        @extend %border-vertical;
+    }
+}
+
+.hoverB1 {
+    border: $border-hover;
+    border-top: none;
+    position: relative;
+    &::before {
+        @extend %border-horizontal;
+    }
+}
+
+.hoverB2A {
+    border: $border-hover;
+    border-top: none;
+    border-left: none;
+    position: relative; 
+    &::before {
+        @extend %border-horizontal;
+    }
+    &::after {
+        @extend %border-vertical;
+    }
+}
+
+.hoverB2B, 
+.hoverB3 {
+    border: $border-hover;
+    border-left: none;
+    border-top: none;
+    position: relative;
+    &::before {
+        @extend %border-horizontal;
+    }
+    &::after {
+        @extend %border-vertical;
+    }
+}

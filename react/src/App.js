@@ -1,5 +1,5 @@
 import './App.css'; 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';  
 import { UserContext } from './hooks/UserContext';
 import PrivateRoute from './pages/PrivateRoute';
 import Register from './pages/Register';
@@ -12,8 +12,7 @@ import GroupRoute from './sections/GroupRoute';
 import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
-import House from './pages/House';
-import Thread from './pages/Thread';
+import HouseRoute from './sections/HouseRoute';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
 import TestTwo from './pages/TestTwo';
@@ -31,7 +30,7 @@ function App() {
     setGlobalTags, 
     isLoading } = useFindUser();
  
-  return (
+  return ( 
    <Router>
        <UserContext.Provider value={{   user,
                                         rooms,
@@ -50,8 +49,7 @@ function App() {
             <Route path="/confirm" component={Confirm}/>
             <Route path="/blob" component={TestTwo}/>
             <PrivateRoute exact path="/" component={Home}/>
-            <PrivateRoute exact path='/house' component={House}/>
-            <PrivateRoute path='/house/:threadId' component={Thread}/>
+            <PrivateRoute path='/house' component={HouseRoute}/>
             <PrivateRoute path="/user" component={User}/>
             <PrivateRoute path="/add" component={Add}/>
             <PrivateRoute path="/paths" component={Tags}/>
@@ -65,3 +63,7 @@ function App() {
 }
 
 export default App;
+
+
+// <PrivateRoute path='/house/:threadId' component={Thread}/>
+

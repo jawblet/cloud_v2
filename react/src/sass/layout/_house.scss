@@ -1,11 +1,26 @@
 $thread-width: 70%;
 
 .house {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &__menu {
+        width: 15%;
+        position: absolute;
+        right: 10%;
+        top: 20%;
+    }
+}
+
+
+.inmail {
     display: flex;
     flex-direction: column;
     width: $thread-width;
     &__compose{
         align-self: flex-end;
-        padding-bottom: 1rem;
+        padding-bottom: 1rem; 
      }
 }

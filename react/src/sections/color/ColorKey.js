@@ -3,12 +3,12 @@ import { COLOR_KEY } from './key';
 import ColorSwatch from './ColorSwatch';
 import ColorKeyHeader from './ColorKeyHeader';
 
+//disable if used 
+
 const ColorKey = (props) => {
     return (
         <>
-         <h3 className="key__title">
-            Map color key
-        </h3>
+        <h3 className="key__title"> Map color key </h3>
         <table className="key">
            <ColorKeyHeader/>
                 <tbody className="fullWidth">
@@ -26,12 +26,10 @@ const ColorKey = (props) => {
                                     {el.layers.map(color => {
                                         return <div className="colorKey__ex" 
                                             key={color}
-                                            style={{backgroundColor:color}}
-                                        >
-                                    </div> })
-                                }
+                                            style={{backgroundColor:color}}> </div> 
+                                    })}
                             </td>
-                        </tr>
+                         </tr>
                     })}
                 </tbody>
         </table>

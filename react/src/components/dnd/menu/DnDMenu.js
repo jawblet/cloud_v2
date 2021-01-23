@@ -6,8 +6,8 @@ import { VscArrowSmallLeft, VscArrowSmallRight } from 'react-icons/vsc';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useMapKey from '../../../hooks/house/useMapKey';
 
-const DnDMenu = (props) => {
-    const { groupArray } = props; 
+const DnDMenu = (props) => { 
+    const { groupArray } = props;  
 
     const {
         groups, 
@@ -44,7 +44,7 @@ const DnDMenu = (props) => {
                         </div>
                         <div className="dnd">
                             {groups && groups.map((group) => {
-                                return(
+                                return( 
                                 <Group 
                                     internalScroll
                                     key={group.id}
@@ -53,6 +53,7 @@ const DnDMenu = (props) => {
                                     group={group} 
                                     layers={group.layers}
                                     deleteRow={deleteRow}
+                                    {...props}
                                     />    
                                 )}
                             )}

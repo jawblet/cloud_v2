@@ -6,7 +6,7 @@ export default function useGetGroup() {
     const { user } = useContext(UserContext); 
     const house = user.house._id; 
 
-    const [loading, setLayerLoading] = useState(true); 
+    const [loading, setLayerLoading] = useState(true);
     const [layer, setLayer] = useState(null);
 
     async function getLayer(room) {

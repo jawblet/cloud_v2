@@ -11,12 +11,11 @@ import useShowEditor from '../hooks/threads/useShowEditor';
 const Thread = () => {
     const params = useParams();
     const id = params.threadId;
-    const { loading, metadata, editorState } = useThread(id);
+    const { loading, metadata, editorState } = useThread(id); 
     const { showEdit, setEditor } = useShowEditor();
 
     return (
         <div className="page">
-            <Header/>
             <ThreadHeader setEditor={setEditor} showEdit={showEdit}/>
            {!loading && 
             <div className="thread">
@@ -36,3 +35,9 @@ const Thread = () => {
 }
  
 export default Thread;
+
+/*
+  const location = useLocation();
+    const id = location.state; 
+    console.log(id);
+*/

@@ -6,7 +6,7 @@ export default function useGroupPosts(groupSlug) {
     const { user } = useContext(UserContext);
     const house = user.house._id; 
     const [group, setGroup] = useState(null);
-    const [posts, setPosts] = useState(null);
+    const [posts, setPosts] = useState(null); 
     const [loading, setGroupLoading] = useState(true);
 
     async function getGroup () {
@@ -19,18 +19,28 @@ export default function useGroupPosts(groupSlug) {
         }).catch(err => console.log(err));     
     };
  
-    const getGroupPosts = async(layers) => {
+    const getGroupPosts = async(layers, zone) => {
        const posts = layers.map(layer => {
             return axios.get(`/posts/h/${house}/${layer.id}`)
             .then(res => {
-                return {layer: layer.label, 
+                //ultimately will not work bc posts need to be split up by layer 
+               /* return { layer: layer.label, 
                         slug: layer.slug, 
-                        posts: [...res.data.data.results]};
+                        posts: [...res.data.data.results]};*/
+                const posts = res.data.data.results.map(post => {
+                    return {
+                        ...post,
+                        slug: layer.slug,
+                        layer: layer.label,
+                        zone: zone
+                    }
+                })
+
+
             }).catch(err => console.log(err)); 
         });
         
         Promise.all(posts).then(res => setPosts(res));
-        setGroupLoading(false);
     }
 
     async function handleGetGroup() {
@@ -43,7 +53,8 @@ export default function useGroupPosts(groupSlug) {
         group,
         posts,
         handleGetGroup,
-        getGroup
+        getGroup,
+        getGroupPosts
     }
 }
 

@@ -144,7 +144,6 @@ exports.getTagDetails = catchAsync(async(req, res) => {
             countEach: {$sum: 1} 
         } }
     ]);
-    //console.log(tagCount[0].countEach);
 
     res.status(200).json({
         status: 'success',
@@ -158,16 +157,17 @@ exports.getTagDetails = catchAsync(async(req, res) => {
 });
 
 
-/*
-    { 
-        $unwind: '$tags' 
-      },
-     { 
-        $match: {$tags: tag[0].tag }
-      }, 
-      { 
-        $group: { _id: '$tags',
-            countEach: {$sum: 1} }
-    } 
+exports.getPostGrid = catchAsync(async(req, res) => {
+    //add layer slug 
+    const posts = await Post.find({ house: req.params.houseId,
+                                    type:  {$in: ['note', 'link']} });
 
-    */
+    const length = posts.length;
+
+    res.status(200).json({
+        status: 'success',
+        length,
+        posts
+    })                                 
+
+});

@@ -15,9 +15,11 @@
 @import "./layout/map"; 
 @import "./layout/house";
 
-//dnd
+//mapping
 @import "./map/map"; 
 @import "./map/key"; 
+@import "./map/houseNav"; 
+@import "./map/grid"; 
 
 //components 
 @import "forminput"; 

@@ -11,6 +11,7 @@ router.get('/tags/:houseId/:sort?/:room?', postController.countTagsFromPosts); /
 router.get('/allTags/:houseId/:room?', postController.getAllTagsFromPosts); 
 router.get('/details/:houseId/:tagId', postController.getTagDetails); // get tag stats
 router.get('/paginate/:houseId/:room?', postController.getPaginatedPosts);
+router.get('/grid/:houseId/:room', postController.getPostGrid); // get grid view 
 router.put('/:id', postController.updatePost);
 router.delete('/', postController.deleteAllPosts);
 router.delete('/:id', postController.deleteOnePost);

@@ -33,7 +33,7 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
     
     if(req.params.room) { //if there is a room param, filter by houseId + room 
         filter = { house: req.params.houseId, room: req.params.room }
-    } else { filter = { house: req.params.houseId }; 
+    } else { filter = { house: req.params.houseId };
     } 
 
     //populate + filter 
@@ -41,7 +41,7 @@ exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) =>
         .filter()
         .sort()
         .limitFields() 
-        .paginate();  
+        .paginate();
 
     const results = await docs.query;
 

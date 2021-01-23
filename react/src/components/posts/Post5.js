@@ -5,12 +5,13 @@ export default function Post5({ post }) {
         <> 
         {post.tagObject 
             ? 
-                <div className="post5" style={{backgroundColor:post.tagObject[0].color}}>
+                <div className="cell" 
+                    style={{backgroundColor:post.tagObject[0].color}}>
                 </div>
             :
-                <div className="post5">
+                <div className="cell">
                 </div>
             }
         </>
-    )
+    ) 
 }

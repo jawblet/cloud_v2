@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom'; 
 import Edit from './Edit'; 
 import Layer from '../pages/layer/Layer';
 
@@ -8,7 +8,7 @@ const LayerRoute = () => {
         <>
         <Switch>
             <Route path='/:room/:postId' component={Edit}/>
-        </Switch>
+        </Switch> 
             <Layer/>
         </>
       );

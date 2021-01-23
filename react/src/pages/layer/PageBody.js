@@ -9,12 +9,12 @@ import useManagePosts from '../../hooks/posts/useManagePosts';
 import useTagLegend from '../../hooks/paths/useTagLegend';
 
 const PageBody = (props) => {  
-    const params = useParams();
+    const params = useParams(); 
     const { 
         posts, 
         loading, 
         getLayerPosts
-         } = useLayerPosts(props.layer.id);
+         } = useLayerPosts();
 
     
     const {tagpath, 
@@ -29,7 +29,7 @@ const PageBody = (props) => {
    const { openPost, deletePost } = useManagePosts();
 
     useEffect(() => {  //get room and posts 
-        getLayerPosts();
+        getLayerPosts(props.layer.id);
     }, [params]);
 
     async function handleDeletePost(e) {

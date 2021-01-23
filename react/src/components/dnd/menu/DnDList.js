@@ -3,7 +3,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import DragItem from './DragItem';
 
 const DnDList = (props) => {
-    const { listType, listId, group, layers } = props;
+    const { listType, setHoverId, listId, group, layers } = props;
 
     return (
     <Droppable style={{ transform: "none" }}
@@ -26,9 +26,11 @@ const DnDList = (props) => {
                         <div
                             {...dragProvided.dragHandleProps}
                             {...dragProvided.draggableProps}
-                            ref={dragProvided.innerRef} 
+                            ref={dragProvided.innerRef}
                         >
-                           <DragItem layer={layer} group={group}/>
+                           <DragItem layer={layer} group={group}
+                                    setHoverId={setHoverId}
+                           />
                         </div>
                     )}
                 </Draggable>

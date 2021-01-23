@@ -14,11 +14,11 @@ useEffect(() => {
             const postArrays = numRows.map((row, i) => allPosts.slice(i * postsPerRow, i * postsPerRow + postsPerRow ));
             setPostArrays(postArrays);
             setLoading(false);
-        }
+        } 
         
         splicePosts();
     }
-}, [allPosts]);
+}, [allPosts]); 
 
     return {
         loading,

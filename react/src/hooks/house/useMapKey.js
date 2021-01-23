@@ -65,7 +65,7 @@ export default function useMapKey(groupArray) {
                         id: `${groups.length}`,
                         label: `Group ${groups.length + 1}`,
                         slug: `group-${groups.length + 1}`,
-                        zone: "clay",
+                        zone: "clay", //DEFAULT ZONE GOES HERE 
                         layers: []
                 }
         const newGroups = [...groups, newGroup, ungrouped];

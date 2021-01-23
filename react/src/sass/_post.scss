@@ -116,11 +116,11 @@
 //5%
 //5w row 
 .postRow5 { 
-        &__container { // container 
-            border: 1px solid $sand3;
-            padding: 0.5rem;
-            border-radius: $border-small;
-            background-color: $sand;
+    &__container { // container 
+        border: 1px solid $sand3;
+        padding: 0.5rem;
+        border-radius: $border-small;
+        background-color: $sand;
         }
     display: flex; // post
     border-radius: $border-small;
@@ -130,7 +130,7 @@
 }
 
 //5w post
-.post5 { // post
+.cell { // post
     background-color: $sand3;
     height: auto;
     flex: 1 0 auto;

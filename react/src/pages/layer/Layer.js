@@ -49,46 +49,4 @@ export default function Layer() {
         } 
     </>
     )
-}
-
-
-
-
-
-
-
-
-//pls refactor path legend out... 
-
-/*
-posts={posts} 
-p_loading={p_loading} 
-penPost={openPost}
-handleDeletePost={handleDeletePost} 
-
-    const {  handleGetPosts,
-            room, 
-            r_loading, 
-            posts, 
-            p_loading,
-            handleDeletePost, 
-            openPost } = useLayerPosts(params.room);
-
-
-
-
-        useEffect(() => {  //get room and posts 
-            handleGetPosts();
-            console.log('get');
-        }, []); // param
-        */ 
-/*
-    const { t_loading, allTags, getAllTagsFromPosts } = useTags();
-
-     useEffect(() => { 
-            if(activeView === '5%') {
-            getAllTagsFromPosts();
-        }
-        }, [activeView]);
-*/
-// {(!t_loading) && <PostList5 tags={allTags} activeView={activeView}/>}
+};

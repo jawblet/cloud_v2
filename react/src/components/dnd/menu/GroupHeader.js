@@ -1,7 +1,7 @@
 import React from 'react';
 import Chevron from '../../../atoms/Chevron'; 
 import GroupLabel from './GroupLabel';
-import LayerLabel from './LayerLabel';
+import LayerLabel from './LayerLabel'; 
 import useRenameGroup from '../../../hooks/layers/useRenameGroup';
 import useDetectClickOut from '../../../hooks/useDetectClickOut';
 
