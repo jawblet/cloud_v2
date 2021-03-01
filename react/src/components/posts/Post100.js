@@ -1,13 +1,12 @@
 import React, { useRef, useEffect } from 'react';
-import { Editor } from 'draft-js'; 
+import { Link } from 'react-router-dom';
 import { LinkPreview } from './LinkPreview';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
-//import TagLegendPath from '../../atoms/TagLegendPath';
 import useEditPost from '../../hooks/posts/useEditPost'; 
 import { VscEllipsis } from 'react-icons/vsc';
 import { getUniqueTags } from '../../pages/layer/layer_data';
 import Post100Tag from './Post100Tag';
-import TagLegendPath from '../../atoms/TagLegendPath';
+import Post100Note from './Post100Note';
  
 export default function Post100(props) { 
     const { post, 
@@ -18,11 +17,8 @@ export default function Post100(props) {
         revertAll, 
         handleDeletePost, 
         openPost, 
-        tagpath 
+        //tagpath 
             } = props;
-
-    const postId = props.coords.postId;
-    const editRef = useRef(null); 
 
     const uniqueTags = getUniqueTags(post.tags); 
 
@@ -74,12 +70,8 @@ export default function Post100(props) {
             <div className="post100__body">
                 {post.type === 'note' 
                     ?
-                        <div className="post100__body__note">
-                            <Editor readOnly={true} 
-                            editorState={editorState} ref={editRef}
-                            setEditorState={setEditorState}
-                            onChange={onNoteChange} />
-                        </div>   
+                        <Post100Note editorState={editorState} onNoteChange={onNoteChange}
+                                     setEditorState={setEditorState} />
                         : 
                         <div className="post__body__link"> 
                             <LinkPreview link={post.content} />
@@ -93,11 +85,10 @@ export default function Post100(props) {
                         </h4>
                         {uniqueTags.map((tag, i) => {
                             return (
-                                <>
-                                <Post100Tag tag={tag} key={i}
-                                    {...props} />
-                                
-                                </>
+                                <Link to={`/path/${tag.slug}`}>
+                                    <Post100Tag tag={tag} key={i}
+                                        {...props} />
+                                </Link>
                             )
                         })}
                     </div>
@@ -109,6 +100,12 @@ export default function Post100(props) {
 }
 
 /*
+//import TagLegendPath from '../../atoms/TagLegendPath';
+
+
+const postId = props.coords.postId;
+
+
 <TagLegendPath coords={props.coords} 
                                     tag={tag} 
                                     enter={(tagpath && 

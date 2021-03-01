@@ -3,7 +3,6 @@ const Post = require('../models/postModel');
 const Tag = require('../models/tagModel'); 
 const catchAsync = require('../utils/catchAsync');
 const functionHandler = require('./genericFunctionController');
-
 exports.getAllPosts = functionHandler.getAll(Post); 
 exports.getPostById = functionHandler.getOne(Post, 'tags user');
 exports.updatePost = functionHandler.updateOne(Post); 
@@ -15,6 +14,7 @@ exports.getPaginatedPosts = functionHandler.paginate(Post);
 exports.deleteOnePost = functionHandler.deleteOne(Post);
 exports.deletePostsByHouse = functionHandler.deleteAllByHouse(Post);  
 exports.deleteAllPosts = functionHandler.deleteAll(Post);  
+
 
 //get tags used in all posts and unwind
 exports.getAllTagsFromPosts = catchAsync(async(req, res) => {
@@ -97,7 +97,7 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
             }
         },
         {  //put tag name in main body for sorting/lookup ease 
-            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn" } 
+            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn", slug: "$tagObject.slug" } 
         },
         { $sort: sort }
     ]);

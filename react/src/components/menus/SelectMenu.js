@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { VscChevronDown } from 'react-icons/vsc';
 import { CSSTransition } from 'react-transition-group'; 
 

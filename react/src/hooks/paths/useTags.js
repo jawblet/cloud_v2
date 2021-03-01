@@ -10,7 +10,7 @@ const [t_loading, is_t_Loading] = useState(true);
 const [tags, setTags] = useState(null); // all tag objects
 const [allTags, setAllTags] = useState(null);
 const [tagCount, setTagCount] = useState({
-    unique: '',
+    unique: '', 
     sum: ''
 })
 

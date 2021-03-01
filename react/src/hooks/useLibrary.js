@@ -23,7 +23,6 @@ export default function useLibrary(limit) {
         return axios.get(`/posts/paginate/${house}/library?offset=${offset}&limit=${limit}`)
             .then(res => {
               let {docs, page, totalPages, prevPage, nextPage} = res.data.data.docs; 
-              //console.log(res.data.data.docs);
               setThreads(docs);
               
               //combine

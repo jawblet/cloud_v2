@@ -14,7 +14,7 @@ const Sublayer = ({ layer, activeView }) => {
                 <Link to={`/${layer.slug}`}>
                     <h3 className="sublayer__title">
                         {layer.label}
-                    </h3>
+                    </h3> 
                 </Link>
                 <Chevron expand={expand} setExpand={setExpand}/>
             </div>

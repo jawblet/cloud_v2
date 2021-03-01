@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
 import Header from '../sections/Header';
-import MapCanvas from '../sections/home/MapCanvas';
-import MapGrid from '../sections/home/MapGrid';
+import LayerView from '../sections/views/LayerView';
+import PathView from '../sections/views/PathView';
 import NavBar from '../components/btns/NavBar';
 import HouseLegend from '../components/modals/HouseLegend';
 import ExpandButton from '../atoms/ExpandButton';
 import { navButtons } from '../data/buttons';
 import useRefreshLayers from '../hooks/layers/useRefreshLayers';
 import { UserContext } from '../hooks/UserContext';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import DnDMenu from '../components/dnd/menu/DnDMenu';
+import SwitchFade from '../components/animate/SwitchFade';
 
 
 export default function Home() {
@@ -25,30 +26,31 @@ export default function Home() {
         icon: <ExpandButton className="icon icon__btn" squeeze={squeeze} data-id="squeeze"/> }
     ];
 
-    const [zoomIn, setZoom] = useState(false); 
+    const [zoomIn, setZoom] = useState(true); 
+    const [hoverId, setHoverId] = useState(null);
 
     return ( 
         <div className="page">  
             <Header/> 
             <HouseLegend/> 
-            <SwitchTransition mode="out-in">
-                <CSSTransition key={zoomIn} 
-                        timeout={350} 
-                        classNames="fade"
-                        addEndListener={(node, done) => {
-                                        node.addEventListener("transitionend", done, false);
-                        }}> 
-                <div className="skylight">
-                        {zoomIn 
-                            ?   <MapGrid groups={groups}/>
-
-                            :
-                                <MapCanvas groups={groups}/>
-                        }     
+           <SwitchFade state={zoomIn}>
+            <div className="map">
+                        <div className="map__canvas">
+                            {zoomIn 
+                                ?   <LayerView groups={groups}
+                                    />
+                                :   <PathView groups={groups} hoverId={hoverId}    
+                                    />
+                            }
+                        </div>
+                        <div className="map__key">
+                            <DnDMenu groupArray={groups} 
+                                    hoverId={hoverId}  
+                                    setHoverId={setHoverId}/> 
+                        </div>    
                 </div>
-            </CSSTransition>
-            </SwitchTransition>
-                <div className="skylight__nav">
+           </SwitchFade>
+                <div className="map__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
                             direction="column"
@@ -61,4 +63,3 @@ export default function Home() {
     )
 }; 
 
-//<CardCanvas squeeze={squeeze}/>

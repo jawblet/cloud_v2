@@ -9,6 +9,6 @@ export default function useGroupLayersById() {
             return el.layers
         });
 
-        setRooms(layerArrs.flat());
+        setRooms(layerArrs.flat()); 
     }, [groups]);
 }

@@ -18,6 +18,9 @@
     display: flex;
     cursor: pointer;
     position: relative;
+    &:last-child {
+        margin-bottom: 0;
+    }
     &__text {
         flex: 0 0 95%;
         display: flex;
@@ -30,7 +33,7 @@
         font-weight: bold;
     }
     &__body {
-        color: $body-light;            
+        color: $body-light;         
         //text-overflow: ellipsis; // would not work 
     }
     &__fade {
@@ -57,6 +60,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    padding-top: 1rem;
     &__L {
         position: absolute;
         left:0;

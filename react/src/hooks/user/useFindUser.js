@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'; 
  
 export default function useFindUser() { 
-const [user, setUser] = useState(null);
-const [globalTags, setGlobalTags] = useState(null);
-const [rooms, setRooms] = useState(null);
-const [groups, setGroups] = useState(null);
-const [isLoading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const [globalTags, setGlobalTags] = useState(null);
+    const [rooms, setRooms] = useState(null);
+    const [groups, setGroups] = useState(null);
+    const [isLoading, setLoading] = useState(true); 
 
 useEffect(() => {
     async function findUser() { 
@@ -22,7 +22,7 @@ useEffect(() => {
                 setRooms(layerArrs.flat());
         return axios.get(`/tags/h/${user.house._id}`);
         }).then(res => {
-                const tags = res.data.data.results
+                const tags = res.data.data.results;
                 setGlobalTags(tags);
                 setLoading(false); 
         }).catch(err => {

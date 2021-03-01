@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios'; 
 import { UserContext } from '../UserContext';
 import { colors } from '../../data/colors'; 
+import slugify from 'react-slugify';
   
 export default function useUpload({ initialValues }) {
     const colorArr = colors;
@@ -59,6 +60,7 @@ const handleKeyDown = (e) => {
 //add tags to state and post them  
     const createTag = async (tag) => {
             const trimmedTag = tag.trim(); //trim whitespace 
+            const slug = slugify(trimmedTag);
             const n = Math.floor(Math.random() * Math.floor(colorArr.length));
             let color = colorArr[n];
             try {
@@ -69,11 +71,12 @@ const handleKeyDown = (e) => {
                         tag: trimmedTag,
                         house: user.house,
                         user: user._id,
-                        color
+                        color,
+                        slug
                     } 
                 }).then(res => {
                     if (res.status === 200) {
-                        console.log(res.data.data.checkTag[0]._id);
+                        //console.log(res.data.data.checkTag[0]._id);
                         return setValues({ ...values,
                             error: 'This house already has that tag.'
                         }); 

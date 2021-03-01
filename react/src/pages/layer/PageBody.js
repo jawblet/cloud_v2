@@ -7,17 +7,20 @@ import PathLegend from '../../components/modals/PathLegend';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import useManagePosts from '../../hooks/posts/useManagePosts';
 import useTagLegend from '../../hooks/paths/useTagLegend';
+import usePathPosts from '../../hooks/layers/usePathPosts';
 
 const PageBody = (props) => {  
     const params = useParams(); 
+    
     const { 
         posts, 
         loading, 
-        getLayerPosts
+        getLayerPosts,
+        getPathPosts 
          } = useLayerPosts();
 
     
-    const {tagpath, 
+    const { tagpath, 
             coords, 
             handleHover,
             handleStopHover,
@@ -29,6 +32,10 @@ const PageBody = (props) => {
    const { openPost, deletePost } = useManagePosts();
 
     useEffect(() => {  //get room and posts 
+        if(props.path) {
+         return getPathPosts(props.path._id);
+        }
+
         getLayerPosts(props.layer.id);
     }, [params]);
 

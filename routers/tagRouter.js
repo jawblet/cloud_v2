@@ -3,9 +3,10 @@ const router = express.Router();
 const tagController = require('../controllers/tagController'); 
 const sort = require('../middleware/sort');
 
-router.get('/', tagController.getAllTags);
+router.get('/', tagController.getAllTags); 
 router.post('/', tagController.createTag); 
 router.get('/:id', tagController.getTagById); 
+router.get('/s/:slug', tagController.getTagBySlug); 
 router.get('/u/:userId', tagController.getTagsByUser);
 router.get('/h/:houseId', tagController.getTagsByHouse);
 router.delete('/', tagController.deleteAllTags);

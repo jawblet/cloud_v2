@@ -1,10 +1,9 @@
-import { useLocation, useHistory, useParams } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { getUrlBase } from '../../pages/layer/layer_data';
 
 //update, delete, open posts 
 export default function useManagePosts() {
-let params = useParams();
 let history = useHistory();
 let location = useLocation();
 

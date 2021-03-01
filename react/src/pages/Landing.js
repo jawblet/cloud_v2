@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'; 
+import React from 'react'; 
 import { Link } from 'react-router-dom';
 import InlineButton from '../components/btns/InlineButton';
-import { BlobS1, BlobS2, BlobS3, BlobM1, BlobM2, BlobL1, MountainModel } from '../svg/BlobGarden';
+import { BlobS1, BlobS2, BlobM1, BlobM2, BlobL1 } from '../svg/BlobGarden';
 import { Grid } from '../svg/Grid';
 import Tooltip from '../atoms/Tooltip';
 import { LANDING_NOTES } from '../data/buttons';
-import { UserContext } from '../hooks/UserContext';
  
 export default function Landing() {
     //const line = '#72716B';
@@ -34,7 +33,11 @@ export default function Landing() {
                     return(
                         <div className="tooltipAnchor" id={tooltip} key={i}>   
                             <span className="landing__pin"></span>
-                                <Tooltip text={LANDING_NOTES[i]} direction="top" style="white" show={true} dataId={i}/>
+                                <Tooltip text={LANDING_NOTES[i]} 
+                                        direction="top" 
+                                        type="white" 
+                                        show={true} 
+                                        dataId={i}/>
                             </div>
                     )})
                 }

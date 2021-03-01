@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../sections/Header'
 import ThreadHeader from '../sections/posts/ThreadHeader';
 import ThreadComments from '../sections/posts/ThreadComments';
 import { Editor } from 'draft-js';
@@ -35,9 +34,3 @@ const Thread = () => {
 }
  
 export default Thread;
-
-/*
-  const location = useLocation();
-    const id = location.state; 
-    console.log(id);
-*/

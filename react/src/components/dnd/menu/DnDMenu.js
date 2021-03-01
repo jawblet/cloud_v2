@@ -5,8 +5,9 @@ import AddGroup from './AddGroup';
 import { VscArrowSmallLeft, VscArrowSmallRight } from 'react-icons/vsc';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useMapKey from '../../../hooks/house/useMapKey';
+import SwitchSlide from '../../animate/SwitchSlide';
 
-const DnDMenu = (props) => { 
+const DnDMenu = (props) => {  
     const { groupArray } = props;  
 
     const {
@@ -16,53 +17,45 @@ const DnDMenu = (props) => {
         addRow, 
         deleteRow } = useMapKey(groupArray); 
 
-    const [hide, hideMenu] = useState(false);
+    const [hide, hideMenu] = useState(false); 
+    
 
     return ( 
-    <>
-     <SwitchTransition mode="out-in">
-     <CSSTransition key={hide} 
-                    timeout={350} 
-                    classNames="rollOutX" 
-                    addEndListener={(node, done) => {
-                        node.addEventListener("transitionend", done, false);
-                        }}> 
-        {hide 
-            ? <VscArrowSmallLeft className="icon icon__btn expandX" onClick={() => hideMenu(false)}/>
-            : <DragDropContext 
-                onDragEnd={({ destination, source }) => {
-                    if (!destination) { // // dropped outside the list
-                        return;
-                        }
-                    reorderRows(groups, source, destination);
-                    }}
-                >
-                    <div className="flex column fullWidth"> 
-                        <div className="dnd__header">
-                            <AddGroup handleClick={() => (addRow(rows))}/>
-                            <VscArrowSmallRight className="icon icon__btn" onClick={() => hideMenu(true)}/>
-                        </div>
-                        <div className="dnd">
-                            {groups && groups.map((group) => {
-                                return( 
-                                <Group 
-                                    internalScroll
-                                    key={group.id}
-                                    listId={group.id}
-                                    listType="CARD"
-                                    group={group} 
-                                    layers={group.layers}
-                                    deleteRow={deleteRow}
-                                    {...props}
-                                    />    
+    <SwitchSlide state={hide}>
+        <div className="dnd__wrapper"> 
+            {hide 
+                ? <VscArrowSmallLeft className="icon icon__btn expandX" onClick={() => hideMenu(false)}/>
+                : <DragDropContext 
+                    onDragEnd={({ destination, source }) => {
+                        if (!destination) { // dropped outside the list
+                            return;
+                            }
+                        reorderRows(groups, source, destination);
+                        }}
+                    >
+                            <div className="dnd__header">
+                                <AddGroup handleClick={() => (addRow(rows))}/>
+                                <VscArrowSmallRight className="icon icon__btn expandX" onClick={() => hideMenu(true)}/>
+                            </div>
+                            <div className="dnd">
+                                {groups && groups.map((group) => {
+                                    return( 
+                                    <Group 
+                                        internalScroll
+                                        key={group.id}
+                                        listId={group.id}
+                                        listType="CARD"
+                                        group={group} 
+                                        layers={group.layers}
+                                        deleteRow={deleteRow}
+                                        {...props}
+                                        />    
                                 )}
                             )}
-                        </div>
                     </div>
             </DragDropContext>}
-        </CSSTransition>
-     </SwitchTransition>
-</>
+        </div>
+    </SwitchSlide>
     )
 } 
  

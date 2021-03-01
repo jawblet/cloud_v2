@@ -29,7 +29,7 @@ let postArrs = numRows.map((row, i) => allTags.slice(i * postMax, i * postMax + 
 let newPostArrs;
 
 newPostArrs = postArrs.map(el => {
-    if(el.length < postMax) { //fill last row to 20  
+    if(el.length < postMax) { //fill last row to 20
         const emptyArr = [...Array(postMax - el.length)];
         emptyArr.fill('empty', 0, emptyArr.length);
         return [...el, ...emptyArr];

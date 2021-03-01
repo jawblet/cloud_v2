@@ -7,18 +7,23 @@ const Sidebar = (props) => {
     return (
             <div className="layer__sidebar">
                 {props.group &&
-                <FilterMenu title="layers" list={props.group.layers}/>
+                    <FilterMenu title="layers" 
+                        list={props.group.layers}/>
                 }
                 <ListMenu title='zoom'
                             list={zoom} 
                             handleOneFilter={props.setZoomFilter} 
                             activeItem={props.activeView}/>
-                <ListMenu title='sort'
-                        list={sort} 
-                        handleOneFilter={props.handleOneFilter} 
-                        activeItem={props.activeItem}/>
+               
         </div>
     );
 }
  
 export default Sidebar;
+
+/*
+ <ListMenu title='sort'
+                        list={sort} 
+                        handleOneFilter={props.handleOneFilter} 
+                        activeItem={props.activeItem}/>
+*/

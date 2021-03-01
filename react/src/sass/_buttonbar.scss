@@ -1,3 +1,9 @@
+.nav__wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .btnbarWrapper{
   display: inline-flex;
   &.column{

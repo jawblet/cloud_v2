@@ -3,7 +3,7 @@ import PostList100 from '../../sections/posts/PostList100';
 import PostList25 from '../../sections/posts/PostList25';
 
 const SwitchViews = (props) => {
-
+    console.log(props)
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 
@@ -24,23 +24,21 @@ export default function useGroupPosts(groupSlug) {
             return axios.get(`/posts/h/${house}/${layer.id}`)
             .then(res => {
                 //ultimately will not work bc posts need to be split up by layer 
-               /* return { layer: layer.label, 
-                        slug: layer.slug, 
-                        posts: [...res.data.data.results]};*/
                 const posts = res.data.data.results.map(post => {
                     return {
                         ...post,
                         slug: layer.slug,
                         layer: layer.label,
+                        color: layer.color,
                         zone: zone
                     }
                 })
-
+                return posts;     
 
             }).catch(err => console.log(err)); 
         });
         
-        Promise.all(posts).then(res => setPosts(res));
+        Promise.all(posts).then(res => setPosts(res.flat()));
     }
 
     async function handleGetGroup() {

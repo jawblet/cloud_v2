@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
+import * as zones from '../../data/zones';
 
 export default function useMapKey(groupArray) {
     const { user, setGroups } = useContext(UserContext);
@@ -20,17 +21,28 @@ export default function useMapKey(groupArray) {
         }).catch(err => console.log(err));    
     }
 
+    const changeColor = (layer, zone) => {
+        console.log(zone);
+        const zoneArray = zones[zone];
+        console.log(zoneArray);
+        const max = zoneArray.length; 
+        const num = Math.floor(Math.random() * Math.floor(max));
+        const color = zoneArray[num];
+        layer.color = color;
+        console.log(color);
+        return layer;
+    }
+
     const reorderList = (list, startIndex, endIndex) => {
         const [item] = list.splice(startIndex, 1);
         list.splice(endIndex, 0, item);
         return list; 
-    }
+    } 
     
 //droppableId = col id 
 //index = item position 
 
     const reorderRows = (groups, source, destination) => {
-        console.log(groups, source, destination);
         const dragGroup = groups.find(x => x.id === source.droppableId);
         const dropGroup = groups.find(x => x.id === destination.droppableId);
         let newGroups;
@@ -43,9 +55,10 @@ export default function useMapKey(groupArray) {
         }
        
         // moving to different lists -- merge object? 
-            const target = dragGroup.layers[source.index];
+            let target = dragGroup.layers[source.index];
+            let newTarget = changeColor(target, dropGroup.zone);
             dragGroup.layers.splice(source.index, 1); //remove item from drag row
-            dropGroup.layers.splice(destination.index, 0, target); // add item to drop row
+            dropGroup.layers.splice(destination.index, 0, newTarget); // add item to drop row
             newGroups = groups.map(group => {
                 if(source.droppableId === group.id) {
                     return dragGroup;
@@ -86,7 +99,6 @@ export default function useMapKey(groupArray) {
                         }
                     } return x
                 });
-                console.log(newGroups);
             } else {
                  newGroups = groupsRemaining;
             }

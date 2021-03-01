@@ -12,7 +12,7 @@ const DragItem = ({layer, group, setHoverId}) => {
          ${group.id !== 'ungrouped' ? 'dnd__item--nested' : ''}
         `}
         > 
-        <LayerIcon l="0.8rem" id={`L${layer.id}`}/>
+            <LayerIcon l="0.8rem" id={`L${layer.id}`}/>
             {layer.label}
         </p> 
     </Link>

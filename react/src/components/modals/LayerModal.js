@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CTA from '../btns/CTA';
 import useDeleteLayer from '../../hooks/layers/useDeleteLayer';
 import { VscClose } from 'react-icons/vsc';

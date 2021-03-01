@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'; 
-import { useParams } from 'react-router-dom'; 
+import { useParams } from 'react-router-dom';
 import Header from '../../sections/Header'; 
 import LayerInfo from '../../sections/LayerInfo';
 import useOneFilter from '../../hooks/useOneFilter'; 
 import { LoadingPage } from '../../components/Loading';
-import AddButton from '../../atoms/page/AddButton';
+import AddButton from '../../atoms/page/AddButton'; 
 import Sidebar from './Sidebar';
 import PageBody from './PageBody';
 import useGetLayer from '../../hooks/layers/useGetLayer';
-import useTagLegend from '../../hooks/paths/useTagLegend';
+import useTagLegend from '../../hooks/paths/useTagLegend'; 
 
 export default function Layer() { 
     let params = useParams();
@@ -36,7 +36,8 @@ export default function Layer() {
                     />
                 <div className="layer">
                     <Sidebar setZoomFilter={(e) => setZoom(e.currentTarget.dataset.id)}
-                            handleOneFilter={handleOneFilter} activeItem={activeItem}
+                            handleOneFilter={handleOneFilter} 
+                            activeItem={activeItem}
                             />
                     <div className="layer__body">
                         <PageBody activeView={activeView} 

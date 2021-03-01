@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 const HouseNavMenu = ({ house, hoverRoom }) => {
     const rooms = [
-                {url: 'zones', label: 'Zones'}, 
+                {url: 'zone', label: 'Zones'}, 
                 {url: 'key', label: 'Symbol key'}, 
-                {url: 'mailroom', label: 'Mailroom'},
+                {url: 'inbox', label: 'Mailroom'},
                 {url: 'library', label: 'Library'},
                 {url: 'paths', label: 'Paths'},
                 {url: 'code-of-conduct', label: 'House rules'},
-                {url: 'syllabus', label: 'Filing'}
+                {url: 'filing', label: 'Filing cabinet'}
                         ];
     return (
         <ol className="house__menu">

@@ -5,7 +5,6 @@ import { UserContext } from './../hooks/UserContext';
 
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
-    //console.log(user, isLoading); 
 
     const { component: Component,
         ...rest } = props; 

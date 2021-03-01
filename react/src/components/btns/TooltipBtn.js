@@ -8,8 +8,8 @@ export function TooltipBtn(props) {
         getTooltip, 
         hideTooltip } = props; 
 
-    return(
-        <div className={`tooltipWrapper tooltipWrapper--${direction}`}
+    return (
+        <div className={`tooltipWrapper tooltipWrapper--${direction}`} 
             data-id={button.id}
             data-label={button.name}
             onMouseEnter={getTooltip}

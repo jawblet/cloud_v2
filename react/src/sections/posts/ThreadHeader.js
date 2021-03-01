@@ -7,7 +7,7 @@ import { VscArrowSmallLeft } from 'react-icons/vsc';
 const ThreadHeader = ({ setEditor, showEdit }) => {
     return (
         <div className="thread__header"> 
-        <Link to="/house" className="thread__header__L">
+        <Link to="/house/inbox" className="thread__header__L">
             <VscArrowSmallLeft className="icon icon__btn"/>
             <InlineButton name="threads"/>
         </Link>

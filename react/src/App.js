@@ -13,14 +13,16 @@ import User from './pages/User';
 import Add from './pages/Add';
 import Tags from './pages/Tags';
 import HouseRoute from './sections/HouseRoute';
+import PathRoute from './sections/PathRoute';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
 import TestTwo from './pages/TestTwo';
 
+
 function App() {
 
   const { 
-    user,
+    user, 
     rooms,
     groups,
     globalTags,
@@ -53,6 +55,7 @@ function App() {
             <PrivateRoute path="/user" component={User}/>
             <PrivateRoute path="/add" component={Add}/>
             <PrivateRoute path="/paths" component={Tags}/>
+            <PrivateRoute path='/path/:path' component={PathRoute}/>
             <PrivateRoute path='/group/:group' component={GroupRoute}/>
             <PrivateRoute path='/:room' component={LayerRoute}/>
             <Route component={NotFound}/> 

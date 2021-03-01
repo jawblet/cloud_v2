@@ -1,6 +1,6 @@
 import React from 'react';
 import { LABEL_STYLE } from './dnd';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import GroupIcon from '../../../svg/GroupIcon';
 import { VscEdit } from 'react-icons/vsc';
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
+//const validator = require('validator');
 const Schema = mongoose.Schema; 
 
 const tagSchema = new Schema ({ 
@@ -9,6 +9,7 @@ const tagSchema = new Schema ({
         lowercase: true
         //validate: [validator.isAlphanumeric, 'Tags may only have letters and numbers.']
     },
+    slug: String,
     color: String,
     house: {
         type: Schema.Types.ObjectId,

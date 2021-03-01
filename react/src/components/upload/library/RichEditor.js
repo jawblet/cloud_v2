@@ -10,7 +10,8 @@ export default function RichEditor(props) {
             mapKeyToEditorCommand,
             handleKeyCommand, 
             toggleInlineStyle, 
-            toggleBlockType } = props;
+            toggleBlockType,
+            styledToolbar } = props;
     
     const editRef = useRef(null);
 
@@ -24,11 +25,11 @@ export default function RichEditor(props) {
                 onToggleInline={toggleInlineStyle}
                 toggleBlockType={toggleBlockType}
                 addTag={false}
-                styled={true} 
+                styled={styledToolbar} 
                 /> 
             <div className="editorWrapper--block">
                 <input type="text" 
-                            className="input editor__title"
+                            className="input editor__title" 
                             disabled={false}
                             name="title"
                             value={title}

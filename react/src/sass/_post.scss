@@ -113,30 +113,3 @@
     }
 }
 
-//5%
-//5w row 
-.postRow5 { 
-    &__container { // container 
-        border: 1px solid $sand3;
-        padding: 0.5rem;
-        border-radius: $border-small;
-        background-color: $sand;
-        }
-    display: flex; // post
-    border-radius: $border-small;
-    & > * {
-        border: 1.5px solid $sand; 
-    }
-}
-
-//5w post
-.cell { // post
-    background-color: $sand3;
-    height: auto;
-    flex: 1 0 auto;
-    &::before {
-        content: '';
-        display: block;
-        padding-top: 100%;
-    }
-}

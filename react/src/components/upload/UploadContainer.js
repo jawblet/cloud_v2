@@ -32,7 +32,7 @@ export default function UploadContainer(props) {
         <div className="upload__container">  
             <div className="upload__controller">
             <TooltipBar handleClick={switchType} type={type}
-                        buttons={uploadBtns} 
+                        buttons={uploadBtns}
                         direction="column"/>
                 <Link to={`/home/${room}`}>
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>

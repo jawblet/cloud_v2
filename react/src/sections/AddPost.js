@@ -42,6 +42,6 @@ const sendSubmit = (e) => {
                         </div>  
                             <CTA name="add" kind="primary" type="submit"/> 
                         </div>
-                </form>
+            </form>
     )
 }

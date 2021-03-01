@@ -10,7 +10,7 @@ const house = user.house._id;
 const [posts, setPosts] = useState(null);
 const [loading, setLoading] = useState(true);
 
-    //GET ALL POSTS
+    //GET ALL POSTS FOR LAYER
     const getLayerPosts = async (layerId) => {
         return axios.get(`/posts/h/${house}/${layerId}`)
                     .then(res => {
@@ -21,12 +21,21 @@ const [loading, setLoading] = useState(true);
         }).catch(err => console.log(err))
     };
 
+    // GET ALL POSTS FOR PATH 
+    const getPathPosts = async (pathId) => {
+        await axios.get(`/posts/details/${house}/${pathId}`) 
+        .then(res => {
+            const { posts } = res.data.data;
+            console.log(posts);
+            setPosts(posts); 
+            setLoading(false);
+        }).catch(err => console.log(err))
+    }
+
     return {
         loading,
         posts,
-        getLayerPosts
+        getLayerPosts,
+        getPathPosts
     }
 }
-
-
-//layerId from being passed as prop --> passed as argument 

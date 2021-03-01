@@ -12,6 +12,7 @@ const houseSchema = mongoose.Schema({
         trim: true,
         maxlength: [12, 'House can\'t be more than 12 characters long']
     },
+    slug: String, 
     boardersUnconfirmed: Array,
     groups: {
         type: Array,
@@ -29,10 +30,6 @@ const houseSchema = mongoose.Schema({
     tags: [{
         type: Schema.Types.ObjectId,
         ref: 'Tag'
-    }],
-    posts: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Post'
     }],
     documents: [{
         type: Schema.Types.ObjectId,

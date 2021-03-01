@@ -6,11 +6,11 @@ const layerPath = id =>
         import('./GroupIcon')
         )
     );
-
+ 
 export const LayerIcon = ({l, id, ...props }) => {
     const LayerPath = layerPath(id);
     const strokeWidth = props.strokeWidth || 5;
-    const stroke = props.stroke || "currentColor";
+    const stroke = props.stroke || "currentColor"; 
     const fill = props.fill || "none";
     
     return(

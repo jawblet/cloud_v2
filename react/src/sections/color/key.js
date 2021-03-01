@@ -1,5 +1,7 @@
 import GroupIcon from '../../svg/GroupIcon'; 
 import { LayerIcon } from '../../svg/LayerIcons';
+import { VscLock } from 'react-icons/vsc';
+import { WiStrongWind, WiSmallCraftAdvisory, WiHorizon, WiMoonAltWaxingCrescent3, WiMoonAltWaxingGibbous3, WiNightAltRainWind } from 'react-icons/wi';
 
 export const COLOR_HEADINGS = ['color', 'zone', 'description', 'layer ex.'];  
 
@@ -7,7 +9,16 @@ const l = "1.5rem";
 
 export const SYMBOL_KEY = [
       { symbol: <GroupIcon l={l}/>, label: "A group, which may contain layers"},
-      { symbol: <LayerIcon l={l} id="L1"/>, label: "A layer" }
+      { symbol: <LayerIcon l={l} id="L1"/>, label: "A layer" },
+      { symbol: <VscLock className="keyIcon"/> , label: "Private content"},
+      { symbol: <WiStrongWind className="keyIcon"/>, label: "A strong wind bloweth" },
+      { symbol: <WiSmallCraftAdvisory className="keyIcon"/>, label: "Flag in the ground"},
+      { symbol: <WiHorizon className="keyIcon"/>, label: "Daily"},
+      { symbol: <WiMoonAltWaxingCrescent3 className="keyIcon"/>, label: "Weekly" },
+      { symbol: <WiMoonAltWaxingGibbous3 className="keyIcon"/>, label: "Monthly" },
+      { symbol: <WiNightAltRainWind className="keyIcon"/>, label: "When it happens, you'll know" }
+
+
 ];
 
 export const COLOR_KEY = [

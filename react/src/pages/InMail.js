@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
 import RichEditor from '../components/upload/library/RichEditor';
 import CTA from '../components/btns/CTA';
 import InlineButton from '../components/btns/InlineButton';
@@ -31,7 +31,7 @@ export default function House() {
         onTitleChange,
         editorState, 
         onNoteChange, 
-        clearEditor, 
+        clearEditor,  
         mapKeyToEditorCommand, 
         handleKeyCommand, 
         toggleInlineStyle, 
@@ -43,7 +43,7 @@ export default function House() {
        const data = editorState.getCurrentContent();
        handleLibrarySubmit(data, title);
        clearEditor(); // clear editor on submit 
-       setEditor(false);
+       setEditor(false); 
    }; 
  
     return (
@@ -52,7 +52,7 @@ export default function House() {
               House
             </h2>
           <div className="layer inmail">
-              <div className="house__compose">
+              <div className="house__compose"> 
                   {showEdit 
                         ? <InlineButton name="close" handleClick={() => setEditor(!showEdit)}/>
                         : <CTA name="new thread" kind="primary" handleClick={() => setEditor(!showEdit)}/> 
@@ -72,9 +72,10 @@ export default function House() {
                                         handleKeyCommand={handleKeyCommand} 
                                         toggleInlineStyle={toggleInlineStyle}
                                         toggleBlockType={toggleBlockType}
+                                        styledToolbar={true}
                                         />
                             <div className="inlineForm__submit" style={{justifyContent:'flex-end'}}>
-                                    <CTA name="finish" type="kind" type="submit"/> 
+                                    <CTA name="finish" kind="primary" type="submit"/> 
                             </div>
                         </form>
                     </CSSTransition> 

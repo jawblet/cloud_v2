@@ -26,8 +26,8 @@ export default function useThread(id) {
             user,
             comment
         }).then(res => {
-            console.log(res); 
-            const newComment = res.data.data.doc;
+           // console.log(res); 
+           // const newComment = res.data.data.doc;
         })
     }
 

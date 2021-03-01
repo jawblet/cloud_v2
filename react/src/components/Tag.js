@@ -1,24 +1,24 @@
-import React, { useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ColorPicker from '../atoms/ColorPicker';
+import TagCount from '../atoms/TagCount';
 
-export default function Tag({ tag, activeFilter, eyedrop }) {
-    const nodeRef = useRef(null); 
-    console.log(tag);
 
-    return(
-        <>
-        <div className="tag"
-            style={activeFilter.includes('color') ? {backgroundColor: tag.tagObject[0].color} : {}} >
-            <h4>{tag.name}</h4>
-            <input type="color" className="colorInput" data-id={tag.id} defaultValue={tag.tagObject[0].color} 
-            disabled={eyedrop ? false : true}/>
-            <CSSTransition in={activeFilter.includes('count')} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
-                    <h4 className="tag__count" ref={nodeRef}>
-                        {tag.countEach}
-                    </h4> 
-            </CSSTransition>
-        </div>
-        </>
+export default function Tag(props) {
+    const {tag, activeFilter } = props;
+   console.log(tag);
+
+    return (
+        <Link to={`/path/${tag.slug[0]}`}>
+            <div className="tag"
+                style={activeFilter.includes('color') 
+                        ? {backgroundColor: tag.tagObject[0].color} : 
+                            {}} >
+                <h4>{tag.name}</h4>
+            <ColorPicker {...props}/>
+            <TagCount {...props}/>
+            </div>
+        </Link> 
     )
 }
 

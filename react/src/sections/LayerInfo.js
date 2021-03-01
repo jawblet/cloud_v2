@@ -10,14 +10,17 @@ import useModal from '../hooks/useModal';
 export default function LayerInfo(props) {
     const {
         values,  
-        size, 
+        size,  
         handleClickIn, 
         handleBlur, 
         handleChange
         } = useRenameLayer(props);
-
+ 
     //room dlt modal
-    const { modal, toggleModal, handleOutsideClick, modalRef } = useModal();
+    const { modal, 
+        toggleModal, 
+        handleOutsideClick, 
+        modalRef } = useModal();
 
     return (
         <>

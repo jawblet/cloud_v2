@@ -5,6 +5,21 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 //get one by id
 exports.getOne = (Model, populateOpts) => catchAsync(async (req, res) => {
     let query = await Model.findOne({ _id: req.params.id });
+    // opt for slug
+    
+    if(populateOpts) query = query.populate(populateOpts).execPopulate(); 
+    const doc = await query; 
+    res.status(200).json({
+        status: 'success',
+        data: {
+            doc
+        }
+    });
+});
+
+exports.getOneBySlug = (Model, populateOpts) => catchAsync(async (req, res) => {
+    let query = await Model.findOne({ slug: req.params.slug });
+
     if(populateOpts) query = query.populate(populateOpts).execPopulate(); 
     const doc = await query; 
     res.status(200).json({
@@ -27,31 +42,6 @@ exports.getAllByUserId = (Model) => catchAsync(async(req, res) => {
     })  
 });
 
-//get by house
-exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {
-    let filter;
-    
-    if(req.params.room) { //if there is a room param, filter by houseId + room 
-        filter = { house: req.params.houseId, room: req.params.room }
-    } else { filter = { house: req.params.houseId };
-    } 
-
-    //populate + filter 
-    let docs = new APIFeatures(Model.find(filter).populate(populateOpts), req.query)
-        .filter()
-        .sort()
-        .limitFields() 
-        .paginate();
-
-    const results = await docs.query;
-
-    res.status(200).json({ 
-        status: 'success',
-        data: {
-            results 
-        }
-    })  
-});
 
 //get all 
 exports.getAll = (Model) => catchAsync(async(req, res) => {
@@ -64,10 +54,34 @@ exports.getAll = (Model) => catchAsync(async(req, res) => {
     });
 });
 
+//get by house
+exports.getAllByHouseId = (Model, populateOpts) => catchAsync(async(req, res) => {
+    let filter;
+    
+    if(req.params.room) { //if there is a room param, filter by houseId + room 
+        filter = { house: req.params.houseId, room: req.params.room }
+    } else { filter = { house: req.params.houseId }; 
+    } 
+    //populate + filter 
+    let docs = new APIFeatures(Model.find(filter).populate(populateOpts), req.query)
+        .filter()
+        .sort()
+        .limitFields() 
+        .paginate();  
+
+    const results = await docs.query;
+
+    res.status(200).json({ 
+        status: 'success',
+        data: {
+            results 
+        }
+    })  
+});
+
 //create one
 exports.create = (Model) => catchAsync(async(req, res) => {
     const doc = await Model.create(req.body); 
-
     res.status(201).json({
         status: 'success',
         data: {

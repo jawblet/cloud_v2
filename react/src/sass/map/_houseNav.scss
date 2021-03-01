@@ -4,7 +4,7 @@
     width: 1px;
     background: $blue;
     height: 100%;
-    left: -1px;
+   // left: -1px;
     top: 0;
     z-index: 4;
 }
@@ -82,64 +82,91 @@
             border-left: inherit;
             &::before {
                 @extend %border-vertical;
+                left: -1px;
             }
         }
 
     }
 }
 
+
 .B {
     &1 {
         @extend %room;
        width: 25%; 
        border-top: none;
+       border-right: none; //replace border right
        &:hover {
            border: $border-hover;
            border-top: none;
+           border-right: none;
            &::before {
             @extend %border-horizontal; 
+        }
+            &::after {
+            @extend %border-vertical; 
+            right: -1px;
         }
        }
     }
     &2 {
         width: 25%; 
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         border: none;
+        position: relative;
         &A {
             @extend %room;
             height: 50%;
             width: 100%;
-            border-left: none; 
+            border-right: none; //replace border right
             border-top: none; 
             &:hover {
                 border: $border-hover;
                 border-top: none;
-                border-left: none;
+                border-right: none;
                 &::before {
                     @extend %border-horizontal;
                 }
                 &::after {
                     @extend %border-vertical;
+                    right: -1px;
                 }
             }
         }
         &B {
+            &__wrapper {
+                display: flex;
+                height: 100%;
+                position: relative;
+            }
             @extend %room;
-            width: 50%;
-            height: 50%; 
-            border-left: none; 
+            width: 52%;
+            height: 100%; 
             border-top: none;
+            border-right: none;
+            position: relative;
             &:hover {
                 border: $border-hover;
                 border-top: none;
-                border-left: none;
+                border-right: none;
                 &::before {
                     @extend %border-horizontal;
                 }
                 &::after {
                     @extend %border-vertical;
+                    right: -1px;
                 }
+            }
+            &__line {
+                position: absolute;
+                width: 1px; 
+                //background-color: red;
+                background-color: $body;
+                right: -1px;
+                height: 100%;
+                z-index: 5;
+                transition: all $short-fade;
             }
         }
     }
@@ -147,20 +174,50 @@
         @extend %room;
         width: 50%;
         border-top: none;
-        border-left: none;
+        position: relative;
         &:hover{
             border: $border-hover;
-                border-top: none;
-                border-left: none;
-                &::before {
-                    @extend %border-horizontal;
-                }
-                &::after {
-                    @extend %border-vertical;
-                }
+            border-top: none;
+            &::before {
+                @extend %border-horizontal;
             }
+          }
         }
     }
+
+#B2B__right {
+    &:hover ~ #B2B__left::after {
+        background-color: $blue;
+    }
+}
+
+#B2B__left {
+    border-left: none;
+    position: relative;
+    &::after {
+        @extend %border-vertical;
+        left: 0;
+        background-color: $body;
+     }
+    &:hover {
+        border-left: none;
+        &::after{
+            @extend %border-vertical;
+            left: 0;
+        }
+        & ~ .B2B__line {
+            background-color: $blue;
+        }
+    }
+    &--hover {
+        border-left: none;
+        position: relative;
+        &::after {
+            @extend %border-vertical;
+            left: 0;
+    }
+}
+}
 
 //programmatic hover selectors 
 .hoverRoom {
@@ -173,6 +230,7 @@
     position: relative;
     &::before {
         @extend %border-vertical;
+        left: -1px;
     }
 }
 
@@ -195,13 +253,37 @@
     }
     &::after {
         @extend %border-vertical;
+        left: -1px;
     }
 }
 
-.hoverB2B, 
+.hoverB2BRight {
+    border: $border-hover;
+    border-top: none;
+    border-right: none;
+    &::before {
+        @extend %border-horizontal;
+    }
+    & ~ #B2B__left::after {
+        background-color: $blue;
+    }
+}
+
+.hoverB2BLeft {
+    border: $border-hover;
+    border-top: none;
+    border-right: none;
+    &::before {
+        @extend %border-horizontal;
+    }
+    & ~ .B2B__line {
+        background-color: $blue;
+    }
+}
+
 .hoverB3 {
     border: $border-hover;
-    border-left: none;
+    border-right: none;
     border-top: none;
     position: relative;
     &::before {
@@ -209,5 +291,6 @@
     }
     &::after {
         @extend %border-vertical;
+        right: -1px;
     }
 }

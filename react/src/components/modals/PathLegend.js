@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 const PathLegend = forwardRef((props, ref) => {
     const { tagDetails, loadModal, postExcerpts } = props;
-    let { tag, date, postCount, tagCount } = tagDetails; 
+    let { tag, date, tagCount } = tagDetails; 
     
     console.log(loadModal);
     return(

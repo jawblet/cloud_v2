@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 //for larger tooltips
 export default function Tooltip(props) {
-    const { text, show, direction, style } = props; 
+    const { text, show, direction, type } = props; 
     const nodeRef = useRef(null);
 
     return(
@@ -14,7 +14,7 @@ export default function Tooltip(props) {
                     classNames="quickFade"
                     unmountOnExit>
                     <div ref={nodeRef} 
-                        className={`tooltip tooltip--${direction} tooltip--${style}`}
+                        className={`tooltip tooltip--${direction} tooltip--${type}`}
                         data-id={props.dataId}>
                         {text}
                     </div>

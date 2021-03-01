@@ -7,7 +7,7 @@ export default function Inbox(props) {
     const { threads } = props;
     
     return(
-        <div className="inbox">
+        <div className="inbox"> 
            {(threads && threads.length > 0)
                 ? <div> 
                    { threads.map((post, i)=> { 

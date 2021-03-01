@@ -7,7 +7,7 @@ export default function TooltipBar(props) {
     const { tooltips, getTooltip, hideTooltip } = useToolTipButtons(buttons);
 
     return(
-        <menu className={`btnbarWrapper ${direction}`}>
+        <menu className={`btnbarWrapper ${direction}`}> 
             {buttons.map(btn => {
                 return(
                     <TooltipBtn key={btn.id}

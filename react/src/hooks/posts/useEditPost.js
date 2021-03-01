@@ -62,7 +62,7 @@ export default function useEditPost() {
 
                 } else { // without tags, just fill content 
                     console.log('no tags');
-                    newEditorState = EditorState.createWithContent(contentState); 
+                newEditorState = EditorState.createWithContent(contentState); 
                 return setEditorState(newEditorState);
                 } 
             }

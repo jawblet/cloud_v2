@@ -5,7 +5,7 @@ export const EmptyPage = ({ type }) => {
         <div className='layer__empty'>
             <h3 className="light">
                 Empty {type}
-            </h3>
+            </h3> 
         </div>
     );
 }

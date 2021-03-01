@@ -12,8 +12,7 @@ export const navButtons = [
 
 export const uploadBtns = [
     {id: 0, name: 'link', icon: <VscLink className="icon icon__btn"/>}, 
-    {id: 1, name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>},
-    {id: 2, name: 'file', icon: <VscArchive className="icon icon__btn"/>}
+    {id: 1, name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>}
 ];
 
 export const HEADINGS = [   
@@ -64,3 +63,5 @@ export const LANDING_NOTES = [
    "if ur wondering: '....what is this?'",
    "'whAt kidn of sick twisted person Would make this...?'",
    "sadly this is placeholder text + it has no answers" ];
+
+//     {id: 2, name: 'file', icon: <VscArchive className="icon icon__btn"/>}

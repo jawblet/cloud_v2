@@ -1,11 +1,11 @@
 const express = require('express'); 
 const router = express.Router();
 const houseController = require('./../controllers/houseController');
-const addRooms = require('../middleware/addRooms');
+const addLayers = require('../middleware/addLayers');
 
 router.get('/', houseController.getAllHouses);
 router.route('/')
-    .post(addRooms, houseController.createHouse);
+    .post(addLayers, houseController.createHouse);
 
 router.post('/email', houseController.sendConfirmEmail);
 router.get('/:id', houseController.getHouseById); 
