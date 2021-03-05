@@ -1,5 +1,5 @@
 //layout homepage 
-.map {
+.map { // main screen 
     position: relative; 
     align-self: flex-end;
     width: 90%;
@@ -9,50 +9,27 @@
     justify-content: flex-start;
     margin-top: 10%; 
     overflow: visible;
-//    border: $border;
-  &__canvas {
+  &__canvas { //path or layer view  
     flex: 0 0 80%;
     height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
   }
-  &__key { //dnd menu 
+  &__key { // menu 
     flex: 0 0 20%;
     height: 100%; 
     margin-top: -5%;
     display: flex;
     justify-content: flex-end;
 }  
-    &__nav {
+    &__nav { // fixed nav 
       position: fixed;
       left: 3rem;
       bottom: 1rem;
     }
-   
   }
- 
 
-//GROUP VIEW
-.groupMap {
-  &__row {
-    display: flex;
-    width: 100%;
-  }
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 40%;
-  margin-right: 10%;
-  margin-bottom: 3rem; 
-  &__title {
-    margin-bottom: 1rem;
-  }
-}
-
-.layerMap {
- // border: $border;
-}
 
 .homeIcon {
   //align-self: center;
@@ -82,8 +59,6 @@
   }
 }
 
-//GRID VIEW 
-
 
 //MISC
 //house legend popup
@@ -97,27 +72,5 @@
       width: 100%;
       display: flex;
       position: relative;
-  }
-}
-
-
-
-
-
-
-//SKYLIGHT VIEW
-.floor {
-  width: 100%; 
-  height: 100%; //min-height: 15vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-  margin-bottom: -5px;
-  position: relative;
-  & > *:nth-child(odd) {
-    margin-top: -0.5rem;
-  }
-  & > *:nth-child(2) {
-    margin-bottom: -0.5rem;
   }
 }

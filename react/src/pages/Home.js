@@ -4,29 +4,25 @@ import LayerView from '../sections/views/LayerView';
 import PathView from '../sections/views/PathView';
 import NavBar from '../components/btns/NavBar';
 import HouseLegend from '../components/modals/HouseLegend';
-import ExpandButton from '../atoms/ExpandButton';
 import { navButtons } from '../data/buttons';
 import useRefreshLayers from '../hooks/layers/useRefreshLayers';
 import { UserContext } from '../hooks/UserContext';
-import DnDMenu from '../components/dnd/menu/DnDMenu';
 import SwitchFade from '../components/animate/SwitchFade';
-
+import useSqueeze from '../hooks/useSqueeze';
 
 export default function Home() {
-    const { groups } = useContext(UserContext);
+    const { groups, globalTags } = useContext(UserContext);
     useRefreshLayers();
 
-    const [squeeze, setSqueeze] = useState(true);
-    const handleExpandClick = () => { setSqueeze(!squeeze); }
+    //get paths 
+    //const { tags, loading } = useTags('date');
     
-    const squeezeBtn = [
-        {id: 4, 
-        name: 'squeeze', 
-        type: 'bottom', 
-        icon: <ExpandButton className="icon icon__btn" squeeze={squeeze} data-id="squeeze"/> }
-    ];
+    //set view 
+    const [zoomIn, setZoom] = useState(false); 
 
-    const [zoomIn, setZoom] = useState(true); 
+    //set squeeze
+    const { squeeze, squeezeBtn, handleSqueeze } = useSqueeze();
+
     const [hoverId, setHoverId] = useState(null);
 
     return ( 
@@ -35,26 +31,19 @@ export default function Home() {
             <HouseLegend/> 
            <SwitchFade state={zoomIn}>
             <div className="map">
-                        <div className="map__canvas">
-                            {zoomIn 
-                                ?   <LayerView groups={groups}
+                    {zoomIn 
+                            ?   <LayerView groups={groups} zoomIn={zoomIn} setHoverId={setHoverId}
                                     />
-                                :   <PathView groups={groups} hoverId={hoverId}    
-                                    />
-                            }
-                        </div>
-                        <div className="map__key">
-                            <DnDMenu groupArray={groups} 
-                                    hoverId={hoverId}  
-                                    setHoverId={setHoverId}/> 
-                        </div>    
+                            :   <PathView paths={globalTags}
+                                    /> 
+                        } 
                 </div>
            </SwitchFade>
                 <div className="map__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
                             direction="column"
-                            handleExpandClick={handleExpandClick} 
+                            handleExpandClick={handleSqueeze} 
                             squeeze={squeeze}
                             zoomIn={zoomIn} 
                             setZoom={setZoom} />

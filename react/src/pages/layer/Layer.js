@@ -10,13 +10,13 @@ import PageBody from './PageBody';
 import useGetLayer from '../../hooks/layers/useGetLayer';
 import useTagLegend from '../../hooks/paths/useTagLegend'; 
 
-export default function Layer() { 
+export default function Layer() {
     let params = useParams();
     const { handleOneFilter, activeItem } = useOneFilter('date');
     const [activeView, setZoom] = useState('100%'); 
 
     const { layer, loading, getLayer } = useGetLayer(params);
-    
+     
     useEffect(() => {
         getLayer(params.room);
     }, [params]);

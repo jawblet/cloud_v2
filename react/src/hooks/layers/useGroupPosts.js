@@ -16,7 +16,7 @@ export default function useGroupPosts(groupSlug) {
                 const currentGroup = groups.find(el => el.slug === groupSlug);
                 setGroup(currentGroup);
                 setGroupLoading(false);
-        }).catch(err => console.log(err));     
+        }).catch(err => console.log(err)); 
     };
  
     const getGroupPosts = async(layers, zone) => {

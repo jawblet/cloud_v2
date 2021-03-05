@@ -7,7 +7,6 @@ import PathLegend from '../../components/modals/PathLegend';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import useManagePosts from '../../hooks/posts/useManagePosts';
 import useTagLegend from '../../hooks/paths/useTagLegend';
-import usePathPosts from '../../hooks/layers/usePathPosts';
 
 const PageBody = (props) => {  
     const params = useParams(); 
@@ -17,8 +16,7 @@ const PageBody = (props) => {
         loading, 
         getLayerPosts,
         getPathPosts 
-         } = useLayerPosts();
-
+         } = useLayerPosts(); 
     
     const { tagpath, 
             coords, 
@@ -35,8 +33,8 @@ const PageBody = (props) => {
         if(props.path) {
          return getPathPosts(props.path._id);
         }
-
-        getLayerPosts(props.layer.id);
+ 
+       return getLayerPosts(props.layer.id);
     }, [params]);
 
     async function handleDeletePost(e) {

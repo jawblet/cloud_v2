@@ -1,35 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Grid from '../../utils/Grid';
+import Subtitle from './Subtitle';
+import PostCell from './PostCell';
+import DnDMenu from '../../components/dnd/menu/DnDMenu';
 
-const LayerView = ({ groups }) => {
-    console.log(groups);
-
+const LayerView = (props) => {
+  
     return (
         <>
-            {groups.map((group, i) => {
-               return (
-                   <div className="groupGrid" key={i}>
-                   <Link to={`/${group.slug}`}>
-                        <h4 className="subtitle heavy">
-                            {group.label}
-                        </h4>
-                    </Link>
-                        <Grid columns="repeat(3, minmax(0, 1fr))">
+        <div className="map__canvas">
+            {props.groups.map((group, i) => {
+                return (
+                <div className="groupGrid" key={i}>
+                    <Subtitle slug={group.slug} label={group.label} heavy/>
+                    <Grid columns="repeat(3, minmax(0, 1fr))">
                         {group.layers.map(layer => {
-                                return (
-                                    <Link to={`/${layer.slug}`} key={layer.slug}>
-                                        <h4 className="subtitle">
-                                            {layer.label}
-                                        </h4>
-                                </Link>
+                            return (
+                                <div className="groupGrid__cell" key={layer.slug}>
+                                    <Subtitle slug={`${layer.slug}`} label={layer.label}/>
+                                    <PostCell id={layer.id}/>
+                                </div>
                                 )
                             })}
                         </Grid>
                     </div>
-                )
-
-            })}
+                    )
+                })}
+            </div>
+            <div className="map__key">
+                <DnDMenu groupArray={props.groups} 
+                        hoverId={props.hoverId}  
+                        setHoverId={props.setHoverId}/> 
+            </div>    
         </>
     );
 }
@@ -37,3 +39,5 @@ const LayerView = ({ groups }) => {
 export default LayerView;
 
 // is there ever a situation w/ no groups? 
+
+//send correct array of posts to cell by key value pair                                

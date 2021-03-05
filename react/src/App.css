@@ -142,7 +142,7 @@ hr {
   margin: 1rem auto;
 }
 
-.landing__pin, .homeIcon__pin, d {
+.pin, .landing__pin, .homeIcon__pin, d {
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -862,22 +862,6 @@ d {
   bottom: 1rem;
 }
 
-.groupMap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 40%;
-  margin-right: 10%;
-  margin-bottom: 3rem;
-}
-.groupMap__row {
-  display: flex;
-  width: 100%;
-}
-.groupMap__title {
-  margin-bottom: 1rem;
-}
-
 .homeIcon {
   position: absolute;
   left: 40%;
@@ -913,22 +897,6 @@ d {
   width: 100%;
   display: flex;
   position: relative;
-}
-
-.floor {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-  margin-bottom: -5px;
-  position: relative;
-}
-.floor > *:nth-child(odd) {
-  margin-top: -0.5rem;
-}
-.floor > *:nth-child(2) {
-  margin-bottom: -0.5rem;
 }
 
 .landing__header {
@@ -1396,11 +1364,35 @@ d {
 }
 
 .groupGrid {
-  padding-bottom: 1.5rem;
+  padding-bottom: 3rem;
 }
 
 .subtitle {
   padding-bottom: 1rem;
+}
+
+.pin {
+  background-color: #C3C2BD;
+  margin: 0.5rem;
+}
+.pin:first-child {
+  margin-left: 0;
+}
+
+.postCell {
+  display: flex;
+}
+
+.pathCell {
+  display: flex;
+  justify-content: center;
+}
+.pathCell--posts {
+  height: 5vh;
+  width: 5vw;
+  border-radius: 50%;
+  padding: 1rem;
+  position: relative;
 }
 
 .input {
@@ -2490,6 +2482,20 @@ input:checked ~ .accordion__list {
   background-color: #fffdfa;
   color: #fffdfa;
   border: 1px solid #f1e3d3;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+.slide__header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0 1.5rem;
+  justify-content: space-between;
 }
 
 /* link preview */

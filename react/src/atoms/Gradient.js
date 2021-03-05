@@ -4,7 +4,7 @@ import Preview from './../components/modals/Preview';
 export default function Gradient({ post, tags }) {
     const [preview, showPreview] = useState(false);
     const [angle, setAngle] = useState(0);
-    const [colors, setColors] = useState('');
+    const [colors, setColors] = useState(''); 
 
     //generate angle and gradients for post 
     useEffect(() => {

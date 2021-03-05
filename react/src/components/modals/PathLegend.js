@@ -2,9 +2,8 @@ import React, { forwardRef } from 'react';
 
 const PathLegend = forwardRef((props, ref) => {
     const { tagDetails, loadModal, postExcerpts } = props;
-    let { tag, date, tagCount } = tagDetails; 
+    let { tag, date, tagCount } = tagDetails;
     
-    console.log(loadModal);
     return(
             <div className="pathLegend__container" ref={ref}>
                {!loadModal && 

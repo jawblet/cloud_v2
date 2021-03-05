@@ -3,7 +3,7 @@ import axios from 'axios';
 import { UserContext } from '../UserContext';
 
 export default function useLayerPosts() {
-const { user } = useContext(UserContext); 
+const { user } = useContext(UserContext);
 const house = user.house._id; 
 
 //init state 
@@ -15,7 +15,6 @@ const [loading, setLoading] = useState(true);
         return axios.get(`/posts/h/${house}/${layerId}`)
                     .then(res => {
                     const posts = res.data.data.results;
-                    console.log(posts);
                     setPosts(posts); 
                     setLoading(false);
         }).catch(err => console.log(err))
@@ -26,7 +25,6 @@ const [loading, setLoading] = useState(true);
         await axios.get(`/posts/details/${house}/${pathId}`) 
         .then(res => {
             const { posts } = res.data.data;
-            console.log(posts);
             setPosts(posts); 
             setLoading(false);
         }).catch(err => console.log(err))

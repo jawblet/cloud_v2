@@ -3,12 +3,11 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Group from './Group'; 
 import AddGroup from './AddGroup';
 import { VscArrowSmallLeft, VscArrowSmallRight } from 'react-icons/vsc';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useMapKey from '../../../hooks/house/useMapKey';
 import SwitchSlide from '../../animate/SwitchSlide';
 
 const DnDMenu = (props) => {  
-    const { groupArray } = props;  
+    const { groupArray } = props;
 
     const {
         groups, 
@@ -19,7 +18,6 @@ const DnDMenu = (props) => {
 
     const [hide, hideMenu] = useState(false); 
     
-
     return ( 
     <SwitchSlide state={hide}>
         <div className="dnd__wrapper"> 

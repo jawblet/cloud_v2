@@ -97,7 +97,7 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
             }
         },
         {  //put tag name in main body for sorting/lookup ease 
-            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn", slug: "$tagObject.slug" } 
+            $set: { name: "$tagObject.tag", createdOn: "$tagObject.createdOn", slug: "$tagObject.slug", color: "$tagObject.color" } 
         },
         { $sort: sort }
     ]);
@@ -112,9 +112,6 @@ exports.countTagsFromPosts = catchAsync(async(req, res) => {
         } else {
             postTagSum = 0; 
         }
-    
-    console.log(allTags);
-    console.log(postTagSum);
 
     res.status(200).json({
         status: 'success',
@@ -145,7 +142,7 @@ exports.getTagDetails = catchAsync(async(req, res) => {
         } }
     ]);
 
-    res.status(200).json({
+    res.status(200).json({ 
         status: 'success',
         data: {
             tag,
@@ -158,16 +155,32 @@ exports.getTagDetails = catchAsync(async(req, res) => {
 
 
 exports.getPostGrid = catchAsync(async(req, res) => {
-    //add layer slug 
-    const posts = await Post.find({ house: req.params.houseId,
-                                    type:  {$in: ['note', 'link']} });
+    const castId = mongoose.Types.ObjectId(req.params.houseId);
 
-    const length = posts.length;
+    const posts = await Post.aggregate([
+        { $match: { house: castId, type: {$ne: 'library'} }
+        },
+        { $sort: { 'createdOn': -1 } },
+        {$project: {content: 0, tags:0 }}
+        ]);
+    
+    const groups = await Post.aggregate([
+        { $match: { house: castId, type: {$ne: 'library'} }
+        },
+            { $group: { _id: '$room' } }
+        ]);
+    
+    //return array of objects --> keys are room id and values are posts 
+    const arrs = groups.map(grp => {
+        const id = grp._id.toString();
+        const subarray = (posts.filter(el => el.room === id));
+        return { [id]: subarray }; 
+    });
 
     res.status(200).json({
+        length: posts.length,
         status: 'success',
-        length,
-        posts
-    })                                 
-
+        arrs,
+    })                                
 });
+

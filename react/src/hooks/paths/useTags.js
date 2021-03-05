@@ -12,7 +12,7 @@ const [allTags, setAllTags] = useState(null);
 const [tagCount, setTagCount] = useState({
     unique: '', 
     sum: ''
-})
+});
 
 useEffect(() => {
     let sort;
@@ -36,11 +36,11 @@ axios.get(`/posts/tags/${user.house._id}/${sort}`)
         })
         isLoading(false);
     }).catch((err) => { console.log(err) })
-}, [activeItem]); // added user 
+}, [activeItem]); 
 
 
 const getAllTagsFromPosts = () => {
-    axios.get(`/posts/allTags/${user.house._id}/`) 
+    axios.get(`/posts/allTags/${user.house._id}/`)
     .then(res => {
         const tagData = res.data.data; 
         setAllTags(tagData.allTagsFromPosts);

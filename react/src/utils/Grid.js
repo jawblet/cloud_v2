@@ -3,10 +3,11 @@ import React from 'react';
 const Grid = (props) => {
     //initialize grid  
     const getGrid = (props) => { 
-        console.log(props);
         const {
             columns,
             rows,
+            autoColumns,
+            autoRows,
             gap,
             justify, 
             align,
@@ -19,6 +20,8 @@ const Grid = (props) => {
             gap: `${gap}rem` || "0",
             gridTemplateColumns: columns || "none",
             gridTemplateRows: rows || "none",
+            gridAutoColumns: autoColumns || "auto",
+            gridAutoRows: autoRows || "auto",
             justifyItems: justify || "stretch",
             alignItems: align || "stretch",
             width: width || "100%"

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LinkPreview } from './LinkPreview';
 import BasicSelectMenu from '../menus/BasicSelectMenu'; 
@@ -97,19 +97,4 @@ export default function Post100(props) {
         </div>
         </>   
     )
-}
-
-/*
-//import TagLegendPath from '../../atoms/TagLegendPath';
-
-
-const postId = props.coords.postId;
-
-
-<TagLegendPath coords={props.coords} 
-                                    tag={tag} 
-                                    enter={(tagpath && 
-                                            tagpath === tag._id && 
-                                            postId === post._id)}
-                                            />
-*/
+};

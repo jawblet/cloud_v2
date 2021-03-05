@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group'; 
 
 export default function Drawer({ items, tab }) {
     const nodeRef = useRef(null);
@@ -16,7 +16,8 @@ export default function Drawer({ items, tab }) {
                                 return (
                                     <div className="drawer__item" key={tag._id}>
                                        <div className="tagPreview"> 
-                                            <span className="tagPreview__color" style={{backgroundColor:tag.color}}></span>
+                                            <span className="tagPreview__color" style={{backgroundColor:tag.color}}>
+                                            </span>
                                             <h4>{tag.tag}</h4> 
                                         </div>
                                     </div>
@@ -24,7 +25,7 @@ export default function Drawer({ items, tab }) {
                                 })
                         : <p className="fullWidth flex justifyCenter">
                             No paths yet
-                            </p>
+                     </p>
                     }
                 </menu>
             </CSSTransition>

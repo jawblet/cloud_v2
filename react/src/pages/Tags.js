@@ -22,7 +22,7 @@ export default function Tags() {
 
     //get tags
     const { tags, tagCount, handlePaintClick, eyedrop, loading } = useTags(activeItem);
-    console.log(loading);
+    
     return(
         <div className="page">
             <Header/> 
