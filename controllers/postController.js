@@ -154,33 +154,19 @@ exports.getTagDetails = catchAsync(async(req, res) => {
 });
 
 
-exports.getPostGrid = catchAsync(async(req, res) => {
-    const castId = mongoose.Types.ObjectId(req.params.houseId);
+exports.getPostArchive = catchAsync(async(req, res) => {
 
-    const posts = await Post.aggregate([
-        { $match: { house: castId, type: {$ne: 'library'} }
-        },
-        { $sort: { 'createdOn': -1 } },
-        {$project: {content: 0, tags:0 }}
-        ]);
-    
-    const groups = await Post.aggregate([
-        { $match: { house: castId, type: {$ne: 'library'} }
-        },
-            { $group: { _id: '$room' } }
-        ]);
-    
-    //return array of objects --> keys are room id and values are posts 
-    const arrs = groups.map(grp => {
-        const id = grp._id.toString();
-        const subarray = (posts.filter(el => el.room === id));
-        return { [id]: subarray }; 
-    });
+    const posts = await Post.paginate(
+        { house: req.params.houseId, type: { $ne: 'library'}  },
+        { offset: req.query.offset, 
+        limit: 20,
+        populate: 'user' }
+        );
 
     res.status(200).json({
         length: posts.length,
         status: 'success',
-        arrs,
+        posts,
     })                                
 });
 

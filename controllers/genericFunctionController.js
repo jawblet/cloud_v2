@@ -133,7 +133,7 @@ exports.deleteAll = (Model) => catchAsync(async(req, res) => {
     res.status(204).json({
         status: 'deleted',
         data: null 
-    })
+    }) 
 });
 
 //paginate

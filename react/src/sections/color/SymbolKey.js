@@ -2,7 +2,7 @@ import React from 'react';
 import { SYMBOL_KEY } from './key';
 
 const SymbolKey = () => {
-    return (
+    return ( 
         <div className="key symbolKey">
             <h3 className="houseTitle key__title">
                 Symbols and signs

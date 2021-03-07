@@ -13,7 +13,7 @@
 
 /* base styles */
 *,
-*::after,
+*::after, 
 *::before{
       margin: 0;
       padding: 0;
@@ -157,3 +157,11 @@ hr {
   cursor: pointer;
 }
 
+.fadeText {
+  position: absolute;
+  height: 100%;
+  width: 3rem;
+  right: 0;
+  z-index: 2;
+  background:linear-gradient(to right, transparent, $off-white);
+}

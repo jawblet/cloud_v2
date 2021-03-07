@@ -7,7 +7,7 @@ import useLogout from '../hooks/user/useLogout';
 
 export default function Header({ nav }) {
     const { user } = useContext(UserContext);
-    const { logoutUser } = useLogout(); 
+    const { logoutUser } = useLogout();
 
     return(
         <header className='page__header'>

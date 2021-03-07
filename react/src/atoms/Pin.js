@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Pin = ({path, ...props}) => {
+const Pin = ({ path, ...props }) => {
+
     const pathStyle = {
         position: "absolute",
         top: props.y,
@@ -8,8 +9,19 @@ const Pin = ({path, ...props}) => {
     }
 
     return (
-        <div className="pin" style={path ? pathStyle : ''}>
+        <div className="pin">
         </div>);
 }
  
 export default Pin;
+
+/*
+ const pathStyle = {
+        position: "absolute",
+        top: props.y,
+        left: props.x,
+    }
+
+style={path ? pathStyle : ''}
+
+*/

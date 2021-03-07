@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const HouseNavMenu = ({ house, hoverRoom }) => {
     const rooms = [
-                {url: 'zone', label: 'Zones'}, 
-                {url: 'key', label: 'Symbol key'}, 
-                {url: 'inbox', label: 'Mailroom'},
-                {url: 'library', label: 'Library'},
-                {url: 'paths', label: 'Paths'},
-                {url: 'code-of-conduct', label: 'House rules'},
-                {url: 'filing', label: 'Filing cabinet'}
-                        ];
+                { url: 'paths', label: 'All paths' }, 
+                { url: 'key', label: 'All rooms' }, 
+                { url: 'syllabus', label: 'Syllabus' },
+                { url: 'library', label: 'Post view' },
+                { url: 'paths', label: 'Path view' },
+                { url: 'archive', label: 'Archive' },
+                { url: 'filing', label: 'Mailroom' }
+                 ];
     return (
         <ol className="house__menu">
             <div className="dndHeader__label">

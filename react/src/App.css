@@ -150,6 +150,15 @@ hr {
   cursor: pointer;
 }
 
+.fadeText {
+  position: absolute;
+  height: 100%;
+  width: 3rem;
+  right: 0;
+  z-index: 2;
+  background: linear-gradient(to right, transparent, #fffdfa);
+}
+
 .flex {
   display: flex;
 }
@@ -683,6 +692,7 @@ d {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 1rem;
 }
 .page__info {
   width: 100%;
@@ -1000,6 +1010,13 @@ d {
   padding-bottom: 1rem;
 }
 
+.archive__col {
+  padding-bottom: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
 .contour {
   transition: all 0.35s;
 }
@@ -1129,238 +1146,86 @@ d {
   width: 50%;
 }
 
-.hoverB3::after, .hoverB2A::after, .hoverA2::before, #B2B__left--hover::after, #B2B__left:hover::after, #B2B__left::after, .B2B:hover::after, .B2A:hover::after, .B1:hover::after, .A2:hover::before {
-  content: "";
-  position: absolute;
-  width: 1px;
-  background: #00e3eb;
-  height: 100%;
-  top: 0;
-  z-index: 4;
-}
-
-.hoverB3::before, .hoverB2BLeft::before, .hoverB2BRight::before, .hoverB2A::before, .hoverB1::before, .B3:hover::before, .B2B:hover::before, .B2A:hover::before, .B1:hover::before, .houseNav__C:hover::before {
-  content: "";
-  position: absolute;
-  background: #00e3eb;
-  height: 1px;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  z-index: 4;
-}
-
-.B3, .B2B, .B2A, .B1, .A2, .A1, .houseNav__C {
+.A, .B {
   border: 1px solid #31302C;
+  height: 100%;
   padding: 0.5rem;
   position: relative;
   transition: all 0.35s;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  font-family: "Graphik", sans-serif;
+  font-weight: 400;
+}
+
+.A:hover, .B:hover, .hover {
+  border-color: #00e3eb;
+  z-index: 1;
 }
 
 .houseNav {
-  height: 50vh;
-  width: 20%;
   display: flex;
   flex-direction: column;
+  height: 50vh;
+  width: 20%;
   top: 20%;
   position: relative;
 }
 .houseNav > * {
   width: 100%;
+  display: flex;
 }
 .houseNav__A {
-  height: 25%;
-  display: flex;
+  height: 35%;
 }
 .houseNav__B {
-  height: 30%;
-  display: flex;
-}
-.houseNav__C {
-  height: 45%;
-  border-top: none;
-}
-.houseNav__C:hover {
-  border: 1px solid #00e3eb;
-  border-top: none;
-}
-.houseNav__A > *, .houseNav__B > * {
-  height: 100%;
+  height: 65%;
 }
 
-.A1 {
-  width: 70%;
+.A {
+  margin-top: 1px;
 }
-.A1:hover {
-  border: 1px solid #00e3eb;
+.A1 {
+  flex: 0 0 75%;
 }
 .A2 {
-  width: 30%;
-  border-left: none;
-}
-.A2:hover {
-  border: 1px solid #00e3eb;
-  border-left: inherit;
-}
-.A2:hover::before {
-  left: -1px;
+  flex: 1 0 25%;
+  margin-left: -1px;
 }
 
 .B1 {
-  width: 25%;
-  border-top: none;
-  border-right: none;
-}
-.B1:hover {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-right: none;
-}
-.B1:hover::after {
-  right: -1px;
+  flex: 0 0 25%;
 }
 .B2 {
-  width: 25%;
+  flex: 0 0 25%;
+  margin-left: -1px;
   display: flex;
   flex-direction: column;
-  border: none;
-  position: relative;
 }
-.B2A {
-  height: 50%;
-  width: 100%;
-  border-right: none;
-  border-top: none;
-}
-.B2A:hover {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-right: none;
-}
-.B2A:hover::after {
-  right: -1px;
-}
-.B2B {
-  width: 52%;
-  height: 100%;
-  border-top: none;
-  border-right: none;
-  position: relative;
-}
-.B2B__wrapper {
+.B2--top {
   display: flex;
   height: 100%;
-  position: relative;
-}
-.B2B:hover {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-right: none;
-}
-.B2B:hover::after {
-  right: -1px;
-}
-.B2B__line {
-  position: absolute;
-  width: 1px;
-  background-color: #31302C;
-  right: -1px;
-  height: 100%;
-  z-index: 5;
-  transition: all 0.35s;
 }
 .B3 {
-  width: 50%;
-  border-top: none;
-  position: relative;
-}
-.B3:hover {
-  border: 1px solid #00e3eb;
-  border-top: none;
-}
-#B2B__right:hover ~ #B2B__left::after {
-  background-color: #00e3eb;
+  flex: 1 0 50%;
+  margin-left: -2px;
 }
 
-#B2B__left {
-  border-left: none;
-  position: relative;
+.B2--4 {
+  flex: 1;
 }
-#B2B__left::after {
-  left: 0;
-  background-color: #31302C;
+.B2--5 {
+  flex: 1;
+  margin-left: -1px;
 }
-#B2B__left:hover {
-  border-left: none;
-}
-#B2B__left:hover::after {
-  left: 0;
-}
-#B2B__left:hover ~ .B2B__line {
-  background-color: #00e3eb;
-}
-#B2B__left--hover {
-  border-left: none;
-  position: relative;
-}
-#B2B__left--hover::after {
-  left: 0;
+.B2--6 {
+  flex: 1 0 50%;
+  margin-top: -1px;
 }
 
-.hoverRoom {
-  border: 1px solid #00e3eb;
-}
-
-.hoverA2 {
-  border: 1px solid #00e3eb;
-  border-left: none;
-  position: relative;
-}
-.hoverA2::before {
-  left: -1px;
-}
-
-.hoverB1 {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  position: relative;
-}
-.hoverB2A {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-left: none;
-  position: relative;
-}
-.hoverB2A::after {
-  left: -1px;
-}
-
-.hoverB2BRight {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-right: none;
-}
-.hoverB2BRight ~ #B2B__left::after {
-  background-color: #00e3eb;
-}
-
-.hoverB2BLeft {
-  border: 1px solid #00e3eb;
-  border-top: none;
-  border-right: none;
-}
-.hoverB2BLeft ~ .B2B__line {
-  background-color: #00e3eb;
-}
-
-.hoverB3 {
-  border: 1px solid #00e3eb;
-  border-right: none;
-  border-top: none;
-  position: relative;
-}
-.hoverB3::after {
-  right: -1px;
+.B3 {
+  flex-shrink: 1;
+  margin-left: -1px;
 }
 
 .groupGrid {

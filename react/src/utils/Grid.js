@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Grid = (props) => {
+const Grid = (props) => { 
     //initialize grid  
     const getGrid = (props) => { 
         const {

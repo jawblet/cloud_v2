@@ -27,3 +27,11 @@ $thread-width: 70%;
         padding-bottom: 1rem; 
      }
 }
+
+//archive 
+.archive__col {
+    padding-bottom: 1rem; 
+    overflow: hidden;
+    white-space:nowrap; 
+    position: relative;
+}

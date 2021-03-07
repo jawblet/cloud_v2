@@ -11,7 +11,7 @@ const PostCell = ({ id }) => {
 
     useEffect(() => {
         async function onPageLoad() {
-            await getLayerPosts(id); 
+            await getLayerPosts(id);
         };
             onPageLoad();
         }, []);

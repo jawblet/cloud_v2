@@ -29,16 +29,16 @@ export default function Home() {
         <div className="page">  
             <Header/> 
             <HouseLegend/> 
-           <SwitchFade state={zoomIn}>
             <div className="map">
+                <SwitchFade state={zoomIn}>
                     {zoomIn 
                             ?   <LayerView groups={groups} zoomIn={zoomIn} setHoverId={setHoverId}
                                     />
                             :   <PathView paths={globalTags}
                                     /> 
                         } 
+                </SwitchFade>
                 </div>
-           </SwitchFade>
                 <div className="map__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
@@ -52,3 +52,15 @@ export default function Home() {
     )
 }; 
 
+/* 
+       <SwitchFade state={zoomIn}>
+            <div className="map">
+                    {zoomIn 
+                            ?   <LayerView groups={groups} zoomIn={zoomIn} setHoverId={setHoverId}
+                                    />
+                            :   <PathView paths={globalTags}
+                                    /> 
+                        } 
+                </div>
+           </SwitchFade>
+*/

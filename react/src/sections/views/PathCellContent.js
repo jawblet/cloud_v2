@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import usePositionPoints from '../../hooks/usePositionPoints';
 
 const PathCellContent = ({ posts }) => {
-    console.log(posts);
     const cellRef = useRef(null);
     const [coords, setCoords] = useState(null);
 
@@ -14,12 +13,13 @@ const PathCellContent = ({ posts }) => {
            const radius = c.width / 2;
            const centerX = c.x + (c.height / 2);
            const centerY = c.y + radius;
-            setCoords({radius, centerX, centerY}); 
+           return setCoords({radius, centerX, centerY}); 
         }
+        return;
     }, []);
 
     useEffect(() => {
-        if(coords) {
+        if(coords && posts) {
             getPinPos(coords, posts);
         }
     }, [coords]);

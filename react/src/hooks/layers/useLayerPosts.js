@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 
-export default function useLayerPosts() {
+export default function useLayerPosts() { 
 const { user } = useContext(UserContext);
 const house = user.house._id; 
 
@@ -17,23 +17,35 @@ const [loading, setLoading] = useState(true);
                     const posts = res.data.data.results;
                     setPosts(posts); 
                     setLoading(false);
+                    return;
         }).catch(err => console.log(err))
     };
 
     // GET ALL POSTS FOR PATH 
     const getPathPosts = async (pathId) => {
-        await axios.get(`/posts/details/${house}/${pathId}`) 
+        return axios.get(`/posts/details/${house}/${pathId}`) 
         .then(res => {
-            const { posts } = res.data.data;
-            setPosts(posts); 
+            const { docs } = res.data.data.posts;
+            setPosts(docs); 
             setLoading(false);
         }).catch(err => console.log(err))
+    }
+
+    //GET ALL POSTS FOR HOUSE
+    const getHousePosts = async() => {
+        return axios.get(`/posts/grid/${house}`).then(res => {
+            console.log(res);
+            const { posts } = res.data;
+            setPosts(posts); 
+            setLoading(false);
+        }).catch(err => console.log(err));
     }
 
     return {
         loading,
         posts,
         getLayerPosts,
-        getPathPosts
+        getPathPosts,
+        getHousePosts
     }
 }
