@@ -25,15 +25,16 @@
         margin-bottom: 0.5rem;
         transition: all $short-fade;
     }
-    &__item {
+    &__item { 
         @extend %padding;
+        background-color: inherit;
         border: 1px solid transparent;
         transition: all 0.15s;
         &--nested {
             padding-left: 1.5rem;
         }
         &:hover {
-            border-color: rgb(2, 226, 255);
+            background-color: $accent-red;
         }
         & > * {
             margin-right: 0.5rem; 
@@ -64,16 +65,16 @@
             padding-left: 0.5rem;
         }
         &:hover{
-            background-color: rgba(0, 255, 255, 0.25);
-            border: 1px solid aqua;
+            background-color: $accent-red;
+            border: 1px solid $accent-red;
             & > .dndHeader__edit {
                 color: $body-light;
             }
         }
         &--edit{
-            border: 1px solid aqua !important;
+            border: 1px solid $accent-red !important;
             background-color: $off-white !important;
-            box-shadow: 0 0 5px aqua;
+            box-shadow: 0 0 5px $accent-red;
         }
         &--ungrouped {
             color: $body-lightest;

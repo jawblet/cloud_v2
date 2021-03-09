@@ -15,12 +15,12 @@ const PathView = ({ paths }) => {
                     return (
                         <div className="groupGrid__cell" key={path._id}>
                             <Subtitle label={path.tag} slug={`/path/${slugify(path.tag)}`}/>
-                            <PathCell id={path._id}/>
+                            <PathCell path={path} />
                         </div>
                     )
                 })}
             </Grid>
-        </div>
+        </div> 
         <div className="map__key">
                <SlideMenu>
                    <PathList items={paths}/>

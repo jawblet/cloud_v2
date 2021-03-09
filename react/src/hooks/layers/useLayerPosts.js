@@ -25,8 +25,8 @@ const [loading, setLoading] = useState(true);
     const getPathPosts = async (pathId) => {
         return axios.get(`/posts/details/${house}/${pathId}`) 
         .then(res => {
-            const { docs } = res.data.data.posts;
-            setPosts(docs); 
+            const { posts } = res.data.data;
+            setPosts(posts); 
             setLoading(false);
         }).catch(err => console.log(err))
     }

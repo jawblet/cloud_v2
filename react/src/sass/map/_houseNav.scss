@@ -11,7 +11,7 @@
 }
 
 %hover {
-    border-color: $blue;
+    border-color: $accent-red;
     z-index: 1; 
 }
 
@@ -69,14 +69,11 @@
 }
 
 .B2 {
-    &--4 {
-        flex: 1;
-    }
+    &--4 { flex: 1; }
     &--5 {
         flex: 1;
         margin-left: -1px;
     }
-    
     &--6 {
         flex: 1 0 50%; 
         margin-top: -1px;

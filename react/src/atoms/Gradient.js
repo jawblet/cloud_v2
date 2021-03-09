@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Preview from './../components/modals/Preview';
  
-export default function Gradient({ post, tags }) {
-    const [preview, showPreview] = useState(false);
+export default function Gradient({ post, tags }) { 
+    const [preview, showPreview] = useState(false); 
     const [angle, setAngle] = useState(0);
     const [colors, setColors] = useState(''); 
 
@@ -17,7 +17,6 @@ export default function Gradient({ post, tags }) {
         setColors(colorString);
     }, [post]);
 
-    //console.log(tags);
   
     return ( 
         <>

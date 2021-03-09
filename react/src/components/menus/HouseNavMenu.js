@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const HouseNavMenu = ({ house, hoverRoom }) => {
     const rooms = [
-                { url: 'paths', label: 'All paths' }, 
-                { url: 'key', label: 'All rooms' }, 
+                { url: 'paths', label: 'Path key' }, 
+                { url: 'rooms', label: 'Room key' }, 
                 { url: 'syllabus', label: 'Syllabus' },
                 { url: 'library', label: 'Post view' },
                 { url: 'paths', label: 'Path view' },

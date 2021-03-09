@@ -1,22 +1,27 @@
 //text 
-$body: #31302C;
-$body-medium: #44433e;
-$body-light: #72716B; 
-$body-lightest: #C3C2BD;
+$body: #312F2C;
+$body-medium: #433D37;
+$body-light: #776B5E; 
+$body-lightest: #C7BEB6;
+
 $soft-outline: #d8d7d3; // not for text 
 $line-height: 150%; //for padded text
 
 //palette 
-$off-white: #fffdfa; 
-$sand: #fcf7f3;
-$sand2: #f5eee5; 
-$sand3: #f1e3d3; 
+$off-white: #FFFCF8; 
+$sand: #FAF3ED;
+$sand2: #F2EADF; 
+$sand3: #EFDDC8; 
 
 //other 
 $half-transparent: #fffdfa86; 
-$error: #f39c81d9;
-$error-light: #f39c8199;
-$accent-red: #b17954;
+$error: #E47654;
+$error-light: #E47654;
+
+$accent-red: #F7C06E;
+$accent-red2: #F6B758;
+$accent-red3: rgb(32, 31, 30);
+
 $sand-bright: #EBC57A;
 $blue: #00e3eb; 
 
@@ -43,12 +48,3 @@ $softest-shadow: 4px 4px 24px rgba(216, 215, 211, 0.5),
 $shortest-fade: .15s;
 $short-fade: .35s;
 $long-fade: .7s;
-
-//map colors 
-$water: #427093;
-$sandy: #CBC9BA;
-$stone: #616266;
-$clay: #B04022;
-$treasure: #EACB86; 
-$fungus: #D7F08E;
-$grass: #2E6233;

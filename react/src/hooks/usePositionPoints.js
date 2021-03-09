@@ -5,22 +5,24 @@ import Pin from '../atoms/Pin';
 export default function usePositionPoints() {
     const cellRef = useRef(null);
 
-    const [pins, setPins] = useState(true);
+    const [pins, setPins] = useState(null);
 
-    const getPinPos = async(coords, posts) => {
+    const getPinPos = async(coords, posts, color) => {
         const { radius, centerX, centerY } = (coords);
         if(posts.length) {
             const pins = posts.map(post => {
                 const r = radius * Math.random();
                 const a = 2 * Math.PI * Math.random();
         
-                //const x = Math.round(r * Math.cos(a) + centerX);
-                //const y = Math.round(r * Math.sin(a) + centerY);
+                const x = Math.round(r * Math.cos(a) + centerX);
+                const y = Math.round(r * Math.sin(a) + centerY);
+
+                console.log(color);
                 return (
                     < Pin key={post._id} 
-                          path  
-                        //x={x} y={y}
-                        />
+                        x={x} y={y} 
+                        color={color}
+                        path />
                 )
             });
             setPins(pins);

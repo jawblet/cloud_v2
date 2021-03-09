@@ -11,7 +11,6 @@ import LayerRoute from './sections/LayerRoute';
 import GroupRoute from './sections/GroupRoute';
 import User from './pages/User';
 import Add from './pages/Add';
-import Tags from './pages/Tags';
 import HouseRoute from './sections/HouseRoute';
 import PathRoute from './sections/PathRoute';
 import NotFound from './pages/NotFound';
@@ -37,7 +36,7 @@ function App() {
        <UserContext.Provider value={{   user,
                                         rooms,
                                         groups,
-                                        globalTags,
+                                        globalTags, 
                                         setUser,
                                         setRooms,
                                         setGroups,
@@ -52,11 +51,10 @@ function App() {
             <Route path="/blob" component={TestTwo}/>
             <PrivateRoute exact path="/" component={Home}/>
             <PrivateRoute path='/house' component={HouseRoute}/>
-            <PrivateRoute path="/user" component={User}/>
-            <PrivateRoute path="/add" component={Add}/>
-            <PrivateRoute path="/paths" component={Tags}/>
             <PrivateRoute path='/path/:path' component={PathRoute}/>
             <PrivateRoute path='/group/:group' component={GroupRoute}/>
+            <PrivateRoute path="/user" component={User}/>
+            <PrivateRoute path="/add" component={Add}/>
             <PrivateRoute path='/:room' component={LayerRoute}/>
             <Route component={NotFound}/> 
         </Switch>

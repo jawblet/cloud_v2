@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import PathCellContent from './PathCellContent';
 
-const PathCell = ({ id }) => { 
+const PathCell = ({ path }) => { 
 
     const { 
         posts, 
@@ -12,7 +12,7 @@ const PathCell = ({ id }) => {
 
     useEffect(() => {
         async function onPageLoad() {
-            await getPathPosts(id); 
+            await getPathPosts(path._id); 
         };
             onPageLoad();
     }, []);
@@ -22,17 +22,8 @@ const PathCell = ({ id }) => {
     }
 
     return (
-        <PathCellContent posts={posts}/>
+        <PathCellContent posts={posts} color={path.color}/>
     );
 }
  
 export default PathCell;
-
-/*
-
-    <div className="pathCell--posts">
-        {posts && posts.map(post => {
-                return(< Pin key={post._id} />)
-            })}
-    </div>
-*/

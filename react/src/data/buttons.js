@@ -6,7 +6,7 @@ import { VscAdd, VscHome, VscMilestone,
 
 export const navButtons = [
     {id: 0, name: 'house', url: 'house', icon: <VscHome className="icon icon__btn" data-id="house"/> }, 
-    {id: 1, name: 'paths', url: 'paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/> },
+    {id: 1, name: 'paths', url: 'house/paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/> },
     {id: 2, name: 'add', url: 'add', icon: <VscAdd className="icon icon__btn" data-id="add"/>},
 ];
 

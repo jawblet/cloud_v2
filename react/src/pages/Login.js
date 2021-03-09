@@ -12,7 +12,7 @@ export default function Login() {
         initialValues: {
             form: 'login',
             username: '',
-            password: ''
+            password: '' 
         }
     });
 

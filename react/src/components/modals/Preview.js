@@ -8,6 +8,10 @@ export default function Preview({ preview, post, tags }) {
     const tagNum = Object.keys(tags).length;
 
         const getTags = () => {
+            if(!post.tags) {
+                return null;
+            }
+
             if(post.tags.length === 0) {
                 return(<p> without labels.</p>);
             };

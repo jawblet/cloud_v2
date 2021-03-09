@@ -4,7 +4,7 @@ import Subtitle from './Subtitle';
 import PostCell from './PostCell';
 import DnDMenu from '../../components/dnd/menu/DnDMenu';
 
-const LayerView = (props) => {
+const LayerView = (props) => { 
   
     return (
         <>
@@ -12,7 +12,8 @@ const LayerView = (props) => {
             {props.groups.map((group, i) => {
                 return (
                 <div className="groupGrid" key={i}>
-                    <Subtitle slug={group.slug} label={group.label} heavy/>
+                    <Subtitle slug={group.slug} label={group.label}
+                                p="1rem" heavy/>
                     <Grid columns="repeat(3, minmax(0, 1fr))">
                         {group.layers.map(layer => {
                             return (

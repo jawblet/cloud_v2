@@ -8,7 +8,7 @@ export default function useFindUser() {
     const [groups, setGroups] = useState(null);
     const [isLoading, setLoading] = useState(true); 
 
-useEffect(() => {
+useEffect(() => { 
     async function findUser() { 
         await axios.get('/user')
             .then(res => { 

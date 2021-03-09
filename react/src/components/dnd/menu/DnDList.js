@@ -31,7 +31,7 @@ const DnDList = (props) => {
                            <DragItem layer={layer} group={group}
                                     setHoverId={setHoverId}
                            />
-                        </div>
+                        </div> 
                     )}
                 </Draggable>
                 ))}

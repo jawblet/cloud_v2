@@ -1,4 +1,3 @@
-
 .card {
     position: relative;
     padding:1rem;
@@ -14,7 +13,7 @@
         position: absolute;
     }
     &__body {
-        padding: 1.5rem;
+        padding: 1.5rem; 
         height: 100%;
         width: 100%; 
         display: flex;
@@ -45,6 +44,8 @@
     }
 }
  
+
+//versioning
 //don't apply margin to latest child
 .card__v {
     margin-bottom: -8rem;
@@ -58,8 +59,3 @@
         box-shadow: inset -2px -4px 1rem $off-white; 
     }
 }
-
-/*
-position: absolute;
-transform: translateY(-8rem);
-*/
