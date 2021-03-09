@@ -3,7 +3,6 @@ import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import Pin from '../../atoms/Pin';
 import groupBy from 'lodash/groupBy';
 
-
 const PostCell = ({ id }) => { 
     const { 
         posts, 

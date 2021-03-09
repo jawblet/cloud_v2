@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
-import TagPreview from '../../atoms/TagPreview';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react';
+import TagPreview from '../../atoms/TagPreview'; 
+import Fade from '../animate/Fade';
 
 export default function Preview({ preview, post, tags }) {
-    const nodeRef = useRef(null); 
     const max = 2; 
-    const tagNum = Object.keys(tags).length;
+    const tagNum = Object.keys(tags).length; 
 
         const getTags = () => {
             if(!post.tags) {
@@ -33,10 +32,10 @@ export default function Preview({ preview, post, tags }) {
         }; 
         
     return(
-            <CSSTransition in={preview} timeout={350} nodeRef={nodeRef} classNames="fade" unmountOnExit>
-                <div className="popup__wrapper" ref={nodeRef} key={post._id} >
-                    <div className="popup">
-                        <div className="popup__header">
+            <Fade in={preview} exit={false} short>
+                <div className="popup__wrapper" key={post._id}>
+                    <div className="popup postPreview">
+                        <div className="popup__header"> 
                             <h4 className="lightest">{post.user.username}</h4> 
                         </div>
                         <div className="popup__body">
@@ -48,6 +47,6 @@ export default function Preview({ preview, post, tags }) {
                         </div>
                     </div>
                 </div>
-            </CSSTransition>
+            </Fade>
     )
 } 

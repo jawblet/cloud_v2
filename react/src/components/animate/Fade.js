@@ -3,12 +3,14 @@ import { CSSTransition } from 'react-transition-group';
 
 
 const Fade = (props) => {
+
     const nodeRef = useRef(null);
     return (
         <CSSTransition in={props.in} 
-                        timeout={350} 
+                        timeout={props.short ? 150 : 350} 
                         nodeRef={nodeRef} 
-                        classNames="fade" 
+                        classNames="fade"
+                        exit = {props.exit} 
                         unmountOnExit>
                 <span ref={nodeRef}>
                     {props.children}

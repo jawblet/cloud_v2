@@ -8,7 +8,6 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    //box-shadow: $softer-shadow;
     position: absolute;
     z-index: 1; // must be on top 
     &__wrapper {
@@ -27,6 +26,11 @@
    &__item:not(:last-child){
        padding-bottom: 1rem;
    }
+}
+
+.postPreview {
+   margin-bottom: 1.5rem; 
+   box-shadow: $softer-shadow;
 }
 
 //container for tag popup 
@@ -93,15 +97,3 @@
     top: 45%;
 }
 
-
-/*
-    &::after {
-            content: '';
-            display: inline-block;
-            //position: absolute;
-            width: 5px; 
-            height: 3rem;
-            background-color: inherit;
-            right: 0;
-        }
-*/ 

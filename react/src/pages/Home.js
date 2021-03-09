@@ -13,17 +13,12 @@ import useSqueeze from '../hooks/useSqueeze';
 export default function Home() {
     const { groups, globalTags } = useContext(UserContext);
     useRefreshLayers();
-
-    //get paths 
-    //const { tags, loading } = useTags('date');
     
     //set view 
     const [zoomIn, setZoom] = useState(false); 
 
     //set squeeze
     const { squeeze, squeezeBtn, handleSqueeze } = useSqueeze();
-
-    const [hoverId, setHoverId] = useState(null);
 
     return ( 
         <div className="page">  
@@ -32,7 +27,7 @@ export default function Home() {
             <div className="map">
                 <SwitchFade state={zoomIn}>
                     {zoomIn 
-                            ?   <LayerView groups={groups} zoomIn={zoomIn} setHoverId={setHoverId}
+                            ?   <LayerView groups={groups} zoomIn={zoomIn}
                                     />
                             :   <PathView paths={globalTags}
                                     /> 
@@ -64,3 +59,6 @@ export default function Home() {
                 </div>
            </SwitchFade>
 */
+
+//    const [hoverId, setHoverId] = useState(null);
+

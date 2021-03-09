@@ -15,7 +15,7 @@ const PathCellContent = ({ posts, color }) => {
            const centerY = c.y + (c.height / 2);
            return setCoords({radius, centerX, centerY}); 
         }
-        return;
+        return; 
     }, []);
 
     useEffect(() => {
@@ -33,11 +33,3 @@ const PathCellContent = ({ posts, color }) => {
  
 export default PathCellContent;
 
-
-/*
-    <div className="pathCell--posts">
-        {posts && posts.map(post => {
-                return(< Pin key={post._id} />)
-            })}
-    </div>
-*/

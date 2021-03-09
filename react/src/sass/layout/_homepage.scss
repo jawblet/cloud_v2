@@ -63,7 +63,7 @@
 .houseLegend {
   display: block;
   position: absolute;
-  top: 0;
+  top: -1rem;
   left: 0;
   //box-shadow: $softer-shadow;
   &__wrapper {

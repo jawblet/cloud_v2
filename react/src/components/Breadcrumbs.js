@@ -5,7 +5,7 @@ const BreadcrumbsNav = ({ nav } ) => {
     return(
         <div className="breadcrumbsNav">
              <NavLink to='/'>
-                <h4>return home, arrive anywhere</h4> 
+                <h4>arrive anywhere</h4> 
             </NavLink>
             {nav &&
                 nav.map((crumb, index) => {

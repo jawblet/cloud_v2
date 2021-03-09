@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LayerIcon } from '../../../svg/LayerIcons';
 
-const DragItem = ({layer, group, setHoverId}) => {
+const DragItem = ({layer, group }) => {
     return (
         <Link to={`/${layer.slug}`} 
-            onMouseEnter={() => setHoverId(layer.id)}
-            onMouseLeave={() => setHoverId(null)}
         >
         <p className={`dnd__item 
          ${group.id !== 'ungrouped' ? 'dnd__item--nested' : ''}

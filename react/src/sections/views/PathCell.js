@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import PathCellContent from './PathCellContent';
 
-const PathCell = ({ path }) => { 
+const PathCell = ({ path }) => {
 
     const { 
         posts, 
@@ -11,8 +11,8 @@ const PathCell = ({ path }) => {
          } = useLayerPosts(); 
 
     useEffect(() => {
-        async function onPageLoad() {
-            await getPathPosts(path._id); 
+        async function onPageLoad() { 
+            await getPathPosts(path._id);
         };
             onPageLoad();
     }, []);
@@ -22,7 +22,10 @@ const PathCell = ({ path }) => {
     }
 
     return (
-        <PathCellContent posts={posts} color={path.color}/>
+        <div className="pathCell">
+            <PathCellContent posts={posts} color={path.color}/>
+        </div>
+       
     );
 }
  

@@ -10,7 +10,7 @@ const PathView = ({ paths }) => {
     return (
         <>
          <div className="map__canvas">
-            <Grid columns="repeat(3, 1fr)" autoRows="5rem" gap={1.5}>
+            <Grid columns="repeat(3, 1fr)" autoRows="auto" gap={1.5}>
                 {paths.map(path => {
                     return (
                         <div className="groupGrid__cell" key={path._id}>
@@ -32,22 +32,3 @@ const PathView = ({ paths }) => {
  
 export default PathView;
 
-/*
-  <div className="map__canvas">
-            <Grid columns="repeat(3, 1fr)" autoRows="5rem" gap={1.5}>
-                {paths.map(path => {
-                    return (
-                        <div className="groupGrid__cell" key={path._id}>
-                            <Subtitle label={path.tag} slug={`/path/${slugify(path.tag)}`}/>
-                            <PathCell id={path._id}/>
-                        </div>
-                    )
-                })}
-            </Grid>
-        </div>
-        <div className="map__key">
-               <SlideMenu>
-                   <PathList items={paths}/>
-               </SlideMenu>
-        </div>
-*/

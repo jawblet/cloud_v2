@@ -897,7 +897,7 @@ d {
 .houseLegend {
   display: block;
   position: absolute;
-  top: 0;
+  top: -1rem;
   left: 0;
 }
 .houseLegend__wrapper {
@@ -1143,18 +1143,19 @@ d {
 }
 
 .groupGrid {
-  padding-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 .groupGrid__cell {
-  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  margin-bottom: 1rem;
 }
 
 .pin {
   background-color: #C7BEB6;
   margin: 0.5rem;
-}
-.pin:first-child {
-  margin-left: 0;
 }
 .pin__color {
   height: 1rem;
@@ -1179,10 +1180,9 @@ d {
   justify-content: center;
 }
 .pathCell--posts {
-  height: 5vh;
-  width: 5vw;
+  height: 10vw;
+  width: 10vw;
   border-radius: 50%;
-  padding: 1rem;
 }
 
 .input {
@@ -2500,6 +2500,11 @@ input:checked ~ .accordion__list {
   padding-bottom: 1rem;
 }
 
+.postPreview {
+  margin-bottom: 1.5rem;
+  box-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), -4px -4px 16px #fff;
+}
+
 .pathLegend {
   overflow: hidden;
   max-height: 75vh;
@@ -2560,17 +2565,6 @@ input:checked ~ .accordion__list {
   top: 45%;
 }
 
-/*
-    &::after {
-            content: '';
-            display: inline-block;
-            //position: absolute;
-            width: 5px; 
-            height: 3rem;
-            background-color: inherit;
-            right: 0;
-        }
-*/
 .toolbar {
   display: flex;
   align-items: center;
