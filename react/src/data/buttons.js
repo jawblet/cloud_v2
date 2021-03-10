@@ -59,9 +59,6 @@ export const ZOOM_IN_BTN = {dataId: 'zoomIn', icon: <VscZoomOut className="icon 
 
 export const ZOOM_OUT_BTN = {dataId: 'zoomOut', icon: <VscZoomIn className="icon icon__btn" data-id="zoomOut"/>};
 
-export const LANDING_NOTES = [
-   "if ur wondering: '....what is this?'",
-   "'whAt kidn of sick twisted person Would make this...?'",
-   "sadly this is placeholder text + it has no answers" ];
+
 
 //     {id: 2, name: 'file', icon: <VscArchive className="icon icon__btn"/>}

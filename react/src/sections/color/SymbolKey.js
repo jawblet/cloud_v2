@@ -15,7 +15,7 @@ const SymbolKey = () => {
         <>
         <div className="key symbolKey">
             <h3 className="houseTitle key__title"> 
-                Rooms and signs
+                Rooms and signs 
             </h3>
                 {SYMBOL_KEY.map((el, i) => {
                    return <div key={i} className="key__row">

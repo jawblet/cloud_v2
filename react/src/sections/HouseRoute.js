@@ -5,6 +5,7 @@ import Thread from '../pages/Thread';
 import Tags from '../pages/Tags'; 
 import House from '../pages/House';
 import InMail from '../pages/InMail';
+import Syllabus from '../pages/Syllabus'; 
 import SymbolKey from './color/SymbolKey';
 import Archive from '../pages/Archive';
 
@@ -18,7 +19,8 @@ const HouseRoute = () => {
           <Route exact path='/house/rooms' component={SymbolKey}/>
           <Route exact path="/house/archive" component={Archive}/>
           <Route exact path='/house/inbox' component={InMail}/> 
-          <Route path='/house/:threadId' component={Thread}/>
+          <Route exact path='/house/syllabus' component={Syllabus}/> 
+          <Route path='/house/:threadId' component={Thread}/> 
         </Switch>
       </div>
       );

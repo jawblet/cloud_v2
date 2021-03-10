@@ -15,8 +15,6 @@ import HouseRoute from './sections/HouseRoute';
 import PathRoute from './sections/PathRoute';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
-import TestTwo from './pages/TestTwo';
-
 
 function App() {
 
@@ -48,7 +46,6 @@ function App() {
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
             <Route path="/confirm" component={Confirm}/>
-            <Route path="/blob" component={TestTwo}/>
             <PrivateRoute exact path="/" component={Home}/>
             <PrivateRoute path='/house' component={HouseRoute}/>
             <PrivateRoute path='/path/:path' component={PathRoute}/>

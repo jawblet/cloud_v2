@@ -13,11 +13,11 @@ $thread-width: 70%;
         top: 20%;
     }
     &__compose {
-        padding-bottom: 1.5rem; 
+        padding-bottom: 1.5rem;  
     }
 }
 
-
+//inbox
 .inmail {
     display: flex;
     flex-direction: column;
@@ -32,6 +32,40 @@ $thread-width: 70%;
 .archive__col {
     padding-bottom: 1rem; 
     overflow: hidden;
-    white-space:nowrap; 
+    white-space: nowrap; 
     position: relative;
+}
+
+//syallbus 
+.syllabus {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    & > *:nth-child(even) {
+        align-items: flex-end;
+    }
+    &__item { // entire content 
+        display: flex;
+        flex-direction: column;
+        min-height: 5rem;
+    }
+    &__title { //category
+        display: flex;
+        align-items: center;
+        //border: 1px solid black;
+        & > * {
+            margin-right: 1rem;
+        }
+    }
+    &__img {
+        height: 1.5rem;
+        width: auto;
+    }
+    &__dropdown {
+        padding: 1rem;
+        &__item {
+            padding-bottom: 1rem;
+        }
+    }
 }
