@@ -95,7 +95,7 @@ exports.updateOne = (Model) => catchAsync(async(req, res) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
-    });
+    }); 
 
     res.status(200).json({
         status: 'success',

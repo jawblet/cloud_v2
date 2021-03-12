@@ -6,8 +6,8 @@ const HouseNavMenu = ({ house, hoverRoom }) => {
                 { url: 'paths', label: 'Path key' }, 
                 { url: 'rooms', label: 'Room key' }, 
                 { url: 'syllabus', label: 'Syllabus' },
-                { url: 'library', label: 'Post view' },
-                { url: 'paths', label: 'Path view' },
+                { url: '', label: 'Post view' },
+                { url: '', label: 'Path view' },
                 { url: 'archive', label: 'Archive' },
                 { url: 'filing', label: 'Mailroom' }
                  ];
@@ -19,7 +19,7 @@ const HouseNavMenu = ({ house, hoverRoom }) => {
                 </h4>
             </div>
             {rooms.map((el, i) => { 
-            return <Link to={`/house/${el.url}`} 
+            return <Link to={`/library/${el.url}`} 
                         key={i}
                         onMouseEnter={() => hoverRoom(i + 1)}
                         onMouseLeave={() => hoverRoom(null)}>

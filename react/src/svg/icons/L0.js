@@ -5,4 +5,4 @@ const L1 = () => {
     )
 }
  
-export default L1;
+export default L1; 

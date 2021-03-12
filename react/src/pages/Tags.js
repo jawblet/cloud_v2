@@ -8,6 +8,7 @@ import useOneFilter from '../hooks/useOneFilter';
 import useTags from '../hooks/paths/useTags';
 import { Loading } from '../components/Loading';
 import { UserContext } from '../hooks/UserContext';
+import useChangeColor from '../hooks/paths/useChangeColor';
  
 export default function Tags() {
     const { user } = useContext(UserContext); // get house name here 
@@ -21,7 +22,8 @@ export default function Tags() {
     const { handleFilterClick, activeFilter } = useManyFilters(['color']);
 
     //get tags
-    const { tags, tagCount, handlePaintClick, eyedrop, loading } = useTags(activeItem);
+    const { tags, tagCount, loading } = useTags(activeItem);
+    const { eyedrop, handlePaintClick, handleColorSelect } = useChangeColor(); 
     
     return(
         <div className="page">
@@ -40,11 +42,13 @@ export default function Tags() {
                 {(!loading && tags.length === 0) && 
                         <div className="layer__empty">
                             <h3 className="light">
-                                Empty room
+                                Empty room 
                             </h3>
                         </div>
                     }
-                {!loading && <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} eyedrop={eyedrop}
+                {!loading && 
+                        <TagList tags={tags} tagCount={tagCount} activeFilter={activeFilter} 
+                            eyedrop={eyedrop} handleColorSelect={handleColorSelect}
                     />}
                 </div>
             </div>

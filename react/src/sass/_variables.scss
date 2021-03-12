@@ -18,12 +18,9 @@ $half-transparent: #fffdfa86;
 $error: #E47654;
 $error-light: #E47654;
 
-$accent-red: #F7C06E;
-$accent-red2: rgb(236, 114, 0);
-$accent-red3: rgb(32, 31, 30);
-
-$sand-bright: #EBC57A;
-$blue: #00e3eb; 
+$accent-red: rgba(247, 192, 110, 0.75);
+$accent-red2: #EA9144;
+$accent-red3: #DD7C40;
 
 //borders 
 $border-large: 1rem;
@@ -31,7 +28,6 @@ $border-small: 0.5rem;
 $border-smallest: 5px;
 $border-body: 1px solid $body; 
 $border-trans: 1px solid transparent; 
-$border-hover: 1px solid $blue;
 $border: 1px solid black; //for testing 
 
 //shadow

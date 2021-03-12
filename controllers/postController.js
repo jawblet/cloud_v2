@@ -150,7 +150,7 @@ exports.getTagDetails = catchAsync(async(req, res) => {
             posts,
             postCount: posts.length,
         }
-    })  
+    })   
 });
 
 

@@ -36,7 +36,7 @@ axios.get(`/posts/tags/${user.house._id}/${sort}`)
         })
         isLoading(false);
     }).catch((err) => { console.log(err) })
-}, [activeItem]); 
+}, [activeItem, globalTags]); 
 
 
 const getAllTagsFromPosts = () => {
@@ -48,12 +48,6 @@ const getAllTagsFromPosts = () => {
     }).catch((err) => { console.log(err) })
 };
 
-//change tag color 
-    const [eyedrop, colorChangeActive] = useState(false);
-
-    const handlePaintClick = () => {
-        colorChangeActive(!eyedrop); 
-    }
 
 //last 3 tags
 const [lastThreeTags, setLastTags] = useState(null);
@@ -77,8 +71,6 @@ useEffect(() => {
         tagCount,
         allTags,
         getAllTagsFromPosts,
-        lastThreeTags,
-        handlePaintClick,  
-        eyedrop
+        lastThreeTags
     }
 }

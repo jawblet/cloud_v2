@@ -83,6 +83,9 @@ exports.checkUser = catchAsync(async(req, res, next) => {
       }    
       res.status(200).send({ currentUser });
 });
+
+// jawblia000 5fda8983868a110017078a13
+// jawblia 6044267479861cc4e71c7bc6
  
 //update password 
 exports.changePassword = catchAsync(async (req, res, next) => {

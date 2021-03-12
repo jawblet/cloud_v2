@@ -19,8 +19,8 @@ const Pin = ({ path, ...props }) => {
             <div style={ pathStyle }>
                 <div style={{position:'relative'}}>
                     <span className="pin__color" style={{backgroundColor:props.color}} 
-                            // onMouseEnter={() => showPreview(true)}
-                            // onMouseLeave={() => showPreview(false)} 
+                           // onMouseEnter={() => showPreview(true)}
+                           // onMouseLeave={() => showPreview(false)} 
                             >
                     </span>
                     <div className="pin pin__path" style={{ position: "absolute", backgroundColor:props.color}}>

@@ -74,7 +74,7 @@ export default function useLibrary(limit) {
     
     async function handleLibrarySubmit(data, title) {
        await addLibraryBook(data, title);
-       await getLibraryBooks(pageState.page, true);
+       await getLibraryBooks(pageState.page, true); 
     }    
 
     async function handlePageCounter(page) {

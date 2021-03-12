@@ -1,6 +1,6 @@
 .groupGrid {
     margin-bottom: 3rem;
-    &__cell {
+    &__cell { 
         margin-bottom: 1.5rem;
     }
 }
@@ -42,4 +42,13 @@
         //border: $border; 
         border-radius: 50%;
     }
+}
+
+// the width is used for the radius so the width shouldn't be wider than height
+
+
+.expandBtn {
+    width:0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
 }

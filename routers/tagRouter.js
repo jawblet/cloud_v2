@@ -5,6 +5,7 @@ const sort = require('../middleware/sort');
 
 router.get('/', tagController.getAllTags); 
 router.post('/', tagController.createTag); 
+router.put('/:id', tagController.updateTagById); 
 router.get('/:id', tagController.getTagById); 
 router.get('/s/:slug', tagController.getTagBySlug); 
 router.get('/u/:userId', tagController.getTagsByUser);

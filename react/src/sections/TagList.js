@@ -1,9 +1,8 @@
-import React, { useRef } from 'react';
-import Tag from '../components/Tag';
-import { CSSTransition } from 'react-transition-group';
- 
-export default function TagList({ tags, tagCount, activeFilter, eyedrop }) {
-    const nodeRef = useRef(null); 
+import React from 'react';
+import TagBody from '../components/TagBody';
+import Fade from '../components/animate/Fade';
+
+export default function TagList({ tags, tagCount, ...props }) {
 
     return( 
         <>
@@ -11,20 +10,18 @@ export default function TagList({ tags, tagCount, activeFilter, eyedrop }) {
             {tags.map((tag, i) => {
                 return(
                     <div style={{marginBottom:'1rem'}} key={i}>
-                        <Tag tag={tag} activeFilter={activeFilter} eyedrop={eyedrop}/>
+                        <TagBody tag={tag} {...props}
+                        />
                     </div>
                 )
             })}
         </div> 
-             <CSSTransition 
-             in={activeFilter.includes('count')} timeout={350} 
-             nodeRef={nodeRef} classNames="fade"
-             unmountOnExit>
-            <div className="houseTags__stats" ref={nodeRef}>
+             <Fade in={props.activeFilter.includes('count')}>
+            <div className="houseTags__stats">
                 <h4>This house has created {tagCount.unique} tags&nbsp; </h4>
                 <h4> and used them {tagCount.sum} total times. </h4>
             </div>
-            </CSSTransition> 
+            </Fade> 
         </>
     )
 }

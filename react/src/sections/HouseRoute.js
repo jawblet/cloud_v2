@@ -12,15 +12,15 @@ import Archive from '../pages/Archive';
 const HouseRoute = () => { 
     return ( 
       <div className="page"> 
-      <Header nav={[ {name: 'house', url: 'house'} ]}/> 
+      <Header nav={[ {name: 'library', url: 'library'} ]}/> 
         <Switch>
-          <Route exact path='/house' component={House}/>
-          <Route path="/house/paths" component={Tags}/>
-          <Route exact path='/house/rooms' component={SymbolKey}/>
-          <Route exact path="/house/archive" component={Archive}/>
-          <Route exact path='/house/inbox' component={InMail}/> 
-          <Route exact path='/house/syllabus' component={Syllabus}/> 
-          <Route path='/house/:threadId' component={Thread}/> 
+          <Route exact path='/library' component={House}/>
+          <Route path="/library/paths" component={Tags}/>
+          <Route exact path='/library/rooms' component={SymbolKey}/>
+          <Route exact path="/library/archive" component={Archive}/>
+          <Route exact path='/library/inbox' component={InMail}/> 
+          <Route exact path='/library/syllabus' component={Syllabus}/> 
+          <Route path='/library/:threadId' component={Thread}/> 
         </Switch>
       </div>
       );

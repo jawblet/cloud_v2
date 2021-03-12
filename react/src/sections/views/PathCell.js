@@ -21,7 +21,7 @@ const PathCell = ({ path }) => {
         return null;
     }
 
-    return (
+    return ( 
         <div className="pathCell">
             <PathCellContent posts={posts} color={path.color}/>
         </div>

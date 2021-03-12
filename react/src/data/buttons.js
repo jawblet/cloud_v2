@@ -5,8 +5,8 @@ import { VscAdd, VscHome, VscMilestone,
         VscZoomIn, VscZoomOut } from 'react-icons/vsc';
 
 export const navButtons = [
-    {id: 0, name: 'house', url: 'house', icon: <VscHome className="icon icon__btn" data-id="house"/> }, 
-    {id: 1, name: 'paths', url: 'house/paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/> },
+    {id: 0, name: 'library', url: 'library', icon: <VscArchive className="icon icon__btn" data-id="library"/> }, 
+    {id: 1, name: 'paths', url: 'library/paths', icon: <VscMilestone className="icon icon__btn" data-id="paths"/> },
     {id: 2, name: 'add', url: 'add', icon: <VscAdd className="icon icon__btn" data-id="add"/>},
 ];
 
@@ -17,7 +17,7 @@ export const uploadBtns = [
 
 export const HEADINGS = [   
     {label: 'Paragraph', id: 'paragraph'},
-    {label: 'H1', id: 'header-one'},
+    {label: 'H1', id: 'header-one'}, 
     {label: 'H2', id: 'header-two'},
     {label: 'H3', id: 'header-three'}, 
     {label: 'H4', id: 'header-four'},
@@ -61,4 +61,3 @@ export const ZOOM_OUT_BTN = {dataId: 'zoomOut', icon: <VscZoomIn className="icon
 
 
 
-//     {id: 2, name: 'file', icon: <VscArchive className="icon icon__btn"/>}

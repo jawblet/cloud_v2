@@ -11,7 +11,7 @@ export function Loading() {
 export function LoadingPage() {
     return (
             <div className="loadingPage">
-                <h3 className="loadingPage__text">Loading!!!!</h3>
+                <h3 className="loadingPage__text">. . .</h3>
             </div>
-    )
+    ) 
 }

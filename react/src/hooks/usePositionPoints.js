@@ -11,6 +11,7 @@ export default function usePositionPoints() {
         const { radius, centerX, centerY } = (coords); 
         if(posts.length) {
             const pins = posts.map(post => {
+                console.log(post);
                 const r = radius * Math.random();
                 const a = 2 * Math.PI * Math.random();
         

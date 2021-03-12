@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { SYLLABUS_HEADERS } from '../data/syllabus';
+import React, { useState } from 'react';
+import { SYLLABUS_HEADERS, THEMES } from '../data/syllabus';
 import SyllabusItem from '../atoms/SyllabusItem';
+//import Grid from '../utils/Grid';
+import Blur from '../atoms/Blur';
 
 const Syllabus = () => {
     const [dropdowns, setDropdowns] = useState(SYLLABUS_HEADERS.map(item => false));
 
-    const sendToggle = (id) => {
+    const sendToggle = (id) => { 
         let newArr = [...dropdowns];
         newArr[id] = !newArr[id];
         setDropdowns(newArr);
@@ -13,19 +15,29 @@ const Syllabus = () => {
 
     return (
         <>
-             <h3 className="houseTitle"> 
+         <h2 className="houseTitle"> 
                 References
-            </h3>
-            <div className="syllabus">
+            </h2>
+        <p className="syllabus__intro"> 
+            We found ourselves returning to themes of
+            {THEMES.map((el, i) => {
+                return( <span key ={i}>
+                    <Blur color={el.color}/> {el.theme} 
+                    {i === (THEMES.length - 1) ? '.' : ','}
+                </span>)
+            })}
+        </p>
+        <div className="syllabus">
             {SYLLABUS_HEADERS.map((item, i) => {
                 return <SyllabusItem key={i} sendToggle={sendToggle}
                         item={item}  id={i}
                         dropdowns={dropdowns}
                         />
             })}
-            </div>
+        </div>
+            
         </>
-    );
+    ); 
 }
  
 export default Syllabus;
@@ -36,40 +48,4 @@ export default Syllabus;
 </Grid>
 */
 
-/*
-  <div className="syllabus__item">
-                    <div className="syllabus__title">
-                        <h4 className="heavy"> Memory palace &amp; spatial software </h4> 
-                        <img src={ac} alt='animal crossing' className='syllabus__img'/>
-                    </div>
-                   
-                </div>
-
-                <div className="syllabus__item">
-                    <div className="syllabus__title">
-                        <h4 className="heavy"> Pamphilia &amp; personal narrative </h4> 
-                            <LayerIcon id='L3' l={l} fill={fill}/>
-                    </div> 
-                </div>
-
-                <div className="syllabus__item">
-                    <div className="syllabus__title">
-                        <h4 className="heavy"> Microsoft Bob &amp; the desktop metaphor</h4> 
-                        <img src={bob} alt='microsoft bob' className='syllabus__img'/>
-                    </div>
-                </div>
-
-                <div className="syllabus__item">
-                    <div className="syllabus__title">
-                        <h4 className="heavy"> <em>I'm very into you</em> &amp; wayfinding</h4> 
-                        <LayerIcon id='L1' l={l} fill={fill}/>
-                    </div>
-                </div>
-
-                <div className="syllabus__item">
-                    <div className="syllabus__title">
-                        <h4 className="heavy"> Xanadu &amp; hypertext </h4> 
-                        <img src={hypertext} alt='forward anywhere floppy disk' className='syllabus__img'/>
-                    </div>
-                </div> 
-                */
+ 

@@ -1,5 +1,6 @@
 %room {
     border: $border-body;
+    background-color: inherit;
     height: 100%;
     padding: 0.5rem;
     position: relative;
@@ -11,7 +12,8 @@
 }
 
 %hover {
-    border-color: $accent-red;
+    border-color: $accent-red3;
+    background-color: $accent-red;
     z-index: 1; 
 }
 

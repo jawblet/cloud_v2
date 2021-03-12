@@ -47,7 +47,7 @@ function App() {
             <Route path="/login" component={Login}/>
             <Route path="/confirm" component={Confirm}/>
             <PrivateRoute exact path="/" component={Home}/>
-            <PrivateRoute path='/house' component={HouseRoute}/>
+            <PrivateRoute path='/library' component={HouseRoute}/>
             <PrivateRoute path='/path/:path' component={PathRoute}/>
             <PrivateRoute path='/group/:group' component={GroupRoute}/>
             <PrivateRoute path="/user" component={User}/>
@@ -62,6 +62,4 @@ function App() {
 
 export default App;
 
-
-// <PrivateRoute path='/house/:threadId' component={Thread}/>
 

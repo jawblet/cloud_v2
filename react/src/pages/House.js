@@ -10,7 +10,6 @@ const House = () => {
     const [hover, setHover] = useState(null);
 
     const hoverRoom = (id) => {
-        console.log(id);
         setHover(id);
     }
     return (

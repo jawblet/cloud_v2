@@ -11,8 +11,8 @@
     cursor: pointer;
     transition: all $long-fade; // ... 
     &.on {
-        background-color: $sand-bright;
-        border-color: $sand-bright;
+        background-color: $accent-red;
+        border-color: $accent-red;
         justify-content: flex-end;
     }
     &__switch {

@@ -34,7 +34,7 @@ export default function UploadContainer(props) {
             <TooltipBar handleClick={switchType} type={type}
                         buttons={uploadBtns}
                         direction="column"/>
-                <Link to={`/home/${room}`}>
+                <Link to={`/home/${room}`}> 
                     <Button icon={<VscClose className="icon icon__btn icon--warning"/>}/>
                 </Link> 
             </div>

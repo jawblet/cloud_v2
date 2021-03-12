@@ -32,9 +32,9 @@ const [loading, setLoading] = useState(true);
     }
 
     //GET ALL POSTS FOR HOUSE
-    const getHousePosts = async() => {
-        return axios.get(`/posts/grid/${house}`).then(res => {
-            console.log(res);
+    const getHousePosts = async(page) => {
+        const offset = (page - 1) * 20; 
+        return axios.get(`/posts/grid/${house}?offset=${offset}`).then(res => {
             const { posts } = res.data;
             setPosts(posts); 
             setLoading(false);

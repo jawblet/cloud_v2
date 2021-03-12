@@ -16,7 +16,7 @@ import useUpload from '../hooks/upload/useUpload';
     const roomFrom = props.location.state || rooms[0];
     const nav = [ {name: roomFrom.label, url: roomFrom.slug } ];
     
-    const [type, setType]= useState('link'); //set upload type 
+    const [type, setType]= useState('note'); //set upload type 
     const switchType = (e) => { setType(e.currentTarget.dataset.label); }
      
          //handle editor state 

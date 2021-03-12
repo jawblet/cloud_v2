@@ -5,6 +5,7 @@ const catchAsync = require('./../utils/catchAsync');
 
 exports.getAllTags = functionHandler.getAll(Tag);
 exports.getTagById = functionHandler.getOne(Tag);
+exports.updateTagById = functionHandler.updateOne(Tag);
 exports.getTagBySlug = functionHandler.getOneBySlug(Tag);
 exports.getTagsByUser = functionHandler.getAllByUserId(Tag);
 exports.getTagsByHouse = functionHandler.getAllByHouseId(Tag);

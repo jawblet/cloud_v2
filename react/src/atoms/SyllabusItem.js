@@ -1,24 +1,34 @@
 import React from 'react';
 import Grow from '../components/animate/Grow';
+import { THEMES } from '../data/syllabus';
+import Blur from '../atoms/Blur';
 
 const SyllabusItem = ({ item, id, ...props }) => {
-    const { title, icon, dropdown } = item; 
+    const { title, dropdown, icon, category } = item; 
 
     return (
-        <div className="syllabus__item">
-            <div className="syllabus__title">
-                <h4 onClick={() => props.sendToggle(id)} className="pointer">
-                {props.dropdowns[id] ? '—' : '+'}
-                &nbsp;
-                </h4>
-                <h4 className="heavy">{title}</h4> 
-                {icon}
-            </div>
+        <div className="reference__entry">
+             <span onClick={() => props.sendToggle(id)} 
+                    className="reference__icon"
+                > {icon}
+                </span>
+            <span className="heavy reference__title">
+                {title}
+            </span> 
             <Grow in={props.dropdowns[id]}>
-                {dropdown}
+                <div className="reference__dropdown">
+                    {dropdown}
+                </div>
             </Grow>
         </div>
+        
     );
 }
  
 export default SyllabusItem;
+
+/*
+ {props.dropdowns[id] ? '-' : '+'}
+ //style={{backgroundColor:THEMES[category].color }}
+ */
+//                 <Blur color={THEMES[category].color}/>
