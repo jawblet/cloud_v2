@@ -145,14 +145,14 @@ menu {
 hr {
   clear: both;
   display: block;
-  background: #ebe9e5;
+  background: #C7BEB6;
   opacity: 0.5;
   height: 1px;
   width: 99%;
   margin: 1rem auto;
 }
 
-.pin, .homeIcon__pin, d {
+.pin, d {
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -888,28 +888,10 @@ d {
   bottom: 1rem;
 }
 
-.homeIcon {
+.homeButton {
   position: absolute;
-  left: 40%;
-  bottom: 0;
-  display: flex;
-  border: 1.5px solid #433D37;
-  transform: rotate(45deg);
-  width: 3rem;
-  height: 1.5rem;
-}
-.homeIcon__label {
-  transform: rotate(-45deg) translate(3rem, -1.5rem);
-  padding-left: 1rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.homeIcon__pin {
-  display: inline-block;
-  position: absolute;
-  left: 0;
+  right: 3rem;
+  bottom: 1rem;
 }
 
 .houseLegend {
@@ -924,6 +906,32 @@ d {
   position: relative;
 }
 
+/*
+.homeIcon {
+  //align-self: center;
+  position: absolute;
+  left: 40%;
+  bottom: 0;
+  display: flex;
+  border: 1.5px solid $body-medium;
+  transform: rotate(45deg);
+  width: 3rem;
+  height: 1.5rem;
+  &__label {
+    transform: rotate(-45deg) translate(3rem, -1.5rem);
+    padding-left: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__pin {
+    @extend %pin; 
+    display: inline-block;
+    position: absolute;
+    left: 0;
+  }
+}*/
 .landing__header {
   width: 10rem;
   align-self: flex-end;
@@ -1184,6 +1192,7 @@ d {
 }
 .groupGrid__cell {
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .subtitle {
@@ -1220,12 +1229,7 @@ d {
   height: 10vw;
   width: 10vw;
   border-radius: 50%;
-}
-
-.expandBtn {
-  width: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
+  position: relative;
 }
 
 .input {
@@ -1281,8 +1285,11 @@ d {
   background-color: inherit;
 }
 
+.btn:hover {
+  background-color: rgba(247, 192, 110, 0.75);
+}
 .btn:active, .btn.active {
-  background-color: #F2EADF;
+  background-color: #EFDDC8;
 }
 .btn.warning {
   background-color: #E47654;
@@ -1305,6 +1312,7 @@ d {
 }
 .CTA.inline:hover {
   font-style: italic;
+  background-color: inherit;
 }
 .CTA.ghost {
   color: #C7BEB6;

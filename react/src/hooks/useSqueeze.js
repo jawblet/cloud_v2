@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ExpandButton from '../atoms/ExpandButton';
 
 export default function useSqueeze() {
-    const [squeeze, setSqueeze] = useState(true);
+    const [squeeze, setSqueeze] = useState(false);
 
     const handleSqueeze = () => { setSqueeze(!squeeze); }
 

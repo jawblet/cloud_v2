@@ -2,6 +2,7 @@
     margin-bottom: 3rem;
     &__cell { 
         margin-bottom: 1.5rem;
+        position: relative;
     }
 }
 
@@ -41,14 +42,7 @@
         width: 10vw;
         //border: $border; 
         border-radius: 50%;
+        position: relative;
     }
 }
 
-// the width is used for the radius so the width shouldn't be wider than height
-
-
-.expandBtn {
-    width:0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-}

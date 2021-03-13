@@ -6,7 +6,7 @@ import Subtitle from './Subtitle';
 import slugify from 'react-slugify';
 import PathCell from './PathCell';
 
-const PathView = ({ paths }) => {
+const PathView = ({ paths, squeeze }) => {
     return (
         <>
          <div className="map__canvas">
@@ -15,7 +15,7 @@ const PathView = ({ paths }) => {
                     return (
                         <div className="groupGrid__cell" key={path._id}>
                             <Subtitle label={path.tag} slug={`/path/${slugify(path.tag)}`}/>
-                            <PathCell path={path} />
+                            <PathCell path={path} squeeze={squeeze}/>
                         </div>
                     )
                 })}

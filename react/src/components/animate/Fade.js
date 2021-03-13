@@ -3,8 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 
 
 const Fade = (props) => {
-
     const nodeRef = useRef(null);
+
     return (
         <CSSTransition in={props.in} 
                         timeout={props.short ? 150 : 350} 

@@ -31,6 +31,31 @@
   }
 
 
+.homeButton {
+  //background-color: red;
+  position: absolute;
+  right: 3rem;
+  bottom: 1rem;
+}
+
+
+
+
+//house legend popup
+.houseLegend {
+  display: block;
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  &__wrapper {
+      width: 100%;
+      display: flex;
+      position: relative;
+  }
+}
+
+
+/*
 .homeIcon {
   //align-self: center;
   position: absolute;
@@ -55,20 +80,4 @@
     position: absolute;
     left: 0;
   }
-}
-
-
-//MISC
-//house legend popup
-.houseLegend {
-  display: block;
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  //box-shadow: $softer-shadow;
-  &__wrapper {
-      width: 100%;
-      display: flex;
-      position: relative;
-  }
-}
+}*/

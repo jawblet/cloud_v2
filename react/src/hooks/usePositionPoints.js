@@ -7,17 +7,17 @@ export default function usePositionPoints() {
 
     const [pins, setPins] = useState(null);
 
-    const getPinPos = async(coords, posts, color) => {
-        const { radius, centerX, centerY } = (coords); 
+    const getPinPos = async(posts, color) => {
+        const radius = 50;
+        const center = 50;
+        
         if(posts.length) {
             const pins = posts.map(post => {
-                console.log(post);
                 const r = radius * Math.random();
                 const a = 2 * Math.PI * Math.random();
         
-                const x = Math.round(r * Math.cos(a) + centerX);
-                const y = Math.round(r * Math.sin(a) + centerY);
-
+                const x = Math.round(r * Math.cos(a) + center);
+                const y = Math.round(r * Math.sin(a) + center);
                 return (
                     < Pin key={post._id} 
                         post={post}

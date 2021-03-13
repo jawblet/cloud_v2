@@ -15,6 +15,7 @@ import HouseRoute from './sections/HouseRoute';
 import PathRoute from './sections/PathRoute';
 import NotFound from './pages/NotFound';
 import useFindUser from './hooks/user/useFindUser';
+import HomeButton from './atoms/HomeButton';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
             <PrivateRoute path='/:room' component={LayerRoute}/>
             <Route component={NotFound}/> 
         </Switch>
+        <HomeButton/>
       </UserContext.Provider>
    </Router>
   );

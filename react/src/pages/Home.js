@@ -15,7 +15,7 @@ export default function Home() {
     useRefreshLayers();
     
     //set view 
-    const [zoomIn, setZoom] = useState(false); 
+    const [zoomIn, setZoom] = useState(true); 
 
     //set squeeze
     const { squeeze, squeezeBtn, handleSqueeze } = useSqueeze();
@@ -27,9 +27,9 @@ export default function Home() {
             <div className="map">
                 <SwitchFade state={zoomIn}>
                     {zoomIn 
-                            ?   <LayerView groups={groups} zoomIn={zoomIn}
+                            ?   <LayerView groups={groups} squeeze={squeeze}
                                     />
-                            :   <PathView paths={globalTags}
+                            :   <PathView paths={globalTags} squeeze={squeeze}
                                     /> 
                         } 
                 </SwitchFade>

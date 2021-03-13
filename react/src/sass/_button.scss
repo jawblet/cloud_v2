@@ -12,10 +12,13 @@
 
 //buttons
 .btn {
-  @extend %btn; 
+  @extend %btn;
+  &:hover {
+    background-color: $accent-red;
+  } 
   &:active,
   &.active {
-      background-color: $sand2;
+      background-color: $sand3;
     }
   &.warning{
       background-color: $error;
@@ -40,6 +43,7 @@
   &.inline {
     &:hover{
       font-style: italic;
+      background-color: inherit;
     }
   } 
   &.ghost{

@@ -6,8 +6,8 @@ const Pin = ({ path, ...props }) => {
 
     const pathStyle = {
         position: "absolute", 
-        top: props.y || 'auto',
-        left: props.x || 'auto'
+        top: `${props.y}%` || 'auto',
+        left: `${props.x }%`|| 'auto'
     }
 
     if(path) {

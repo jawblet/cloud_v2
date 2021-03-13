@@ -3,9 +3,10 @@ import Grid from '../../utils/Grid';
 import Subtitle from './Subtitle';
 import PostCell from './PostCell';
 import DnDMenu from '../../components/dnd/menu/DnDMenu';
+//import Line from '../../atoms/Line';
 
 const LayerView = (props) => { 
-  
+
     return (
         <>
         <div className="map__canvas">
@@ -14,12 +15,13 @@ const LayerView = (props) => {
                 <div className="groupGrid" key={i}>
                     <Subtitle slug={group.slug} label={group.label}
                                 p="1rem" heavy/>
-                    <Grid columns="repeat(3, minmax(0, 1fr))">
+                   
+                    <Grid columns="repeat(3, minmax(0, 1fr))" gap={1.5}>
                         {group.layers.map(layer => {
                             return (
                                 <div className="groupGrid__cell" key={layer.slug}>
                                     <Subtitle slug={`${layer.slug}`} label={layer.label}/>
-                                    <PostCell id={layer.id}/>
+                                        <PostCell id={layer.id} squeeze={props.squeeze}/>
                                 </div>
                                 )
                             })}

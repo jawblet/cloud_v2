@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useLayerPosts from '../../hooks/layers/useLayerPosts';
 import PathCellContent from './PathCellContent';
 
-const PathCell = ({ path }) => {
+const PathCell = ({ path, squeeze }) => {
 
     const { 
         posts, 
@@ -23,7 +23,10 @@ const PathCell = ({ path }) => {
 
     return ( 
         <div className="pathCell">
-            <PathCellContent posts={posts} color={path.color}/>
+            <PathCellContent posts={posts} 
+                        color={path.color}
+                        squeeze={squeeze}
+                        />
         </div>
        
     );

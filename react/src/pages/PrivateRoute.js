@@ -6,7 +6,7 @@ import { UserContext } from './../hooks/UserContext';
 export default function PrivateRoute(props) {   
     const { user, isLoading } = useContext(UserContext); 
 
-    const { component: Component,
+        const { component: Component,
         ...rest } = props; 
 
         //return loading component 
@@ -15,7 +15,8 @@ export default function PrivateRoute(props) {
         } 
 
         if(user){
-            return ( <Route {...rest} render={(props) => (<Component {...props}/>)}/>)
+            return ( <Route {...rest} render={(props) => (
+            <Component {...props}/>)}/>)
         } else {
             return <Redirect to='/home'/>
         }

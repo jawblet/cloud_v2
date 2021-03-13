@@ -12,7 +12,7 @@ export const navButtons = [
 
 export const uploadBtns = [
     {id: 0, name: 'link', icon: <VscLink className="icon icon__btn"/>}, 
-    {id: 1, name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/>}
+    {id: 1, name: 'note', icon: <VscSymbolParameter className="icon icon__btn"/> }
 ];
 
 export const HEADINGS = [   

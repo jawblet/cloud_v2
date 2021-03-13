@@ -1,13 +1,13 @@
 import React from 'react'; 
 import { NavLink } from 'react-router-dom';
 import Button from './Button';
-import { ZOOM_IN_BTN, ZOOM_OUT_BTN } from '../../data/buttons';
+import { ZOOM_IN_BTN, ZOOM_OUT_BTN } from '../../data/buttons'; 
 import { TooltipBtn } from './TooltipBtn';
 import useTooltipButtons from '../../hooks/useToolTipButtons'; 
  
 const NavBar = (props) => { 
     const { buttons, direction, zoomIn, setZoom } = props;
-    const { tooltips, getTooltip, hideTooltip } = useTooltipButtons(buttons);
+    const { tooltips, getTooltip, hideTooltip } = useTooltipButtons(buttons); 
 
     return(
         <div className="nav__wrapper">
