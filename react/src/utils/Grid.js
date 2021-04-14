@@ -21,7 +21,7 @@ const Grid = (props) => {
             gridTemplateColumns: columns || "none",
             gridTemplateRows: rows || "none",
             gridAutoColumns: autoColumns || "auto",
-            gridAutoRows: autoRows || "auto",
+            gridAutoRows: autoRows || "auto", 
             justifyItems: justify || "stretch",
             alignItems: align || "stretch",
             width: width || "100%"

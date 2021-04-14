@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group'; 
 
 const Rolldown = (props) => {
     const nodeRef = useRef(null);
@@ -10,9 +10,9 @@ const Rolldown = (props) => {
                 nodeRef={nodeRef} 
                 classNames="grow" 
                 unmountOnExit> 
-            <div ref={nodeRef}>
-                {props.children}
-            </div>
+            <span ref={nodeRef}>
+                {props.children} 
+            </span>
         </CSSTransition>
 
     );

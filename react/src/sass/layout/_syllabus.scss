@@ -1,0 +1,87 @@
+//syallbus 
+$syll_width: 80%;
+
+.syllabus {
+    width: $syll_width;
+    &__header {
+        width: $syll_width; 
+        padding-bottom: 1rem;
+    } 
+    &__row {
+        position: relative;
+        min-height: 3rem;
+        &:not(:first-child) {
+            margin-top: -1px;
+         }
+    }
+    &__title {
+        flex: 1 0 33%;
+        display: flex;
+    }
+}
+
+//syllabus column content 
+.warp {
+    position: absolute;
+    display: flex;
+    &__stitch {
+        min-height: 3rem;
+        padding: 0 1rem;
+        border: $border-body;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        overflow: visible;
+        &:not(:first-child) {
+            border-left: none;
+        }
+    }
+    &__dropdown {
+        display: flex;
+        &__cell {
+            padding: 1rem; 
+            flex: 1;
+            border: 1px solid red;
+        }
+    }
+}
+
+
+
+
+
+
+/*
+    &__node {
+        @extend %pin;
+        position: absolute;
+        top: 0.5rem;
+        &--right {
+            right: 0;
+            &::after {
+                content: '';
+                width: 1.5rem;
+                height: 1px;
+                background-color: inherit;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 0; 
+            }
+        }
+        &--left {
+            left: 0; 
+            &::after {
+                content: '';
+                width: 1.5rem;
+                height: 1px;
+                background-color: inherit;
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 0; 
+            }
+        }
+    }
+*/

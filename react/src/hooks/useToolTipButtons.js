@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function useToolTipButtons(btns) {
     const [tooltips, setTooltips] = useState([]);
-    const initArray = btns.map(btn => false); 
+    const initArray = btns.map(btn => false);
 
     const hideTooltip = () => {
         setTooltips(initArray);

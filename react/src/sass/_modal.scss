@@ -4,15 +4,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40rem;
+    width: 50%;
+    max-width: 40rem;
     border-radius: $border-large;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: $softer-shadow;
+    box-shadow: $soft-shadow;
     padding: 3rem; 
-    line-height: 150%;
     z-index: 4;
     &__X {
         position: absolute;

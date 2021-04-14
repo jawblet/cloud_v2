@@ -98,8 +98,7 @@ p {
 
 code, pre {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
+  font-size: 0.7rem;
 }
 
 a {
@@ -109,7 +108,7 @@ a {
 }
 
 .styledLink {
-  color: #DD7C40;
+  color: #ff6600;
   font-weight: bold;
 }
 
@@ -167,14 +166,6 @@ hr {
   right: 0;
   z-index: 2;
   background: linear-gradient(to right, transparent, #FFFCF8);
-}
-
-.reference__blur {
-  height: 1rem;
-  width: 1rem;
-  filter: blur(0.15rem);
-  border-radius: 50%;
-  display: inline-block;
 }
 
 .flex {
@@ -979,94 +970,137 @@ d {
   position: relative;
 }
 
-.syllabus {
-  position: relative;
-  width: 70%;
+/*
+.reference {
+    &__entry {
+        display: inline;
+        position: relative;
+        padding: 5px 0;
+        //border: $border;
+    }
+    &__icon {
+        cursor: pointer;
+    }
+    &__title {
+       line-height: 250%;
+       padding: 5px;
+       background-color: inherit;
+       transition: all $short-fade;
+       &:hover {
+          // background-color: yellow;
+       }
+    }
+    &__img {
+        max-width: 50%;
+    }
+    &__blur {
+        @extend %blur; 
+        margin-left: 1rem; 
+        margin-right: 5px; 
+        position: relative;
+    }
+    &__dropdown {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        &__content {
+            width: 80%;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            //background-color: $sand;
+            border-radius: $border-small; 
+        }
+        &__item {
+            padding-bottom: 1rem;
+            width: 100%;
+            display: flex;
+        }
+        &__sup {
+            flex: 0 0 5%;
+        }
+        &__text {
+            flex: 0 0 90%;
+        }
 }
-.syllabus__intro {
-  width: 70%;
-  padding-bottom: 3rem;
+}
+*/
+.syllabus {
+  width: 80%;
+}
+.syllabus__header {
+  width: 80%;
+  padding-bottom: 1rem;
+}
+.syllabus__row {
+  position: relative;
+  min-height: 3rem;
+}
+.syllabus__row:not(:first-child) {
+  margin-top: -1px;
+}
+.syllabus__title {
+  flex: 1 0 33%;
+  display: flex;
 }
 
-.reference__entry {
-  display: inline;
-  position: relative;
-  padding: 5px 0;
-}
-.reference__icon {
-  cursor: pointer;
-}
-.reference__title {
-  line-height: 250%;
-  padding: 5px;
-  background-color: inherit;
-  transition: all 0.35s;
-}
-.reference__img {
-  max-width: 50%;
-}
-.reference__blur {
-  margin-left: 1rem;
-  margin-right: 5px;
-  position: relative;
-}
-.reference__dropdown {
-  width: 100%;
+.warp {
+  position: absolute;
   display: flex;
+}
+.warp__stitch {
+  min-height: 3rem;
+  padding: 0 1rem;
+  border: 1px solid #312F2C;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
+  overflow: visible;
 }
-.reference__dropdown__content {
-  width: 80%;
+.warp__stitch:not(:first-child) {
+  border-left: none;
+}
+.warp__dropdown {
+  display: flex;
+}
+.warp__dropdown__cell {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
-}
-.reference__dropdown__item {
-  padding-bottom: 1rem;
-  width: 100%;
-  display: flex;
-}
-.reference__dropdown__sup {
-  flex: 0 0 5%;
-}
-.reference__dropdown__text {
-  flex: 0 0 90%;
+  flex: 1;
+  border: 1px solid red;
 }
 
 /*
-    & > *:nth-child(even) {
-        align-items: flex-end;
-    }
-    &__item { // entire content 
-        display: inline-flex;
-        flex-direction: column;
-        padding: 0.5rem; 
-        border: 1px solid black;
-        flex-wrap: wrap;
-       // min-height: 5rem;
-    }
-    &__reference {
-        display: flex;
-        align-items: center;
-    }
-    &__title { 
-        word-wrap: break-word;
-        display: inline;
-        & > * {
-            margin-right: 0.5rem;
+    &__node {
+        @extend %pin;
+        position: absolute;
+        top: 0.5rem;
+        &--right {
+            right: 0;
+            &::after {
+                content: '';
+                width: 1.5rem;
+                height: 1px;
+                background-color: inherit;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 0; 
+            }
         }
-    }
-    &__img {
-        height: 1.5rem;
-        width: auto;
-    }
-
-    &__expand {
-        display: inline-block;
-        width: 0.5rem;
-        cursor: pointer;
-        margin-right: 5px;
+        &--left {
+            left: 0; 
+            &::after {
+                content: '';
+                width: 1.5rem;
+                height: 1px;
+                background-color: inherit;
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 0; 
+            }
+        }
     }
 */
 .key {
@@ -1117,7 +1151,7 @@ d {
 }
 
 .A:hover, .B:hover, .hover {
-  border-color: #DD7C40;
+  border-color: #ff6600;
   background-color: rgba(247, 192, 110, 0.75);
   z-index: 1;
 }

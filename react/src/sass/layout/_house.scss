@@ -36,18 +36,8 @@ $thread-width: 70%;
     position: relative;
 }
 
-//syallbus 
-.syllabus {
-    position: relative;
-    width: 70%;
-    &__intro {
-        width: 70%; 
-        padding-bottom: 3rem;
-    }
-}
 
-
-
+/*
 .reference {
     &__entry {
         display: inline;
@@ -101,40 +91,5 @@ $thread-width: 70%;
         }
 }
 }
-
-
-/*
-    & > *:nth-child(even) {
-        align-items: flex-end;
-    }
-    &__item { // entire content 
-        display: inline-flex;
-        flex-direction: column;
-        padding: 0.5rem; 
-        border: 1px solid black;
-        flex-wrap: wrap;
-       // min-height: 5rem;
-    }
-    &__reference {
-        display: flex;
-        align-items: center;
-    }
-    &__title { 
-        word-wrap: break-word;
-        display: inline;
-        & > * {
-            margin-right: 0.5rem;
-        }
-    }
-    &__img {
-        height: 1.5rem;
-        width: auto;
-    }
-
-    &__expand {
-        display: inline-block;
-        width: 0.5rem;
-        cursor: pointer;
-        margin-right: 5px;
-    }
 */
+

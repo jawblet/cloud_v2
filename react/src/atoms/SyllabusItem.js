@@ -1,7 +1,5 @@
 import React from 'react';
 import Grow from '../components/animate/Grow';
-import { THEMES } from '../data/syllabus';
-import Blur from '../atoms/Blur';
 
 const SyllabusItem = ({ item, id, ...props }) => {
     const { title, dropdown, icon, category } = item; 
@@ -17,9 +15,9 @@ const SyllabusItem = ({ item, id, ...props }) => {
             </span> 
             <Grow in={props.dropdowns[id]}>
                 <div className="reference__dropdown">
-                    {dropdown}
+                    {dropdown} 
                 </div>
-            </Grow>
+            </Grow> 
         </div>
         
     );

@@ -1,41 +1,31 @@
 import React, { useState } from 'react';
-import { SYLLABUS_HEADERS, THEMES } from '../data/syllabus';
-import SyllabusItem from '../atoms/SyllabusItem';
-//import Grid from '../utils/Grid';
-import Blur from '../atoms/Blur';
+import Row from '../atoms/Node';
+import { ROWS } from '../data/syllabus'; 
+import SyllabusHeading from '../sections/SyllabusHeading';
 
 const Syllabus = () => {
-    const [dropdowns, setDropdowns] = useState(SYLLABUS_HEADERS.map(item => false));
+    const c = ROWS.map(el => el.components);
+    const [open, setOpen] = useState(c.flat().map(el => false));
 
-    const sendToggle = (id) => { 
-        let newArr = [...dropdowns];
-        newArr[id] = !newArr[id];
-        setDropdowns(newArr);
-    }
+    const handleOpen = (i) => {
+        const arr = [...open];
+        arr[i] = !arr[i];
+        setOpen(arr);
+    } 
 
     return (
         <>
-         <h2 className="houseTitle"> 
-                References
-            </h2>
-        <p className="syllabus__intro"> 
-            We found ourselves returning to themes of
-            {THEMES.map((el, i) => {
-                return( <span key ={i}>
-                    <Blur color={el.color}/> {el.theme} 
-                    {i === (THEMES.length - 1) ? '.' : ','}
-                </span>)
-            })}
-        </p>
-        <div className="syllabus">
-            {SYLLABUS_HEADERS.map((item, i) => {
-                return <SyllabusItem key={i} sendToggle={sendToggle}
-                        item={item}  id={i}
-                        dropdowns={dropdowns}
-                        />
-            })}
-        </div>
-            
+            <SyllabusHeading/>
+            <div className="syllabus">
+                {ROWS.map((row, i) => {
+                    return ( 
+                        <Row key={i}
+                            row={row} open={open}
+                            handleOpen={handleOpen}
+                        /> 
+                    )
+                })}
+            </div>
         </>
     ); 
 }
@@ -43,9 +33,18 @@ const Syllabus = () => {
 export default Syllabus;
 
 /*
-//one or two col layout?
-<Grid columns='repeat(2, 1fr)' rows='repeat(3, 1fr)' gap="1" className="syllabus">
-</Grid>
+<Grid columns='repeat(3, 1fr)' gap={3} className="syllabus">
+            {SYLLABUS_HEADERS.map((item, i) => {
+                return <SyllabusColumn key={i}
+                        item={item}  id={i}
+                        />
+            })}
+        </Grid>
+ <SteppedLineTo from="wark" to="malloy" 
+        fromAnchor="center right"
+        toAnchor="center left"
+        orientation="h"
+        delay />
 */
 
  
