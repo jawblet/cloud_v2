@@ -23,42 +23,25 @@ export default function Home() {
     return ( 
         <div className="page">  
             <Header/> 
-            <HouseLegend/> 
             <div className="map">
-                <SwitchFade state={zoomIn}>
-                    {zoomIn 
-                            ?   <LayerView groups={groups} squeeze={squeeze}
-                                    />
-                            :   <PathView paths={globalTags} squeeze={squeeze}
-                                    /> 
-                        } 
-                </SwitchFade>
-                </div>
                 <div className="map__nav">
                     <NavBar buttons={navButtons} 
                             squeezeBtn={squeezeBtn} 
-                            direction="column"
+                            direction="row"
                             handleExpandClick={handleSqueeze} 
                             squeeze={squeeze}
                             zoomIn={zoomIn} 
                             setZoom={setZoom} />
                 </div>
+                <SwitchFade state={zoomIn}>
+                    {zoomIn 
+                        ?   <LayerView groups={groups} squeeze={squeeze}
+                            />
+                        :   <PathView paths={globalTags} squeeze={squeeze}
+                            /> } 
+                </SwitchFade>
+                </div>
+                
         </div>
     )
 }; 
-
-/* 
-       <SwitchFade state={zoomIn}>
-            <div className="map">
-                    {zoomIn 
-                            ?   <LayerView groups={groups} zoomIn={zoomIn} setHoverId={setHoverId}
-                                    />
-                            :   <PathView paths={globalTags}
-                                    /> 
-                        } 
-                </div>
-           </SwitchFade>
-*/
-
-//    const [hoverId, setHoverId] = useState(null);
-

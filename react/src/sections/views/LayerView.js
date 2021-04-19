@@ -3,12 +3,19 @@ import Grid from '../../utils/Grid';
 import Subtitle from './Subtitle';
 import PostCell from './PostCell';
 import DnDMenu from '../../components/dnd/menu/DnDMenu';
-//import Line from '../../atoms/Line';
+//import Line from '../../atoms/Line'; 
+import HouseLegend from '../../components/modals/HouseLegend';
 
 const LayerView = (props) => { 
 
     return (
         <>
+        <div className="map__key">
+            <HouseLegend/> 
+            <DnDMenu groupArray={props.groups} 
+                    hoverId={props.hoverId}  
+                    setHoverId={props.setHoverId}/> 
+        </div>    
         <div className="map__canvas">
             {props.groups.map((group, i) => {
                 return (
@@ -30,11 +37,6 @@ const LayerView = (props) => {
                     )
                 })}
             </div>
-            <div className="map__key">
-                <DnDMenu groupArray={props.groups} 
-                        hoverId={props.hoverId}  
-                        setHoverId={props.setHoverId}/> 
-            </div>    
         </>
     );
 }

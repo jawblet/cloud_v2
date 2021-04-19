@@ -699,7 +699,6 @@ d {
   align-self: center;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
 }
@@ -852,49 +851,52 @@ d {
 
 .map {
   align-self: flex-end;
-  width: 90%;
+  width: 100%;
   min-height: 70vh;
   height: 100%;
   display: flex;
   justify-content: flex-start;
-  margin-top: 10%;
   overflow: visible;
+  gap: 3rem;
 }
 .map__canvas {
-  flex: 0 0 80%;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: 1rem 1rem;
+  background-image: linear-gradient(to right, #FAF3ED 1px, transparent 1px), linear-gradient(to bottom, #FAF3ED 1px, transparent 1px);
+  border-right: 1px solid #FAF3ED;
+  border-bottom: 1px solid #FAF3ED;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+.map__key {
+  flex: 0 0 15%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.map__key {
-  flex: 0 0 20%;
-  height: 100%;
-  margin-top: -5%;
-  display: flex;
-  justify-content: flex-end;
-}
 .map__nav {
   position: fixed;
-  left: 3rem;
-  bottom: 1rem;
+  top: 1rem;
+  right: 3rem;
 }
 
 .homeButton {
   position: absolute;
-  right: 3rem;
-  bottom: 1rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
 
 .houseLegend {
-  display: block;
-  position: absolute;
-  top: -1rem;
-  left: 0;
-}
-.houseLegend__wrapper {
-  width: 100%;
+  background-color: #FAF3ED;
+  border: 1px solid #F2EADF;
+  border-radius: 0.5rem;
+  padding: 1rem;
   display: flex;
-  position: relative;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
 }
 
 /*
@@ -1355,12 +1357,15 @@ d {
 
 .nav__wrapper {
   display: flex;
-  flex-direction: column;
   align-items: center;
+}
+.nav__wrapper * {
+  border-radius: 0.5rem;
 }
 
 .btnbarWrapper {
   display: inline-flex;
+  background-color: #F2EADF;
 }
 .btnbarWrapper.column {
   flex-direction: column;
@@ -1373,7 +1378,6 @@ d {
   display: inline-block;
   position: relative;
   background-color: #F2EADF;
-  border-radius: 0;
 }
 .tooltipWrapper--column:first-child {
   border-top-right-radius: 0.5rem;
@@ -1452,15 +1456,15 @@ d {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40rem;
+  width: 50%;
+  max-width: 40rem;
   border-radius: 1rem;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 4px 4px 16px rgba(220, 216, 209, 0.733), -4px -4px 16px #fff;
+  box-shadow: 4px 4px 16px #ebe9e5, -4px -4px 16px #fff;
   padding: 3rem;
-  line-height: 150%;
   z-index: 4;
 }
 .modal__X {
@@ -2823,7 +2827,6 @@ input:checked ~ .accordion__list {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 1rem;
 }
 .dnd__wrapper {
   display: flex;
@@ -2835,7 +2838,6 @@ input:checked ~ .accordion__list {
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 0 1.5rem;
   justify-content: space-between;
 }
 .dnd__list {

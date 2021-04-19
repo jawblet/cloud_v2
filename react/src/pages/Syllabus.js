@@ -10,12 +10,11 @@ const Syllabus = () => {
     const handleOpen = (i) => {
         const arr = [...open];
         arr[i] = !arr[i];
-        setOpen(arr);
+        setOpen(arr); 
     } 
 
     return (
         <>
-            <SyllabusHeading/>
             <div className="syllabus">
                 {ROWS.map((row, i) => {
                     return ( 

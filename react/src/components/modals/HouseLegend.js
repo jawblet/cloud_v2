@@ -5,9 +5,8 @@ export default function HouseLegend(){
     const { house, boarders } = useHouseLegend(); 
     
     return (
-        <div className="houseLegend__wrapper">
-            <div className="popup houseLegend">
-                {boarders && 
+        <div className="houseLegend">
+            {boarders && 
                 <>
                     <div className="popup__header">
                         <h4 className="lightest">{house}</h4> 
@@ -20,7 +19,6 @@ export default function HouseLegend(){
                             )
                         })}
                 </>}
-            </div>
         </div>
     )
 }

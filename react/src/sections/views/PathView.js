@@ -5,10 +5,18 @@ import SlideMenu from '../../components/menus/SlideMenu';
 import Subtitle from './Subtitle';
 import slugify from 'react-slugify';
 import PathCell from './PathCell';
+import HouseLegend from '../../components/modals/HouseLegend';
+
 
 const PathView = ({ paths, squeeze }) => {
-    return (
+    return ( 
         <>
+        <div className="map__key">
+        <HouseLegend/> 
+               <SlideMenu>
+                   <PathList items={paths}/>
+               </SlideMenu>
+        </div>
          <div className="map__canvas">
             <Grid columns="repeat(3, 1fr)" autoRows="auto" gap={1.5}>
                 {paths.map(path => {
@@ -21,11 +29,6 @@ const PathView = ({ paths, squeeze }) => {
                 })}
             </Grid>
         </div> 
-        <div className="map__key">
-               <SlideMenu>
-                   <PathList items={paths}/>
-               </SlideMenu>
-        </div>
         </>
     );
 }

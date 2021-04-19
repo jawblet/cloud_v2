@@ -1,11 +1,14 @@
 .nav__wrapper{
   display: flex;
-  flex-direction: column;
   align-items: center;
+  & * {
+    border-radius: $border-small;
+  }
 }
 
 .btnbarWrapper{
   display: inline-flex;
+  background-color: $sand2;
   &.column{
       flex-direction: column;
   }
@@ -18,7 +21,6 @@
   display: inline-block;
   position: relative;
   background-color: $sand2;
-  border-radius: 0;
   &--column:first-child {
       border-top-right-radius: $border-small;
       border-top-left-radius: $border-small;

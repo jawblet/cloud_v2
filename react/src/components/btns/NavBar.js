@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from './Button';
 import { ZOOM_IN_BTN, ZOOM_OUT_BTN } from '../../data/buttons'; 
