@@ -13,6 +13,7 @@ const signToken = id => {
  
 const createUserToken = async(user, code, req, res) => {
     const token = signToken(user._id);
+    console.log(req);
 
     //set expiry to 1 month 
     let d = new Date();
@@ -20,9 +21,10 @@ const createUserToken = async(user, code, req, res) => {
 
     //cookie settings 
     res.cookie('jwt', token, {
-        domain: 'https://arriveanywhere.netlify.app/',
+        domain: 'https://arriveanywhere.netlify.app',
         expires: d, 
         httpOnly: true,
+        secure: true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https', 
         sameSite: 'none'
     });
@@ -75,6 +77,7 @@ exports.checkUser = catchAsync(async(req, res, next) => {
     let currentUser;
     if (req.cookies.jwt) {
         const token = req.cookies.jwt;
+        console.log(token);
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id).populate('house');
       } else {

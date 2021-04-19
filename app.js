@@ -30,6 +30,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(jwtSecret));
 
 app.use((req, res, next) => {
+   console.log(process.env.FE_URL);
    next();
 });
 
