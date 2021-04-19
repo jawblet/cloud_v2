@@ -17,7 +17,12 @@ const errorController = require('./controllers/errorController');
 const jwtSecret = process.env.JWT_SECRET;
 
 const app = express(); 
-app.use(cors());
+app.set("trust proxy", 1);
+
+app.use(cors({
+   credentials: true,
+   origin: [process.env.FE_URL]
+ }));
 app.use(morgan('tiny')); 
 
 app.use(express.json());

@@ -9,6 +9,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <React.StrictMode>
