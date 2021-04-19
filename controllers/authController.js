@@ -24,7 +24,6 @@ const createUserToken = async(user, code, req, res) => {
         domain: 'https://arriveanywhere.netlify.app',
         expires: d, 
         httpOnly: true,
-        secure: true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https', 
         sameSite: 'none'
     });
