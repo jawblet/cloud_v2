@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);
-app.use('/comments', commentRouter);
+app.use('/comments', commentRouter); 
 app.use('/houses', houseRouter);
 app.use('/groups', groupRouter);
 app.use('/tags', tagRouter);

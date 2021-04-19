@@ -20,6 +20,7 @@ const createUserToken = async(user, code, req, res) => {
 
     //cookie settings 
     res.cookie('jwt', token, {
+        domain: 'https://arriveanywhere.netlify.app/',
         expires: d, 
         httpOnly: true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https', 
