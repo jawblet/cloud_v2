@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js", 
-    "heroku-postbuild": "cd react && npm install && CI=false npm run build"
+    "start": "node server.js" 
   },
   "author": "",
   "license": "ISC",
