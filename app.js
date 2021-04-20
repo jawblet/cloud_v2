@@ -41,7 +41,10 @@ app.use('/search', searchRouter);
 
 // Serve static assets from react if in production
 if (process.env.NODE_ENV === "production") {
-   app.get('/', (req, res) => { res.send('Hello from Express!') });
+   app.use(express.static(path.join(__dirname, 'react/build')));
+   app.get('*', (req, res) =>{
+      res.sendFile(path.join(__dirname+'/react/build/index.html'));
+   });
 }
 
 //handle errors
