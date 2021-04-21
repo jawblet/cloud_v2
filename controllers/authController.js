@@ -23,7 +23,7 @@ const createUserToken = async(user, code, req, res) => {
     res.cookie('jwt', token, {
         expires: d, 
         httpOnly: true,
-        secure: req.secure || req.headers['x-forwarded-proto'] === 'https', 
+        secure: true, 
         sameSite: 'none'
     });
 
