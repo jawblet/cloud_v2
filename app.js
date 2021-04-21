@@ -35,19 +35,19 @@ app.use('/users', userRouter);
 app.use('/search', searchRouter);
 
 // Serve static assets from react if in production
-if (process.env.NODE_ENV === "production") {
-   app.use(express.static(path.join(__dirname, 'react/build')));
-   app.get('*', (req, res) =>{
-      res.sendFile(path.join(__dirname+'/react/build/index.html'));
-   });
-}
+app.use(express.static(path.join(__dirname, 'react/build')));
+app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname+'/react/build/index.html'));
+}); 
 
 //handle errors
 app.use(errorController); 
 
+/*
 app.all('*', (req, res, next) => {
    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
  });
+*/
 
 module.exports = app; 
 
